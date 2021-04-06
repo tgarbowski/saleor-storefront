@@ -1,4 +1,5 @@
 @import "../../../globalStyles/scss/variables.scss";
+@import "../../../globalStyles/scss/salingo-variables.scss";
 
 .side-nav {
   $item-height: 3.7rem;
@@ -42,7 +43,7 @@
       transition: 0.3s;
 
       &:hover {
-        color: $turquoise;
+        color: $salingoYellow;
       }
 
       svg * {
@@ -83,7 +84,7 @@
       }
 
       &:hover {
-        color: $turquoise;
+        color: $salingoYellow;
       }
     }
 

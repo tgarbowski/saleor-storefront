@@ -1,4 +1,5 @@
 @import "../../../globalStyles/scss/variables.scss";
+@import "../../../globalStyles/scss/salingo-variables.scss";
 
 .main-menu {
   align-items: center;
@@ -62,7 +63,7 @@
       transition: 0.3s;
 
       &:hover {
-        color: $turquoise;
+        color: $salingoYellow;
       }
     }
   }
@@ -109,7 +110,7 @@
 
     &:hover {
       svg * {
-        fill: $turquoise;
+        fill: $salingoYellow;
       }
     }
 
@@ -125,7 +126,7 @@
       position: absolute;
       top: -0.3rem;
       right: 0.6rem;
-      background-color: $blue;
+      background-color: $salingoGrey;
       border-radius: 1rem;
       padding: 0 0.3rem;
       min-width: 1rem;
@@ -140,7 +141,7 @@
 
   &__user {
     &--active * {
-      fill: $turquoise;
+      fill: $salingoLightYellow;
       fill-rule: inherit;
     }
   }
@@ -189,9 +190,9 @@
     }
 
     &:hover {
-      color: $turquoise;
+      color: $salingoYellow;
       svg * {
-        fill: $turquoise;
+        fill: $salingoYellow;
       }
     }
 
