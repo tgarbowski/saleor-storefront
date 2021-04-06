@@ -1,4 +1,5 @@
 @import "../../../globalStyles/scss/variables.scss";
+@import "../../../globalStyles/scss/salingo-variables.scss";
 
 .product-page {
   background-color: $white;
@@ -87,8 +88,8 @@
 
           &.active {
             span {
-              background-color: $turquoise;
-              border-color: $turquoise;
+              background-color: $salingoYellow;
+              border-color: $salingoYellow;
             }
           }
         }

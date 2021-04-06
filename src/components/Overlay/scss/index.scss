@@ -1,4 +1,5 @@
 @import "../../../globalStyles/scss/variables";
+@import "../../../globalStyles/scss/salingo-variables";
 @import "../../../globalStyles/scss/animations";
 
 .overlay {
@@ -65,7 +66,7 @@
       &:focus {
         svg {
           * {
-            fill: $turquoise;
+            fill: $salingoYellow;
           }
         }
       }
@@ -81,7 +82,7 @@
         display: flex;
         svg {
           * {
-            fill: $turquoise;
+            fill: $salingoYellow;
           }
         }
       }

@@ -1,6 +1,6 @@
 import baseStyled, { ThemedStyledInterface } from "styled-components";
 
-import * as C from "./constants";
+import * as C from "./salingo-constants";
 
 export const defaultTheme = {
   breakpoints: {
