@@ -46,14 +46,14 @@ const Page: React.FC<{
           <div>
             <span className="home-page__hero__title">
               <h1>
-                <FormattedMessage defaultMessage="Final reduction" />
+                <FormattedMessage defaultMessage="WITAMY" />
               </h1>
             </span>
           </div>
           <div>
             <span className="home-page__hero__title">
               <h1>
-                <FormattedMessage defaultMessage="Up to 70% off sale" />
+                <FormattedMessage defaultMessage="W SKLEPIE SALINGO" />
               </h1>
             </span>
           </div>
@@ -70,7 +70,7 @@ const Page: React.FC<{
                 )}
               >
                 <Button testingContext="homepageHeroActionButton">
-                  <FormattedMessage defaultMessage="Shop sale" />
+                  <FormattedMessage defaultMessage="SPRAWDŹ OFERTĘ" />
                 </Button>
               </Link>
             )
