@@ -85,10 +85,6 @@
           &:nth-child(3) {
             grid-column: 3 / 1;
           }
-
-          &:nth-child(n + 4) {
-            display: none;
-          }
         }
       }
 
