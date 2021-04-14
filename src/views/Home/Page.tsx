@@ -65,8 +65,8 @@ const Page: React.FC<{
             categoriesExist() && (
               <Link
                 to={generateCategoryUrl(
-                  categories.edges[0].node.id,
-                  categories.edges[0].node.name
+                  categories.edges[4].node.id,
+                  categories.edges[4].node.name
                 )}
               >
                 <Button testingContext="homepageHeroActionButton">

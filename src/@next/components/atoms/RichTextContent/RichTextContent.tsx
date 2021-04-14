@@ -3,13 +3,14 @@
 import { sanitize } from "dompurify";
 import draftToHtml from "draftjs-to-html";
 import React from "react";
+import * as S from "./styles";
 
 import { IProps } from "./types";
 
 export const RichTextContent: React.FC<IProps> = ({ descriptionJson }) => (
   <>
     {descriptionJson && (
-      <div
+      <S.Wrapper
         dangerouslySetInnerHTML={{
           __html: sanitize(draftToHtml(JSON.parse(descriptionJson))),
         }}
