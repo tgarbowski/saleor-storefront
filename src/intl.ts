@@ -2,223 +2,223 @@ import { defineMessages, IntlShape } from "react-intl";
 
 export const commonMessages = defineMessages({
   search: {
-    defaultMessage: "search",
+    defaultMessage: "szukaj",
   },
   outOfStock: {
-    defaultMessage: "Out of stock",
+    defaultMessage: "Wyprzedane",
   },
   lowStock: {
-    defaultMessage: "Low stock",
+    defaultMessage: "Mała ilość",
   },
   noItemsAvailable: {
-    defaultMessage: "No items available",
+    defaultMessage: "Brak towaru",
   },
   noPurchaseAvailable: {
-    defaultMessage: "Not available for purchase",
+    defaultMessage: "Niedostępne do kupna",
   },
   purchaseAvailableOn: {
-    defaultMessage: `Will become available for purchase on {date} at {time}`,
+    defaultMessage: `Dostępne w dniu {date} o {time}`,
   },
   youMightLike: {
-    defaultMessage: "You might like",
+    defaultMessage: "Możesz także lubić",
   },
   choosePaymentMethod: {
-    defaultMessage: "Please choose payment method.",
+    defaultMessage: "Proszę wybrać metodę płatności.",
   },
   provideEmailAddress: {
-    defaultMessage: "Please provide email address.",
+    defaultMessage: "Proszę podać adres email.",
   },
   account: {
-    defaultMessage: "Account",
+    defaultMessage: "Konto",
   },
   myAccount: {
-    defaultMessage: "My Account",
+    defaultMessage: "Moje konto",
   },
   orderHistory: {
-    defaultMessage: "Order history",
+    defaultMessage: "Historia zamówień",
   },
   addressBook: {
-    defaultMessage: "Address book",
+    defaultMessage: "Książka adresów",
   },
   logOut: {
-    defaultMessage: "Log Out",
+    defaultMessage: "Wyloguj",
   },
   firstName: {
-    defaultMessage: "First Name",
+    defaultMessage: "Imię",
   },
   lastName: {
-    defaultMessage: "Last Name",
+    defaultMessage: "Nazwisko",
   },
   password: {
-    defaultMessage: "Password",
+    defaultMessage: "Hasło",
   },
   quantity: {
-    defaultMessage: "Quantity",
+    defaultMessage: "Ilość",
   },
   sku: {
     defaultMessage: "SKU",
   },
   maxQtyIs: {
-    defaultMessage: "Maximum quantity is {maxQuantity}",
+    defaultMessage: "Maksymalna ilość to {maxQuantity}",
   },
   qty: {
-    defaultMessage: "Quantity",
+    defaultMessage: "Ilość",
   },
   subtotal: {
-    defaultMessage: "Subtotal",
+    defaultMessage: "Suma częściowa",
   },
   shipping: {
-    defaultMessage: "Shipping",
+    defaultMessage: "Dostawa",
   },
   promoCode: {
-    defaultMessage: "Promo code",
+    defaultMessage: "Kod promocyjny",
   },
   total: {
-    defaultMessage: "Total",
+    defaultMessage: "W sumie",
   },
   totalPrice: {
-    defaultMessage: "Total Price",
+    defaultMessage: "Cena całkowita",
   },
   checkout: {
-    defaultMessage: "Checkout",
+    defaultMessage: "Kasa",
   },
   eMail: {
-    defaultMessage: "Email Address",
+    defaultMessage: "Email",
   },
   shortEmail: {
     defaultMessage: "Email",
   },
   loading: {
-    defaultMessage: "Loading",
+    defaultMessage: "Ładowanie",
   },
   products: {
-    defaultMessage: "Products",
+    defaultMessage: "Produkty",
   },
   price: {
-    defaultMessage: "Price",
+    defaultMessage: "Cena",
   },
   variant: {
     defaultMessage: "Variant",
   },
   phone: {
-    defaultMessage: "Phone",
+    defaultMessage: "Telefon",
   },
   phoneNumber: {
-    defaultMessage: "Phone number: {phone}",
+    defaultMessage: "Numer telefonu: {phone}",
   },
   showEmail: {
     defaultMessage: "Email: {email}",
   },
   save: {
-    defaultMessage: "Save",
+    defaultMessage: "Zapisz",
   },
   add: {
-    defaultMessage: "Add",
+    defaultMessage: "Dodaj",
   },
   filterHeader: {
-    defaultMessage: "FILTERS",
+    defaultMessage: "FILTRY",
   },
   clearFilterHeader: {
-    defaultMessage: "CLEAR FILTERS",
+    defaultMessage: "WYCZYŚĆ FILTRY",
   },
   status: {
     defaultMessage: "Status",
   },
   cancel: {
-    defaultMessage: "Cancel",
+    defaultMessage: "Anuluj",
   },
   home: {
-    defaultMessage: "Home",
+    defaultMessage: "Główna",
   },
 });
 
 export const checkoutMessages = defineMessages({
   stepNameAddress: {
-    defaultMessage: "Address",
+    defaultMessage: "Adres",
   },
   stepNameShipping: {
-    defaultMessage: "Shipping",
+    defaultMessage: "Dostawa",
   },
   stepNamePayment: {
-    defaultMessage: "Payment",
+    defaultMessage: "Płatność",
   },
   stepNameReview: {
-    defaultMessage: "Review",
+    defaultMessage: "Podsumowanie",
   },
   addressNextActionName: {
-    defaultMessage: "Continue to Shipping",
+    defaultMessage: "Kontynuuj do dostawy",
   },
   shippingNextActionName: {
-    defaultMessage: "Continue to Payment",
+    defaultMessage: "Kontynuuj do płatności",
   },
   paymentNextActionName: {
-    defaultMessage: "Continue to Review",
+    defaultMessage: "Kontynuuj do podsumowania",
   },
   reviewNextActionName: {
-    defaultMessage: "Place order",
+    defaultMessage: "Złóż zamówienie",
   },
   addNewAddress: {
-    defaultMessage: "Add new address",
+    defaultMessage: "Dodaj nowy adres",
   },
   shippingMethod: {
-    defaultMessage: "SHIPPING METHOD",
+    defaultMessage: "METODA DOSTAWY",
   },
   billingAddress: {
-    defaultMessage: "BILLING ADDRESS",
+    defaultMessage: "ADRES ROZLICZENIOWY",
   },
   paymentMethod: {
-    defaultMessage: "PAYMENT METHOD",
+    defaultMessage: "METODA PŁATNOŚCI",
   },
   reviewOrder: {
-    defaultMessage: "REVIEW ORDER",
+    defaultMessage: "PRZEGLĄD ZAMÓWIENIA",
   },
   shippingAddress: {
-    defaultMessage: "Shipping Address",
+    defaultMessage: "Adres dostawy",
   },
   continueShopping: {
-    defaultMessage: "CONTINUE SHOPPING",
+    defaultMessage: "KONTYNUUJ ZAKUPY",
   },
 });
 
 export const prodListHeaderCommonMsg = defineMessages({
   sortOptionsClear: {
-    defaultMessage: "Clear...",
+    defaultMessage: "Wyczyść...",
   },
   sortOptionsPrice: {
-    defaultMessage: "Price Low-High",
+    defaultMessage: "Cena rosnąco",
   },
   sortOptionsPriceDsc: {
-    defaultMessage: "Price High-Low",
+    defaultMessage: "Cena malejąco",
   },
   sortOptionsName: {
-    defaultMessage: "Name Increasing",
+    defaultMessage: "Nazwa rosnąco",
   },
   sortOptionsNameDsc: {
-    defaultMessage: "Name Decreasing",
+    defaultMessage: "Nazwa malejąco",
   },
   sortOptionsUpdatedAt: {
-    defaultMessage: "Last updated Ascending",
+    defaultMessage: "Data dodania (od najnowszego)",
   },
   sortOptionsUpdatedAtDsc: {
-    defaultMessage: "Last updated Descending",
+    defaultMessage: "Data dodania (od najstarszego)",
   },
 });
 
 export const paymentStatusMessages = defineMessages({
   notCharged: {
-    defaultMessage: "Not charged",
+    defaultMessage: "Nie pobrane",
   },
   partiallyCharged: {
-    defaultMessage: "Partially charged",
+    defaultMessage: "Częściowo pobrana",
   },
   fullyCharged: {
-    defaultMessage: "Fully charged",
+    defaultMessage: "Pobrana",
   },
   partiallyRefunded: {
-    defaultMessage: "Partially refunded",
+    defaultMessage: "Częściowo zwrócone",
   },
   fullyRefunded: {
-    defaultMessage: "Fully refunded",
+    defaultMessage: "Całkowicie zwrócone",
   },
 });
 
@@ -245,15 +245,15 @@ export function translatePaymentStatus(
   intl: IntlShape
 ): string {
   switch (status) {
-    case "Not charged":
+    case "Nie pobrane":
       return intl.formatMessage(paymentStatusMessages.notCharged);
-    case "Partially charged":
+    case "Częściowo pobrana":
       return intl.formatMessage(paymentStatusMessages.partiallyCharged);
-    case "Fully charged":
+    case "Pobrana":
       return intl.formatMessage(paymentStatusMessages.fullyCharged);
-    case "Partially refunded":
+    case "Częściowo zwrócone":
       return intl.formatMessage(paymentStatusMessages.partiallyRefunded);
-    case "Fully refunded":
+    case "Całkowicie zwrócone":
       return intl.formatMessage(paymentStatusMessages.fullyRefunded);
     default:
       return status;

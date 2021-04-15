@@ -25,11 +25,11 @@ export const AccountTile: React.FC = () => {
       <Tile>
         <S.Wrapper>
           <S.Header>
-            <FormattedMessage defaultMessage="MY DATA" />
+            <FormattedMessage defaultMessage="Moje dane" />
           </S.Header>
           <S.Content>
             <S.HeaderSmall>
-              <FormattedMessage defaultMessage="Personal details" />
+              <FormattedMessage defaultMessage="Dane osobowe" />
               {!isEditing && (
                 <IconButton
                   testingContext="editDetailsButton"
