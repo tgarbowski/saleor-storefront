@@ -20,18 +20,18 @@ const ThankYou: React.FC<IProps> = ({
     <Container data-test="thankYouView">
       <S.Wrapper>
         <S.ThankYouHeader>
-          <FormattedMessage defaultMessage="Thank you" />
+          <FormattedMessage defaultMessage="Dziękujemy" />
           <br />
           <span>
-            <FormattedMessage defaultMessage="for your order!" />
+            <FormattedMessage defaultMessage="za twoje zamówienie!" />
           </span>
         </S.ThankYouHeader>
         <S.Paragraph>
-          <FormattedMessage defaultMessage="Your order number is" />{" "}
+          <FormattedMessage defaultMessage="Twój numer zamówienia" />{" "}
           <span>{orderNumber}</span>
         </S.Paragraph>
         <S.Paragraph>
-          <FormattedMessage defaultMessage="We’ve emailed you an order confirmation, and we’ll notify you when the order has been shipped." />
+          <FormattedMessage defaultMessage="Wysłaliśmy Ci e-mail z potwierdzeniem zamówienia i powiadomimy Cię, gdy zamówienie zostanie wysłane." />
         </S.Paragraph>
         <S.Buttons>
           <Button
@@ -47,7 +47,7 @@ const ThankYou: React.FC<IProps> = ({
             onClick={orderDetails}
             fullWidth
           >
-            <FormattedMessage defaultMessage="ORDER DETAILS" />
+            <FormattedMessage defaultMessage="SZCZEGÓŁY ZAMÓWIENIA" />
           </Button>
         </S.Buttons>
       </S.Wrapper>

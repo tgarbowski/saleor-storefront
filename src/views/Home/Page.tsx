@@ -84,7 +84,7 @@ const Page: React.FC<{
         <div className="home-page__categories">
           <div className="container">
             <h3>
-              <FormattedMessage defaultMessage="Shop by category" />
+              <FormattedMessage defaultMessage="KATEGORIE" />
             </h3>
             <div className="home-page__categories__list">
               {categories.edges.map(({ node: category }) => (

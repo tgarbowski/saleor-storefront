@@ -8,12 +8,12 @@ import { IProps } from "./types";
 
 const defaultShippingAddress = (
   <S.MenuItem>
-    <FormattedMessage defaultMessage="Set as default shipping address" />
+    <FormattedMessage defaultMessage="Ustaw jako domyślny adres dostawy" />
   </S.MenuItem>
 );
 const defaultBillingAddress = (
   <S.MenuItem>
-    <FormattedMessage defaultMessage="Set as default billing address" />
+    <FormattedMessage defaultMessage="Ustaw jako domyślny adres rozliczeniowy" />
   </S.MenuItem>
 );
 
@@ -50,11 +50,11 @@ export const AddressTile: React.FC<IProps> = ({
       />
 
       {address.isDefaultBillingAddress && address.isDefaultShippingAddress
-        ? intl.formatMessage({ defaultMessage: "Default Address" })
+        ? intl.formatMessage({ defaultMessage: "Domyślny adres" })
         : address.isDefaultShippingAddress
-        ? intl.formatMessage({ defaultMessage: "Default Shipping Address" })
+        ? intl.formatMessage({ defaultMessage: "Domyślny adres dostawy" })
         : address.isDefaultBillingAddress
-        ? intl.formatMessage({ defaultMessage: "Default Billing Address" })
+        ? intl.formatMessage({ defaultMessage: "Domyślny adres rozliczeniowy" })
         : null}
     </S.HeaderContent>
   );

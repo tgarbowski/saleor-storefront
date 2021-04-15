@@ -18,7 +18,7 @@ import { IProps } from "./types";
 
 const title = (
   <h1 data-test="cartPageTitle">
-    <FormattedMessage defaultMessage="My Cart" />
+    <FormattedMessage defaultMessage="Mój koszyk" />
   </h1>
 );
 
@@ -36,7 +36,7 @@ const getCheckoutButton = (history: History, user?: UserDetails_me | null) => (
     testingContext="proceedToCheckoutButton"
     onClick={() => history.push(user ? `/checkout/` : `/login/`)}
   >
-    <FormattedMessage defaultMessage="PROCEED TO CHECKOUT" />
+    <FormattedMessage defaultMessage="DO KASY" />
   </Button>
 );
 
