@@ -1,5 +1,7 @@
 @import "../../../../globalStyles/scss/variables.scss";
 @import "../../../../globalStyles/scss/salingo-variables.scss";
+@import "../../../../globalStyles/scss/clothes-for-you-variables.scss";
+
 
 .cart {
   display: grid;
@@ -75,6 +77,26 @@
           &:hover {
             svg * {
               fill: $salingoYellow;
+            }
+          }
+        }
+        &__c4udelete-icon {
+          background-color: $gray-light;
+          border-radius: $spacer;
+          width: 1.5rem;
+          height: 1.5rem;
+          text-align: center;
+          line-height: 1.5rem;
+          margin-top: $spacer / 2;
+          cursor: pointer;
+
+          svg * {
+            transition: 0.3s;
+          }
+
+          &:hover {
+            svg * {
+              fill: $clothesForYouRed;
             }
           }
         }

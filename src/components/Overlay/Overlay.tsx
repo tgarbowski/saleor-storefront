@@ -4,6 +4,7 @@ import classNames from "classnames";
 import * as React from "react";
 
 import { OverlayContextInterface } from "./context";
+import { clothesForYouEnabled } from "@temp/constants";
 
 interface OverlayProps {
   context: OverlayContextInterface;
@@ -21,7 +22,10 @@ const Overlay: React.FC<OverlayProps> = ({
   testingContext,
 }) => (
   <div
-    className={classNames("overlay", {
+    className={clothesForYouEnabled ? classNames("c4uoverlay", {
+      [`c4uoverlay--${type}`]: !!type,
+      [className]: !!className,
+    }) : classNames("overlay", {
       [`overlay--${type}`]: !!type,
       [className]: !!className,
     })}

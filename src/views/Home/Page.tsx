@@ -17,6 +17,7 @@ import {
 import { structuredData } from "../../core/SEO/Homepage/structuredData";
 
 import noPhotoImg from "../../images/no-photo.svg";
+import { clothesForYouEnabled } from "@temp/constants";
 
 const Page: React.FC<{
   loading: boolean;
@@ -53,7 +54,9 @@ const Page: React.FC<{
           <div>
             <span className="home-page__hero__title">
               <h1>
-                <FormattedMessage defaultMessage="W SKLEPIE SALINGO" />
+                <FormattedMessage   defaultMessage="W SKLEPIE {shopname}"
+                values={clothesForYouEnabled ? {  shopname: 'CLOTHES4YOU'} : {shopname: "SALINGO"}}/>
+                
               </h1>
             </span>
           </div>

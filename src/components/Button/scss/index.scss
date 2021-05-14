@@ -1,5 +1,6 @@
 @import "../../../globalStyles/scss/variables.scss";
 @import "../../../globalStyles/scss/salingo-variables.scss";
+@import "../../../globalStyles/scss/clothes-for-you-variables.scss";
 
 button.button {
   background-color: $salingoYellow;
@@ -68,3 +69,72 @@ button.button {
     }
   }
 }
+
+button.c4ubutton {
+  background-color: $clothesForYouRed;
+  transform: $button-transform;
+  padding: $button-padding;
+  border: none;
+  box-shadow: $button-box-shadow;
+  transition: $button-transition;
+  outline: none;
+  font-family: $base-font-family;
+  cursor: pointer;
+
+  @media (max-width: $small-screen) {
+    padding: $button-padding-small-screen;
+    width: 88%;
+    max-width: 88%;
+  }
+
+  > span {
+    display: inline-block;
+    color: $white;
+    font-size: $button-font-size;
+    text-transform: $button-text-transform;
+    font-weight: $button-font-weight;
+    line-height: $button-line-height;
+    transform: $button-content-transform;
+  }
+
+  &:hover {
+    background-color: $clothesForYouDarkRed;
+  }
+
+  &:active {
+    box-shadow: $button-box-shadow-clicked;
+  }
+
+  &.secondary {
+    background-color: $white;
+    box-shadow: inset 0px 0px 0px 3px $clothesForYouBlack;
+    border-left: 1px solid $clothesForYouBlack;
+    border-right: 1px solid $clothesForYouBlack;
+
+    * {
+      color: $clothesForYouBlack;
+    }
+
+    &:hover {
+      background-color: $clothesForYouBlack;
+
+      * {
+        color: $white;
+      }
+    }
+
+    &:active {
+      background-color: $clothesForYouBlack;
+    }
+  }
+
+  &:disabled {
+    background-color: $gray;
+
+    &,
+    &:hover {
+      cursor: default;
+    }
+  }
+}
+

@@ -1,5 +1,7 @@
 @import "../../../globalStyles/scss/variables.scss";
 @import "../../../globalStyles/scss/salingo-variables.scss";
+@import "../../../globalStyles/scss/clothes-for-you-variables.scss";
+
 
 .product-page {
   background-color: $white;
@@ -90,6 +92,28 @@
             span {
               background-color: $salingoYellow;
               border-color: $salingoYellow;
+            }
+          }
+        }
+      }
+
+      &__c4unav {
+        li {
+          display: inline-block;
+          padding: $spacer / 2;
+
+          span {
+            width: $spacer / 2;
+            height: $spacer / 2;
+            border: 1px solid $gray;
+            border-radius: $spacer / 2;
+            display: block;
+          }
+
+          &.active {
+            span {
+              background-color: $clothesForYouRed;
+              border-color: $clothesForYouRed;
             }
           }
         }

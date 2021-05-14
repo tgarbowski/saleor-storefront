@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import { RichTextContent } from "@components/atoms";
 import { Breadcrumb, Breadcrumbs } from "../../components";
+import { clothesForYouEnabled } from "@temp/constants";
 
 interface PageNavigationElement {
   active: boolean;
@@ -42,7 +43,11 @@ export const Page: React.FC<PageProps> = ({
           <ul>
             {navigation.map(menuElement => (
               <li
-                className={classNames({
+                className={clothesForYouEnabled? classNames({
+                  "article-page__navigation-element": true,
+                  "article-page__navigation-element--c4uactive":
+                    menuElement.active,
+                }) :classNames({
                   "article-page__navigation-element": true,
                   "article-page__navigation-element--active":
                     menuElement.active,

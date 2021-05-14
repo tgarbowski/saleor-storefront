@@ -1,3 +1,4 @@
+import { clothesForYouEnabled } from "@temp/constants";
 import * as React from "react";
 
 import "./scss/index.scss";
@@ -23,7 +24,7 @@ const Button: React.FC<ButtonProps> = ({
 }) => (
   <button
     data-test={testingContext}
-    className={`button ${secondary ? "secondary" : ""} ${className}`}
+    className={clothesForYouEnabled ? `c4ubutton ${secondary ? "secondary" : ""} ${className}` : `button ${secondary ? "secondary" : ""} ${className}`}
     ref={btnRef}
     type={type as ButtonType}
     {...otherProps}

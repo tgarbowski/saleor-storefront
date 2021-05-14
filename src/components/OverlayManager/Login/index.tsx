@@ -18,6 +18,7 @@ import RegisterForm from "./RegisterForm";
 
 import closeImg from "../../../images/x.svg";
 import ForgottenPassword from "./ForgottenPassword";
+import { clothesForYouEnabled } from "@temp/constants";
 
 class Login extends React.Component<
   { overlay: OverlayContextInterface; active?: "login" | "register" },
@@ -56,7 +57,7 @@ class Login extends React.Component<
                 className="overlay__header__close-icon"
               />
             </div>
-            <div className="login__tabs">
+            <div className={clothesForYouEnabled ? "login__c4utabs" : "login__tabs"}>
               <span
                 data-test="loginTab"
                 onClick={() => this.changeActiveTab("login")}
