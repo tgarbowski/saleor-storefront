@@ -1,5 +1,6 @@
 /* eslint-disable global-require */
 
+import { clothesForYouEnabled } from "@temp/constants";
 import { generatePageUrl } from "./utils";
 
 export const BASE_URL = "/";
@@ -39,7 +40,19 @@ export const STATIC_PAGES = [
     url: generatePageUrl("about"),
   },
 ];
-export const SOCIAL_MEDIA = [
+export const SOCIAL_MEDIA = clothesForYouEnabled ?  [
+  {
+    ariaLabel: "facebook",
+    href: "https://www.facebook.com/Clothes4YouPL/",
+    path: require("../images/facebook-icon.svg"),
+  },
+  {
+    ariaLabel: "instagram",
+    href: "https://www.instagram.com/clothes4you.pl/",
+    path: require("../images/instagram-icon.svg"),
+  },
+  ]
+ : [
   {
     ariaLabel: "facebook",
     href: "https://www.facebook.com/salingopl/",

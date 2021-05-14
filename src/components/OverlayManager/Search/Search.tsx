@@ -33,6 +33,7 @@ import { TypedSearchResults } from "./queries";
 
 import searchImg from "../../../images/search.svg";
 import closeImg from "../../../images/x.svg";
+import { clothesForYouEnabled } from "@temp/constants";
 
 interface SearchProps extends WrappedComponentProps, RouteComponentProps {
   overlay: OverlayContextInterface;
@@ -100,7 +101,7 @@ class Search extends React.Component<SearchProps, SearchState> {
           onClick={e => e.stopPropagation()}
           onSubmit={this.handleSubmit}
         >
-          <div className="search__input">
+          <div className={clothesForYouEnabled ? "search__c4uinput" : "search__input"}>
             <DebouncedTextField
               onChange={evt => this.setState({ search: evt.target.value })}
               value={this.state.search}
@@ -108,7 +109,7 @@ class Search extends React.Component<SearchProps, SearchState> {
                 <ReactSVG
                   path={closeImg}
                   onClick={this.props.overlay.hide}
-                  className="search__input__close-btn"
+                  className={clothesForYouEnabled ? "search__c4uinput__close-btn" : "search__input__close-btn"}
                 />
               }
               iconRight={<ReactSVG path={searchImg} />}

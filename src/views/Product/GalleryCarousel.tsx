@@ -6,6 +6,7 @@ import { Carousel } from "../../components";
 import { ProductDetails_product_images } from "./gqlTypes/ProductDetails";
 
 import noPhotoImg from "../../images/no-photo.svg";
+import { clothesForYouEnabled } from "@temp/constants";
 
 const GalleryCarousel: React.FC<{
   images: ProductDetails_product_images[];
@@ -22,7 +23,7 @@ const GalleryCarousel: React.FC<{
         }
 
         return (
-          <ul className="product-page__product__gallery__nav">
+          <ul className={clothesForYouEnabled ? "product-page__product__gallery__c4unav" : "product-page__product__gallery__nav"}>
             {indexes.map(index => (
               <li
                 key={index}

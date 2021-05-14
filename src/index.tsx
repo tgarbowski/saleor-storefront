@@ -13,12 +13,13 @@ import { NotificationTemplate } from "@components/atoms";
 import { ServiceWorkerProvider } from "@components/containers";
 import { SaleorProvider } from "@saleor/sdk";
 import { ConfigInput } from "@saleor/sdk/lib/types";
-import { defaultTheme, GlobalStyle } from "@styles";
+import { defaultTheme, GlobalStyle, clothesForYouTheme } from "@styles";
 
 import { App } from "./app";
 import { LocaleProvider } from "./components/Locale";
 import {
   apiUrl,
+  clothesForYouEnabled,
   sentryDsn,
   sentrySampleRate,
   serviceWorkerTimeout,
@@ -58,9 +59,8 @@ const startApp = async () => {
       </Router>
     );
   });
-
   render(
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={clothesForYouEnabled ? clothesForYouTheme : defaultTheme}>
       <AlertProvider
         template={NotificationTemplate as any}
         {...notificationOptions}

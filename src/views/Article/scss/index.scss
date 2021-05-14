@@ -1,5 +1,7 @@
 @import "../../../globalStyles/scss/variables.scss";
 @import "../../../globalStyles/scss/salingo-variables.scss";
+@import "../../../globalStyles/scss/clothes-for-you-variables.scss";
+
 
 .article-page {
   &__container {
@@ -155,6 +157,25 @@
 
           &:before {
             background-color: $salingoYellow;
+            content: "";
+            height: 7px;
+            left: 0;
+            position: absolute;
+            top: 6px;
+            transform: skew(45deg);
+            width: 100%;
+            z-index: -1;
+          }
+        }
+      }
+
+      &--c4uactive {
+        a {
+          display: inline-block;
+          position: relative;
+
+          &:before {
+            background-color: $clothesForYouRed;
             content: "";
             height: 7px;
             left: 0;

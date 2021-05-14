@@ -27,10 +27,10 @@ export const darkGreen = "#06847B";
 export const secondaryGrey = "#EBF1F6";
 export const secondaryGreyDark = "#9D9FB1";
 export const secondaryBlue = "#036DFF";
-export const salingoYellow = "#FFCC55";
-export const salingoLightYellow = "#FFE583";
-export const salingoDarkYellow = "#836800";
-export const salingoGrey = "#646464";
+export const clothesForYouRed = "#d3000e";
+export const clothesForYouLightRed = "#ff434f";
+export const clothesForYouDarkRed = "#980009";
+export const clothesForYouBlack = "#262626";
 
 // theme colors
 export const theme = {
@@ -38,9 +38,9 @@ export const theme = {
   autofill: autofillColor,
   autofillSelected: autofillColorSelected,
   bannerBackground: secondaryGrey,
-  bannerEdge: salingoYellow,
-  bannerLink: salingoYellow,
-  baseFont: salingoGrey,
+  bannerEdge: clothesForYouRed,
+  bannerLink: clothesForYouRed,
+  baseFont: clothesForYouBlack,
   baseFontColorSemiTransparent,
   baseFontColorTransparent,
   dark: black,
@@ -48,21 +48,21 @@ export const theme = {
   divider: grayLight,
   dividerDark: grayMedium,
   error: rose,
-  hoverLightBackground: salingoLightYellow,
+  hoverLightBackground: clothesForYouLightRed,
   light: grayLight,
   lightFont: gray,
   listAttributeName: baseFontColorSemiTransparent,
   listBullet: darkGreen,
   overlay: overlayColor,
-  primary: salingoYellow,
-  primaryDark: salingoDarkYellow,
-  primaryLight: salingoLightYellow,
-  primaryTransparent: salingoLightYellow,
-  secondary: salingoGrey,
-  secondaryDark: salingoGrey,
-  secondaryLight: salingoGrey,
-  secondaryOverlay: salingoGrey,
-  secondaryOverlayDark: salingoGrey,
+  primary: clothesForYouRed,
+  primaryDark: clothesForYouDarkRed,
+  primaryLight: clothesForYouLightRed,
+  primaryTransparent: clothesForYouLightRed,
+  secondary: clothesForYouBlack,
+  secondaryDark: clothesForYouBlack,
+  secondaryLight: clothesForYouBlack,
+  secondaryOverlay: clothesForYouBlack,
+  secondaryOverlayDark: clothesForYouBlack,
   success: green,
   tabTitle: darkGreen,
   tableDivider: tabelGray,
