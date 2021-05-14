@@ -20,7 +20,6 @@ import { Dropdown } from "./Dropdown";
 import * as S from "./styles";
 import { IProps } from "./types";
 
-
 const menuVisibleRatio = 0.8;
 const getElementWidth = (node: Element) => node.scrollWidth;
 const isMenuVisible = (node: Element) => {
@@ -117,7 +116,9 @@ export const TopNavbar: React.FC<IProps> = ({ items }: IProps) => {
         </S.Navigation>
         <S.Center>
           <Media maxWidth={smallScreen}>
-            <S.LogoWrapper path={clothesForYouEnabled ? C4ULogoSmall : LogoSmall} />
+            <S.LogoWrapper
+              path={clothesForYouEnabled ? C4ULogoSmall : LogoSmall}
+            />
           </Media>
           <Media minWidth={smallScreen}>
             <S.LogoWrapper path={clothesForYouEnabled ? C4ULogo : Logo} />

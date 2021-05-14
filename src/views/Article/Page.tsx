@@ -3,8 +3,8 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 
 import { RichTextContent } from "@components/atoms";
-import { Breadcrumb, Breadcrumbs } from "../../components";
 import { clothesForYouEnabled } from "@temp/constants";
+import { Breadcrumb, Breadcrumbs } from "../../components";
 
 interface PageNavigationElement {
   active: boolean;
@@ -43,15 +43,19 @@ export const Page: React.FC<PageProps> = ({
           <ul>
             {navigation.map(menuElement => (
               <li
-                className={clothesForYouEnabled? classNames({
-                  "article-page__navigation-element": true,
-                  "article-page__navigation-element--c4uactive":
-                    menuElement.active,
-                }) :classNames({
-                  "article-page__navigation-element": true,
-                  "article-page__navigation-element--active":
-                    menuElement.active,
-                })}
+                className={
+                  clothesForYouEnabled
+                    ? classNames({
+                        "article-page__navigation-element": true,
+                        "article-page__navigation-element--c4uactive":
+                          menuElement.active,
+                      })
+                    : classNames({
+                        "article-page__navigation-element": true,
+                        "article-page__navigation-element--active":
+                          menuElement.active,
+                      })
+                }
                 key={menuElement.url}
               >
                 <Link to={menuElement.url}>{menuElement.label}</Link>

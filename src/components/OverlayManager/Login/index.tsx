@@ -3,7 +3,7 @@ import "./scss/index.scss";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 import ReactSVG from "react-svg";
-
+import { clothesForYouEnabled } from "@temp/constants";
 import {
   LoginForm,
   Offline,
@@ -18,7 +18,6 @@ import RegisterForm from "./RegisterForm";
 
 import closeImg from "../../../images/x.svg";
 import ForgottenPassword from "./ForgottenPassword";
-import { clothesForYouEnabled } from "@temp/constants";
 
 class Login extends React.Component<
   { overlay: OverlayContextInterface; active?: "login" | "register" },
@@ -57,7 +56,11 @@ class Login extends React.Component<
                 className="overlay__header__close-icon"
               />
             </div>
-            <div className={clothesForYouEnabled ? "login__c4utabs" : "login__tabs"}>
+            <div
+              className={
+                clothesForYouEnabled ? "login__c4utabs" : "login__tabs"
+              }
+            >
               <span
                 data-test="loginTab"
                 onClick={() => this.changeActiveTab("login")}

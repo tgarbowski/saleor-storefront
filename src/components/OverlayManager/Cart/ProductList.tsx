@@ -6,10 +6,10 @@ import ReactSVG from "react-svg";
 
 import { TaxedMoney } from "@components/containers";
 import { Thumbnail } from "@components/molecules";
+import { clothesForYouEnabled } from "@temp/constants";
 
 import { generateProductUrl } from "../../../core/utils";
 import removeImg from "../../../images/garbage.svg";
-import { clothesForYouEnabled } from "@temp/constants";
 
 const ProductList: React.SFC<{
   lines: ICheckoutModelLine[];
@@ -51,7 +51,11 @@ const ProductList: React.SFC<{
             </span>
             <ReactSVG
               path={removeImg}
-              className={clothesForYouEnabled ? "cart__list__item__details__c4udelete-icon" : "cart__list__item__details__delete-icon"}
+              className={
+                clothesForYouEnabled
+                  ? "cart__list__item__details__c4udelete-icon"
+                  : "cart__list__item__details__delete-icon"
+              }
               data-test="deleteButton"
               onClick={() => remove(line.variant.id)}
             />

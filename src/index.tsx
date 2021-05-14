@@ -60,7 +60,9 @@ const startApp = async () => {
     );
   });
   render(
-    <ThemeProvider theme={clothesForYouEnabled ? clothesForYouTheme : defaultTheme}>
+    <ThemeProvider
+      theme={clothesForYouEnabled ? clothesForYouTheme : defaultTheme}
+    >
       <AlertProvider
         template={NotificationTemplate as any}
         {...notificationOptions}
