@@ -40,30 +40,31 @@ export const STATIC_PAGES = [
     url: generatePageUrl("about"),
   },
 ];
-export const SOCIAL_MEDIA = clothesForYouEnabled ?  [
-  {
-    ariaLabel: "facebook",
-    href: "https://www.facebook.com/Clothes4YouPL/",
-    path: require("../images/facebook-icon.svg"),
-  },
-  {
-    ariaLabel: "instagram",
-    href: "https://www.instagram.com/clothes4you.pl/",
-    path: require("../images/instagram-icon.svg"),
-  },
-  ]
- : [
-  {
-    ariaLabel: "facebook",
-    href: "https://www.facebook.com/salingopl/",
-    path: require("../images/facebook-icon.svg"),
-  },
-  {
-    ariaLabel: "instagram",
-    href: "https://www.instagram.com/salingo.pl/",
-    path: require("../images/instagram-icon.svg"),
-  },
-];
+export const SOCIAL_MEDIA = clothesForYouEnabled
+  ? [
+      {
+        ariaLabel: "facebook",
+        href: "https://www.facebook.com/Clothes4YouPL/",
+        path: require("../images/facebook-icon.svg"),
+      },
+      {
+        ariaLabel: "instagram",
+        href: "https://www.instagram.com/clothes4you.pl/",
+        path: require("../images/instagram-icon.svg"),
+      },
+    ]
+  : [
+      {
+        ariaLabel: "facebook",
+        href: "https://www.facebook.com/salingopl/",
+        path: require("../images/facebook-icon.svg"),
+      },
+      {
+        ariaLabel: "instagram",
+        href: "https://www.instagram.com/salingo.pl/",
+        path: require("../images/instagram-icon.svg"),
+      },
+    ];
 export const META_DEFAULTS = {
   custom: [],
   description: "Sklep internetowy Salingo",

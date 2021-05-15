@@ -10,6 +10,7 @@ import ReactSVG from "react-svg";
 import { DemoBanner } from "@components/atoms";
 import { clothesForYouEnabled } from "@temp/constants";
 import classNames from "classnames";
+import C4ULogo from "images/c4u_logo.svg";
 import {
   MenuDropdown,
   Offline,
@@ -22,8 +23,6 @@ import * as appPaths from "../../app/routes";
 import { maybe } from "../../core/utils";
 import NavDropdown from "./NavDropdown";
 import { TypedMainMenuQuery } from "./queries";
-
-import C4ULogo from "images/c4u_logo.svg"
 import cartImg from "../../images/cart.svg";
 import hamburgerHoverImg from "../../images/hamburger-hover.svg";
 import hamburgerImg from "../../images/hamburger.svg";
@@ -125,7 +124,11 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
                         return (
                           <li
                             data-test="mainMenuItem"
-                            className={clothesForYouEnabled? "main-menu__c4uitem" : "main-menu__item"}
+                            className={
+                              clothesForYouEnabled
+                                ? "main-menu__c4uitem"
+                                : "main-menu__item"
+                            }
                             key={item.id}
                           >
                             <NavDropdown
@@ -153,7 +156,13 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
                             <MenuDropdown
                               suffixClass="__rightdown"
                               head={
-                                <li className={clothesForYouEnabled ? "main-menu__c4uicon main-menu__c4uuser--active" : "main-menu__icon main-menu__user--active"}>
+                                <li
+                                  className={
+                                    clothesForYouEnabled
+                                      ? "main-menu__c4uicon main-menu__c4uuser--active"
+                                      : "main-menu__icon main-menu__user--active"
+                                  }
+                                >
                                   <ReactSVG path={userImg} />
                                 </li>
                               }
@@ -194,7 +203,11 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
                           ) : (
                             <li
                               data-test="mobileMenuLoginLink"
-                              className={clothesForYouEnabled? "main-menu__c4uicon" : "main-menu__icon"}
+                              className={
+                                clothesForYouEnabled
+                                  ? "main-menu__c4uicon"
+                                  : "main-menu__icon"
+                              }
                               onClick={() =>
                                 overlayContext.show(
                                   OverlayType.login,
@@ -231,7 +244,13 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
                     {user ? (
                       <MenuDropdown
                         head={
-                          <li className={clothesForYouEnabled ? "main-menu__c4uicon main-menu__c4uuser--active" : "main-menu__icon main-menu__user--active"}>
+                          <li
+                            className={
+                              clothesForYouEnabled
+                                ? "main-menu__c4uicon main-menu__c4uuser--active"
+                                : "main-menu__icon main-menu__user--active"
+                            }
+                          >
                             <ReactSVG path={userImg} />
                           </li>
                         }
@@ -270,7 +289,11 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
                     ) : (
                       <li
                         data-test="desktopMenuLoginOverlayLink"
-                        className={clothesForYouEnabled ? "main-menu__c4uicon" : "main-menu__icon"}
+                        className={
+                          clothesForYouEnabled
+                            ? "main-menu__c4uicon"
+                            : "main-menu__icon"
+                        }
                         onClick={() =>
                           overlayContext.show(
                             OverlayType.login,
@@ -286,14 +309,24 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
               />
               <li
                 data-test="menuCartOverlayLink"
-                className={clothesForYouEnabled ? "main-menu__c4uicon main-menu__c4ucart" : "main-menu__icon main-menu__cart"}
+                className={
+                  clothesForYouEnabled
+                    ? "main-menu__c4uicon main-menu__c4ucart"
+                    : "main-menu__icon main-menu__cart"
+                }
                 onClick={() => {
                   overlayContext.show(OverlayType.cart, OverlayTheme.right);
                 }}
               >
                 <ReactSVG path={cartImg} />
                 {cartItemsQuantity > 0 ? (
-                  <span className={clothesForYouEnabled ? "main-menu__c4ucart__quantity" : "main-menu__cart__quantity"}>
+                  <span
+                    className={
+                      clothesForYouEnabled
+                        ? "main-menu__c4ucart__quantity"
+                        : "main-menu__cart__quantity"
+                    }
+                  >
                     {cartItemsQuantity}
                   </span>
                 ) : null}
@@ -313,7 +346,11 @@ const MainMenu: React.FC<MainMenuProps> = ({ demoMode }) => {
             </Offline>
             <li
               data-test="menuSearchOverlayLink"
-              className={clothesForYouEnabled ? "main-menu__c4usearch" : "main-menu__search"}
+              className={
+                clothesForYouEnabled
+                  ? "main-menu__c4usearch"
+                  : "main-menu__search"
+              }
               onClick={() =>
                 overlayContext.show(OverlayType.search, OverlayTheme.right)
               }
