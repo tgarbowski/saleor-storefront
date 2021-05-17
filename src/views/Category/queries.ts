@@ -75,9 +75,9 @@ export const categoryProductsQuery = gql`
         attributes: $attributes
         categories: [$id]
         minimalPrice: { gte: $priceGte, lte: $priceLte }
-        stocks: {
-          warehouseIds: "V2FyZWhvdXNlOjYxYTY5YTUwLWY1MWItNDMyYy1iOGNiLTQ5OTMwZTMxM2UxZQ=="
-        }
+        # stocks: {
+        #   warehouseIds: "V2FyZWhvdXNlOjYxYTY5YTUwLWY1MWItNDMyYy1iOGNiLTQ5OTMwZTMxM2UxZQ=="
+        # }
       }
     ) {
       totalCount
