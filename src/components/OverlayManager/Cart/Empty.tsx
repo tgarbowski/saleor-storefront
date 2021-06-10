@@ -6,10 +6,10 @@ import { Button } from "../..";
 const Empty: React.FC<{ overlayHide(): void }> = ({ overlayHide }) => (
   <div className="cart__empty">
     <h4>
-      <FormattedMessage defaultMessage="Your bag is empty" />
+      <FormattedMessage defaultMessage="Twój koszyk jest pusty" />
     </h4>
     <p>
-      <FormattedMessage defaultMessage="You haven’t added anything to your bag. We’re sure you’ll find something in our store" />
+      <FormattedMessage defaultMessage="Nie dodałeś nic do swojego koszyka. Jesteśmy pewni, że znajdziesz coś w naszym sklepie " />
     </p>
     <div className="cart__empty__action">
       <Button
@@ -17,7 +17,7 @@ const Empty: React.FC<{ overlayHide(): void }> = ({ overlayHide }) => (
         secondary
         onClick={overlayHide}
       >
-        <FormattedMessage defaultMessage="Continue Shopping" />
+        <FormattedMessage defaultMessage="Kontynuuj zakupy" />
       </Button>
     </div>
   </div>
