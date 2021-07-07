@@ -103,7 +103,7 @@ const Page: React.FC<PageProps> = ({
                   <TextField
                     autoFocus
                     label={intl.formatMessage({
-                      defaultMessage: "Search term:",
+                      defaultMessage: "Szukana fraza:",
                     })}
                     onChange={change}
                     value={value}

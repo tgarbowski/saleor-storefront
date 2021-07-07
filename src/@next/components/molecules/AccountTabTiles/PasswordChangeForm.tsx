@@ -49,25 +49,25 @@ export const PasswordChangeForm: React.FC<{
           } = {};
           if (!values.confirmPassword) {
             errors.confirmPassword = intl.formatMessage({
-              defaultMessage: "Required field",
+              defaultMessage: "Pole wymagane",
             });
           }
           if (!values.newPassword) {
             errors.newPassword = intl.formatMessage({
-              defaultMessage: "Required field",
+              defaultMessage: "Pole wymagane",
             });
           }
           if (!values.oldPassword) {
             errors.oldPassword = intl.formatMessage({
-              defaultMessage: "Required field",
+              defaultMessage: "Pole wymagane",
             });
           }
           if (values.confirmPassword !== values.newPassword) {
             errors.confirmPassword = intl.formatMessage({
-              defaultMessage: "Passwords do not match",
+              defaultMessage: "Hasła się nie zgadzają",
             });
             errors.newPassword = intl.formatMessage({
-              defaultMessage: "Passwords do not match",
+              defaultMessage: "Hasła się nie zgadzają",
             });
           }
           return errors;

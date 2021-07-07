@@ -120,7 +120,16 @@ class Search extends React.Component<SearchProps, SearchState> {
                   }
                 />
               }
-              iconRight={<ReactSVG path={searchImg} />}
+              iconRight={
+                <ReactSVG
+                  path={searchImg}
+                  className={
+                    clothesForYouEnabled
+                      ? "search__c4uinput__close-btn"
+                      : "search__input__close-btn"
+                  }
+                />
+              }
               autoFocus
               placeholder={this.props.intl.formatMessage(commonMessages.search)}
               onBlur={this.handleInputBlur}
@@ -163,7 +172,7 @@ class Search extends React.Component<SearchProps, SearchState> {
                                     btnRef={this.submitBtnRef}
                                     type="submit"
                                   >
-                                    <FormattedMessage defaultMessage="Pokaż wszystkie wyniki" />
+                                    <FormattedMessage defaultMessage="Pokaż wyniki" />
                                   </Button>
                                 )}
                               </div>

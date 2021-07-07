@@ -24,6 +24,7 @@ import ProductList from "./ProductList";
 
 import cartImg from "../../../images/cart.svg";
 import closeImg from "../../../images/x.svg";
+import { clothesForYouEnabled } from "@temp/constants";
 
 const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
   const { user } = useAuth();
@@ -61,17 +62,26 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
       <Online>
         <div className="cart">
           <div className="overlay__header">
-            <ReactSVG path={cartImg} className="overlay__header__cart-icon" />
+            <ReactSVG
+              path={cartImg}
+              className={
+                clothesForYouEnabled
+                  ? "c4uoverlay__header__cart-icon"
+                  : "overlay__header__cart-icon"
+              }
+            />
             <div className="overlay__header-text">
               <FormattedMessage defaultMessage="Mój koszyk," />{" "}
               <span className="overlay__header-text-items">
-                <FormattedMessage
-                  defaultMessage="{itemsQuantity,plural,one{{itemsQuantity} rzecz} inne{{itemsQuantity} rzeczy}}"
-                  description="items quantity in cart"
-                  values={{
-                    itemsQuantity,
-                  }}
-                />
+                {itemsQuantity !== 0 && (
+                  <FormattedMessage
+                    defaultMessage="{itemsQuantity,plural,one{{itemsQuantity} rzecz} inne{{itemsQuantity} rzeczy}}"
+                    description="items quantity in cart"
+                    values={{
+                      itemsQuantity,
+                    }}
+                  />
+                )}
               </span>
             </div>
             <ReactSVG

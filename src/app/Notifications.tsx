@@ -46,7 +46,7 @@ const Notifications: React.FC = () => {
         alert.show(
           {
             title: intl.formatMessage({
-              defaultMessage: "You are now logged in",
+              defaultMessage: "Zostałeś zalogowany",
             }),
           },
           { type: "success" }
@@ -55,7 +55,7 @@ const Notifications: React.FC = () => {
         alert.show(
           {
             title: intl.formatMessage({
-              defaultMessage: "You are now logged out",
+              defaultMessage: "Zostałeś wylogowany",
             }),
           },
           { type: "success" }
