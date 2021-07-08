@@ -21,7 +21,7 @@ const CartEmpty: React.FC<IProps> = ({ button }: IProps) => {
         </S.TitleSecondLine>
         <S.HR />
         <S.Subtitle>
-          <FormattedMessage defaultMessage="Może jeszcze nie dokonałeś wyboru " />
+          <FormattedMessage defaultMessage="Może jeszcze nie dokonałeś wyboru" />
         </S.Subtitle>
         <S.ContinueButton>{button}</S.ContinueButton>
       </S.Wrapper>
