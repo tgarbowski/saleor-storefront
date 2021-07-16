@@ -122,7 +122,6 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   if (cartLoaded && (!items || !items?.length)) {
     return <Redirect to="/cart/" />;
   }
-
   const [submitInProgress, setSubmitInProgress] = useState(false);
   const [paymentConfirmation, setPaymentConfirmation] = useState(false);
 
