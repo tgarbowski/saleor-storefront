@@ -9,6 +9,7 @@ import { TaxedMoney } from "@components/containers";
 import { commonMessages } from "@temp/intl";
 import { useAuth, useCart, useCheckout } from "@saleor/sdk";
 
+import { clothesForYouEnabled } from "@temp/constants";
 import {
   Button,
   Offline,
@@ -24,7 +25,6 @@ import ProductList from "./ProductList";
 
 import cartImg from "../../../images/cart.svg";
 import closeImg from "../../../images/x.svg";
-import { clothesForYouEnabled } from "@temp/constants";
 
 const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
   const { user } = useAuth();
