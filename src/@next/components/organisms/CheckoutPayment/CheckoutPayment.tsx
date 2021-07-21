@@ -62,7 +62,7 @@ const CheckoutPayment: React.FC<IProps> = ({
           checked={showPromoCodeForm}
           onChange={handleChangeShowPromoCodeForm}
         >
-          <FormattedMessage defaultMessage="Do you have a gift card voucher or discount code?" />
+          <FormattedMessage defaultMessage="Posiadasz kartę podarunkową lub kod promocyjny?" />
         </Checkbox>
         {showPromoCodeForm && (
           <S.DiscountField>

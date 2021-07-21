@@ -98,7 +98,7 @@ export const commonMessages = defineMessages({
     defaultMessage: "Cena",
   },
   variant: {
-    defaultMessage: "Variant",
+    defaultMessage: "Wariant",
   },
   phone: {
     defaultMessage: "Telefon",
@@ -224,19 +224,19 @@ export const paymentStatusMessages = defineMessages({
 
 export const orderStatusMessages = defineMessages({
   draft: {
-    defaultMessage: "Draft",
+    defaultMessage: "Szkic",
   },
   unfulfilled: {
-    defaultMessage: "Unfulfilled",
+    defaultMessage: "Niezrealizowane",
   },
   partiallyFulfilled: {
-    defaultMessage: "Partially fulfilled",
+    defaultMessage: "Częściowo zrealizowane",
   },
   fulfilled: {
-    defaultMessage: "Fulfilled",
+    defaultMessage: "Zrealizowane",
   },
   canceled: {
-    defaultMessage: "Canceled",
+    defaultMessage: "Anulowane",
   },
 });
 

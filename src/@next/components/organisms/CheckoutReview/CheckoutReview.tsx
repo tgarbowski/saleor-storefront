@@ -34,14 +34,14 @@ const CheckoutReview: React.FC<IProps> = ({
         </section>
         <section data-test="billingAddressSection">
           <S.SubTitle>
-            <FormattedMessage defaultMessage="Billing Address" />
+            <FormattedMessage defaultMessage="Adres rozliczeniowy" />
           </S.SubTitle>
           <S.Divider />
           <AddressSummary address={billingAddress} email={email} />
         </section>
         <section>
           <S.SubTitle>
-            <FormattedMessage defaultMessage="Shipping Method" />
+            <FormattedMessage defaultMessage="Metoda dostawy" />
           </S.SubTitle>
           <S.Divider />
           <S.TextSummary data-test="shippingMethodName">
@@ -50,7 +50,7 @@ const CheckoutReview: React.FC<IProps> = ({
         </section>
         <section>
           <S.SubTitle>
-            <FormattedMessage defaultMessage="Payment Method" />
+            <FormattedMessage defaultMessage="Metoda płatności" />
           </S.SubTitle>
           <S.Divider />
           <S.TextSummary data-test="paymentMethodName">
