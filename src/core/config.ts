@@ -49,7 +49,7 @@ export const PROVIDERS = {
         "sha384-8ofgICZZ/k5cC5N7xegqFZOA73H9RQ7H13439JfAZW8Gj3qjuKL2isaTD3GMIhDE",
       crossOrigin: "anonymous",
     },
-  }
+  },
 };
 export const STATIC_PAGES = [
   {

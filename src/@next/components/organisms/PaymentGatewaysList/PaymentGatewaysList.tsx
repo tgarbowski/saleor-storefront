@@ -172,16 +172,16 @@ const PaymentGatewaysList: React.FC<IProps> = ({
               <div key={index}>
                 <S.Tile checked={checked}>
                   <Radio
-                    data-test="checkoutPaymentGatewayAdyenInput"
+                    data-test="checkoutPaymentGatewayPayUInput"
                     name="payment-method"
-                    value="adyen"
+                    value="payU"
                     checked={checked}
                     onChange={() =>
                       selectPaymentGateway && selectPaymentGateway(id)
                     }
                     customLabel
                   >
-                    <span data-test="checkoutPaymentGatewayAdyenName">
+                    <span data-test="checkoutPaymentGatewayPayUName">
                       {name}
                     </span>
                   </Radio>

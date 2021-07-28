@@ -157,8 +157,6 @@ const PayuPaymentGateway: React.FC<IProps> = ({
   const payuConfig = config?.find(({ field }) => field === "config")?.value;
   const parsedpayuConfig = payuConfig && JSON.parse(payuConfig);
 
-  console.log(config);
-
   const [dropin, setDropin] = useState<any>();
   const gatewayRef = useRef<HTMLDivElement>(null);
 
@@ -180,7 +178,6 @@ const PayuPaymentGateway: React.FC<IProps> = ({
       document.body.appendChild(script);
     }
   }, [payuClientKey, parsedpayuConfig, gatewayRef.current]);
-
   const initpayuGatewayHandlers = () => {
     const configuration = payuClientKey &&
       payuConfig && {
@@ -194,7 +191,7 @@ const PayuPaymentGateway: React.FC<IProps> = ({
         onError: onpayuError,
       };
 
-    const checkout = configuration && new window.payuCheckout(configuration);
+    const checkout = configuration && new window.AdyenCheckout(configuration);
     const dropinElement = checkout?.create("dropin");
 
     if (dropinElement && !dropin && gatewayRef.current) {

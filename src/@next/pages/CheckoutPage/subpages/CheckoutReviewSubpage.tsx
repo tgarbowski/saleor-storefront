@@ -51,7 +51,6 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
         phone: checkout?.shippingAddress?.phone || undefined,
       }
     : undefined;
-
   const checkoutBillingAddress = checkout?.billingAddress
     ? {
         ...checkout?.billingAddress,

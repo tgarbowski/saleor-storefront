@@ -1,1 +1,1 @@
-export * from "./PayuPaymentGateway"
+export * from "./PayuPaymentGateway";

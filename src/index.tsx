@@ -14,7 +14,6 @@ import { ServiceWorkerProvider } from "@components/containers";
 import { SaleorProvider } from "@saleor/sdk";
 import { ConfigInput } from "@saleor/sdk/lib/types";
 import { defaultTheme, GlobalStyle, clothesForYouTheme } from "@styles";
-
 import { App } from "./app";
 import { LocaleProvider } from "./components/Locale";
 import {
