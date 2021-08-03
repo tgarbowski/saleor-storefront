@@ -3,8 +3,8 @@ import { TypedQuery } from "../../../core/queries";
 import { PaymentUrl, ProductUrlVariables } from "./gqlTypes/paymentUrl";
 
 const generatePaymentUrl = gql`
-  query generatePaymentUrl($checkoutId: ID!) {
-    generatePaymentUrl(checkoutId: $checkoutId) {
+  query generatePaymentUrl($paymentId: ID!) {
+    generatePaymentUrl(paymentId: $paymentId) {
       paymentUrl
     }
   }

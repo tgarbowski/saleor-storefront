@@ -1,12 +1,12 @@
 import React from "react";
-import { FormattedMessage } from "react-intl";
+import {FormattedMessage} from "react-intl";
 
-import { Button } from "@components/atoms";
-import { Container } from "@components/templates";
-import { checkoutMessages } from "@temp/intl";
+import {Button} from "@components/atoms";
+import {Container} from "@components/templates";
+import {checkoutMessages} from "@temp/intl";
 
 import * as S from "./styles";
-import { IProps } from "./types";
+import {IProps} from "./types";
 
 /**
  * Thank you page after completing the checkout.

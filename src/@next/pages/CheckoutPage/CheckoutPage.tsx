@@ -210,7 +210,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   };
 
   const generatePaymentUrlVariables = {
-    checkoutId: checkout?.id,
+    paymentId: payment?.id,
   };
 
   const handleStepSubmitSuccess = (
@@ -220,13 +220,12 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   ) => {
     const activeStepIndex = getActiveStepIndex();
     if (currentStep === CheckoutStep.Review) {
-      if (payment?.gateway === "mirumee.payments.payu") {
-        window.open(redirect_url, "_blank", "noopener,noreferrer");
-      }
       history.push({
         pathname: "/order-finalized",
         state: data,
       });
+      setTimeout(() => { window.open(redirect_url, "_blank", "noopener,noreferrer"); }, 2000);
+
     } else {
       history.push(steps[activeStepIndex + 1].link);
     }
@@ -306,7 +305,6 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
               </TypedGeneratePaymentUrl>
             );
           }
-
           return (
             <CheckoutReviewSubpage
               ref={checkoutReviewSubpageRef}

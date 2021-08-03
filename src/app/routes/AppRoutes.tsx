@@ -14,6 +14,8 @@ import { ProductPage } from "../../views/Product";
 import { SearchPage } from "../../views/Search";
 
 import * as paths from "./paths";
+import {CapturedPaymentPage} from "@app/pages/CapturedPaymentPage";
+import {NotCapturedPaymentPage} from "@app/pages/NotCapturedPaymentPage";
 
 export const Routes: React.FC = () => (
   <Switch>
@@ -35,8 +37,8 @@ export const Routes: React.FC = () => (
     <Route path={paths.passwordResetUrl} component={PasswordReset} />
     <Route path={paths.checkoutUrl} component={CheckoutPage} />
     <Route path={paths.orderFinalizedUrl} component={ThankYouPage} />
+    <Route path={paths.paymentCaptured} component={CapturedPaymentPage} />
+    <Route path={paths.paymentNotCaptured} component={NotCapturedPaymentPage} />
     <Route component={NotFound} />
   </Switch>
 );
-
-export default Routes;

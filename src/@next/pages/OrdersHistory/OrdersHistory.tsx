@@ -1,12 +1,11 @@
-import { useOrdersByUser } from "@saleor/sdk/";
+import {useOrdersByUser} from "@saleor/sdk/";
 import React from "react";
-import { FormattedMessage } from "react-intl";
+import {FormattedMessage} from "react-intl";
 
-import { Button, Loader } from "@components/atoms";
-import { OrderTabel } from "@components/molecules";
-
+import {Button, Loader} from "@components/atoms";
+import {OrderTabel} from "@components/molecules";
 import * as S from "./styles";
-import { IProps } from "./types";
+import {IProps} from "./types";
 
 const ORDERS_PER_APICALL = 5;
 
@@ -37,6 +36,20 @@ export const OrdersHistory: React.FC<IProps> = ({ history }: IProps) => {
             }}
           >
             <FormattedMessage defaultMessage="Load more" />
+          </Button>
+
+          <Button
+            testingContext="test123"
+            onClick={() =>
+              (window.location.href = "/payment-captured")}
+          >
+            <FormattedMessage defaultMessage="Captured payment" />
+          </Button>
+          <Button
+            testingContext="test1234"
+            onClick={() => (window.location.href = "/payment-captured?error=501")}
+          >
+            <FormattedMessage defaultMessage="Failure payment" />
           </Button>
         </S.Wrapper>
       )}

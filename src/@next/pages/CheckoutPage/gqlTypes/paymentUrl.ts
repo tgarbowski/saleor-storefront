@@ -9,5 +9,5 @@ export interface PaymentUrl{
 
 
 export interface ProductUrlVariables {
-    checkoutId: string | undefined;
+    paymentId: string | undefined;
   }
