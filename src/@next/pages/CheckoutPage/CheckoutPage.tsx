@@ -224,8 +224,9 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         pathname: "/order-finalized",
         state: data,
       });
-      setTimeout(() => { window.open(redirect_url, "_blank", "noopener,noreferrer"); }, 2000);
-
+      setTimeout(() => {
+        window.open(redirect_url, "_blank", "noopener,noreferrer");
+      }, 2000);
     } else {
       history.push(steps[activeStepIndex + 1].link);
     }

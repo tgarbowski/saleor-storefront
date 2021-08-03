@@ -1,10 +1,10 @@
 import React from "react";
-import {FormattedMessage} from "react-intl";
+import { FormattedMessage } from "react-intl";
 
-import {Container} from "@components/templates";
+import { Container } from "@components/templates";
 
 import * as S from "./styles";
-import {IProps} from "./types";
+import { IProps } from "./types";
 
 /**
  * Thank you page after completing the checkout.

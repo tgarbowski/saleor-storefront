@@ -2,6 +2,8 @@ import * as React from "react";
 import { Route, Switch } from "react-router-dom";
 
 import { CartPage, CheckoutPage, PasswordReset, ThankYouPage } from "@pages";
+import { CapturedPaymentPage } from "@app/pages/CapturedPaymentPage";
+import { NotCapturedPaymentPage } from "@app/pages/NotCapturedPaymentPage";
 import { CheckoutLogin, NotFound } from "../../components";
 import UserAccount, * as accountPaths from "../../userAccount/routes";
 import { OrderDetails } from "../../userAccount/views";
@@ -14,8 +16,6 @@ import { ProductPage } from "../../views/Product";
 import { SearchPage } from "../../views/Search";
 
 import * as paths from "./paths";
-import {CapturedPaymentPage} from "@app/pages/CapturedPaymentPage";
-import {NotCapturedPaymentPage} from "@app/pages/NotCapturedPaymentPage";
 
 export const Routes: React.FC = () => (
   <Switch>

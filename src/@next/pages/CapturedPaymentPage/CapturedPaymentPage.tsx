@@ -1,20 +1,15 @@
 import React from "react";
 
-import {CorrectPayment} from "@components/organisms/CorrectPayment";
-import {IProps} from "./types";
-import {FailurePayment} from "@components/organisms/FailurePayment";
+import { CorrectPayment } from "@components/organisms/CorrectPayment";
+import { FailurePayment } from "@components/organisms/FailurePayment";
 
-const CapturedPaymentPage: React.FC<IProps> = ({}: IProps) => {
-
+const CapturedPaymentPage: React.FC<any> = ({}) => {
   if (window.location.href.split("?").pop() === "error=501") {
-    return (
-        <FailurePayment/>
-    );
-  } else {
-    return (
-        <CorrectPayment/>
-    );
+    // @ts-ignore
+    return <FailurePayment />;
   }
+  // @ts-ignore
+  return <CorrectPayment />;
 };
 
 export { CapturedPaymentPage };
