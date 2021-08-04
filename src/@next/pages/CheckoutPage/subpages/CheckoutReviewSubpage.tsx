@@ -69,7 +69,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
     if (payment?.gateway === "mirumee.payments.adyen") {
       return `Adyen payments`;
     }
-    if (payment?.gateway === "mirumee.payments.payu") {
+    if (payment?.gateway === "salingo.payments.payu") {
       return `PayU payments`;
     }
     if (payment?.creditCard) {
@@ -83,7 +83,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
       changeSubmitProgress(true);
       let data;
       let dataError;
-      if (payment?.gateway === "mirumee.payments.adyen") {
+      if (payment?.gateway === "salingo.payments.adyen") {
         paymentGatewayFormRef.current?.dispatchEvent(
           new Event("submitComplete", { cancelable: true })
         );

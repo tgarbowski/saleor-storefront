@@ -284,7 +284,7 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
           />
         )}
         renderReview={props => {
-          if (payment?.gateway === "mirumee.payments.payu") {
+          if (payment?.gateway === "salingo.payments.payu") {
             return (
               <TypedGeneratePaymentUrl variables={generatePaymentUrlVariables}>
                 {({ ...urlData }) => (
