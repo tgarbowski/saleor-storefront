@@ -51,7 +51,7 @@ const TextField: React.FC<TextFieldProps> = ({
     </div>
     {errors && (
       <span className="input__error">
-        {errors.map(error => error.message).join(" ")}
+        {errors.map(() => "Wypełnij to pole").join(" ")}
       </span>
     )}
     {helpText && <span className="input__help-text">{helpText}</span>}

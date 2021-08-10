@@ -245,15 +245,15 @@ export function translatePaymentStatus(
   intl: IntlShape
 ): string {
   switch (status) {
-    case "Nie pobrane":
+    case "Not charged":
       return intl.formatMessage(paymentStatusMessages.notCharged);
-    case "Częściowo pobrana":
+    case "Partially charged":
       return intl.formatMessage(paymentStatusMessages.partiallyCharged);
-    case "Pobrana":
+    case "Fully charged":
       return intl.formatMessage(paymentStatusMessages.fullyCharged);
-    case "Częściowo zwrócone":
+    case "Partially refunded":
       return intl.formatMessage(paymentStatusMessages.partiallyRefunded);
-    case "Całkowicie zwrócone":
+    case "Fully refunded":
       return intl.formatMessage(paymentStatusMessages.fullyRefunded);
     default:
       return status;

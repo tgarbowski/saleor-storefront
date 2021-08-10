@@ -15,7 +15,7 @@ export const AddNewTile: React.FC<IProps> = ({ type, ...props }: IProps) => {
         </p>
         <p>
           <FormattedMessage
-            defaultMessage="Dodaj nowy {type}"
+            defaultMessage="Dodaj nowy adres"
             values={{ type }}
           />
         </p>

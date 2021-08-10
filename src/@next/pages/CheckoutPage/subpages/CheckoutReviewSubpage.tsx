@@ -70,7 +70,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
       return `Adyen payments`;
     }
     if (payment?.gateway === "salingo.payments.payu") {
-      return `PayU payments`;
+      return `Płatność PayU`;
     }
     if (payment?.creditCard) {
       return `Ending in ${payment?.creditCard.lastDigits}`;
