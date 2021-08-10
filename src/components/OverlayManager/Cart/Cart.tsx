@@ -75,7 +75,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
               <span className="overlay__header-text-items">
                 {itemsQuantity !== 0 && (
                   <FormattedMessage
-                    defaultMessage="{itemsQuantity,plural,one{{itemsQuantity} rzecz} inne{{itemsQuantity} rzeczy}}"
+                    defaultMessage="{itemsQuantity} szt."
                     description="items quantity in cart"
                     values={{
                       itemsQuantity,
