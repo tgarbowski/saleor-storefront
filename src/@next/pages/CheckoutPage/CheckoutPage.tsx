@@ -226,6 +226,8 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
       });
       setTimeout(() => {
         window.open(redirect_url, "_blank", "noopener,noreferrer");
+        // @ts-ignore
+        document.getElementById("payuLabel").style.display = "none";
       }, 2000);
     } else {
       history.push(steps[activeStepIndex + 1].link);
