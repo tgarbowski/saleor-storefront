@@ -31,6 +31,7 @@ import {
   ICheckoutShippingSubpageHandles,
 } from "./subpages";
 import { IProps } from "./types";
+import { TypedGeneratePaymentUrl } from "./queries";
 
 const prepareCartSummary = (
   totalPrice?: ITaxedMoney | null,
@@ -122,7 +123,6 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
   if (cartLoaded && (!items || !items?.length)) {
     return <Redirect to="/cart/" />;
   }
-
   const [submitInProgress, setSubmitInProgress] = useState(false);
   const [paymentConfirmation, setPaymentConfirmation] = useState(false);
 
@@ -208,9 +208,15 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         break;
     }
   };
+
+  const generatePaymentUrlVariables = {
+    paymentId: payment?.id,
+  };
+
   const handleStepSubmitSuccess = (
     currentStep: CheckoutStep,
-    data?: object
+    data?: object,
+    redirect_url?: string
   ) => {
     const activeStepIndex = getActiveStepIndex();
     if (currentStep === CheckoutStep.Review) {
@@ -218,6 +224,11 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
         pathname: "/order-finalized",
         state: data,
       });
+      setTimeout(() => {
+        window.open(redirect_url, "_blank", "noopener,noreferrer");
+        // @ts-ignore
+        document.getElementById("payuLabel").style.display = "none";
+      }, 2000);
     } else {
       history.push(steps[activeStepIndex + 1].link);
     }
@@ -274,23 +285,46 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
             {...props}
           />
         )}
-        renderReview={props => (
-          <CheckoutReviewSubpage
-            ref={checkoutReviewSubpageRef}
-            paymentGatewayFormRef={checkoutGatewayFormRef}
-            selectedPaymentGatewayToken={selectedPaymentGatewayToken}
-            changeSubmitProgress={setSubmitInProgress}
-            onSubmitSuccess={data =>
-              handleStepSubmitSuccess(CheckoutStep.Review, data)
-            }
-            {...props}
-          />
-        )}
+        renderReview={props => {
+          if (payment?.gateway === "salingo.payments.payu") {
+            return (
+              <TypedGeneratePaymentUrl variables={generatePaymentUrlVariables}>
+                {({ ...urlData }) => (
+                  <CheckoutReviewSubpage
+                    ref={checkoutReviewSubpageRef}
+                    paymentGatewayFormRef={checkoutGatewayFormRef}
+                    selectedPaymentGatewayToken={selectedPaymentGatewayToken}
+                    changeSubmitProgress={setSubmitInProgress}
+                    onSubmitSuccess={data =>
+                      handleStepSubmitSuccess(
+                        CheckoutStep.Review,
+                        data,
+                        urlData?.data?.generatePaymentUrl?.paymentUrl
+                      )
+                    }
+                    {...props}
+                  />
+                )}
+              </TypedGeneratePaymentUrl>
+            );
+          }
+          return (
+            <CheckoutReviewSubpage
+              ref={checkoutReviewSubpageRef}
+              paymentGatewayFormRef={checkoutGatewayFormRef}
+              selectedPaymentGatewayToken={selectedPaymentGatewayToken}
+              changeSubmitProgress={setSubmitInProgress}
+              onSubmitSuccess={data =>
+                handleStepSubmitSuccess(CheckoutStep.Review, data)
+              }
+              {...props}
+            />
+          );
+        }}
       />
     ) : (
       <Loader />
     );
-
   const handleProcessPayment = async (
     gateway: string,
     token?: string,
@@ -315,7 +349,9 @@ const CheckoutPage: React.FC<IProps> = ({}: IProps) => {
     }
   };
   const handleSubmitPayment = async (paymentData?: object) => {
-    const response = await completeCheckout({ paymentData });
+    const response = await completeCheckout({
+      paymentData,
+    });
     return {
       confirmationData: response.data?.confirmationData,
       confirmationNeeded: response.data?.confirmationNeeded,

@@ -51,7 +51,6 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
         phone: checkout?.shippingAddress?.phone || undefined,
       }
     : undefined;
-
   const checkoutBillingAddress = checkout?.billingAddress
     ? {
         ...checkout?.billingAddress,
@@ -70,6 +69,9 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
     if (payment?.gateway === "mirumee.payments.adyen") {
       return `Adyen payments`;
     }
+    if (payment?.gateway === "salingo.payments.payu") {
+      return `Płatność PayU`;
+    }
     if (payment?.creditCard) {
       return `Ending in ${payment?.creditCard.lastDigits}`;
     }
@@ -81,7 +83,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
       changeSubmitProgress(true);
       let data;
       let dataError;
-      if (payment?.gateway === "mirumee.payments.adyen") {
+      if (payment?.gateway === "salingo.payments.adyen") {
         paymentGatewayFormRef.current?.dispatchEvent(
           new Event("submitComplete", { cancelable: true })
         );

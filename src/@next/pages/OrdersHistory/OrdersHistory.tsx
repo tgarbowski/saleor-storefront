@@ -4,7 +4,6 @@ import { FormattedMessage } from "react-intl";
 
 import { Button, Loader } from "@components/atoms";
 import { OrderTabel } from "@components/molecules";
-
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -36,7 +35,7 @@ export const OrdersHistory: React.FC<IProps> = ({ history }: IProps) => {
               });
             }}
           >
-            <FormattedMessage defaultMessage="Load more" />
+            <FormattedMessage defaultMessage="Załaduj więcej" />
           </Button>
         </S.Wrapper>
       )}

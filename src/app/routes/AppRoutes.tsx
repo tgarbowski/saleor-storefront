@@ -2,6 +2,8 @@ import * as React from "react";
 import { Route, Switch } from "react-router-dom";
 
 import { CartPage, CheckoutPage, PasswordReset, ThankYouPage } from "@pages";
+import { CapturedPaymentPage } from "@app/pages/CapturedPaymentPage";
+import { NotCapturedPaymentPage } from "@app/pages/NotCapturedPaymentPage";
 import { CheckoutLogin, NotFound } from "../../components";
 import UserAccount, * as accountPaths from "../../userAccount/routes";
 import { OrderDetails } from "../../userAccount/views";
@@ -35,8 +37,8 @@ export const Routes: React.FC = () => (
     <Route path={paths.passwordResetUrl} component={PasswordReset} />
     <Route path={paths.checkoutUrl} component={CheckoutPage} />
     <Route path={paths.orderFinalizedUrl} component={ThankYouPage} />
+    <Route path={paths.paymentCaptured} component={CapturedPaymentPage} />
+    <Route path={paths.paymentNotCaptured} component={NotCapturedPaymentPage} />
     <Route component={NotFound} />
   </Switch>
 );
-
-export default Routes;

@@ -11,6 +11,7 @@ import {
 } from "..";
 import * as S from "./styles";
 import { IProps } from "./types";
+import { PayuPaymentGateway } from "../PayuPaymentGateway";
 
 /**
  * Payment Gateways list
@@ -166,7 +167,40 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                 )}
               </div>
             );
-
+          case PROVIDERS.PAYU.label:
+            return (
+              <div key={index}>
+                <S.Tile checked={checked}>
+                  <Radio
+                    data-test="checkoutPaymentGatewayPayUInput"
+                    name="payment-method"
+                    value="payU"
+                    checked={checked}
+                    onChange={() =>
+                      selectPaymentGateway && selectPaymentGateway(id)
+                    }
+                    customLabel
+                  >
+                    <span data-test="checkoutPaymentGatewayPayUName">
+                      {name}
+                    </span>
+                  </Radio>
+                </S.Tile>
+                {checked && (
+                  <PayuPaymentGateway
+                    config={config}
+                    formRef={formRef}
+                    scriptConfig={PROVIDERS.ADYEN.script}
+                    styleConfig={PROVIDERS.ADYEN.style}
+                    processPayment={() => processPayment(id)}
+                    submitPayment={submitPayment}
+                    submitPaymentSuccess={submitPaymentSuccess}
+                    errors={errors}
+                    onError={onError}
+                  />
+                )}
+              </div>
+            );
           default:
             return null;
         }

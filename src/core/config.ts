@@ -33,6 +33,9 @@ export const PROVIDERS = {
       crossOrigin: "anonymous",
     },
   },
+  PAYU: {
+    label: "PayU",
+  },
 };
 export const STATIC_PAGES = [
   {

@@ -15,9 +15,6 @@ export const ThankYouHeader = styled.p`
   span {
     font-weight: ${props => props.theme.typography.boldFontWeight};
   }
-  div {
-    font-size: 35px;
-  }
   padding-bottom: 40px;
   border-bottom: 1px solid
     ${props => props.theme.colors.baseFontColorTransparent};

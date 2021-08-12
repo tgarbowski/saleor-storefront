@@ -15,3 +15,5 @@ export const addressBookUrl = `${baseUrl}address-book/`;
 export const passwordResetUrl = `${baseUrl}reset-password/`;
 export const checkoutUrl = `${baseUrl}checkout/`;
 export const orderFinalizedUrl = `${baseUrl}order-finalized/`;
+export const paymentCaptured = `${baseUrl}payment-captured/`;
+export const paymentNotCaptured = `${baseUrl}payment-captured?error=501/`;
