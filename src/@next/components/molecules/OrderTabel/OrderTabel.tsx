@@ -69,22 +69,27 @@ export const OrderTabel: React.FC<IProps> = ({ orders, history }: IProps) => {
                           <S.ProductsOrdered>
                             {order.node.lines
                               .slice(0, 5)
-                              .map((product: any) => (
-                                <span
-                                  key={product.variant.product.id}
-                                  onClick={evt => {
-                                    evt.stopPropagation();
-                                    history.push(
-                                      generateProductUrl(
-                                        product.variant.product.id,
-                                        product.variant.product.name
-                                      )
-                                    );
-                                  }}
-                                >
-                                  <Thumbnail source={product} />
-                                </span>
-                              ))}
+                              .map((product: any) => {
+                                if (product.variant !== null) {
+                                  return (
+                                    <span
+                                      key={product.variant.product.id}
+                                      onClick={evt => {
+                                        evt.stopPropagation();
+                                        history.push(
+                                          generateProductUrl(
+                                            product.variant.product.id,
+                                            product.variant.product.name
+                                          )
+                                        );
+                                      }}
+                                    >
+                                      <Thumbnail source={product} />
+                                    </span>
+                                  );
+                                }
+                                return "Archiwalne";
+                              })}
                           </S.ProductsOrdered>
                           <S.DateOfOrder>
                             <FormattedDate value={date} />
