@@ -88,7 +88,7 @@ export const OrderTabel: React.FC<IProps> = ({ orders, history }: IProps) => {
                                     </span>
                                   );
                                 }
-                                return "Archiwalne";
+                                return "Przedmiot archiwalny\n";
                               })}
                           </S.ProductsOrdered>
                           <S.DateOfOrder>
