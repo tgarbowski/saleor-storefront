@@ -32,8 +32,50 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
   processing,
   line,
 }) => {
-  const productUrl = generateProductUrl(line.product.id, line.product.name);
+  // @ts-ignore
+  if (line.product !== undefined) {
+    const productUrl = generateProductUrl(line.product.id, line.product.name);
+    return (
+      <tr
+        className={classNames({
+          "cart-table-row--processing": processing,
+        })}
+      >
+        <td className="cart-table__thumbnail">
+          <div>
+            {mediumScreen && (
+              <Link to={productUrl}>
+                <Thumbnail source={line.product} />
+              </Link>
+            )}
+            <Link to={productUrl}>{line.product.name}</Link>
+          </div>
+        </td>
 
+        {mediumScreen && (
+          <td>
+            <TaxedMoney taxedMoney={line.pricing.price} />
+          </td>
+        )}
+
+        <td>
+          {line.attributes.map(({ attribute, values }) => (
+            <p key={attribute.id}>
+              {attribute.name}: {values.map(value => value.name).join(", ")}
+            </p>
+          ))}
+        </td>
+
+        <td className="cart-table__quantity-cell">
+          <p>{line.quantity}</p>
+        </td>
+
+        <td colSpan={2}>
+          <TaxedMoney taxedMoney={line.totalPrice} />
+        </td>
+      </tr>
+    );
+  }
   return (
     <tr
       className={classNames({
@@ -42,28 +84,25 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
     >
       <td className="cart-table__thumbnail">
         <div>
-          {mediumScreen && (
-            <Link to={productUrl}>
-              <Thumbnail source={line.product} />
-            </Link>
-          )}
-          <Link to={productUrl}>{line.product.name}</Link>
+          <i
+            style={{
+              fontSize: "20px",
+              marginRight: "0.5rem",
+              fontWeight: "bold",
+            }}
+          >
+            Produkt zarchiwizowany
+          </i>
         </div>
       </td>
 
       {mediumScreen && (
         <td>
-          <TaxedMoney taxedMoney={line.pricing.price} />
+          <p />
         </td>
       )}
 
-      <td>
-        {line.attributes.map(({ attribute, values }, attributeIndex) => (
-          <p key={attribute.id}>
-            {attribute.name}: {values.map(value => value.name).join(", ")}
-          </p>
-        ))}
-      </td>
+      <td />
 
       <td className="cart-table__quantity-cell">
         <p>{line.quantity}</p>

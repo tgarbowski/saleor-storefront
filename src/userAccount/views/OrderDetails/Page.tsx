@@ -19,14 +19,12 @@ import { ILine } from "../../../components/CartTable/ProductRow";
 import { orderHistoryUrl } from "../../../app/routes";
 
 const extractOrderLines = (lines: OrderDetail_lines[]): ILine[] => {
-  return lines
-    .map(line => ({
-      quantity: line.quantity,
-      totalPrice: line.totalPrice,
-      ...line.variant,
-      name: line.productName,
-    }))
-    .sort((a, b) => b.id.toLowerCase().localeCompare(a.id.toLowerCase()));
+  return lines.map(line => ({
+    quantity: line.quantity,
+    totalPrice: line.totalPrice,
+    ...line.variant,
+    name: line.productName,
+  }));
 };
 
 const Page: React.FC<{
