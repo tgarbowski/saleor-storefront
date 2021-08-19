@@ -91,7 +91,7 @@ const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
               fontWeight: "bold",
             }}
           >
-            `Przedmiot archiwalny`
+            Produkt zarchiwizowany
           </i>
         </div>
       </td>
