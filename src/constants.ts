@@ -24,12 +24,13 @@ export const incrementalStaticRegenerationRevalidate = parseInt(
 
 export const staticPathsFetchBatch = 50;
 
-export const staticPathsFallback = (exportMode
-  ? false
-  : process.env.NEXT_PUBLIC_STATIC_PATHS_FALLBACK) as boolean | "blocking";
+export const staticPathsFallback = (
+  exportMode ? false : process.env.NEXT_PUBLIC_STATIC_PATHS_FALLBACK
+) as boolean | "blocking";
 
 export const paymentGatewayNames = {
   dummy: "mirumee.payments.dummy",
   adyen: "mirumee.payments.adyen",
   stripe: "saleor.payments.stripe",
 };
+export const clothesForYouEnabled = true;

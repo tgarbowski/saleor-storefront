@@ -117,6 +117,7 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
       </S.ThumbnailsContainer>
 
       <S.Preview data-test="imagePreview">
+        <h3>{images[imageIndex].alt}</h3>
         {images && images.length > 0 && imageIndex < images.length && (
           <CachedImage
             alt={images[imageIndex].alt}

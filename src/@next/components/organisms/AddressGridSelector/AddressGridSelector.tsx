@@ -32,7 +32,7 @@ const AddressGridSelector: React.FC<IProps> = ({
     <AddNewTile
       data-test={`${testingContext}AddressTileAddNew`}
       key="newTile"
-      type={intl.formatMessage({ defaultMessage: "address" })}
+      type={intl.formatMessage({ defaultMessage: "adres" })}
       onClick={() => setDisplayNewModal(true)}
     />
   );
@@ -99,7 +99,7 @@ const AddressGridSelector: React.FC<IProps> = ({
           hideModal={() => {
             setDisplayNewModal(false);
           }}
-          submitBtnText="Add"
+          submitBtnText="Dodaj"
           title={intl.formatMessage(checkoutMessages.addNewAddress)}
           countriesOptions={countriesOptions}
           formId={newAddressFormId}

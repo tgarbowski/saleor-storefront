@@ -1,6 +1,7 @@
 @import "../../../globalStyles/scss/variables.scss";
-
-.article-page {
+@import "../../../globalStyles/scss/salingo-variables.scss";
+@import "../../../globalStyles/scss/clothes-for-you-variables.scss"
+  .article-page {
   &__container {
     column-gap: $spacer * 1.5;
     display: grid;
@@ -154,6 +155,25 @@
 
           &:before {
             background-color: $turquoise;
+            content: "";
+            height: 7px;
+            left: 0;
+            position: absolute;
+            top: 6px;
+            transform: skew(45deg);
+            width: 100%;
+            z-index: -1;
+          }
+        }
+      }
+
+      &--c4uactive {
+        a {
+          display: inline-block;
+          position: relative;
+
+          &:before {
+            background-color: $clothesForYouRed;
             content: "";
             height: 7px;
             left: 0;

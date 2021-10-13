@@ -5,6 +5,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { generatePath } from "react-router";
 
 import { paths } from "@paths";
+import { clothesForYouEnabled } from "@temp/constants";
 import { FeaturedProducts } from "@utils/ssr";
 
 import { Button, ProductsFeatured } from "../../components";
@@ -26,7 +27,7 @@ const Page: React.FC<{
     return categories && categories.edges && categories.edges.length > 0;
   };
   const intl = useIntl();
-
+  console.log(categories);
   return (
     <>
       <script className="structured-data-list" type="application/ld+json">
@@ -46,14 +47,21 @@ const Page: React.FC<{
           <div>
             <span className="home-page__hero__title">
               <h1>
-                <FormattedMessage defaultMessage="Final reduction" />
+                <FormattedMessage defaultMessage="Witamy" />
               </h1>
             </span>
           </div>
           <div>
             <span className="home-page__hero__title">
               <h1>
-                <FormattedMessage defaultMessage="Up to 70% off sale" />
+                <FormattedMessage
+                  defaultMessage="W SKLEPIE {shopname}"
+                  values={
+                    clothesForYouEnabled
+                      ? { shopname: "CLOTHES4YOU" }
+                      : { shopname: "SALINGO" }
+                  }
+                />
               </h1>
             </span>
           </div>
@@ -62,12 +70,12 @@ const Page: React.FC<{
           {categoriesExist() && (
             <Link
               href={generatePath(paths.category, {
-                slug: categories.edges[0].node.slug,
+                slug: categories.edges[4].node.slug,
               })}
             >
               <a>
                 <Button testingContext="homepageHeroActionButton">
-                  <FormattedMessage defaultMessage="Shop sale" />
+                  <FormattedMessage defaultMessage="Sprawdź ofertę" />
                 </Button>
               </a>
             </Link>
@@ -82,7 +90,7 @@ const Page: React.FC<{
         <div className="home-page__categories">
           <div className="container">
             <h3>
-              <FormattedMessage defaultMessage="Shop by category" />
+              <FormattedMessage defaultMessage="KATEGORIE" />
             </h3>
             <div className="home-page__categories__list">
               {categories.edges.map(({ node: category }) => (
@@ -98,7 +106,8 @@ const Page: React.FC<{
                         className={classNames(
                           "home-page__categories__list__image",
                           {
-                            "home-page__categories__list__image--no-photo": !category.backgroundImage,
+                            "home-page__categories__list__image--no-photo":
+                              !category.backgroundImage,
                           }
                         )}
                         style={{

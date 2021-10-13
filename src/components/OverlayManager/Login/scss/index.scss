@@ -1,4 +1,6 @@
 @import "../../../../globalStyles/scss/variables.scss";
+@import "../../../../globalStyles/scss/clothes-for-you-variables.scss";
+@import "../../../../globalStyles/scss/salingo-variables.scss";
 
 .login {
   width: 25rem;
@@ -27,7 +29,35 @@
       }
 
       &.active-tab {
-        border-bottom: 1px solid $turquoise;
+        border-bottom: 1px solid $salingoYellow;
+      }
+    }
+  }
+
+  &__c4utabs {
+    display: flex;
+
+    span {
+      flex-grow: 1;
+      width: 100%;
+      background-color: $gray-light;
+      text-transform: uppercase;
+      font-weight: $bold-font-weight;
+      text-align: center;
+      padding: $spacer;
+      border-bottom: 1px solid $gray-light;
+      cursor: pointer;
+
+      &:first-of-type {
+        border-right: 1px solid $white;
+      }
+
+      &:last-of-type {
+        border-left: 1px solid $white;
+      }
+
+      &.active-tab {
+        border-bottom: 1px solid $clothesForYouRed;
       }
     }
   }

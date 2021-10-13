@@ -1,6 +1,8 @@
 import * as React from "react";
 import ReactSVG from "react-svg";
 
+import { clothesForYouEnabled } from "@temp/constants";
+
 import "./scss/index.scss";
 
 interface Medium {
@@ -20,7 +22,10 @@ const SocialMediaIcon: React.FC<IconProps> = ({ medium, target }) => (
     target={target || "_blank"}
     aria-label={medium.ariaLabel}
   >
-    <ReactSVG path={medium.path} className="social-icon" />
+    <ReactSVG
+      path={medium.path}
+      className={clothesForYouEnabled ? "c4usocial-icon" : "social-icon"}
+    />
   </a>
 );
 

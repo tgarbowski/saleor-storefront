@@ -42,7 +42,7 @@ export const AttributeValuesChecklist: React.FC<IProps> = ({
             color="secondary"
             onClick={() => setViewAllOptions(true)}
           >
-            <FormattedMessage defaultMessage="VIEW ALL OPTIONS" />
+            <FormattedMessage defaultMessage="ZOBACZ WSZYSTKIE OPCJE" />
           </ButtonLink>
         </S.ViewMoreButton>
       )}

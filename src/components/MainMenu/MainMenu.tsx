@@ -9,7 +9,9 @@ import ReactSVG from "react-svg";
 import { DemoBanner } from "@components/atoms";
 import { ShopMenusQuery } from "@graphql/gqlTypes/ShopMenusQuery";
 import { paths } from "@paths";
+import { clothesForYouEnabled } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
+import C4ULogo from "images/c4u_logo.svg";
 
 import cartImg from "../../images/cart.svg";
 import hamburgerImg from "../../images/hamburger.svg";
@@ -120,7 +122,11 @@ export const MainMenu: React.FC<MainMenuProps> = ({
                   return (
                     <li
                       data-test="mainMenuItem"
-                      className="main-menu__item"
+                      className={
+                        clothesForYouEnabled
+                          ? "main-menu__c4uitem"
+                          : "main-menu__item"
+                      }
                       key={item.id}
                     >
                       <NavDropdown
@@ -149,12 +155,24 @@ export const MainMenu: React.FC<MainMenuProps> = ({
                         <MenuDropdown
                           suffixClass="__rightdown"
                           head={
-                            <li className="main-menu__icon main-menu__user--active">
+                            <li
+                              className={
+                                clothesForYouEnabled
+                                  ? "main-menu__c4uicon main-menu__c4uuser--active"
+                                  : "main-menu__icon main-menu__user--active"
+                              }
+                            >
                               <ReactSVG path={userImg} />
                             </li>
                           }
                           content={
-                            <ul className="main-menu__dropdown">
+                            <ul
+                              className={
+                                clothesForYouEnabled
+                                  ? "main-menu__c4uicon"
+                                  : "main-menu__icon"
+                              }
+                            >
                               <li data-test="mobileMenuMyAccountLink">
                                 <Link href={paths.account}>
                                   <a>
@@ -216,7 +234,7 @@ export const MainMenu: React.FC<MainMenuProps> = ({
         <div className="main-menu__center">
           <Link href={paths.home}>
             <a>
-              <ReactSVG path={logoImg} />
+              <ReactSVG path={clothesForYouEnabled ? C4ULogo : logoImg} />
             </a>
           </Link>
         </div>
@@ -232,7 +250,13 @@ export const MainMenu: React.FC<MainMenuProps> = ({
                       {user ? (
                         <MenuDropdown
                           head={
-                            <li className="main-menu__icon main-menu__user--active">
+                            <li
+                              className={
+                                clothesForYouEnabled
+                                  ? "main-menu__c4uicon main-menu__c4uuser--active"
+                                  : "main-menu__icon main-menu__user--active"
+                              }
+                            >
                               <ReactSVG path={userImg} />
                             </li>
                           }
@@ -277,7 +301,11 @@ export const MainMenu: React.FC<MainMenuProps> = ({
                       ) : (
                         <li
                           data-test="desktopMenuLoginOverlayLink"
-                          className="main-menu__icon"
+                          className={
+                            clothesForYouEnabled
+                              ? "main-menu__c4uicon"
+                              : "main-menu__icon"
+                          }
                           onClick={() =>
                             overlayContext.show(
                               OverlayType.login,
@@ -294,7 +322,11 @@ export const MainMenu: React.FC<MainMenuProps> = ({
               />
               <li
                 data-test="menuCartOverlayLink"
-                className="main-menu__icon main-menu__cart"
+                className={
+                  clothesForYouEnabled
+                    ? "main-menu__c4uicon main-menu__c4ucart"
+                    : "main-menu__icon main-menu__cart"
+                }
                 onClick={() => {
                   overlayContext.show(OverlayType.cart, OverlayTheme.right);
                 }}
@@ -303,7 +335,13 @@ export const MainMenu: React.FC<MainMenuProps> = ({
                   <>
                     <ReactSVG path={cartImg} />
                     {cartItemsQuantity > 0 ? (
-                      <span className="main-menu__cart__quantity">
+                      <span
+                        className={
+                          clothesForYouEnabled
+                            ? "main-menu__c4ucart__quantity"
+                            : "main-menu__cart__quantity"
+                        }
+                      >
                         {cartItemsQuantity}
                       </span>
                     ) : null}
@@ -325,7 +363,11 @@ export const MainMenu: React.FC<MainMenuProps> = ({
             </Offline>
             <li
               data-test="menuSearchOverlayLink"
-              className="main-menu__search"
+              className={
+                clothesForYouEnabled
+                  ? "main-menu__c4usearch"
+                  : "main-menu__search"
+              }
               onClick={() =>
                 overlayContext.show(OverlayType.search, OverlayTheme.right)
               }

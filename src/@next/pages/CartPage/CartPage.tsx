@@ -16,7 +16,7 @@ import { ITaxedMoney } from "@types";
 
 const title = (
   <h1 data-test="cartPageTitle">
-    <FormattedMessage defaultMessage="My Cart" />
+    <FormattedMessage defaultMessage="Mój koszyk" />
   </h1>
 );
 
@@ -31,7 +31,7 @@ const getShoppingButton = () => (
 const getCheckoutButton = (user?: UserDetails_me | null) => (
   <Link href={user ? paths.checkout : paths.login}>
     <Button testingContext="proceedToCheckoutButton">
-      <FormattedMessage defaultMessage="PROCEED TO CHECKOUT" />
+      <FormattedMessage defaultMessage="Do kasy" />
     </Button>
   </Link>
 );

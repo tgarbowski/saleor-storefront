@@ -43,7 +43,7 @@ export const ProductList: React.FC<IProps> = ({
             color="secondary"
             onClick={onLoadMore}
           >
-            <FormattedMessage defaultMessage="More +" />
+            <FormattedMessage defaultMessage="Więcej +" />
           </Button>
         )
       )}

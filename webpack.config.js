@@ -3,8 +3,8 @@ const merge = require("webpack-merge");
 
 require("dotenv").config();
 
-const baseConfig = require("./config/webpack/config.base");
-const devConfig = require("./config/webpack/config.dev");
+const baseConfig = require("./config/webpack/config.base.js");
+const devConfig = require("./config/webpack/config.dev.js");
 const prodConfig = require("./config/webpack/config.prod");
 const workerConfig = require("./config/webpack/config.worker");
 

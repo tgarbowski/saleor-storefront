@@ -3,6 +3,7 @@ import { FormattedMessage } from "react-intl";
 import ReactSVG from "react-svg";
 
 import { OfflinePlaceholder } from "@components/atoms";
+import { clothesForYouEnabled } from "@temp/constants";
 
 import closeImg from "../../../images/x.svg";
 import {
@@ -48,7 +49,7 @@ class Login extends React.Component<
           <Online>
             <div className="overlay__header">
               <p className="overlay__header-text">
-                <FormattedMessage defaultMessage="Saleor account" />
+                <FormattedMessage defaultMessage="Twoje konto" />
               </p>
               <ReactSVG
                 path={closeImg}
@@ -56,20 +57,24 @@ class Login extends React.Component<
                 className="overlay__header__close-icon"
               />
             </div>
-            <div className="login__tabs">
+            <div
+              className={
+                clothesForYouEnabled ? "login__c4utabs" : "login__tabs"
+              }
+            >
               <span
                 data-test="loginTab"
                 onClick={() => this.changeActiveTab("login")}
                 className={this.state.active === "login" ? "active-tab" : ""}
               >
-                <FormattedMessage defaultMessage="Sign in to account" />
+                <FormattedMessage defaultMessage="Zaloguj się" />
               </span>
               <span
                 data-test="registerTab"
                 onClick={() => this.changeActiveTab("register")}
                 className={this.state.active === "register" ? "active-tab" : ""}
               >
-                <FormattedMessage defaultMessage="Register new account" />
+                <FormattedMessage defaultMessage="Zarejestruj nowe konto" />
               </span>
             </div>
             <div className="login__content">

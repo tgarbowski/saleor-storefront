@@ -13,12 +13,12 @@ import { IProps } from "./types";
 export const messages = defineMessages({
   unfulfilled: {
     defaultMessage:
-      "We’ve emailed you an order confirmation, and we’ll notify you when the order has been shipped.",
+      "Wysłaliśmy Ci e-mail z potwierdzeniem zamówienia i powiadomimy Cię, gdy zamówienie zostanie wysłane.",
     description: "thank you subtitle",
   },
   unconfirmed: {
     defaultMessage:
-      "Your order has been placed, it needs to be confirmed by the staff, we'll send you an email when it's done.",
+      "Twoje zamówienie zostało złożone, ale potrzebuje naszego potwierdzenia. Wyślemy Ci e-mail kiedy to się stanie.",
     description: "thank you subtitle",
   },
 });
@@ -36,14 +36,14 @@ const ThankYou: React.FC<IProps> = ({
     <Container data-test="thankYouView">
       <S.Wrapper>
         <S.ThankYouHeader>
-          <FormattedMessage defaultMessage="Thank you" />
+          <FormattedMessage defaultMessage="Dziękujemy" />
           <br />
           <span>
-            <FormattedMessage defaultMessage="for your order!" />
+            <FormattedMessage defaultMessage="za twoje zamówienie!" />
           </span>
         </S.ThankYouHeader>
         <S.Paragraph>
-          <FormattedMessage defaultMessage="Your order number is" />{" "}
+          <FormattedMessage defaultMessage="Numer twojego zamówienia" />{" "}
           <span>{orderNumber}</span>
         </S.Paragraph>
         <S.Paragraph>
@@ -65,7 +65,7 @@ const ThankYou: React.FC<IProps> = ({
           </Link>
           <Link href={orderDetailsUrl}>
             <Button testingContext="gotoOrderDetailsButton" fullWidth>
-              <FormattedMessage defaultMessage="ORDER DETAILS" />
+              <FormattedMessage defaultMessage="SZCZEGÓŁY ZAMÓWIENIA" />
             </Button>
           </Link>
         </S.Buttons>

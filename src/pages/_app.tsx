@@ -15,7 +15,7 @@ import { ThemeProvider } from "styled-components";
 
 import { NotificationTemplate } from "@components/atoms";
 import { ServiceWorkerProvider } from "@components/containers";
-import { defaultTheme, GlobalStyle } from "@styles";
+import { clothesForYouTheme, defaultTheme, GlobalStyle } from "@styles";
 import { NextQueryParamProvider } from "@temp/components";
 import { getSaleorApi, getShopConfig, ShopConfig } from "@utils/ssr";
 
@@ -30,6 +30,7 @@ import {
 import {
   apiUrl,
   channelSlug,
+  clothesForYouEnabled,
   sentryDsn,
   sentrySampleRate,
   serviceWorkerTimeout,
@@ -86,7 +87,9 @@ const App = ({
       <link rel="icon" type="image/png" href="/favicon-36.png" />
       <link rel="manifest" href="/manifest.json" />
     </Head>
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider
+      theme={clothesForYouEnabled ? clothesForYouTheme : defaultTheme}
+    >
       <AlertProvider
         template={NotificationTemplate as any}
         {...notificationConfig}

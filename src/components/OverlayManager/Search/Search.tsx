@@ -12,6 +12,7 @@ import ReactSVG from "react-svg";
 import { OfflinePlaceholder } from "@components/atoms";
 import { paths } from "@paths";
 import { channelSlug } from "@temp/constants";
+import { clothesForYouEnabled } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
 
 import { maybe } from "../../../core/utils";
@@ -97,7 +98,11 @@ class Search extends React.Component<SearchProps, SearchState> {
           onClick={e => e.stopPropagation()}
           onSubmit={this.handleSubmit}
         >
-          <div className="search__input">
+          <div
+            className={
+              clothesForYouEnabled ? "search__c4uinput" : "search__input"
+            }
+          >
             <DebouncedTextField
               onChange={evt => this.setState({ search: evt.target.value })}
               value={this.state.search}
@@ -105,7 +110,11 @@ class Search extends React.Component<SearchProps, SearchState> {
                 <ReactSVG
                   path={closeImg}
                   onClick={this.props.overlay.hide}
-                  className="search__input__close-btn"
+                  className={
+                    clothesForYouEnabled
+                      ? "search__c4uinput__close-btn"
+                      : "search__input__close-btn"
+                  }
                 />
               }
               iconRight={<ReactSVG path={searchImg} />}
