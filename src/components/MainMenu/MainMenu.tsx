@@ -11,7 +11,6 @@ import { ShopMenusQuery } from "@graphql/gqlTypes/ShopMenusQuery";
 import { paths } from "@paths";
 import { clothesForYouEnabled } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
-import C4ULogo from "images/c4u_logo.svg";
 
 import cartImg from "../../images/cart.svg";
 import hamburgerImg from "../../images/hamburger.svg";
@@ -28,6 +27,8 @@ import {
   OverlayType,
 } from "..";
 import { NavDropdown } from "./NavDropdown";
+
+import C4ULogo from "images/c4u_logo.svg";
 
 import "./scss/index.scss";
 import {

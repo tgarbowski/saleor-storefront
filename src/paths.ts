@@ -27,6 +27,8 @@ export const paths = {
   checkoutPaymentConfirm: `${checkoutBaseUrl}payment-confirm`,
   checkoutReview: `${checkoutBaseUrl}review`,
   checkoutShipping: `${checkoutBaseUrl}shipping`,
+  capturedPayment: `${checkoutBaseUrl}correct-payment`,
+  notCapturedPayment: `${checkoutBaseUrl}wrong-payment`,
   /**
    * Account section
    */

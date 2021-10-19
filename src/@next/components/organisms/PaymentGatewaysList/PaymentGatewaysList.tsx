@@ -9,6 +9,7 @@ import {
   DummyPaymentGateway,
   StripePaymentGateway,
 } from "..";
+import { PayuPaymentGateway } from "../PayuPaymentGateway";
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -155,6 +156,41 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                 </S.Tile>
                 {checked && (
                   <AdyenPaymentGateway
+                    config={config}
+                    formRef={formRef}
+                    scriptConfig={PROVIDERS.ADYEN.script}
+                    styleConfig={PROVIDERS.ADYEN.style}
+                    processPayment={() => processPayment(id)}
+                    submitPayment={submitPayment}
+                    submitPaymentSuccess={submitPaymentSuccess}
+                    errors={errors}
+                    onError={onError}
+                  />
+                )}
+              </div>
+            );
+
+          case PROVIDERS.PAYU.label:
+            return (
+              <div key={index}>
+                <S.Tile checked={checked}>
+                  <Radio
+                    data-test="checkoutPaymentGatewayPayUInput"
+                    name="payment-method"
+                    value="payU"
+                    checked={checked}
+                    onChange={() =>
+                      selectPaymentGateway && selectPaymentGateway(id)
+                    }
+                    customLabel
+                  >
+                    <span data-test="checkoutPaymentGatewayPayUName">
+                      {name}
+                    </span>
+                  </Radio>
+                </S.Tile>
+                {checked && (
+                  <PayuPaymentGateway
                     config={config}
                     formRef={formRef}
                     scriptConfig={PROVIDERS.ADYEN.script}

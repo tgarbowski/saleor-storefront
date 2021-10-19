@@ -1,7 +1,5 @@
 import baseStyled, { ThemedStyledInterface } from "styled-components";
 
-import { clothesForYou } from "@temp/constants";
-
 import * as CFU from "./clothesForyou-constants";
 import * as C from "./saling-constants";
 

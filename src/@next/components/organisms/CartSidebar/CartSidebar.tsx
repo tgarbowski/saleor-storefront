@@ -115,7 +115,7 @@ const CartSidebar: React.FC<ICartSidebar> = ({
       <S.Wrapper ref={setElementRef()}>
         <CardHeader divider onHide={hide} prefix={<ReactSVG path={cartImg} />}>
           <span>
-            <FormattedMessage defaultMessage="My Cart" />
+            <FormattedMessage defaultMessage="Koszyk" />
           </span>
         </CardHeader>
         <S.Content>
@@ -133,13 +133,13 @@ const CartSidebar: React.FC<ICartSidebar> = ({
             <S.EmptyCart>
               <S.EmptyCartTitle>
                 <FormattedMessage
-                  defaultMessage="Your cart is empty"
+                  defaultMessage="Twój koszyk jest pusty"
                   description="cart sidebar title"
                 />
               </S.EmptyCartTitle>
               <S.EmptyCartDescription>
                 <FormattedMessage
-                  defaultMessage="You haven’t added anything to your bag. We’re sure you’ll find something in our store"
+                  defaultMessage="Nie dodałeś nic do swojego koszyka. Jesteśmy pewni, że znajdziesz coś ciekawego u nas w sklepie."
                   description="cart sidebar description"
                 />
               </S.EmptyCartDescription>
@@ -151,7 +151,7 @@ const CartSidebar: React.FC<ICartSidebar> = ({
                 onClick={continueShopping}
               >
                 <FormattedMessage
-                  defaultMessage="Continue shopping"
+                  defaultMessage="Kontynuuj zakupy"
                   description="button"
                 />
               </Button>
@@ -174,7 +174,7 @@ const CartSidebar: React.FC<ICartSidebar> = ({
               onClick={goToCart}
             >
               <FormattedMessage
-                defaultMessage="Go to my cart"
+                defaultMessage="Mój koszyk"
                 description="button"
               />
             </Button>
@@ -186,7 +186,7 @@ const CartSidebar: React.FC<ICartSidebar> = ({
               onClick={proceedToCheckout}
             >
               <FormattedMessage
-                defaultMessage="Proceed to Checkout"
+                defaultMessage="Kontynuuj do kasy"
                 description="button"
               />
             </Button>

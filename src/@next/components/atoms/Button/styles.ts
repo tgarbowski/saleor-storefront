@@ -54,7 +54,7 @@ export const Primary = styled.button<{
       props.fullWidth ? "100%" : "88%"};
   `}
 `;
-
+// @ts-ignore
 export const Secondary = styled(Primary)`
   box-shadow: inset 0px 0px 0px 3px
     ${props => props.theme.button.colors.secondary.color};

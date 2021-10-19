@@ -66,10 +66,8 @@ const CheckoutPage: React.FC<NextPage> = () => {
   const [selectedPaymentGateway, setSelectedPaymentGateway] = useState<
     string | undefined
   >(payment?.gateway);
-  const [
-    selectedPaymentGatewayToken,
-    setSelectedPaymentGatewayToken,
-  ] = useState<string | undefined>(payment?.token);
+  const [selectedPaymentGatewayToken, setSelectedPaymentGatewayToken] =
+    useState<string | undefined>(payment?.token);
   const [paymentGatewayErrors, setPaymentGatewayErrors] = useState<
     IFormError[]
   >([]);
@@ -164,6 +162,7 @@ const CheckoutPage: React.FC<NextPage> = () => {
       orderStatus: order?.status,
       orderNumber: order?.number,
       token: order?.token,
+      redirect_url: "string",
     });
   };
 
@@ -209,6 +208,10 @@ const CheckoutPage: React.FC<NextPage> = () => {
         push(paymentStepLink);
       }
     }
+
+    const generatePaymentUrlVariables = {
+      paymentId: payment?.id,
+    };
 
     setSubmitInProgress(true);
     setPaymentConfirmation(true);
@@ -263,12 +266,14 @@ const CheckoutPage: React.FC<NextPage> = () => {
   };
 
   useRedirectToCorrectCheckoutStep(cartLoaded);
-  useEffect(() => setSelectedPaymentGateway(payment?.gateway), [
-    payment?.gateway,
-  ]);
-  useEffect(() => setSelectedPaymentGatewayToken(payment?.token), [
-    payment?.token,
-  ]);
+  useEffect(
+    () => setSelectedPaymentGateway(payment?.gateway),
+    [payment?.gateway]
+  );
+  useEffect(
+    () => setSelectedPaymentGatewayToken(payment?.token),
+    [payment?.token]
+  );
 
   useEffect(() => {
     const paymentConfirmStepLink = CHECKOUT_STEPS.find(

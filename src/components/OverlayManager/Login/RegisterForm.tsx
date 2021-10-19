@@ -27,10 +27,11 @@ const showSuccessNotification = (
       {
         title: data.accountRegister.requiresConfirmation
           ? intl.formatMessage({
-              defaultMessage:
-                "Please check your e-mail for further instructions",
+              defaultMessage: "Sprawdź swojego maila z dalszymi wskazówkami",
             })
-          : intl.formatMessage({ defaultMessage: "New user has been created" }),
+          : intl.formatMessage({
+              defaultMessage: "Nowy użytkownik został stworzony",
+            }),
       },
       { type: "success", timeout: 5000 }
     );
@@ -84,7 +85,7 @@ const RegisterForm: React.FC<{ hide: () => void }> = ({ hide }) => {
               >
                 {loading
                   ? intl.formatMessage(commonMessages.loading)
-                  : intl.formatMessage({ defaultMessage: "Register" })}
+                  : intl.formatMessage({ defaultMessage: "Zarejestruj" })}
               </Button>
             </div>
           </Form>
