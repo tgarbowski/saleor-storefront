@@ -146,24 +146,33 @@ export const getCurrentStep = (
   return { activeStepIndex, activeStep };
 };
 
-export const stepSubmitSuccessHandler = (
-  push: NextRouter["push"],
-  steps: CheckoutStepDefinition[],
-  activeStepIndex: number
-) => (currentStep: CheckoutStep, data?: object) => {
-  if (currentStep === CheckoutStep.Review) {
-    push(
-      {
-        pathname: paths.orderFinalized,
-        query: data as ParsedUrlQueryInput,
-      },
-      /**
-       * Passing orderFinalized path as an `as` param makes query data hidden and
-       * behaves simillar to history push state.
-       */
-      paths.orderFinalized
-    );
-  } else {
-    push(steps[activeStepIndex + 1].link);
-  }
-};
+export const stepSubmitSuccessHandler =
+  (
+    push: NextRouter["push"],
+    steps: CheckoutStepDefinition[],
+    activeStepIndex: number
+  ) =>
+  (currentStep: CheckoutStep, data?: object, redirect_url?: string) => {
+    console.log("dupa");
+    console.log(redirect_url);
+    if (currentStep === CheckoutStep.Review) {
+      push(
+        {
+          pathname: paths.orderFinalized,
+          query: data as ParsedUrlQueryInput,
+        },
+        /**
+         * Passing orderFinalized path as an `as` param makes query data hidden and
+         * behaves simillar to history push state.
+         */
+        paths.orderFinalized
+      );
+      setTimeout(() => {
+        window.open(redirect_url, "_blank", "noopener,noreferrer");
+        // @ts-ignore
+        document.getElementById("payuLabel").style.display = "none";
+      }, 2000);
+    } else {
+      push(steps[activeStepIndex + 1].link);
+    }
+  };

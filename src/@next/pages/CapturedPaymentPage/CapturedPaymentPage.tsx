@@ -1,3 +1,4 @@
+/*
 import Link from "next/link";
 import React from "react";
 import { generatePath } from "react-router";
@@ -15,10 +16,26 @@ const CapturedPaymentPage: React.FC<any> = ({}) => {
     return (
       // @ts-ignore
       <Link href={capturedUrl}>
-        {/* @ts-ignore */}
+        {/* @ts-ignore }
         <FailurePayment />
       </Link>
     );
+  }
+  // @ts-ignore
+  return <CorrectPayment />;
+};
+
+export { CapturedPaymentPage };
+*/
+import React from "react";
+
+import { CorrectPayment } from "@components/organisms/CorrectPayment";
+import { FailurePayment } from "@components/organisms/FailurePayment";
+
+const CapturedPaymentPage: React.FC<any> = ({}) => {
+  if (window.location.href.split("?").pop() === "error=501") {
+    // @ts-ignore
+    return <FailurePayment />;
   }
   // @ts-ignore
   return <CorrectPayment />;

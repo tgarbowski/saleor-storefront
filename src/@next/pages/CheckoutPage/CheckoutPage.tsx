@@ -19,6 +19,7 @@ import { paths } from "@paths";
 import { paymentGatewayNames } from "@temp/constants";
 import { ICardData, IFormError, IPaymentSubmitResult } from "@types";
 
+import { TypedGeneratePaymentUrl } from "./queries";
 import {
   CheckoutAddressSubpage,
   CheckoutPaymentSubpage,
@@ -62,6 +63,10 @@ const CheckoutPage: React.FC<NextPage> = () => {
 
   const [submitInProgress, setSubmitInProgress] = useState(false);
   const [paymentConfirmation, setPaymentConfirmation] = useState(false);
+
+  const generatePaymentUrlVariables = {
+    paymentId: payment?.id,
+  };
 
   const [selectedPaymentGateway, setSelectedPaymentGateway] = useState<
     string | undefined
@@ -108,11 +113,18 @@ const CheckoutPage: React.FC<NextPage> = () => {
         />
       ),
       [CheckoutStep.Review]: (
-        <CheckoutReviewSubpage
-          {...pageProps}
-          paymentGatewayFormRef={checkoutGatewayFormRef}
-          selectedPaymentGatewayToken={selectedPaymentGatewayToken}
-        />
+        <TypedGeneratePaymentUrl variables={generatePaymentUrlVariables}>
+          {({ ...urlData }) => (
+            <CheckoutReviewSubpage
+              paymentGatewayFormRef={checkoutGatewayFormRef}
+              selectedPaymentGatewayToken={selectedPaymentGatewayToken}
+              changeSubmitProgress={setSubmitInProgress}
+              onSubmitSuccess={data =>
+                handleStepSubmitSuccess(CheckoutStep.Review, undefined, urlData)
+              }
+            />
+          )}
+        </TypedGeneratePaymentUrl>
       ),
     };
     return subpageMapping[activeStep.step];
@@ -162,7 +174,6 @@ const CheckoutPage: React.FC<NextPage> = () => {
       orderStatus: order?.status,
       orderNumber: order?.number,
       token: order?.token,
-      redirect_url: "string",
     });
   };
 
@@ -208,10 +219,6 @@ const CheckoutPage: React.FC<NextPage> = () => {
         push(paymentStepLink);
       }
     }
-
-    const generatePaymentUrlVariables = {
-      paymentId: payment?.id,
-    };
 
     setSubmitInProgress(true);
     setPaymentConfirmation(true);
