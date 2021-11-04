@@ -25,7 +25,7 @@ const CheckoutAsGuest: React.FC<{
     </Link>
 
     <p>
-      <FormattedMessage defaultMessage="or you can" />{" "}
+      <FormattedMessage defaultMessage="albo" />{" "}
       <span
         data-test="showRegisterOverlay"
         className="u-link"

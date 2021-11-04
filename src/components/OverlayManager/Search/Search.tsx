@@ -11,8 +11,7 @@ import ReactSVG from "react-svg";
 
 import { OfflinePlaceholder } from "@components/atoms";
 import { paths } from "@paths";
-import { channelSlug } from "@temp/constants";
-import { clothesForYouEnabled } from "@temp/constants";
+import { channelSlug, clothesForYouEnabled } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
 
 import { maybe } from "../../../core/utils";

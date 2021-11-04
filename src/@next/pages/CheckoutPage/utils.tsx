@@ -77,6 +77,7 @@ export type SubpageCompleteHandler = () => void | Promise<void>;
 export interface SubpageBaseProps {
   changeSubmitProgress: (submitInProgress: boolean) => void;
   onSubmitSuccess: (pageStep: CheckoutStep, data?: object) => void;
+  onRedirectToPayU?: (redirect_url: string) => void;
 }
 
 export const prepareCartSummaryProducts = (
@@ -152,9 +153,7 @@ export const stepSubmitSuccessHandler =
     steps: CheckoutStepDefinition[],
     activeStepIndex: number
   ) =>
-  (currentStep: CheckoutStep, data?: object, redirect_url?: string) => {
-    console.log("dupa");
-    console.log(redirect_url);
+  (currentStep: CheckoutStep, data?: object | any, redirect_url?: any) => {
     if (currentStep === CheckoutStep.Review) {
       push(
         {
@@ -170,7 +169,6 @@ export const stepSubmitSuccessHandler =
       setTimeout(() => {
         window.open(redirect_url, "_blank", "noopener,noreferrer");
         // @ts-ignore
-        document.getElementById("payuLabel").style.display = "none";
       }, 2000);
     } else {
       push(steps[activeStepIndex + 1].link);

@@ -116,11 +116,15 @@ const CheckoutPage: React.FC<NextPage> = () => {
         <TypedGeneratePaymentUrl variables={generatePaymentUrlVariables}>
           {({ ...urlData }) => (
             <CheckoutReviewSubpage
+              {...pageProps}
               paymentGatewayFormRef={checkoutGatewayFormRef}
               selectedPaymentGatewayToken={selectedPaymentGatewayToken}
-              changeSubmitProgress={setSubmitInProgress}
               onSubmitSuccess={data =>
-                handleStepSubmitSuccess(CheckoutStep.Review, undefined, urlData)
+                handleStepSubmitSuccess(
+                  CheckoutStep.Review,
+                  undefined,
+                  urlData?.data?.generatePaymentUrl?.paymentUrl
+                )
               }
             />
           )}

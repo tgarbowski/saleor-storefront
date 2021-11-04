@@ -27,7 +27,6 @@ const Page: React.FC<{
     return categories && categories.edges && categories.edges.length > 0;
   };
   const intl = useIntl();
-  console.log(categories);
   return (
     <>
       <script className="structured-data-list" type="application/ld+json">

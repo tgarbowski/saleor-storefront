@@ -18,6 +18,8 @@ export const paths = {
   product: `${baseUrl}product/${slugUrl}`,
   search: `${baseUrl}search`,
   wishlist: `${baseUrl}wishlist`,
+  capturedPayment: `${baseUrl}correct-payment`,
+  notCapturedPayment: `${baseUrl}wrong-payment`,
   /**
    * Checkout
    */
@@ -27,8 +29,7 @@ export const paths = {
   checkoutPaymentConfirm: `${checkoutBaseUrl}payment-confirm`,
   checkoutReview: `${checkoutBaseUrl}review`,
   checkoutShipping: `${checkoutBaseUrl}shipping`,
-  capturedPayment: `${checkoutBaseUrl}correct-payment`,
-  notCapturedPayment: `${checkoutBaseUrl}wrong-payment`,
+
   /**
    * Account section
    */

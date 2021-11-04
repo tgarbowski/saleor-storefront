@@ -73,9 +73,6 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
     if (payment?.gateway === "salingo.payments.payu") {
       return `Płatność PayU`;
     }
-    if (payment?.creditCard) {
-      return `Ending in ${payment?.creditCard.lastDigits}`;
-    }
     return ``;
   };
 
