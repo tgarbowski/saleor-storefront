@@ -119,13 +119,7 @@ const CheckoutPage: React.FC<NextPage> = () => {
               {...pageProps}
               paymentGatewayFormRef={checkoutGatewayFormRef}
               selectedPaymentGatewayToken={selectedPaymentGatewayToken}
-              onSubmitSuccess={data =>
-                handleStepSubmitSuccess(
-                  CheckoutStep.Review,
-                  undefined,
-                  urlData?.data?.generatePaymentUrl?.paymentUrl
-                )
-              }
+              payuUrl={urlData?.data?.generatePaymentUrl?.paymentUrl}
             />
           )}
         </TypedGeneratePaymentUrl>

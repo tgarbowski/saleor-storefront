@@ -153,7 +153,7 @@ export const stepSubmitSuccessHandler =
     steps: CheckoutStepDefinition[],
     activeStepIndex: number
   ) =>
-  (currentStep: CheckoutStep, data?: object | any, redirect_url?: any) => {
+  (currentStep: CheckoutStep, data?: object | any) => {
     if (currentStep === CheckoutStep.Review) {
       push(
         {
@@ -166,10 +166,6 @@ export const stepSubmitSuccessHandler =
          */
         paths.orderFinalized
       );
-      setTimeout(() => {
-        window.open(redirect_url, "_blank", "noopener,noreferrer");
-        // @ts-ignore
-      }, 2000);
     } else {
       push(steps[activeStepIndex + 1].link);
     }

@@ -27,6 +27,7 @@ export interface ISubmitCheckoutData {
 interface CheckoutReviewSubpageProps extends SubpageBaseProps {
   selectedPaymentGatewayToken?: string;
   paymentGatewayFormRef: React.RefObject<HTMLFormElement>;
+  payuUrl?: string;
 }
 
 const CheckoutReviewSubpageWithRef: RefForwardingComponent<
@@ -38,6 +39,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
     paymentGatewayFormRef,
     changeSubmitProgress,
     onSubmitSuccess,
+    payuUrl,
   },
   ref
 ) => {
@@ -104,6 +106,10 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
           orderNumber: data?.order?.number,
           token: data?.order?.token,
         });
+        setTimeout(() => {
+          window.open(payuUrl, "_blank", "noopener,noreferrer");
+          // @ts-ignore
+        }, 2000);
       }
     }
   });
