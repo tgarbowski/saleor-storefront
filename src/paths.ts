@@ -18,8 +18,7 @@ export const paths = {
   product: `${baseUrl}product/${slugUrl}`,
   search: `${baseUrl}search`,
   wishlist: `${baseUrl}wishlist`,
-  capturedPayment: `${baseUrl}correct-payment`,
-  notCapturedPayment: `${baseUrl}wrong-payment`,
+  capturedPayment: `${baseUrl}payment-captured`,
   /**
    * Checkout
    */
