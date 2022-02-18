@@ -7,17 +7,13 @@ import Media from "react-responsive";
 
 import { Icon, NavLink } from "@components/atoms";
 import { largeScreen, smallScreen } from "@styles/constants";
-import { clothesForYouEnabled } from "@temp/constants";
+import Logo from "@styles/Logo";
+import LogoSmall from "@styles/LogoSmall";
 import { maybe } from "@utils/misc";
 
 import { Dropdown } from "./Dropdown";
 import * as S from "./styles";
 import { IProps } from "./types";
-
-import C4ULogo from "images/c4u_logo.svg";
-import C4ULogoSmall from "images/c4u_logo_small.svg";
-import Logo from "images/logo.svg";
-import LogoSmall from "images/logo-small.svg";
 
 const menuVisibleRatio = 0.8;
 const getElementWidth = (node: Element) => node.scrollWidth;
@@ -115,12 +111,10 @@ export const TopNavbar: React.FC<IProps> = ({ items }: IProps) => {
         </S.Navigation>
         <S.Center>
           <Media maxWidth={smallScreen}>
-            <S.LogoWrapper
-              path={clothesForYouEnabled ? C4ULogoSmall : LogoSmall}
-            />
+            <S.LogoWrapper path={LogoSmall} />
           </Media>
           <Media minWidth={smallScreen}>
-            <S.LogoWrapper path={clothesForYouEnabled ? C4ULogo : Logo} />
+            <S.LogoWrapper path={Logo} />
           </Media>
         </S.Center>
         <S.Actions>

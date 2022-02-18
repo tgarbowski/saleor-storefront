@@ -35,4 +35,3 @@ export const paymentGatewayNames = {
   adyen: "mirumee.payments.adyen",
   stripe: "saleor.payments.stripe",
 };
-export const clothesForYouEnabled = false;

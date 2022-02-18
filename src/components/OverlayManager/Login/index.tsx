@@ -3,7 +3,6 @@ import { FormattedMessage } from "react-intl";
 import ReactSVG from "react-svg";
 
 import { OfflinePlaceholder } from "@components/atoms";
-import { clothesForYouEnabled } from "@temp/constants";
 
 import closeImg from "../../../images/x.svg";
 import {
@@ -57,11 +56,7 @@ class Login extends React.Component<
                 className="overlay__header__close-icon"
               />
             </div>
-            <div
-              className={
-                clothesForYouEnabled ? "login__c4utabs" : "login__tabs"
-              }
-            >
+            <div className="login__tabs">
               <span
                 data-test="loginTab"
                 onClick={() => this.changeActiveTab("login")}

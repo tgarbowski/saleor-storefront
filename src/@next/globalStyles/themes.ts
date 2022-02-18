@@ -1,6 +1,5 @@
 import baseStyled, { ThemedStyledInterface } from "styled-components";
 
-// import { customStyle as CFU } from "./clothesForyou-constants";
 import { customStyle as C } from "./saling-constants";
 
 export const defaultTheme = {

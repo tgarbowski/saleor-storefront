@@ -1,7 +1,5 @@
 import * as React from "react";
 
-import { clothesForYouEnabled } from "@temp/constants";
-
 import "./scss/index.scss";
 
 type ButtonType = "submit" | "reset" | "button";
@@ -25,11 +23,7 @@ const Button: React.FC<ButtonProps> = ({
 }) => (
   <button
     data-test={testingContext}
-    className={
-      clothesForYouEnabled
-        ? `c4ubutton ${secondary ? "secondary" : ""} ${className}`
-        : `button ${secondary ? "secondary" : ""} ${className}`
-    }
+    className={`button ${secondary ? "secondary" : ""} ${className}`}
     ref={btnRef}
     type={type as ButtonType}
     {...otherProps}

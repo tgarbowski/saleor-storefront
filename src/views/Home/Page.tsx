@@ -5,7 +5,6 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { generatePath } from "react-router";
 
 import { paths } from "@paths";
-import { clothesForYouEnabled } from "@temp/constants";
 import { FeaturedProducts } from "@utils/ssr";
 
 import { Button, ProductsFeatured } from "../../components";
@@ -55,11 +54,7 @@ const Page: React.FC<{
               <h1>
                 <FormattedMessage
                   defaultMessage="W SKLEPIE {shopname}"
-                  values={
-                    clothesForYouEnabled
-                      ? { shopname: "CLOTHES4YOU" }
-                      : { shopname: "SALINGO" }
-                  }
+                  values={{ shopname: "SALINGO" }}
                 />
               </h1>
             </span>

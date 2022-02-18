@@ -4,14 +4,11 @@ import { FormattedMessage } from "react-intl";
 import ReactSVG from "react-svg";
 
 import { paths } from "@paths";
-import { clothesForYouEnabled } from "@temp/constants";
+import Logo from "@styles/Logo";
 import { commonMessages } from "@temp/intl";
 
 import backImg from "../../images/arrow-back.svg";
-import logoImg from "../../images/logo.svg";
 import NavItem, { INavItem } from "./NavItem";
-
-import C4ULogo from "images/c4u_logo.svg";
 
 import "./scss/index.scss";
 
@@ -69,65 +66,26 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
     return (
       <ul>
         {parent ? (
-          <li
-            className={
-              clothesForYouEnabled
-                ? "c4uside-nav__menu-item c4uside-nav__menu-item-back"
-                : "side-nav__menu-item side-nav__menu-item-back"
-            }
-          >
+          <li className="side-nav__menu-item side-nav__menu-item-back">
             <span onClick={this.handleGoBack}>
               <ReactSVG path={backImg} /> {parent.name}
             </span>
           </li>
         ) : (
           <>
-            <li
-              className={
-                clothesForYouEnabled
-                  ? "c4uside-nav__menu-item c4uside-nav__menu-item--parent"
-                  : "side-nav__menu-item side-nav__menu-item--parent"
-              }
-            >
+            <li className="side-nav__menu-item side-nav__menu-item--parent">
               <Link href={paths.home}>
-                <a
-                  className={
-                    clothesForYouEnabled
-                      ? "c4uside-nav__menu-item-logo"
-                      : "side-nav__menu-item-logo"
-                  }
-                >
-                  <ReactSVG
-                    path={clothesForYouEnabled ? C4ULogo : logoImg}
-                    onClick={hideOverlay}
-                  />
+                <a className="side-nav__menu-item-logo">
+                  <ReactSVG path={Logo} onClick={hideOverlay} />
                 </a>
               </Link>
-              <span
-                className={
-                  clothesForYouEnabled
-                    ? "c4uside-nav__menu-item-close"
-                    : "side-nav__menu-item-close"
-                }
-              >
+              <span className="side-nav__menu-item-close">
                 <span />
               </span>
             </li>
-            <li
-              className={
-                clothesForYouEnabled
-                  ? "c4uside-nav__menu-item"
-                  : "side-nav__menu-item"
-              }
-            >
+            <li className="side-nav__menu-item">
               <Link href={paths.home}>
-                <a
-                  className={
-                    clothesForYouEnabled
-                      ? "c4uside-nav__menu-item-link"
-                      : "side-nav__menu-item-link"
-                  }
-                >
+                <a className="side-nav__menu-item-link">
                   <span onClick={hideOverlay}>
                     <FormattedMessage {...commonMessages.home} />
                   </span>
