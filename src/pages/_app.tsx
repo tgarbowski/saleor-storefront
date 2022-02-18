@@ -15,7 +15,8 @@ import { ThemeProvider } from "styled-components";
 
 import { NotificationTemplate } from "@components/atoms";
 import { ServiceWorkerProvider } from "@components/containers";
-import { clothesForYouTheme, defaultTheme, GlobalStyle } from "@styles";
+import { defaultTheme, GlobalStyle } from "@styles";
+// import { clothesForYouTheme, defaultTheme, GlobalStyle } from "@styles";
 import { NextQueryParamProvider } from "@temp/components";
 import { getSaleorApi, getShopConfig, ShopConfig } from "@utils/ssr";
 
@@ -88,7 +89,8 @@ const App = ({
       <link rel="manifest" href="/manifest.json" />
     </Head>
     <ThemeProvider
-      theme={clothesForYouEnabled ? clothesForYouTheme : defaultTheme}
+      theme={defaultTheme}
+      // theme={clothesForYouEnabled ? clothesForYouTheme : defaultTheme}
     >
       <AlertProvider
         template={NotificationTemplate as any}
