@@ -277,7 +277,147 @@ const c4uTheme = {
   white: c4uStyle.white,
 };
 
+const f4uStyle = {
+// colors
+autofillColor: "rgb(250, 255, 189)",
+autofillColorSelected: "rgb(232, 240, 254)",
+baseFontColor: "#323232",
+baseFontColorSemiTransparent: "rgba(50,50,50,0.6)",
+baseFontColorTransparent: "rgba(50,50,50,0.1)",
+black: "#323232",
+blue: "rgb(33,18,94)",
+blueDark: "#190c4e",
+blueLight: "#513CA3",
+blueOverlay: `rgba(33,18,94,0.1)`,
+blueOverlayDark: `rgba(33,18,94,0.2)`,
+gray: "#7d7d7d",
+grayMedium: "#c4c4c4",
+grayDark: "#323232",
+grayLight: "#f1f5f5",
+green: "#3ed256",
+overlayColor: "rgba(199, 207, 207, 0.8)",
+rose: "#c22d74",
+turquoise: "#13bebb",
+turquoiseDark: "#06a09e",
+turquoiseLight: "rgba(6, 132, 123, 0.25)",
+turquoiseTransparent: "rgba(6, 132, 123, 0.1)",
+white: "#fff",
+tabelGray: "#eaeaea",
+darkGreen: "#06847B",
+secondaryGrey: "#EBF1F6",
+secondaryGreyDark: "#9D9FB1",
+secondaryBlue: "#036DFF",
+fashionForYouGreen: "#65C947",
+fashionForYouLightGreen: "#A8E098",
+fashionForYouDarkGreen: "#3E8828",
+fashionForYouBlack: "#262626",
+
+// typography
+baseFontFamily: "'Inter', sans-serif",
+baseFontSize: "1rem", // 16px
+baseLineHeight: "1.25rem", // 20px
+boldFontWeight: 600,
+extraBoldFontWeight: 800,
+h1FontSize: "4rem", // 64px
+h2FontSize: "3rem", // 48px
+h1LineHeight: 1,
+h3FontSize: "1.5rem", // 24px
+h4FontSize: "1.125rem", // 18px
+labelFontSize: "0.75rem", // 12px
+smallFontSize: "0.875rem", // 14px
+ultraBigFont: "6rem", // 96px
+
+// spacing
+spacer: 1, // rem
+fieldSpacer: "1.875rem",
+
+// breakpoints
+xxxLargeScreen: 1920,
+xxLargeScreen: 1600,
+xLargeScreen: 1280,
+largeScreen: 992,
+mediumScreen: 720,
+smallScreen: 540,
+theme: {
+  activeMenuOption: "",
+  autofill: "",
+  autofillSelected: "",
+  bannerBackground: "",
+  bannerEdge: "",
+  bannerLink: "",
+  baseFont: "",
+  baseFontColorSemiTransparent: "",
+  baseFontColorTransparent: "",
+  dark: "",
+  disabled: "",
+  divider: "",
+  dividerDark: "",
+  error: "",
+  hoverLightBackground: "",
+  light: "",
+  lightFont: "",
+  listAttributeName: "",
+  listBullet: "",
+  overlay: "",
+  primary: "",
+  primaryDark: "",
+  primaryLight: "",
+  primaryTransparent: "",
+  secondary: "",
+  secondaryDark: "",
+  secondaryLight: "",
+  secondaryOverlay: "",
+  secondaryOverlayDark: "",
+  success: "",
+  tabTitle: "",
+  tableDivider: "",
+  tabsBorder: "",
+  thumbnailBorder: "",
+  white: "",
+},
+};
+
+const f4uTheme = {
+  activeMenuOption: f4uStyle.darkGreen,
+  autofill: f4uStyle.autofillColor,
+  autofillSelected: f4uStyle.autofillColorSelected,
+  bannerBackground: f4uStyle.secondaryGrey,
+  bannerEdge: f4uStyle.fashionForYouGreen,
+  bannerLink: f4uStyle.fashionForYouGreen,
+  baseFont: f4uStyle.fashionForYouBlack,
+  baseFontColorSemiTransparent: f4uStyle.baseFontColorSemiTransparent,
+  baseFontColorTransparent: f4uStyle.baseFontColorTransparent,
+  dark: f4uStyle.black,
+  disabled: f4uStyle.gray,
+  divider: f4uStyle.grayLight,
+  dividerDark: f4uStyle.grayMedium,
+  error: f4uStyle.rose,
+  hoverLightBackground: f4uStyle.fashionForYouLightGreen,
+  light: f4uStyle.grayLight,
+  lightFont: f4uStyle.gray,
+  listAttributeName: f4uStyle.baseFontColorSemiTransparent,
+  listBullet: f4uStyle.darkGreen,
+  overlay: f4uStyle.overlayColor,
+  primary: f4uStyle.fashionForYouGreen,
+  primaryDark: f4uStyle.fashionForYouDarkGreen,
+  primaryLight: f4uStyle.fashionForYouLightGreen,
+  primaryTransparent: f4uStyle.fashionForYouLightGreen,
+  secondary: f4uStyle.fashionForYouBlack,
+  secondaryDark: f4uStyle.fashionForYouBlack,
+  secondaryLight: f4uStyle.fashionForYouBlack,
+  secondaryOverlay: f4uStyle.fashionForYouBlack,
+  secondaryOverlayDark: f4uStyle.fashionForYouBlack,
+  success: f4uStyle.green,
+  tabTitle: f4uStyle.darkGreen,
+  tableDivider: f4uStyle.tabelGray,
+  tabsBorder: f4uStyle.baseFontColorTransparent,
+  thumbnailBorder: f4uStyle.darkGreen,
+  white: f4uStyle.white,
+
+};
+
 c4uStyle.theme = c4uTheme;
+f4uStyle.theme = f4uTheme;
 salingDefaultStyle.theme = salingDefaultTheme;
 
-export const customStyle = shopName === "C4U" ? c4uStyle : salingDefaultStyle;
+export const customStyle = shopName === "C4U" ? c4uStyle : salingDefaultStyle && "F4U" ? f4uStyle : salingDefaultStyle;
