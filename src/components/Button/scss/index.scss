@@ -2,6 +2,9 @@
 @import "../../../globalStyles/scss/salingo-variables.scss";
 @import "../../../globalStyles/scss/clothes-for-you-variables.scss";
 
+// console logs current shop name variable from env
+//@debug $shopName;
+
 button.button {
   background-color: $turquoise;
   transform: $button-transform;
