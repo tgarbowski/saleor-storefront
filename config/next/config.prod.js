@@ -14,7 +14,12 @@ module.exports = (nextConfig = {}, { nextComposePlugins, phase }) => ({
             loader: "css-loader",
             options: { sourceMap: true },
           },
-          "sass-loader",
+          {
+            loader: "sass-loader",
+            options: {
+              data: "$env: " + process.env.NEXT_PUBLIC_WEBSITE_NAME + ";",
+            },
+          },
         ],
       },
     ];
