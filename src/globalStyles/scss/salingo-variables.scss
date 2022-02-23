@@ -1,9 +1,0 @@
-// colors
-$salingoYellow: #ffcc07;
-$salingoLightYellow: #ffe583;
-$salingoGrey: #646464;
-
-// assigned shop name from env variable
-// TODO: change SCSS color exports depending on shopName (F4U, C4U, default)
-// TODO: make one import out of clothes-for-you-variables.scss variables.scss and salingo-variables.scss from all other files
-$shopName: $env;

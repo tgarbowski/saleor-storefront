@@ -93,6 +93,32 @@ $container-width: 1140px;
 $modal-width: 555px;
 $modal-min-height: 455px;
 
+$primary: $turquoise;
+$primaryDark: $turquoise-dark;
+$primaryLight: $turquoise-light;
+$dark: $black;
+
+@if $env == 'FASHION4U' {
+  $primary: #65C947;
+  $primaryDark: #3E8828;
+  $primaryLight: #A8E098;
+  $dark: #262626;
+}
+
+@if $env == 'CLOTHES4U' {
+  $primary: #d3000e;
+  $primaryDark: #980009;
+  $primaryLight: #ff434f;
+  $dark: #262626;
+}
+
+@if $env == 'SALINGO' {
+  $primary: #ffcc07;
+  $primaryLight: #ffe583;
+  $primaryDark: #646464;
+  $dark: #262626;
+}
+
 :export {
   mediumScreen: $medium-screen;
   smallScreen: $small-screen;

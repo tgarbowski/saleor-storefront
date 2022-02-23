@@ -5,9 +5,9 @@ import F4ULogo from "../../images/Fashion4youLogo.svg";
 import sailingDefaultLogo from "../../images/logo.svg";
 
 const Logo =
-  shopName === "C4U"
+  shopName === "CLOTHES4U"
     ? C4ULogo
-    : shopName === "F4U"
+    : shopName === "FASHION4U"
     ? F4ULogo
     : sailingDefaultLogo;
 

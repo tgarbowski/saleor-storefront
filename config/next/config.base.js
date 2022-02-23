@@ -34,12 +34,6 @@ module.exports = (nextConfig = {}, { nextComposePlugins, phase }) => ({
             outputPath: "static/images/",
           },
         },
-        {
-          loader: "sass-loader",
-          options: {
-            data: "$env: " + process.env.NEXT_PUBLIC_WEBSITE_NAME + ";",
-          },
-        },
       ],
     });
 
