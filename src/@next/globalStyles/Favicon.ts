@@ -1,7 +1,8 @@
 import { shopName } from "@temp/constants";
+
 import C4ULogo from "../../images/c4u_logo.svg";
-import F4UFavicon from "../../images/favicon-f4u.png";
 import faviconDefault from "../../images/favicon.png";
+import F4UFavicon from "../../images/favicon-f4u.png";
 
 const Favicon =
   shopName === "CLOTHES4U"

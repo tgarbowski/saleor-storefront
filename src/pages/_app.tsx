@@ -16,6 +16,7 @@ import { ThemeProvider } from "styled-components";
 import { NotificationTemplate } from "@components/atoms";
 import { ServiceWorkerProvider } from "@components/containers";
 import { defaultTheme, GlobalStyle } from "@styles";
+import Favicon from '@styles/Favicon';
 import { NextQueryParamProvider } from "@temp/components";
 import { getSaleorApi, getShopConfig, ShopConfig } from "@utils/ssr";
 
@@ -36,7 +37,6 @@ import {
   ssrMode,
 } from "../constants";
 
-import Favicon from '@styles/Favicon';
 
 declare global {
   interface Window {
