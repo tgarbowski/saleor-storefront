@@ -36,6 +36,8 @@ import {
   ssrMode,
 } from "../constants";
 
+import Favicon from '@styles/Favicon';
+
 declare global {
   interface Window {
     __APOLLO_CLIENT__: any;
@@ -83,7 +85,7 @@ const App = ({
       <title>Demo PWA Storefront – Saleor Commerce</title>
       <link rel="preconnect" href={apiUrl} />
       <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
-      <link rel="icon" type="image/png" href="/favicon-36.png" />
+      <link rel="icon" type="image/png" href={Favicon} />
       <link rel="manifest" href="/manifest.json" />
     </Head>
     <ThemeProvider theme={defaultTheme}>

@@ -33,12 +33,20 @@
 
     @media (min-width: $small-screen) {
       flex-basis: calc(50% - 4rem);
+
+      @if $env == 'FASHION4U' {
+        flex-basis: calc(50% - 2rem);
+      }
     }
 
     ul {
       display: flex;
       justify-content: flex-end;
       align-items: center;
+
+      @if $env == 'FASHION4U' {
+        margin-right: 30px;
+      }
     }
   }
 
@@ -50,6 +58,10 @@
 
       @media (min-width: $small-screen) {
         width: 6rem;
+
+        @if $env == 'FASHION4U' {
+          width: 100%;
+        }
       }
     }
   }
