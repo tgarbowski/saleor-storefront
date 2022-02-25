@@ -36,7 +36,7 @@ export const OrdersHistory: React.FC = () => {
               });
             }}
           >
-            <FormattedMessage defaultMessage="Load more" />
+            <FormattedMessage defaultMessage="Załaduj więcej" />
           </Button>
         </S.Wrapper>
       )}

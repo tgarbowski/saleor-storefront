@@ -78,7 +78,7 @@ const Table: React.FC<TableProps> = ({
               <CostRow
                 mediumScreen={mediumScreen}
                 heading={intl.formatMessage(
-                  { defaultMessage: "Discount: {discountName}" },
+                  { defaultMessage: "Znizka: {discountName}" },
                   { discountName }
                 )}
                 cost={discount}
@@ -88,7 +88,7 @@ const Table: React.FC<TableProps> = ({
               <CostRow
                 mediumScreen={mediumScreen}
                 heading={intl.formatMessage({
-                  defaultMessage: "Delivery Cost",
+                  defaultMessage: "Koszt dostawy",
                 })}
                 cost={deliveryCost}
               />
@@ -96,7 +96,7 @@ const Table: React.FC<TableProps> = ({
             {totalCost && (
               <CostRow
                 mediumScreen={mediumScreen}
-                heading={intl.formatMessage({ defaultMessage: "Total Cost" })}
+                heading={intl.formatMessage({ defaultMessage: "Całkowity koszt" })}
                 cost={totalCost}
               />
             )}

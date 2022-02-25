@@ -21,20 +21,20 @@ const NotFound: NextPage<NotFoundProps> = () => (
     <div className="not-found-page__ruler" />
     <div className="not-found-page__message">
       <p>
-        <FormattedMessage defaultMessage="We can’t seem to find a page you are looking for!" />{" "}
+        <FormattedMessage defaultMessage="Nie możemy znaleźć strony, której szukasz!" />{" "}
       </p>
       <p>
-        <FormattedMessage defaultMessage="You may have mistyped the address or the page may have moved." />{" "}
+        <FormattedMessage defaultMessage="Być może błędnie wpisałeś adres lub strona mogła zostać przeniesiona." />{" "}
       </p>
       <p>
-        <FormattedMessage defaultMessage="We’re sorry for the error and hope you’ll have a good day." />
+        <FormattedMessage defaultMessage="Przepraszamy za błąd i mamy nadzieję, że będziesz miał dobry dzień." />
       </p>
     </div>
     <div className="not-found-page__button">
       <Link href={paths.home}>
         <a>
           <Button testingContext="404pageGotoHomeButton" secondary>
-            <FormattedMessage defaultMessage="Back to home" />
+            <FormattedMessage defaultMessage="Wróć na stronę główną" />
           </Button>
         </a>
       </Link>

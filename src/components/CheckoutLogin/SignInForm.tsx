@@ -9,7 +9,7 @@ const SignInForm: React.FC<{
 }> = ({ onForgottenPasswordClick }) => (
   <>
     <h3 className="checkout__header">
-      <FormattedMessage defaultMessage="Registered user" />
+      <FormattedMessage defaultMessage="Zarejestrowany użytkownik" />
     </h3>
     <LoginForm />
     <ForgottenPassword onClick={onForgottenPasswordClick} />
