@@ -7,7 +7,7 @@ import sailingDefaultLogoSmall from "../../images/logo-small.svg";
 const LogoSmall =
   shopName === "CLOTHES4U"
     ? C4ULogoSmall
-    : shopName === "FASHION4U"
+    : shopName === "FASHION4YOU"
     ? F4ULogoSmall
     : sailingDefaultLogoSmall;
 

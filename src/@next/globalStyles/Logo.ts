@@ -7,7 +7,7 @@ import F4ULogo from "../../images/logo-f4u.svg";
 const Logo =
   shopName === "CLOTHES4U"
     ? C4ULogo
-    : shopName === "FASHION4U"
+    : shopName === "FASHION4YOU"
     ? F4ULogo
     : sailingDefaultLogo;
 

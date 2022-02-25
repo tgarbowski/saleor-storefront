@@ -7,7 +7,7 @@ import F4UFavicon from "../../images/favicon-f4u.png";
 const Favicon =
   shopName === "CLOTHES4U"
     ? C4ULogo
-    : shopName === "FASHION4U"
+    : shopName === "FASHION4YOU"
     ? F4UFavicon
     : faviconDefault;
 

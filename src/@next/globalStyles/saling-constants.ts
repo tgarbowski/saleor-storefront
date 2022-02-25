@@ -422,6 +422,6 @@ salingDefaultStyle.theme = salingDefaultTheme;
 export const customStyle =
   shopName === "CLOTHES4U"
     ? c4uStyle
-    : shopName === "FASHION4U"
+    : shopName === "FASHION4YOU"
     ? f4uStyle
     : salingDefaultStyle;
