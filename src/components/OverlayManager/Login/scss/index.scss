@@ -28,7 +28,29 @@
 
       &.active-tab {
         border-bottom: 1px solid $primary;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
+    .loginTab-text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
+  &__content {
+    padding: 1rem;
+    .login__content__password-reminder {
+      color: $gray;
+      font-size: .875rem;
+      margin-top: 2rem;
+    }
+  }
+}
+
+.login__content__button {
+  margin-top: 2rem;
+  padding: 0 1.5rem;
+  text-align: center;
 }

@@ -60,7 +60,7 @@ class Login extends React.Component<
               <span
                 data-test="loginTab"
                 onClick={() => this.changeActiveTab("login")}
-                className={this.state.active === "login" ? "active-tab" : ""}
+                className={this.state.active === "login" ? "active-tab" : "loginTab-text"}
               >
                 <FormattedMessage defaultMessage="Zaloguj się" />
               </span>
