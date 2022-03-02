@@ -97,7 +97,7 @@ export const CategoryView: NextPage<CategoryViewProps> = ({
               />
             </MetaWrapper>
           ) : (
-            <NotFound />
+            <NotFound notFoundText="Niestety nie znalezliśmy tej kategorii"/>
           )
         ) : (
           <OfflinePlaceholder />

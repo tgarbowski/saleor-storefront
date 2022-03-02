@@ -11,35 +11,47 @@ import "./scss/index.scss";
 
 interface NotFoundProps {
   message?: string;
+  notFoundText?: string;
 }
 
-const NotFound: NextPage<NotFoundProps> = () => (
-  <div className="not-found-page">
-    <h2 className="not-found-page__header">
-      <FormattedMessage defaultMessage="404" />
-    </h2>
-    <div className="not-found-page__ruler" />
-    <div className="not-found-page__message">
-      <p>
-        <FormattedMessage defaultMessage="Nie możemy znaleźć strony, której szukasz!" />{" "}
-      </p>
-      <p>
-        <FormattedMessage defaultMessage="Być może błędnie wpisałeś adres lub strona mogła zostać przeniesiona." />{" "}
-      </p>
-      <p>
-        <FormattedMessage defaultMessage="Przepraszamy za błąd i mamy nadzieję, że będziesz miał dobry dzień." />
-      </p>
+const NotFound: NextPage<NotFoundProps> = ({ notFoundText }) => {
+  const currentPath = window.location.pathname.split("/");
+
+  return (
+      <div className="not-found-page">
+      {
+        currentPath[0] === paths.product.split("/")[0] &&
+        ( <h2 className="not-found-page__header">
+            {notFoundText}
+          </h2>
+        )
+      }
+      { currentPath[1] !== paths.product.split("/")[1] &&
+        (<div>adsadsadsadsa</div>)
+      }
+      <div className="not-found-page__ruler" />
+      <div className="not-found-page__message">
+        <p>
+          <FormattedMessage defaultMessage="Nie możemy znaleźć strony, której szukasz!" />{" "}
+        </p>
+        <p>
+          <FormattedMessage defaultMessage="Być może błędnie wpisałeś adres lub strona mogła zostać przeniesiona." />{" "}
+        </p>
+        <p>
+          <FormattedMessage defaultMessage="Przepraszamy za błąd i mamy nadzieję, że będziesz miał dobry dzień." />
+        </p>
+      </div>
+      <div className="not-found-page__button">
+        <Link href={paths.home}>
+          <a>
+            <Button testingContext="404pageGotoHomeButton" secondary>
+              <FormattedMessage defaultMessage="Wróć na stronę główną" />
+            </Button>
+          </a>
+        </Link>
+      </div>
     </div>
-    <div className="not-found-page__button">
-      <Link href={paths.home}>
-        <a>
-          <Button testingContext="404pageGotoHomeButton" secondary>
-            <FormattedMessage defaultMessage="Wróć na stronę główną" />
-          </Button>
-        </a>
-      </Link>
-    </div>
-  </div>
-);
+  );
+};
 
 export default NotFound;
