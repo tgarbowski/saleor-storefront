@@ -119,7 +119,7 @@ export const ProductPage: NextPage<ProductPageProps> = ({ data: product }) => {
         }
 
         if (!product) {
-          return product === null ? <NotFound notFoundText="Ta oferta nie istnieje :(" /> : <Loader fullScreen />;
+          return product === null ? <NotFound /> : <Loader fullScreen />;
         }
 
         if (!isOnline) {

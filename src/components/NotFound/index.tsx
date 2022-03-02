@@ -11,24 +11,25 @@ import "./scss/index.scss";
 
 interface NotFoundProps {
   message?: string;
-  notFoundText?: string;
 }
 
-const NotFound: NextPage<NotFoundProps> = ({ notFoundText }) => {
+const NotFound: NextPage<NotFoundProps> = () => {
   const currentPath = window.location.pathname.split("/");
-
   return (
       <div className="not-found-page">
-      {
-        currentPath[0] === paths.product.split("/")[0] &&
-        ( <h2 className="not-found-page__header">
-            {notFoundText}
+        {currentPath[1] === "product" ? (
+          <h2 className="not-found-page__header">
+            <FormattedMessage defaultMessage="Ta oferta nie istnieje :(" />
           </h2>
-        )
-      }
-      { currentPath[1] !== paths.product.split("/")[1] &&
-        (<div>adsadsadsadsa</div>)
-      }
+        ) : currentPath[1] === "category" ? (
+          <h2 className="not-found-page__header">
+            <FormattedMessage defaultMessage="Niestety nie znalezliśmy tej kategorii" />
+          </h2>
+        ) : (
+          <h2 className="not-found-page__header">
+            <FormattedMessage defaultMessage="Nie znalezliśmy strony której szukasz" />
+          </h2>
+        )}
       <div className="not-found-page__ruler" />
       <div className="not-found-page__message">
         <p>
