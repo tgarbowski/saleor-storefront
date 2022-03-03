@@ -57,7 +57,7 @@
           font-size: $h4-font-size;
         }
 
-        @media (min-width: $small-screen) and (max-width: $medium-screen) {
+        @media (min-width: $small-screen) and (max-width: $large-screen) {
           font-size: 48px;
         }
       }

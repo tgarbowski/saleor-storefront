@@ -30,7 +30,7 @@
       width: 30%;
       position: relative;
 
-      @media (max-width: $medium-screen) {
+      @media (max-width: $large-screen) {
         width: 30%;
       }
 
@@ -61,7 +61,7 @@
       padding: 0 $spacer 0 0;
       box-sizing: border-box;
 
-      @media (max-width: $medium-screen) {
+      @media (max-width: $large-screen) {
         width: 50%;
       }
 

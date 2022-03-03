@@ -5,7 +5,7 @@ $drawer-width: 25rem;
 .search {
   width: 100vw;
 
-  @media (min-width: $medium-screen) {
+  @media (min-width: $large-screen) {
     width: $drawer-width;
   }
 
@@ -59,7 +59,7 @@ $drawer-width: 25rem;
     transition: 300ms;
     height: calc(100vh - 3rem);
 
-    @media (min-width: $medium-screen) {
+    @media (min-width: $large-screen) {
       right: -$drawer-width;
     }
 
@@ -116,7 +116,7 @@ $drawer-width: 25rem;
       background-color: $white;
       width: 100vw;
 
-      @media (min-width: $medium-screen) {
+      @media (min-width: $large-screen) {
         width: 25rem;
       }
     }

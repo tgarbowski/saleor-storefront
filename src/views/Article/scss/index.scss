@@ -7,7 +7,7 @@
     grid-template-columns: repeat(3, 1fr);
     margin: 60px 0;
 
-    @media (max-width: $medium-screen) {
+    @media (max-width: $large-screen) {
       display: block;
     }
   }
@@ -137,7 +137,7 @@
   }
 
   &__navigation {
-    @media (max-width: $medium-screen) {
+    @media (max-width: $large-screen) {
       margin-bottom: $spacer * 2;
     }
 

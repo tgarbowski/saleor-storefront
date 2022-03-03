@@ -59,6 +59,26 @@ button.button {
     }
   }
 
+  &.third {
+    background-color: $white;
+
+    * {
+      color: $white;
+    }
+
+    &:hover {
+      background-color: $blue;
+
+      * {
+        color: $white;
+      }
+    }
+
+    &:active {
+      background-color: $blue-dark;
+    }
+  }
+
   &.branding {
     background-color: $primary;
 

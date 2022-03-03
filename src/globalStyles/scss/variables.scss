@@ -5,6 +5,7 @@ $blue-dark: #190c4e;
 $blue: #21125e;
 $gray-dark: #7d7d7d;
 $gray-light: #f6f6f6;
+$gray-light-2: #676767;
 $gray: #c4c4c4;
 $green: #3ed256;
 $rose: #fe6e76;
@@ -79,7 +80,11 @@ $product-item-price-font-weight: $bold-font-weight;
 $product-item-price-margin: $spacer 0 0;
 
 // breakpoints
-$medium-screen: 992px;
+$xxx-large-screen: 1920px;
+$xx-large-screen: 1600px;
+$x-large-screen: 1280px;
+$large-screen: 992px;
+$medium-screen: 720px;
 $small-screen: 540px;
 
 // carousel
@@ -120,6 +125,10 @@ $dark: $black;
 }
 
 :export {
+  xxxLargeScreen: $xxx-large-screen;
+  xxLargeScreen: $xx-large-screen;
+  xLargeScreen: $x-large-screen;
+  largeScreen: $large-screen;
   mediumScreen: $medium-screen;
   smallScreen: $small-screen;
 }
