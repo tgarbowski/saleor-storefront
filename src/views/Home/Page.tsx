@@ -65,7 +65,7 @@ const Page: React.FC<{
           {categoriesExist() && (
             <Link
               href={generatePath(paths.category, {
-                slug: categories.edges[4].node.slug,
+                slug: categories.edges[1].node.slug,
               })}
             >
               <a>
