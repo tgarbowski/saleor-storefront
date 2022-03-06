@@ -1,7 +1,7 @@
 @import "../../../globalStyles/scss/variables.scss";
 
 .cart-table {
-  @media (max-width: $medium-screen) {
+  @media (max-width: $large-screen) {
     td:last-child,
     th:last-child {
       text-align: right;

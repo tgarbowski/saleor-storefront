@@ -15,6 +15,8 @@ export const channelSlug = process.env.NEXT_PUBLIC_SALEOR_CHANNEL_SLUG!;
 
 export const exportMode = process.env.NEXT_EXPORT === "true";
 
+export const shopName = process.env.NEXT_PUBLIC_WEBSITE_NAME;
+
 export const ssrMode = typeof window === "undefined";
 
 export const incrementalStaticRegenerationRevalidate = parseInt(
@@ -33,4 +35,3 @@ export const paymentGatewayNames = {
   adyen: "mirumee.payments.adyen",
   stripe: "saleor.payments.stripe",
 };
-export const clothesForYouEnabled = true;

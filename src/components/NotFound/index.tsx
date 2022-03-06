@@ -5,6 +5,8 @@ import { FormattedMessage } from "react-intl";
 
 import { paths } from "@paths";
 
+import notFoundPageImg from "../../images/not-found-page-img.png";
+import notFoundProductImg from "../../images/not-found-product-img.png";
 import Button from "../Button";
 
 import "./scss/index.scss";
@@ -13,33 +15,73 @@ interface NotFoundProps {
   message?: string;
 }
 
-const NotFound: NextPage<NotFoundProps> = () => (
-  <div className="not-found-page">
-    <h2 className="not-found-page__header">
-      <FormattedMessage defaultMessage="404" />
-    </h2>
-    <div className="not-found-page__ruler" />
-    <div className="not-found-page__message">
-      <p>
-        <FormattedMessage defaultMessage="We can’t seem to find a page you are looking for!" />{" "}
-      </p>
-      <p>
-        <FormattedMessage defaultMessage="You may have mistyped the address or the page may have moved." />{" "}
-      </p>
-      <p>
-        <FormattedMessage defaultMessage="We’re sorry for the error and hope you’ll have a good day." />
-      </p>
+const NotFound: NextPage<NotFoundProps> = () => {
+  const currentPath = window.location.pathname.split("/");
+  return (
+    <div className="not-found-page">
+      <div className="not-found-page-container">
+        <div className="not-found-page-container-left">
+          <h3 className="not-found-page-container-text">Oops!</h3>
+          {currentPath[1] === "product" ? (
+            <>
+              <h2 className="not-found-page-container-text-second">
+                Ten produkt nie istnieje lub został przeniesiony
+              </h2>
+              <p className="not-found-page-container-paragraph">
+                Być może błędnie wpisałeś adres produktu lub produkt nie
+                istnieje.
+              </p>
+            </>
+          ) : currentPath[1] === "category" ? (
+            <>
+              <h2 className="not-found-page-container-text-second">
+                Ta kategoria nie istnieje lub została przeniesiona
+              </h2>
+              <p className="not-found-page-container-paragraph">
+                Być może błędnie wpisałeś adres kategorii lub ona nie istnieje.
+              </p>
+            </>
+          ) : (
+            <>
+              <h2 className="not-found-page-container-text-second">
+                Nie mogliśmy znaleźć strony, której szukasz
+              </h2>
+              <p className="not-found-page-container-paragraph">
+                Być może błędnie wpisałeś adres lub strona mogła zostać
+                przeniesiona.
+              </p>
+            </>
+          )}
+          <div className="not-found-page-container-button">
+            <Link href={paths.home}>
+              <a>
+                <Button testingContext="404pageGotoHomeButton" third>
+                  <FormattedMessage defaultMessage="Wróć na stronę główną" />
+                </Button>
+              </a>
+            </Link>
+          </div>
+        </div>
+        <div className="not-found-page-container-right">
+          {currentPath[1] === "product" ? (
+            <img
+              src={notFoundProductImg}
+              alt=""
+              className="not-found-product-img"
+            />
+          ) : currentPath[1] === "category" ? (
+            <img
+              src={notFoundProductImg}
+              alt=""
+              className="not-found-product-img"
+            />
+          ) : (
+            <img src={notFoundPageImg} alt="" className="not-found-page-img" />
+          )}
+        </div>
+      </div>
     </div>
-    <div className="not-found-page__button">
-      <Link href={paths.home}>
-        <a>
-          <Button testingContext="404pageGotoHomeButton" secondary>
-            <FormattedMessage defaultMessage="Back to home" />
-          </Button>
-        </a>
-      </Link>
-    </div>
-  </div>
-);
+  );
+};
 
 export default NotFound;

@@ -65,7 +65,7 @@ body {
     margin: 0 auto;
     padding: 0 $spacer;
 
-    @media (max-width: $medium-screen) {
+    @media (max-width: $large-screen) {
       width: 100%;
     }
   }

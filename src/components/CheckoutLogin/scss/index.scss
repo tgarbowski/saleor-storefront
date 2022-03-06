@@ -4,7 +4,7 @@
   margin: $spacer * 10 0;
   display: flex;
 
-  @media (max-width: $medium-screen) {
+  @media (max-width: $large-screen) {
     display: block;
     margin: $spacer * 2 0;
   }
@@ -17,7 +17,7 @@
     width: 50%;
     padding: 0 $spacer * 4;
 
-    @media (max-width: $medium-screen) {
+    @media (max-width: $large-screen) {
       width: 60%;
       margin: 0 auto $spacer * 4;
       padding: 0 $spacer;
@@ -41,7 +41,7 @@
     width: 50%;
     padding: 0 $spacer * 4;
 
-    @media (max-width: $medium-screen) {
+    @media (max-width: $large-screen) {
       width: 60%;
       margin: 0 auto;
       padding: 0 $spacer;

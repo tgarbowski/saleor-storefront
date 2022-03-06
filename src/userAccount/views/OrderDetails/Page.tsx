@@ -40,7 +40,7 @@ const Page: React.FC<{
       {!guest && (
         <Link href={paths.accountOrderHistory}>
           <a className="order-details__link">
-            <FormattedMessage defaultMessage="Go back to Order History" />
+            <FormattedMessage defaultMessage="Wróć do historii zamówień" />
           </a>
         </Link>
       )}
@@ -48,7 +48,7 @@ const Page: React.FC<{
         <div>
           <h3>
             <FormattedMessage
-              defaultMessage="Your order number: {orderNum}"
+              defaultMessage="Numer Twojego zamówienia: {orderNum}"
               values={{ orderNum: order.number }}
             />
           </h3>
@@ -74,8 +74,8 @@ const Page: React.FC<{
                   content: (
                     <span>
                       <FormattedMessage
-                        defaultMessage="Download invoice"
-                        description="action in popup menu in order view"
+                        defaultMessage="Pobierz fakturę"
+                        description="akcja w menu podręcznym w widoku zamówienia"
                       />
                     </span>
                   ),

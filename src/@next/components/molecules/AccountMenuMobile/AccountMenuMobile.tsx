@@ -44,7 +44,7 @@ export const AccountMenuMobile: React.FC<IProps> = ({
       {showMenu && (
         <S.Overlay>
           <S.MenuHeader>
-            <FormattedMessage defaultMessage="Go to" />
+            <FormattedMessage defaultMessage="Przejdź do" />
           </S.MenuHeader>
           {links.map(link => (
             <div

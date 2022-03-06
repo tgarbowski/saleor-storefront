@@ -2,7 +2,7 @@
 import { generatePath } from "react-router";
 
 import { paths } from "@paths";
-import { clothesForYouEnabled, ssrMode } from "@temp/constants";
+import { ssrMode } from "@temp/constants";
 
 export const PRODUCTS_PER_PAGE = 6;
 export const SUPPORT_EMAIL = "support@example.com";
@@ -41,31 +41,18 @@ export const STATIC_PAGES = [
     url: generatePath(paths.page, { slug: "about" }),
   },
 ];
-export const SOCIAL_MEDIA = clothesForYouEnabled
-  ? [
-      {
-        ariaLabel: "facebook",
-        href: "https://www.facebook.com/Clothes4YouPL/",
-        path: require("../images/facebook-icon.svg"),
-      },
-      {
-        ariaLabel: "instagram",
-        href: "https://www.instagram.com/clothes4you.pl/",
-        path: require("../images/instagram-icon.svg"),
-      },
-    ]
-  : [
-      {
-        ariaLabel: "facebook",
-        href: "https://www.facebook.com/salingopl/",
-        path: require("../images/facebook-icon.svg"),
-      },
-      {
-        ariaLabel: "instagram",
-        href: "https://www.instagram.com/salingo.pl/",
-        path: require("../images/instagram-icon.svg"),
-      },
-    ];
+export const SOCIAL_MEDIA = [
+  {
+    ariaLabel: "facebook",
+    href: "https://www.facebook.com/salingopl/",
+    path: require("../images/facebook-icon.svg"),
+  },
+  {
+    ariaLabel: "instagram",
+    href: "https://www.instagram.com/salingo.pl/",
+    path: require("../images/instagram-icon.svg"),
+  },
+];
 export const META_DEFAULTS = {
   custom: [],
   description:

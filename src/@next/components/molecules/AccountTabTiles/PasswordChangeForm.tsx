@@ -50,17 +50,17 @@ export const PasswordChangeForm: React.FC<{
           } = {};
           if (!values.confirmPassword) {
             errors.confirmPassword = intl.formatMessage({
-              defaultMessage: "Required field",
+              defaultMessage: "Pole wymagane",
             });
           }
           if (!values.newPassword) {
             errors.newPassword = intl.formatMessage({
-              defaultMessage: "Required field",
+              defaultMessage: "Pole wymagane",
             });
           }
           if (!values.oldPassword) {
             errors.oldPassword = intl.formatMessage({
-              defaultMessage: "Required field",
+              defaultMessage: "Pole wymagane",
             });
           }
           if (values.confirmPassword !== values.newPassword) {

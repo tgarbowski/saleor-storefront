@@ -15,7 +15,8 @@ import { ThemeProvider } from "styled-components";
 
 import { NotificationTemplate } from "@components/atoms";
 import { ServiceWorkerProvider } from "@components/containers";
-import { clothesForYouTheme, defaultTheme, GlobalStyle } from "@styles";
+import { defaultTheme, GlobalStyle } from "@styles";
+import Favicon from '@styles/Favicon';
 import { NextQueryParamProvider } from "@temp/components";
 import { getSaleorApi, getShopConfig, ShopConfig } from "@utils/ssr";
 
@@ -30,12 +31,12 @@ import {
 import {
   apiUrl,
   channelSlug,
-  clothesForYouEnabled,
   sentryDsn,
   sentrySampleRate,
   serviceWorkerTimeout,
   ssrMode,
 } from "../constants";
+
 
 declare global {
   interface Window {
@@ -84,12 +85,10 @@ const App = ({
       <title>Demo PWA Storefront – Saleor Commerce</title>
       <link rel="preconnect" href={apiUrl} />
       <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
-      <link rel="icon" type="image/png" href="/favicon-36.png" />
+      <link rel="icon" type="image/png" href={Favicon} />
       <link rel="manifest" href="/manifest.json" />
     </Head>
-    <ThemeProvider
-      theme={clothesForYouEnabled ? clothesForYouTheme : defaultTheme}
-    >
+    <ThemeProvider theme={defaultTheme}>
       <AlertProvider
         template={NotificationTemplate as any}
         {...notificationConfig}

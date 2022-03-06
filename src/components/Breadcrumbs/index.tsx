@@ -77,7 +77,7 @@ const Breadcrumbs: React.FC<{
         <div className="breadcrumbs">
           <Link href={getBackLink(breadcrumbs)}>
             <a>
-              <FormattedMessage defaultMessage="Back" />
+              <FormattedMessage defaultMessage="Powrót" />
             </a>
           </Link>
         </div>

@@ -1,6 +1,4 @@
 @import "../../../../globalStyles/scss/variables.scss";
-@import "../../../../globalStyles/scss/clothes-for-you-variables.scss";
-@import "../../../../globalStyles/scss/salingo-variables.scss";
 
 .login {
   width: 25rem;
@@ -29,56 +27,29 @@
       }
 
       &.active-tab {
-        border-bottom: 1px solid $salingoYellow;
+        border-bottom: 1px solid $primary;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
-  }
-
-  &__c4utabs {
-    display: flex;
-
-    span {
-      flex-grow: 1;
-      width: 100%;
-      background-color: $gray-light;
-      text-transform: uppercase;
-      font-weight: $bold-font-weight;
-      text-align: center;
-      padding: $spacer;
-      border-bottom: 1px solid $gray-light;
-      cursor: pointer;
-
-      &:first-of-type {
-        border-right: 1px solid $white;
-      }
-
-      &:last-of-type {
-        border-left: 1px solid $white;
-      }
-
-      &.active-tab {
-        border-bottom: 1px solid $clothesForYouRed;
-      }
+    .loginTab-text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
-
   &__content {
-    padding: $spacer;
-
-    .input {
-      margin-bottom: $spacer;
-    }
-
-    &__button {
-      margin-top: $spacer * 2;
-      padding: 0 $spacer * 1.5;
-      text-align: center;
-    }
-
-    &__password-reminder {
+    padding: 1rem;
+    .login__content__password-reminder {
       color: $gray;
-      font-size: $small-font-size;
-      margin-top: $spacer * 2;
+      font-size: .875rem;
+      margin-top: 2rem;
+    }
+    &__button {
+      margin-top: 2rem;
+      padding: 0 1.5rem;
+      text-align: center;
     }
   }
 }
