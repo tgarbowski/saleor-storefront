@@ -83,13 +83,13 @@ const Page: React.FC<{
       />
       {categoriesExist() && (
         <div className="home-page__categories">
-          <div className="container">
-            <h3>
-              <FormattedMessage defaultMessage="KATEGORIE" />
-            </h3>
+          <div className="container home-page__categories_container">
+            <h2>
+              <FormattedMessage defaultMessage="WYBIERZ KATEGORIĘ" />
+            </h2>
             <div className="home-page__categories__list">
               {categories.edges.map(({ node: category }) => (
-                <div key={category.id}>
+                <div key={category.id} className="home-page__category-item">
                   <Link
                     href={generatePath(paths.category, {
                       slug: category.slug,
