@@ -17,7 +17,7 @@
       align-items: center;
       display: flex;
       flex-direction: column;
-      height: calc(100vh - 56px);
+      height: 100%;
       justify-content: space-between;
       padding: $spacer;
 
@@ -29,6 +29,7 @@
       &-action {
         margin-bottom: $spacer * 3;
         width: 100%;
+        margin-top: 42px;
       }
     }
 
@@ -54,7 +55,7 @@
         font-weight: 900;
 
         @media (max-width: $small-screen) {
-          font-size: $h4-font-size;
+          font-size: 2rem;
         }
 
         @media (min-width: $small-screen) and (max-width: $large-screen) {
@@ -83,6 +84,10 @@
       text-align: center;
       font-size: 2.5rem;
       margin-top: 2rem;
+
+      @media (max-width: $small-screen) {
+        font-size: 1.6rem;
+      }
     }
 
     &__list {
@@ -90,10 +95,16 @@
       grid-template-columns: 1fr;
       grid-gap: 2rem;
 
-      @media (min-width: $small-screen) {
+      @media only screen and (min-width: $small-screen) and (max-width: $x-large-screen) {
+        grid-gap: 2rem;
+        grid-template-columns: repeat(auto-fill, minmax(229px, 1fr));
+      }
+
+      @media (min-width: 1281px) {
         grid-template-columns: repeat(5, 1fr);
         grid-gap: 2rem;
       }
+
       .home-page__category-item {
         display: flex;
         align-items: center;
