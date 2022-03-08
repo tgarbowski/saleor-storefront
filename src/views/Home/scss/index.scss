@@ -17,7 +17,7 @@
       align-items: center;
       display: flex;
       flex-direction: column;
-      height: calc(100vh - 56px);
+      height: 100%;
       justify-content: space-between;
       padding: $spacer;
 
@@ -29,6 +29,7 @@
       &-action {
         margin-bottom: $spacer * 3;
         width: 100%;
+        margin-top: 42px;
       }
     }
 
@@ -54,7 +55,7 @@
         font-weight: 900;
 
         @media (max-width: $small-screen) {
-          font-size: $h4-font-size;
+          font-size: 2rem;
         }
 
         @media (min-width: $small-screen) and (max-width: $large-screen) {
@@ -65,12 +66,28 @@
   }
 
   &__categories {
-    margin-bottom: 2rem;
+    padding: 2rem 0 4rem;
 
-    h3 {
+    .home-page__categories_container {
+      width: 1365px;
+      max-width: 100vw;
+      margin: 0 auto;
+      padding: 0 1rem;
+
+    }
+
+    h2 {
       text-transform: uppercase;
-      font-weight: $bold-font-weight;
-      margin-bottom: 1rem;
+      font-weight: $semibold-font-weight;
+      text-align: center;
+      margin-bottom: 4rem;
+      text-align: center;
+      font-size: 2.5rem;
+      margin-top: 2rem;
+
+      @media (max-width: $small-screen) {
+        font-size: 1.6rem;
+      }
     }
 
     &__list {
@@ -78,31 +95,57 @@
       grid-template-columns: 1fr;
       grid-gap: 2rem;
 
-      @media (min-width: $small-screen) {
-        grid-template-columns: repeat(5, 1fr);
-        grid-gap: 5rem;
+      @media only screen and (min-width: $small-screen) and (max-width: $x-large-screen) {
+        grid-gap: 2rem;
+        grid-template-columns: repeat(auto-fill, minmax(229px, 1fr));
       }
 
-      a {
-        text-decoration: none;
-        color: $base-font-color;
+      @media (min-width: 1281px) {
+        grid-template-columns: repeat(5, 1fr);
+        grid-gap: 2rem;
+      }
 
-        h3 {
-          text-transform: uppercase;
-          font-weight: $bold-font-weight;
-
-          &:after {
-            content: url("../../../images/carousel-arrow.svg");
-            display: inline-block;
-            transform: rotate(180deg);
-            margin-left: 1rem;
+      .home-page__category-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin: 0 auto;
+        width: 100%;
+        padding: 30px 0;
+        transition: .3s all ease-in-out;
+        a {
+          text-decoration: none;
+          color: $base-font-color;
+  
+          h3 {
+            text-transform: uppercase;
+            font-weight: $bold-font-weight;
+            margin-bottom: 0;
+  
+            &:after {
+              content: url("../../../images/carousel-arrow.svg");
+              @if $env == 'CLOTHES4U' {
+                content: url("../../../images/carousel-arrow-c4u.svg");
+              }
+              @if $env == 'FASHION4YOU' {
+                content: url("../../../images/carousel-arrow-f4u.svg");
+              }
+              display: inline-block;
+              transform: rotate(180deg);
+              margin-left: 1rem;
+              height: 30px;
+            }
           }
+        }
+        &:hover {
+          background: $turquoise-light;
         }
       }
 
       &__image {
         width: 100%;
-        height: 30rem;
+        height: 7rem;
         background-size: contain;
         background-position: center;
         margin-bottom: 1rem;
