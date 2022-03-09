@@ -1,28 +1,3 @@
-// import { VariantAttributeScope } from "@saleor/sdk";
-// import { GetServerSideProps } from "next";
-
-// import { channelSlug } from "@temp/constants";
-// import { getSaleorApi } from "@utils/ssr";
-
-// import { ProductPage, ProductPageProps } from "../../views/Product";
-
-// export default ProductPage;
-
-// export const getServerSideProps: GetServerSideProps<
-//   ProductPageProps,
-//   ProductPageProps["params"]
-// > = async ({ params }) => {
-//   const { api } = await getSaleorApi();
-//   const { data } = await api.products.getDetails({
-//     slug: params.slug,
-//     channel: channelSlug,
-//     variantSelection: VariantAttributeScope.VARIANT_SELECTION,
-//   });
-//   return {
-//     props: { data: data || null, params },
-//   };
-// };
-
 import { VariantAttributeScope } from "@saleor/sdk";
 import { GetStaticPaths, GetStaticProps } from "next";
 
@@ -30,10 +5,9 @@ import {
   channelSlug,
   incrementalStaticRegenerationRevalidate,
   staticPathsFallback,
-  // staticPathsFetchBatch,
+  staticPathsFetchBatch,
 } from "@temp/constants";
-// import { exhaustList, getSaleorApi } from "@utils/ssr";
-import { getSaleorApi } from "@utils/ssr";
+import { exhaustList, getSaleorApi } from "@utils/ssr";
 
 import { ProductPage, ProductPageProps } from "../../views/Product";
 
@@ -41,19 +15,19 @@ export default ProductPage;
 
 export const getStaticPaths: GetStaticPaths<ProductPageProps["params"]> =
   async () => {
-    // const { api } = await getSaleorApi();
-    // const { data } = await exhaustList(
-    //   api.products.getList({
-    //     first: staticPathsFetchBatch,
-    //     channel: channelSlug,
-    //   })
-    // );
+    const { api } = await getSaleorApi();
+    const { data } = await exhaustList(
+      api.products.getList({
+        first: staticPathsFetchBatch,
+        channel: channelSlug,
+      })
+    );
 
-    // const paths = data.map(({ slug }) => ({
-    //   params: { slug },
-    // }));
+    const paths = data.map(({ slug }) => ({
+      params: { slug },
+    }));
 
-    return { paths: [], fallback: staticPathsFallback };
+    return { paths, fallback: staticPathsFallback };
   };
 
 export const getStaticProps: GetStaticProps<
