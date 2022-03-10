@@ -17,13 +17,14 @@ import { SubpageBaseProps, SubpageCompleteHandler } from "../utils";
 interface CheckoutPaymentSubpageProps extends SubpageBaseProps {
   paymentGatewayFormRef: React.RefObject<HTMLFormElement>;
   onPaymentGatewayError: (errors: IFormError[]) => void;
+  noteRef: any;
 }
 
 const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
   SubpageCompleteHandler,
   CheckoutPaymentSubpageProps
 > = (
-  { paymentGatewayFormRef, changeSubmitProgress, onPaymentGatewayError },
+  { paymentGatewayFormRef, changeSubmitProgress, onPaymentGatewayError, noteRef },
   ref
 ) => {
   const { promoCodeDiscount, addPromoCode, removePromoCode } = useCheckout();
@@ -115,6 +116,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
       removeVoucherCode={handleRemovePromoCode}
       submitUnchangedDiscount={handleSubmitUnchangedDiscount}
       promoCodeErrors={promoCodeErrors}
+      noteRef={noteRef}
     />
   );
 };

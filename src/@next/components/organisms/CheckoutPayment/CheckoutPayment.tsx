@@ -12,6 +12,7 @@ import { IProps } from "./types";
 /**
  * Payment options used in checkout.
  */
+
 const CheckoutPayment: React.FC<IProps> = ({
   promoCodeErrors,
   promoCodeDiscountFormId,
@@ -20,10 +21,13 @@ const CheckoutPayment: React.FC<IProps> = ({
   addPromoCode,
   removeVoucherCode,
   submitUnchangedDiscount,
+  noteRef,
 }) => {
   const [showPromoCodeForm, setShowPromoCodeForm] = useState(
     !!promoCodeDiscount?.voucherCode
   );
+
+  const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     const isVoucherCode = !!promoCodeDiscount?.voucherCode;
@@ -48,6 +52,10 @@ const CheckoutPayment: React.FC<IProps> = ({
       submitUnchangedDiscount();
     }
   };
+
+  useEffect(() => {
+    noteRef.current = inputValue;
+  }, [inputValue]);
 
   return (
     <S.Wrapper>
@@ -74,6 +82,16 @@ const CheckoutPayment: React.FC<IProps> = ({
             />
           </S.DiscountField>
         )}
+        <S.Divider />
+        <S.CustomerNote>
+          <FormattedMessage defaultMessage="Uwagi do zamówienia: (opcjonalnie)" />
+          <S.InputCustomerNote
+            onChange={e => setInputValue(e.target.value)}
+            value={inputValue}
+            id="customer-note"
+            maxLength={1000}
+          />
+        </S.CustomerNote>
         <S.Divider />
       </section>
     </S.Wrapper>
