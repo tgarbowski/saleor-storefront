@@ -1,6 +1,6 @@
 import { ProductDetails } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
 import classNames from "classnames";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Media from "react-media";
 import { generatePath } from "react-router";
 
@@ -8,6 +8,7 @@ import { ProductDescription } from "@components/molecules";
 import { ProductGallery } from "@components/organisms";
 import AddToCartSection from "@components/organisms/AddToCartSection";
 import { paths } from "@paths";
+import { getSaleorApi } from "@utils/ssr";
 
 import {
   Breadcrumbs,
@@ -64,6 +65,71 @@ const Page: React.FC<
     overlayContext.show(OverlayType.cart, OverlayTheme.right);
   };
 
+  const [productNewData, setProductNewData] = useState(product);
+  // useEffect(() => {
+  const refreshData = () => {
+    // async function getNewData() {
+    //   const { api } = await getSaleorApi();
+    //   await api.categories
+    //     .getAncestors({ first: 5, id: "Q2F0ZWdvcnk6MTQ2" })
+    //     .then(({ data }) => console.log(data));
+    // console.log(data);
+    // return data;
+    // }
+    // getNewData();
+    // getNewData().then(data => {
+    //   setProductNewData(data);
+    //   console.log(data.pricing);
+    // });
+    fetch("http://localhost:8000/graphql", {
+      method: "POST",
+      body: JSON.stringify({
+        query: `query product(id: $id, channel: $channel) {
+      ...BasicProductFields
+      ...ProductPricingField
+      description
+      category {
+        id
+        name
+        products(first: 3, channel: $channel) {
+          edges {
+            node {
+              ...BasicProductFields
+              ...ProductPricingField
+            }
+          }
+        }
+      }
+      images {
+        id
+        alt
+        url
+      }
+      attributes {
+        ...SelectedAttributeFields
+      }
+      variants {
+        ...ProductVariantFields
+      }
+      seoDescription
+      seoTitle
+      isAvailable
+      isAvailableForPurchase
+      availableForPurchase
+    }`,
+        variables: {
+          id: product.id,
+          channel: "allegro",
+        },
+      }),
+      headers: {
+        "content-type": "application/json",
+      },
+      credentials: "same-origin",
+    });
+  };
+  // }, []);
+
   const addToCartSection = (
     <AddToCartSection
       items={items}
@@ -80,7 +146,9 @@ const Page: React.FC<
       availableForPurchase={product.availableForPurchase}
     />
   );
-
+  // if (!productNewData) {
+  //   return <div>Loading...</div>;
+  // }
   return (
     <div className="product-page">
       <div className="container">
@@ -88,6 +156,22 @@ const Page: React.FC<
       </div>
       <div className="container">
         <div className="product-page__product">
+          <div>test </div>
+          <button onClick={refreshData}>get new data</button>
+          <AddToCartSection
+            items={items}
+            productId={product.id}
+            name={product.name}
+            productVariants={product.variants}
+            productPricing={productNewData.pricing}
+            queryAttributes={queryAttributes}
+            setVariantId={setVariantId}
+            variantId={variantId}
+            onAddToCart={handleAddToCart}
+            onAttributeChangeHandler={onAttributeChangeHandler}
+            isAvailableForPurchase={product.isAvailableForPurchase}
+            availableForPurchase={product.availableForPurchase}
+          />
           <script className="structured-data-list" type="application/ld+json">
             {structuredData(product)}
           </script>
