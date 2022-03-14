@@ -150,7 +150,6 @@ const Page: React.FC<
       headers: {
         "content-type": "application/json",
       },
-      credentials: "same-origin",
     }).then(data =>
       data.json().then(data => {
         setProductPricing(data.data.product.pricing);
@@ -160,13 +159,32 @@ const Page: React.FC<
     );
   }, []);
 
-  const addToCartSection = productPricing ? (
+  // const addToCartSection = productPricing ? (
+  //   <AddToCartSection
+  //     items={items}
+  //     productId={product.id}
+  //     name={product.name}
+  //     productVariants={product.variants}
+  //     productPricing={productPricing}
+  //     queryAttributes={queryAttributes}
+  //     setVariantId={setVariantId}
+  //     variantId={variantId}
+  //     onAddToCart={handleAddToCart}
+  //     onAttributeChangeHandler={onAttributeChangeHandler}
+  //     isAvailableForPurchase={product.isAvailableForPurchase}
+  //     availableForPurchase={product.availableForPurchase}
+  //   />
+  // ) : (
+  //   <>loading</>
+  // );
+
+  const addToCartSection = (
     <AddToCartSection
       items={items}
       productId={product.id}
       name={product.name}
       productVariants={product.variants}
-      productPricing={productPricing}
+      productPricing={product.pricing}
       queryAttributes={queryAttributes}
       setVariantId={setVariantId}
       variantId={variantId}
@@ -175,8 +193,6 @@ const Page: React.FC<
       isAvailableForPurchase={product.isAvailableForPurchase}
       availableForPurchase={product.availableForPurchase}
     />
-  ) : (
-    <>loading</>
   );
 
   return (

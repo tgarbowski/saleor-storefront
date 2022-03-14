@@ -128,7 +128,6 @@ export const getStaticProps: GetStaticProps<
     headers: {
       "content-type": "application/json",
     },
-    credentials: "same-origin",
   }).then(result =>
     result.json().then(result => {
       // console.log(result);
