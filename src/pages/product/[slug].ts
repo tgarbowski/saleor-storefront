@@ -6,6 +6,7 @@ import {
 } from "next";
 
 import {
+  apiUrl,
   channelSlug,
   // incrementalStaticRegenerationRevalidate,
   staticPathsFallback,
@@ -48,93 +49,93 @@ export const getStaticProps: GetStaticProps<
     variantSelection: VariantAttributeScope.VARIANT_SELECTION,
   });
 
-  // await fetch("http://localhost:8000/graphql/", {
-  //   method: "POST",
-  //   body: JSON.stringify({
-  //     query: `
-  //       query ProductDetails($id: ID!, $channel: String) {
-  //         product(id: $id, channel: $channel) {
-  //           __typename
-  //           pricing{
-  //             onSale
-  //             priceRange{
-  //               start{
-  //                 gross{
-  //                   amount
-  //                   currency
-  //                   __typename
-  //                 }
-  //                 net{
-  //                   amount
-  //                   currency
-  //                   __typename
-  //                 }
-  //                 __typename
-  //               }
-  //               stop{
-  //                 gross{
-  //                   amount
-  //                   currency
-  //                   __typename
-  //                 }
-  //                 net{
-  //                   amount
-  //                   currency
-  //                   __typename
-  //                 }
-  //                 __typename
-  //               }
-  //               __typename
-  //             }
-  //             priceRangeUndiscounted{
-  //               start{
-  //                 gross{
-  //                   amount
-  //                   currency
-  //                   __typename
-  //                 }
-  //                 net{
-  //                   amount
-  //                   currency
-  //                   __typename
-  //                 }
-  //                 __typename
-  //               }
-  //               stop{
-  //                 gross{
-  //                   amount
-  //                   currency
-  //                   __typename
-  //                 }
-  //                 net{
-  //                   amount
-  //                   currency
-  //                   __typename
-  //                 }
-  //                 __typename
-  //               }
-  //               __typename
-  //             }
-  //             __typename
-  //           }
-  //         }
-  //       }
-  //       `,
-  //     variables: {
-  //       id: data.id,
-  //       channel: channelSlug,
-  //     },
-  //   }),
-  //   headers: {
-  //     "content-type": "application/json",
-  //   },
-  // }).then(result =>
-  //   result.json().then(result => {
-  //     // console.log(result);
-  //     // data.pricing = result.data.product.pricing;
-  //     // console.log(result.data.product.pricing.priceRange.start.gross);
-  //   })
-  // );
+  await fetch(apiUrl, {
+    method: "POST",
+    body: JSON.stringify({
+      query: `
+        query ProductDetails($id: ID!, $channel: String) {
+          product(id: $id, channel: $channel) {
+            __typename
+            pricing{
+              onSale
+              priceRange{
+                start{
+                  gross{
+                    amount
+                    currency
+                    __typename
+                  }
+                  net{
+                    amount
+                    currency
+                    __typename
+                  }
+                  __typename
+                }
+                stop{
+                  gross{
+                    amount
+                    currency
+                    __typename
+                  }
+                  net{
+                    amount
+                    currency
+                    __typename
+                  }
+                  __typename
+                }
+                __typename
+              }
+              priceRangeUndiscounted{
+                start{
+                  gross{
+                    amount
+                    currency
+                    __typename
+                  }
+                  net{
+                    amount
+                    currency
+                    __typename
+                  }
+                  __typename
+                }
+                stop{
+                  gross{
+                    amount
+                    currency
+                    __typename
+                  }
+                  net{
+                    amount
+                    currency
+                    __typename
+                  }
+                  __typename
+                }
+                __typename
+              }
+              __typename
+            }
+          }
+        }
+        `,
+      variables: {
+        id: data.id,
+        channel: channelSlug,
+      },
+    }),
+    headers: {
+      "content-type": "application/json",
+    },
+  }).then(result =>
+    result.json().then(result => {
+      // console.log(result);
+      data.pricing = result.data.product.pricing;
+      // console.log(result.data.product.pricing.priceRange.start.gross);
+    })
+  );
 
   // console.log(data.pricing.priceRange.start.gross);
 
