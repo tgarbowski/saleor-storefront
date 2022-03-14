@@ -1,6 +1,7 @@
 import { ProductDetails } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
 import classNames from "classnames";
-import React, { useEffect, useState } from "react";
+import React from "react";
+// { useEffect, useState }
 import Media from "react-media";
 import { generatePath } from "react-router";
 
@@ -8,8 +9,8 @@ import { ProductDescription } from "@components/molecules";
 import { ProductGallery } from "@components/organisms";
 import AddToCartSection from "@components/organisms/AddToCartSection";
 import { paths } from "@paths";
-import { channelSlug } from "@temp/constants";
 
+// import { channelSlug } from "@temp/constants";
 import {
   Breadcrumbs,
   OverlayContext,
@@ -67,97 +68,97 @@ const Page: React.FC<
     overlayContext.show(OverlayType.cart, OverlayTheme.right);
   };
 
-  const [productPricing, setProductPricing] = useState(null);
+  // const [productPricing, setProductPricing] = useState(null);
 
-  useEffect(() => {
-    fetch("http://localhost:8000/graphql/", {
-      method: "POST",
-      body: JSON.stringify({
-        query: `
-        query ProductDetails($id: ID!, $channel: String) {
-          product(id: $id, channel: $channel) {
-            __typename
-            pricing{
-              onSale
-              priceRange{
-                start{
-                  gross{
-                    amount
-                    currency
-                    __typename
-                  }
-                  net{
-                    amount
-                    currency
-                    __typename
-                  }
-                  __typename
-                }
-                stop{
-                  gross{
-                    amount
-                    currency
-                    __typename
-                  }
-                  net{
-                    amount
-                    currency
-                    __typename
-                  }
-                  __typename
-                }
-                __typename
-              }
-              priceRangeUndiscounted{
-                start{
-                  gross{
-                    amount
-                    currency
-                    __typename
-                  }
-                  net{
-                    amount
-                    currency
-                    __typename
-                  }
-                  __typename
-                }
-                stop{
-                  gross{
-                    amount
-                    currency
-                    __typename
-                  }
-                  net{
-                    amount
-                    currency
-                    __typename
-                  }
-                  __typename
-                }
-                __typename
-              }
-              __typename
-            }
-          }
-        }
-        `,
-        variables: {
-          id: product.id,
-          channel: channelSlug,
-        },
-      }),
-      headers: {
-        "content-type": "application/json",
-      },
-    }).then(data =>
-      data.json().then(data => {
-        setProductPricing(data.data.product.pricing);
-        // console.log(product.pricing);
-        // console.log(data.data.product.pricing);
-      })
-    );
-  }, []);
+  // useEffect(() => {
+  //   fetch("http://localhost:8000/graphql/", {
+  //     method: "POST",
+  //     body: JSON.stringify({
+  //       query: `
+  //       query ProductDetails($id: ID!, $channel: String) {
+  //         product(id: $id, channel: $channel) {
+  //           __typename
+  //           pricing{
+  //             onSale
+  //             priceRange{
+  //               start{
+  //                 gross{
+  //                   amount
+  //                   currency
+  //                   __typename
+  //                 }
+  //                 net{
+  //                   amount
+  //                   currency
+  //                   __typename
+  //                 }
+  //                 __typename
+  //               }
+  //               stop{
+  //                 gross{
+  //                   amount
+  //                   currency
+  //                   __typename
+  //                 }
+  //                 net{
+  //                   amount
+  //                   currency
+  //                   __typename
+  //                 }
+  //                 __typename
+  //               }
+  //               __typename
+  //             }
+  //             priceRangeUndiscounted{
+  //               start{
+  //                 gross{
+  //                   amount
+  //                   currency
+  //                   __typename
+  //                 }
+  //                 net{
+  //                   amount
+  //                   currency
+  //                   __typename
+  //                 }
+  //                 __typename
+  //               }
+  //               stop{
+  //                 gross{
+  //                   amount
+  //                   currency
+  //                   __typename
+  //                 }
+  //                 net{
+  //                   amount
+  //                   currency
+  //                   __typename
+  //                 }
+  //                 __typename
+  //               }
+  //               __typename
+  //             }
+  //             __typename
+  //           }
+  //         }
+  //       }
+  //       `,
+  //       variables: {
+  //         id: product.id,
+  //         channel: channelSlug,
+  //       },
+  //     }),
+  //     headers: {
+  //       "content-type": "application/json",
+  //     },
+  //   }).then(data =>
+  //     data.json().then(data => {
+  //       setProductPricing(data.data.product.pricing);
+  //       // console.log(product.pricing);
+  //       // console.log(data.data.product.pricing);
+  //     })
+  //   );
+  // }, []);
 
   // const addToCartSection = productPricing ? (
   //   <AddToCartSection
@@ -230,7 +231,7 @@ const Page: React.FC<
                     >
                       {addToCartSection}
                       <div>{product.pricing.priceRange.start.gross.amount}</div>
-                      <div>{productPricing?.priceRange.start.gross.amount}</div>
+                      {/* <div>{productPricing?.priceRange.start.gross.amount}</div> */}
                     </div>
                   </div>
                 </>
