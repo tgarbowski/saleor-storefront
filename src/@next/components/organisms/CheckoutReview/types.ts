@@ -5,6 +5,8 @@ export interface IProps {
   billingAddress?: IAddress | null;
   shippingMethodName?: string;
   paymentMethodName?: string;
+  customerNote?: string;
   email?: string;
   errors?: IFormError[];
+  noteRef?: any;
 }

@@ -31,3 +31,31 @@ export const Tile = styled.label<{ checked: boolean }>`
   font-size: ${props => props.theme.typography.smallFontSize};
   cursor: pointer;
 `;
+
+export const CustomerNote = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 42px;
+  width: 100%;
+`;
+
+export const InputCustomerNote = styled.textarea`
+  margin-top: 24px;
+  resize: none;
+  height: 150px;
+  max-height: 100%;
+  overflow-y: auto;
+  padding: 4px;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: #f1f5f5;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    background: #65c947;
+    border: 6px solid rgba(0, 0, 0, 0.2);
+  }
+`;

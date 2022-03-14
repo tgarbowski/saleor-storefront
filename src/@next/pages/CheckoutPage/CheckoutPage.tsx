@@ -100,6 +100,8 @@ const CheckoutPage: React.FC<NextPage> = () => {
     changeSubmitProgress: setSubmitInProgress,
     onSubmitSuccess: handleStepSubmitSuccess,
   };
+  
+  const noteRef = useRef(null);
 
   const checkoutSubpage = useMemo(() => {
     const subpageMapping: Partial<Record<CheckoutStep, JSX.Element>> = {
@@ -110,6 +112,7 @@ const CheckoutPage: React.FC<NextPage> = () => {
           {...pageProps}
           paymentGatewayFormRef={checkoutGatewayFormRef}
           onPaymentGatewayError={setPaymentGatewayErrors}
+          noteRef={noteRef}
         />
       ),
       [CheckoutStep.Review]: (
@@ -120,6 +123,7 @@ const CheckoutPage: React.FC<NextPage> = () => {
               paymentGatewayFormRef={checkoutGatewayFormRef}
               selectedPaymentGatewayToken={selectedPaymentGatewayToken}
               payuUrl={urlData?.data?.generatePaymentUrl?.paymentUrl}
+              noteRef={noteRef}
             />
           )}
         </TypedGeneratePaymentUrl>

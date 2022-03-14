@@ -11,6 +11,7 @@ import { IProps } from "./types";
 /**
  * Review order view showed in checkout.
  */
+
 const CheckoutReview: React.FC<IProps> = ({
   shippingAddress,
   billingAddress,
@@ -18,6 +19,7 @@ const CheckoutReview: React.FC<IProps> = ({
   paymentMethodName,
   email,
   errors,
+  noteRef,
 }) => {
   return (
     <S.Wrapper data-test="sectionTitle">
@@ -57,6 +59,15 @@ const CheckoutReview: React.FC<IProps> = ({
             {paymentMethodName}
           </S.TextSummary>
         </section>
+        <S.CustomerNoteContainer>
+          <S.SubTitle>
+            <FormattedMessage defaultMessage="Notatka do zamówienia" />
+          </S.SubTitle>
+          <S.Divider />
+          <S.TextSummary data-test="paymentMethodName">
+            {noteRef.current}
+          </S.TextSummary>
+        </S.CustomerNoteContainer>
       </S.Grid>
       <S.ErrorMessages>
         <ErrorMessage errors={errors} />
