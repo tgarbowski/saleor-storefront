@@ -1,5 +1,6 @@
 import Link from "next/link";
 import * as React from "react";
+import { FormattedMessage } from "react-intl";
 import { generatePath } from "react-router";
 
 import { FeaturedProduct } from "@graphql/gqlTypes/FeaturedProduct";
@@ -20,8 +21,10 @@ export const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({
 }) =>
   products?.length ? (
     <div className="products-featured">
-      <div className="container">
-        <h3>{title}</h3>
+      <div className="container products-featured-container">
+        <h2>
+          <FormattedMessage defaultMessage="POLECANE PRODUKTY" />
+        </h2>
         <Carousel>
           {products.map(product => (
             <Link
