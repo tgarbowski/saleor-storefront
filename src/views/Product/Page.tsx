@@ -8,7 +8,7 @@ import { ProductDescription } from "@components/molecules";
 import { ProductGallery } from "@components/organisms";
 import AddToCartSection from "@components/organisms/AddToCartSection";
 import { paths } from "@paths";
-import { channelSlug } from "@temp/constants";
+import { apiUrl, channelSlug } from "@temp/constants";
 
 import {
   Breadcrumbs,
@@ -70,7 +70,7 @@ const Page: React.FC<
   const [productPricing, setProductPricing] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:8000/graphql/", {
+    fetch(apiUrl, {
       method: "POST",
       body: JSON.stringify({
         query: `
