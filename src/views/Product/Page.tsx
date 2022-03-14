@@ -8,7 +8,6 @@ import { ProductDescription } from "@components/molecules";
 import { ProductGallery } from "@components/organisms";
 import AddToCartSection from "@components/organisms/AddToCartSection";
 import { paths } from "@paths";
-import { getSaleorApi } from "@utils/ssr";
 
 import {
   Breadcrumbs,
@@ -60,63 +59,88 @@ const Page: React.FC<
     return product.images;
   };
 
+  // console.log("TEST 2 ", product.pricing.priceRange.start.gross);
+
   const handleAddToCart = (variantId, quantity) => {
     add(variantId, quantity);
     overlayContext.show(OverlayType.cart, OverlayTheme.right);
   };
 
-  const [productNewData, setProductNewData] = useState(product);
-  // useEffect(() => {
-  const refreshData = () => {
-    // async function getNewData() {
-    //   const { api } = await getSaleorApi();
-    //   await api.categories
-    //     .getAncestors({ first: 5, id: "Q2F0ZWdvcnk6MTQ2" })
-    //     .then(({ data }) => console.log(data));
-    // console.log(data);
-    // return data;
-    // }
-    // getNewData();
-    // getNewData().then(data => {
-    //   setProductNewData(data);
-    //   console.log(data.pricing);
-    // });
-    fetch("http://localhost:8000/graphql", {
+  const [productPricing, setProductPricing] = useState(null);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/graphql/", {
       method: "POST",
       body: JSON.stringify({
-        query: `query product(id: $id, channel: $channel) {
-      ...BasicProductFields
-      ...ProductPricingField
-      description
-      category {
-        id
-        name
-        products(first: 3, channel: $channel) {
-          edges {
-            node {
-              ...BasicProductFields
-              ...ProductPricingField
+        query: `
+        query ProductDetails($id: ID!, $channel: String) {
+          product(id: $id, channel: $channel) {
+            __typename
+            pricing{
+              onSale
+              priceRange{
+                start{
+                  gross{
+                    amount
+                    currency
+                    __typename
+                  }
+                  net{
+                    amount
+                    currency
+                    __typename
+                  }
+                  __typename
+                }
+                stop{
+                  gross{
+                    amount
+                    currency
+                    __typename
+                  }
+                  net{
+                    amount
+                    currency
+                    __typename
+                  }
+                  __typename
+                }
+                __typename
+              }
+              priceRangeUndiscounted{
+                start{
+                  gross{
+                    amount
+                    currency
+                    __typename
+                  }
+                  net{
+                    amount
+                    currency
+                    __typename
+                  }
+                  __typename
+                }
+                stop{
+                  gross{
+                    amount
+                    currency
+                    __typename
+                  }
+                  net{
+                    amount
+                    currency
+                    __typename
+                  }
+                  __typename
+                }
+                __typename
+              }
+              __typename
             }
           }
         }
-      }
-      images {
-        id
-        alt
-        url
-      }
-      attributes {
-        ...SelectedAttributeFields
-      }
-      variants {
-        ...ProductVariantFields
-      }
-      seoDescription
-      seoTitle
-      isAvailable
-      isAvailableForPurchase
-      availableForPurchase
-    }`,
+        `,
         variables: {
           id: product.id,
           channel: "allegro",
@@ -126,17 +150,22 @@ const Page: React.FC<
         "content-type": "application/json",
       },
       credentials: "same-origin",
-    });
-  };
-  // }, []);
+    }).then(data =>
+      data.json().then(data => {
+        setProductPricing(data.data.product.pricing);
+        // console.log(product.pricing);
+        // console.log(data.data.product.pricing);
+      })
+    );
+  }, []);
 
-  const addToCartSection = (
+  const addToCartSection = productPricing ? (
     <AddToCartSection
       items={items}
       productId={product.id}
       name={product.name}
       productVariants={product.variants}
-      productPricing={product.pricing}
+      productPricing={productPricing}
       queryAttributes={queryAttributes}
       setVariantId={setVariantId}
       variantId={variantId}
@@ -145,10 +174,10 @@ const Page: React.FC<
       isAvailableForPurchase={product.isAvailableForPurchase}
       availableForPurchase={product.availableForPurchase}
     />
+  ) : (
+    <>loading</>
   );
-  // if (!productNewData) {
-  //   return <div>Loading...</div>;
-  // }
+
   return (
     <div className="product-page">
       <div className="container">
@@ -156,22 +185,6 @@ const Page: React.FC<
       </div>
       <div className="container">
         <div className="product-page__product">
-          <div>test </div>
-          <button onClick={refreshData}>get new data</button>
-          <AddToCartSection
-            items={items}
-            productId={product.id}
-            name={product.name}
-            productVariants={product.variants}
-            productPricing={productNewData.pricing}
-            queryAttributes={queryAttributes}
-            setVariantId={setVariantId}
-            variantId={variantId}
-            onAddToCart={handleAddToCart}
-            onAttributeChangeHandler={onAttributeChangeHandler}
-            isAvailableForPurchase={product.isAvailableForPurchase}
-            availableForPurchase={product.availableForPurchase}
-          />
           <script className="structured-data-list" type="application/ld+json">
             {structuredData(product)}
           </script>
@@ -199,6 +212,8 @@ const Page: React.FC<
                       )}
                     >
                       {addToCartSection}
+                      <div>{product.pricing.priceRange.start.gross.amount}</div>
+                      <div>{productPricing?.priceRange.start.gross.amount}</div>
                     </div>
                   </div>
                 </>
