@@ -8,6 +8,7 @@ import { ProductDescription } from "@components/molecules";
 import { ProductGallery } from "@components/organisms";
 import AddToCartSection from "@components/organisms/AddToCartSection";
 import { paths } from "@paths";
+import { channelSlug } from "@temp/constants";
 
 import {
   Breadcrumbs,
@@ -143,7 +144,7 @@ const Page: React.FC<
         `,
         variables: {
           id: product.id,
-          channel: "allegro",
+          channel: channelSlug,
         },
       }),
       headers: {
