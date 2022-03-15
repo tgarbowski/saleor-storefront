@@ -38,22 +38,6 @@ export const Page: React.FC<PageProps> = ({
     <div className="container">
       <Breadcrumbs breadcrumbs={breadcrumbs} />
       <div className="article-page__container">
-        <div className="article-page__navigation">
-          <ul>
-            {navigation.map(menuElement => (
-              <li
-                className={classNames({
-                  "article-page__navigation-element": true,
-                  "article-page__navigation-element--active":
-                    menuElement.active,
-                })}
-                key={menuElement.url}
-              >
-                <Link href={menuElement.url}>{menuElement.label}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
         <div className="article-page__content">
           <RichTextEditorContent jsonData={page.content} />
         </div>
