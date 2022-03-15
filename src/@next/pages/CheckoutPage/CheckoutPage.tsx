@@ -100,7 +100,7 @@ const CheckoutPage: React.FC<NextPage> = () => {
     changeSubmitProgress: setSubmitInProgress,
     onSubmitSuccess: handleStepSubmitSuccess,
   };
-  
+
   const noteRef = useRef(null);
 
   const checkoutSubpage = useMemo(() => {

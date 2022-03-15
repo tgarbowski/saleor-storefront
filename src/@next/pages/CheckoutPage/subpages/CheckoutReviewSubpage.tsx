@@ -41,7 +41,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
     changeSubmitProgress,
     onSubmitSuccess,
     payuUrl,
-    noteRef
+    noteRef,
   },
   ref
 ) => {
