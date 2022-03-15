@@ -1,14 +1,19 @@
 import { VariantAttributeScope } from "@saleor/sdk";
-import { GetServerSideProps } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 
-import { channelSlug } from "@temp/constants";
+import { apiUrl, channelSlug, staticPathsFallback } from "@temp/constants";
 import { getSaleorApi } from "@utils/ssr";
 
 import { ProductPage, ProductPageProps } from "../../views/Product";
 
 export default ProductPage;
 
-export const getServerSideProps: GetServerSideProps<
+export const getStaticPaths: GetStaticPaths<ProductPageProps["params"]> =
+  async () => {
+    return { paths: [], fallback: staticPathsFallback };
+  };
+
+export const getStaticProps: GetStaticProps<
   ProductPageProps,
   ProductPageProps["params"]
 > = async ({ params }) => {
@@ -18,55 +23,94 @@ export const getServerSideProps: GetServerSideProps<
     channel: channelSlug,
     variantSelection: VariantAttributeScope.VARIANT_SELECTION,
   });
+
+  await fetch(apiUrl, {
+    method: "POST",
+    body: JSON.stringify({
+      query: `
+        query ProductDetails($id: ID!, $channel: String) {
+          product(id: $id, channel: $channel) {
+            __typename
+            pricing{
+              onSale
+              priceRange{
+                start{
+                  gross{
+                    amount
+                    currency
+                    __typename
+                  }
+                  net{
+                    amount
+                    currency
+                    __typename
+                  }
+                  __typename
+                }
+                stop{
+                  gross{
+                    amount
+                    currency
+                    __typename
+                  }
+                  net{
+                    amount
+                    currency
+                    __typename
+                  }
+                  __typename
+                }
+                __typename
+              }
+              priceRangeUndiscounted{
+                start{
+                  gross{
+                    amount
+                    currency
+                    __typename
+                  }
+                  net{
+                    amount
+                    currency
+                    __typename
+                  }
+                  __typename
+                }
+                stop{
+                  gross{
+                    amount
+                    currency
+                    __typename
+                  }
+                  net{
+                    amount
+                    currency
+                    __typename
+                  }
+                  __typename
+                }
+                __typename
+              }
+              __typename
+            }
+          }
+        }
+        `,
+      variables: {
+        id: data.id,
+        channel: channelSlug,
+      },
+    }),
+    headers: {
+      "content-type": "application/json",
+    },
+  }).then(result =>
+    result.json().then(result => {
+      data.pricing = result.data.product.pricing;
+    })
+  );
   return {
+    revalidate: 5,
     props: { data: data || null, params },
   };
 };
-
-// import { VariantAttributeScope } from "@saleor/sdk";
-// import { GetStaticPaths, GetStaticProps } from "next";
-
-// import {
-//   channelSlug,
-//   incrementalStaticRegenerationRevalidate,
-//   staticPathsFallback,
-//   staticPathsFetchBatch,
-// } from "@temp/constants";
-// import { exhaustList, getSaleorApi } from "@utils/ssr";
-
-// import { ProductPage, ProductPageProps } from "../../views/Product";
-
-// export default ProductPage;
-
-// export const getStaticPaths: GetStaticPaths<ProductPageProps["params"]> =
-//   async () => {
-//     const { api } = await getSaleorApi();
-//     const { data } = await exhaustList(
-//       api.products.getList({
-//         first: staticPathsFetchBatch,
-//         channel: channelSlug,
-//       })
-//     );
-
-//     const paths = data.map(({ slug }) => ({
-//       params: { slug },
-//     }));
-
-//     return { paths, fallback: staticPathsFallback };
-//   };
-
-// export const getStaticProps: GetStaticProps<
-//   ProductPageProps,
-//   ProductPageProps["params"]
-// > = async ({ params }) => {
-//   const { api } = await getSaleorApi();
-//   const { data } = await api.products.getDetails({
-//     slug: params.slug,
-//     channel: channelSlug,
-//     variantSelection: VariantAttributeScope.VARIANT_SELECTION,
-//   });
-//   return {
-//     revalidate: incrementalStaticRegenerationRevalidate,
-//     props: { data: data || null, params },
-//   };
-// };

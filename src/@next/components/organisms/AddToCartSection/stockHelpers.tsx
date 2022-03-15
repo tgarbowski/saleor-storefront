@@ -7,7 +7,6 @@ import isEqual from "lodash/isEqual";
 import * as React from "react";
 
 import { TaxedMoney } from "../../containers";
-import * as S from "./styles";
 
 /**
  * Renders formatted price for chosen variant or product.
@@ -17,25 +16,6 @@ export const getProductPrice = (
   productPricingRange: ProductDetails_product_pricing,
   variantPricing?: ProductDetails_product_variants_pricing | null
 ) => {
-  if (variantPricing) {
-    if (isEqual(variantPricing.priceUndiscounted, variantPricing.price)) {
-      return <TaxedMoney taxedMoney={variantPricing.price} />;
-    }
-    return (
-      <>
-        <S.UndiscountedPrice>
-          <TaxedMoney taxedMoney={variantPricing.priceUndiscounted} />
-        </S.UndiscountedPrice>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <TaxedMoney taxedMoney={variantPricing.price} />
-      </>
-    );
-  }
-
-  if (!productPricingRange.priceRange) {
-    return <></>;
-  }
-
   const { start, stop } = productPricingRange.priceRange;
   if (isEqual(start, stop)) {
     return <TaxedMoney taxedMoney={start} />;
