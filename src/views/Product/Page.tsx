@@ -60,8 +60,6 @@ const Page: React.FC<
     return product.images;
   };
 
-  // console.log("TEST 2 ", product.pricing.priceRange.start.gross);
-
   const handleAddToCart = (variantId, quantity) => {
     add(variantId, quantity);
     overlayContext.show(OverlayType.cart, OverlayTheme.right);
@@ -153,8 +151,6 @@ const Page: React.FC<
     }).then(data =>
       data.json().then(data => {
         setProductPricing(data.data.product.pricing);
-        // console.log(product.pricing);
-        // console.log(data.data.product.pricing);
       })
     );
   }, []);
@@ -175,25 +171,21 @@ const Page: React.FC<
       availableForPurchase={product.availableForPurchase}
     />
   ) : (
-    <>loading</>
+    <AddToCartSection
+      items={items}
+      productId={product.id}
+      name={product.name}
+      productVariants={product.variants}
+      productPricing={product.pricing}
+      queryAttributes={queryAttributes}
+      setVariantId={setVariantId}
+      variantId={variantId}
+      onAddToCart={handleAddToCart}
+      onAttributeChangeHandler={onAttributeChangeHandler}
+      isAvailableForPurchase={product.isAvailableForPurchase}
+      availableForPurchase={product.availableForPurchase}
+    />
   );
-
-  // const addToCartSection = (
-  //   <AddToCartSection
-  //     items={items}
-  //     productId={product.id}
-  //     name={product.name}
-  //     productVariants={product.variants}
-  //     productPricing={product.pricing}
-  //     queryAttributes={queryAttributes}
-  //     setVariantId={setVariantId}
-  //     variantId={variantId}
-  //     onAddToCart={handleAddToCart}
-  //     onAttributeChangeHandler={onAttributeChangeHandler}
-  //     isAvailableForPurchase={product.isAvailableForPurchase}
-  //     availableForPurchase={product.availableForPurchase}
-  //   />
-  // );
 
   return (
     <div className="product-page">
@@ -229,10 +221,6 @@ const Page: React.FC<
                       )}
                     >
                       {addToCartSection}
-                      <div>{product.pricing.priceRange.start.gross.amount}</div>
-                      <div>
-                        {productPricing?.priceRange?.start.gross.amount}
-                      </div>
                     </div>
                   </div>
                 </>

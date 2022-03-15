@@ -51,13 +51,10 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
   variantId,
 }) => {
   const intl = useIntl();
-
   const [quantity, setQuantity] = useState<number>(1);
   const [variantStock, setVariantStock] = useState<number>(0);
-  const [
-    variantPricing,
-    setVariantPricing,
-  ] = useState<ProductDetails_product_variants_pricing | null>(null);
+  const [variantPricing, setVariantPricing] =
+    useState<ProductDetails_product_variants_pricing | null>(null);
 
   const availableQuantity = getAvailableQuantity(
     items,
