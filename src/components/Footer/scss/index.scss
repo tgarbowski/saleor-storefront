@@ -61,11 +61,13 @@
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(143px, 1fr));
         grid-gap: 2rem;
+        padding-left: 1rem;
 
         @media (max-width: $medium-screen) {
           width: 100%;
           grid-template-columns: repeat(auto-fill, minmax(121px, 1fr));
           grid-gap: 1rem;
+          padding-left: 1rem;
         }
       }
       .footer-nav-container-right {
@@ -98,11 +100,31 @@
         p {
           margin-bottom: $spacer;
           font-size: $small-font-size;
-          color: $gray;
+          color: $base-font-color;
 
           a {
             text-decoration: none;
-            color: $gray;
+            color: $base-font-color;
+            transition: all 0.3s ease-in-out;
+            position: relative;
+
+            &:before {
+              content: "";
+              background: $green;
+              display: block;
+              position: absolute;
+              bottom: -5px;
+              left: 0;
+              width: 0;
+              height: 2px;
+              transition: all 0.3s ease-in-out;
+            }
+            &:hover {
+              background-position: 0;
+            }
+            &:hover::before {
+              width: 100%;
+            }
           }
         }
       }
