@@ -1,20 +1,11 @@
-import classNames from "classnames";
-import Link from "next/link";
 import * as React from "react";
 
 import { RichTextEditorContent } from "../../@next/components/atoms";
 import { Breadcrumb, Breadcrumbs } from "../../components";
 
-interface PageNavigationElement {
-  active: boolean;
-  label: string;
-  url: string;
-}
-
 interface PageProps {
   breadcrumbs: Breadcrumb[];
   headerImage: string | null;
-  navigation: PageNavigationElement[];
   page: {
     content: any | null;
     title: string;
@@ -23,7 +14,6 @@ interface PageProps {
 export const Page: React.FC<PageProps> = ({
   breadcrumbs,
   headerImage,
-  navigation,
   page,
 }) => (
   <div className="article-page">
