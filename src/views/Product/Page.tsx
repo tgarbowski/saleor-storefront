@@ -22,7 +22,7 @@ import OtherProducts from "./Other";
 import { IProps } from "./types";
 
 import { smallScreen } from "../../globalStyles/scss/variables.scss";
-
+// test rebuild
 const populateBreadcrumbs = (product: ProductDetails) => [
   {
     link: generatePath(paths.category, { slug: product.category.slug }),
