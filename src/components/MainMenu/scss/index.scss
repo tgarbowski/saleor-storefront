@@ -11,8 +11,10 @@
   border-bottom: 1px solid $gray-light;
   display: flex;
   flex-direction: row;
-  height: 3.55rem;
+  height: 4.5rem;
+  align-items: center;
   position: relative;
+  justify-content: center;
 
   &__left {
     flex-basis: calc(50% - 2rem);
@@ -60,7 +62,10 @@
         width: 6rem;
 
         @if $env == "FASHION4YOU" {
-          width: 7rem;
+          width: 100%;
+          padding-top: 1rem;
+          padding-bottom: 1rem;
+          object-fit: cover;
         }
       }
     }

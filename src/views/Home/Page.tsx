@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import Link from "next/link";
 import * as React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
@@ -10,7 +9,6 @@ import { FeaturedProducts } from "@utils/ssr";
 
 import { Button, ProductsFeatured } from "../../components";
 import { structuredData } from "../../core/SEO/Homepage/structuredData";
-import noPhotoImg from "../../images/no-photo.svg";
 import {
   HomePageProducts_categories,
   HomePageProducts_shop,
@@ -77,10 +75,6 @@ const Page: React.FC<{
           )}
         </div>
       </div>
-      <ProductsFeatured
-        products={featuredProducts.products}
-        title={intl.formatMessage({ defaultMessage: "Featured" })}
-      />
       {categoriesExist() && (
         <div className="home-page__categories">
           <div className="container home-page__categories_container">
@@ -96,25 +90,7 @@ const Page: React.FC<{
                     })}
                     key={category.id}
                   >
-                    <a>
-                      <div
-                        className={classNames(
-                          "home-page__categories__list__image",
-                          {
-                            "home-page__categories__list__image--no-photo":
-                              !category.backgroundImage,
-                          }
-                        )}
-                        style={{
-                          backgroundImage: `url(${
-                            category.backgroundImage
-                              ? category.backgroundImage.url
-                              : noPhotoImg
-                          })`,
-                        }}
-                      />
-                      <h3>{category.name}</h3>
-                    </a>
+                    {category.name}
                   </Link>
                 </div>
               ))}
@@ -122,6 +98,10 @@ const Page: React.FC<{
           </div>
         </div>
       )}
+      <ProductsFeatured
+        products={featuredProducts.products}
+        title={intl.formatMessage({ defaultMessage: "Featured" })}
+      />
     </>
   );
 };

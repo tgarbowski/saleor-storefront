@@ -4,7 +4,7 @@ import ReactSVG from "react-svg";
 
 import { ShopMenusQuery } from "@graphql/gqlTypes/ShopMenusQuery";
 import { paths } from "@paths";
-import Logo from "@styles/Logo";
+import LogoFooter from "@styles/LogoFooter";
 import { SOCIAL_MEDIA } from "@temp/core/config";
 
 import { NavLink, SocialMediaIcon } from "..";
@@ -35,7 +35,7 @@ export const Nav: React.FC<NavProps> = ({ menu }) => (
       <div className="footer-nav-container-right">
         <Link href={paths.home}>
           <a>
-            <ReactSVG path={Logo} />
+            <ReactSVG path={LogoFooter} />
           </a>
         </Link>
         <div className="footer-nav-container-right-icons">
