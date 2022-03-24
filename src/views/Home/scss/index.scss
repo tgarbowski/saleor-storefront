@@ -94,30 +94,13 @@
       justify-content: space-between;
       align-items: center;
       flex-direction: column;
-      flex-wrap: wrap;
       gap: 2rem;
 
-      @media only screen and (min-width: $small-screen) and (max-width: $x-large-screen) {
+      @media (min-width: $large-screen) {
         display: flex;
         justify-content: space-between;
-        align-items: center;
         flex-direction: row;
-        flex-wrap: nowrap;
         gap: 2rem;
-      }
-
-      @media (min-width: 1281px) {
-        grid-template-columns: repeat(5, 1fr);
-        grid-gap: 2rem;
-
-        @if $env == "FASHION4YOU" {
-          gap: 2rem;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          flex-direction: row;
-          flex-wrap: nowrap;
-        }
       }
 
       .home-page__category-item {
@@ -178,8 +161,4 @@
       }
     }
   }
-}
-
-.no-display-category {
-  display: none;
 }
