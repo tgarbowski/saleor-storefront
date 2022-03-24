@@ -7,12 +7,15 @@ import {
 import React, { useState } from "react";
 import { useIntl } from "react-intl";
 
+import CreditCardIcon from "@styles/CreditCardIcon";
+import ShippingIcon from "@styles/ShippingIcon";
 import { commonMessages } from "@temp/intl";
 import { IProductVariantsAttributesSelectedValues } from "@types";
 
 import AddToCartButton from "../../molecules/AddToCartButton";
 import QuantityInput from "../../molecules/QuantityInput";
 import ProductVariantPicker from "../ProductVariantPicker";
+import Accordion from "./Accordion";
 import {
   canAddToCart,
   getAvailableQuantity,
@@ -51,13 +54,10 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
   variantId,
 }) => {
   const intl = useIntl();
-
   const [quantity, setQuantity] = useState<number>(1);
   const [variantStock, setVariantStock] = useState<number>(0);
-  const [
-    variantPricing,
-    setVariantPricing,
-  ] = useState<ProductDetails_product_variants_pricing | null>(null);
+  const [variantPricing, setVariantPricing] =
+    useState<ProductDetails_product_variants_pricing | null>(null);
 
   const availableQuantity = getAvailableQuantity(
     items,
@@ -108,6 +108,48 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
     setVariantPricing(selectedVariant?.pricing);
     setVariantStock(selectedVariant?.quantityAvailable);
   };
+  const accordionItems = [
+    {
+      title: (
+        <S.AccordionItemBox>
+          <div>
+            <p>Sposoby płatności</p>
+          </div>
+          <div>
+            <img src={CreditCardIcon} alt="" />
+          </div>
+        </S.AccordionItemBox>
+      ),
+      content: (
+        <S.AccordionContent>
+          <ul>
+            <li>Payu</li>
+            <li>Dummy</li>
+          </ul>
+        </S.AccordionContent>
+      ),
+    },
+    {
+      title: (
+        <S.AccordionItemBox>
+          <div>
+            <p>Sposoby dostawy</p>
+          </div>
+          <div>
+            <img src={ShippingIcon} alt="" />
+          </div>
+        </S.AccordionItemBox>
+      ),
+      content: (
+        <S.AccordionContent>
+          <ul>
+            <li>Paczkomaty Inpost 24/7</li>
+            <li>Kurier DHL</li>
+          </ul>
+        </S.AccordionContent>
+      ),
+    },
+  ];
 
   return (
     <S.AddToCartSelection>
@@ -175,6 +217,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
         onSubmit={() => onAddToCart(variantId, quantity)}
         disabled={disableButton}
       />
+      <Accordion items={accordionItems} />
     </S.AddToCartSelection>
   );
 };
