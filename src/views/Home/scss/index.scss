@@ -90,18 +90,17 @@
     }
 
     &__list {
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-gap: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: column;
+      gap: 2rem;
 
-      @media only screen and (min-width: $small-screen) and (max-width: $x-large-screen) {
-        grid-gap: 2rem;
-        grid-template-columns: repeat(auto-fill, minmax(229px, 1fr));
-      }
-
-      @media (min-width: 1281px) {
-        grid-template-columns: repeat(5, 1fr);
-        grid-gap: 2rem;
+      @media (min-width: $large-screen) {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        gap: 2rem;
       }
 
       .home-page__category-item {

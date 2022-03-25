@@ -38,3 +38,53 @@ export const QuantityInput = styled.div`
 export const ErrorMessage = styled.p`
   color: ${props => props.theme.colors.error};
 `;
+
+export const AccordionList = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+`;
+export const AccordionSingleItem = styled.li`
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: left;
+  margin-top: 2.5rem;
+
+  &:not(:first-of-type) {
+    border-top: 0;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const AccordionTitle = styled.h2`
+  width: 100%;
+  margin: 0;
+  padding: 1rem 2rem;
+`;
+
+export const AccordionItemContent = styled.div`
+  border-top: 1px solid #cccccc;
+`;
+
+export const AccordionItemContainer = styled.div`
+  transition: height 0.2s ease-in-out;
+  overflow: hidden;
+  width: 100%;
+`;
+
+export const AccordionItemBox = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: left;
+  align-items: center;
+  gap: 2rem;
+`;
+
+export const AccordionContent = styled.div`
+  padding: 1rem 2rem;
+  width: 100%;
+`;

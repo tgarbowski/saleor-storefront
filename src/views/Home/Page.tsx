@@ -25,6 +25,11 @@ const Page: React.FC<{
     return categories && categories.edges && categories.edges.length > 0;
   };
   const intl = useIntl();
+
+  const visibleCategory =
+    shopName === "FASHION4YOU"
+      ? categories.edges.slice(0, -2)
+      : categories.edges;
   return (
     <>
       <script className="structured-data-list" type="application/ld+json">
@@ -82,18 +87,20 @@ const Page: React.FC<{
               <FormattedMessage defaultMessage="WYBIERZ KATEGORIĘ" />
             </h2>
             <div className="home-page__categories__list">
-              {categories.edges.map(({ node: category }) => (
-                <div key={category.id} className="home-page__category-item">
-                  <Link
-                    href={generatePath(paths.category, {
-                      slug: category.slug,
-                    })}
-                    key={category.id}
-                  >
-                    {category.name}
-                  </Link>
-                </div>
-              ))}
+              {visibleCategory.map(({ node: category }) => {
+                return (
+                  <div key={category.id} className="home-page__category-item">
+                    <Link
+                      href={generatePath(paths.category, {
+                        slug: category.slug,
+                      })}
+                      key={category.id}
+                    >
+                      {category.name}
+                    </Link>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
