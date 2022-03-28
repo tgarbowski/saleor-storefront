@@ -123,8 +123,8 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
       content: (
         <S.AccordionContent>
           <ul>
-            <li>Payu</li>
-            <li>Dummy</li>
+            <S.AccordionListItem>Payu</S.AccordionListItem>
+            <S.AccordionListItem>Dummy</S.AccordionListItem>
           </ul>
         </S.AccordionContent>
       ),
@@ -143,8 +143,8 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
       content: (
         <S.AccordionContent>
           <ul>
-            <li>Paczkomaty Inpost 24/7</li>
-            <li>Kurier DHL</li>
+            <S.AccordionListItem>Paczkomaty Inpost 24/7</S.AccordionListItem>
+            <S.AccordionListItem>Kurier DHL</S.AccordionListItem>
           </ul>
         </S.AccordionContent>
       ),

@@ -50,13 +50,15 @@ export const AccordionSingleItem = styled.li`
   flex-direction: column;
   align-items: center;
   justify-content: left;
-  margin-top: 2.5rem;
 
   &:not(:first-of-type) {
     border-top: 0;
   }
   &:hover {
     cursor: pointer;
+  }
+  &:first-of-type {
+    margin-top: 2.5rem;
   }
 `;
 
@@ -87,4 +89,8 @@ export const AccordionItemBox = styled.div`
 export const AccordionContent = styled.div`
   padding: 1rem 2rem;
   width: 100%;
+`;
+
+export const AccordionListItem = styled.li`
+  padding: 1rem 0;
 `;

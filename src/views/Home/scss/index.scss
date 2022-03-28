@@ -6,6 +6,8 @@
     background-blend-mode: multiply;
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
+    object-fit: cover;
     text-align: center;
     padding: 12rem 0;
 
@@ -42,7 +44,7 @@
 
       @media (max-width: $small-screen) {
         padding: 0.6rem $spacer;
-        width: calc(100% - 4rem);
+        transform: none;
       }
 
       h1 {
@@ -52,10 +54,11 @@
         text-transform: uppercase;
         color: $blue;
         font-size: $h1-font-size;
-        font-weight: 900;
+        font-weight: 800;
 
         @media (max-width: $small-screen) {
           font-size: 2rem;
+          transform: none;
         }
 
         @media (min-width: $small-screen) and (max-width: $large-screen) {
