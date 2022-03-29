@@ -3,6 +3,7 @@ import * as React from "react";
 import { FormattedMessage } from "react-intl";
 import ReactSVG from "react-svg";
 
+import { IconButton } from "@components/atoms";
 import { paths } from "@paths";
 import Logo from "@styles/Logo";
 import { commonMessages } from "@temp/intl";
@@ -63,6 +64,8 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
     const { hideOverlay } = this.props;
     const { displayedItems, parent } = this.state;
 
+    const defaultCloseIcon = !!hideOverlay;
+
     return (
       <ul>
         {parent ? (
@@ -79,9 +82,14 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
                   <ReactSVG path={Logo} onClick={hideOverlay} />
                 </a>
               </Link>
-              <span className="side-nav__menu-item-close">
-                <span />
-              </span>
+              {defaultCloseIcon && (
+                <IconButton
+                  name="x"
+                  size={15}
+                  onClick={hideOverlay}
+                  testingContext="closeOverlayButton"
+                />
+              )}
             </li>
             <li className="side-nav__menu-item">
               <Link href={paths.home}>
