@@ -172,7 +172,7 @@ const c4uStyle = {
   secondaryGreyDark: "#9D9FB1",
   secondaryBlue: "#036DFF",
   clothesForYouRed: "#d3000e",
-  clothesForYouLightRed: "#ff434f",
+  clothesForYouLightRed: "#ffafb4",
   clothesForYouDarkRed: "#980009",
   clothesForYouBlack: "#262626",
 
