@@ -153,6 +153,9 @@
           @if $env == "FASHION4YOU" {
             background: $primaryLight;
           }
+          @if $env == "CLOTHES4U" {
+            background: $primaryLight;
+          }
         }
       }
 
