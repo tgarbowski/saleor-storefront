@@ -21,10 +21,7 @@ export interface ArticleViewProps {
 }
 
 export const ArticleView: NextPage<ArticleViewProps> = ({ data }) => {
-  const [canDisplay, headerImage] = useMemo(
-    () => [data?.article, data?.featuredProducts?.backgroundImage.url],
-    [data]
-  );
+  const [canDisplay] = useMemo(() => [data?.article], [data]);
 
   const getBreadcrumbs = (article: Article_page) => [
     {
@@ -40,11 +37,7 @@ export const ArticleView: NextPage<ArticleViewProps> = ({ data }) => {
         title: data.article.seoTitle,
       }}
     >
-      <Page
-        breadcrumbs={getBreadcrumbs(data.article)}
-        headerImage={headerImage}
-        page={data.article}
-      />
+      <Page breadcrumbs={getBreadcrumbs(data.article)} page={data.article} />
     </MetaWrapper>
   ) : (
     <NotFound />

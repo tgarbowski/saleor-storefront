@@ -1,7 +1,7 @@
 import { shopName } from "@temp/constants";
 
 import C4ULogo from "../../images/c4u_logo.svg";
-import sailingDefaultLogo from "../../images/logo-default.svg";
+import sailingDefaultLogo from "../../images/faviconDefaultFooter.svg";
 import F4ULogo from "../../images/LogoFooterF4U.svg";
 
 const Logo =

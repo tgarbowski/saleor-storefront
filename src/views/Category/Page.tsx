@@ -86,20 +86,28 @@ export const Page: React.FC<PageProps> = ({
           onCloseFilterAttribute={onAttributeFiltersChange}
         />
 
-        <ProductList
-          products={products}
-          canLoadMore={hasNextPage}
-          loading={displayLoader}
-          onLoadMore={onLoadMore}
-        />
+        {!displayLoader && !hasProducts ? (
+          <h3 className="NotFoundProductsTitle">
+            Przepraszamy, ale nie znaleziono produktów
+          </h3>
+        ) : (
+          <ProductList
+            products={products}
+            canLoadMore={hasNextPage}
+            loading={displayLoader}
+            onLoadMore={onLoadMore}
+          />
+        )}
       </div>
 
-      {!displayLoader && !hasProducts && (
-        <ProductsFeatured
-          products={featuredProducts.products}
-          title={intl.formatMessage(commonMessages.youMightLike)}
-        />
-      )}
+      <div className="products-featured-not-found-products">
+        {!displayLoader && !hasProducts && (
+          <ProductsFeatured
+            products={featuredProducts.products}
+            title={intl.formatMessage(commonMessages.youMightLike)}
+          />
+        )}
+      </div>
     </div>
   );
 };
