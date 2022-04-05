@@ -27,6 +27,7 @@
     "apollo-link-retry": "^2.2.16",
     "autoprefixer": "^9.8.8",
     "braintree-web": "^3.82.0",
+    "caniuse-lite": "^1.0.30001324",
     "classnames": "^2.3.1",
     "core-js": "^2.6.12",
     "cross-env": "^5.2.0",
