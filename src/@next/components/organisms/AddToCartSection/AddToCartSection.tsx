@@ -4,9 +4,10 @@ import {
   ProductDetails_product_variants,
   ProductDetails_product_variants_pricing,
 } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useIntl } from "react-intl";
 
+import { apiUrl, channelSlug } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
 import { IProductVariantsAttributesSelectedValues } from "@types";
 
@@ -106,6 +107,42 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
     setVariantStock(selectedVariant?.quantityAvailable);
   };
 
+  useEffect(() => {
+    setVariantStock(productVariants[0].quantityAvailable);
+  }, [productVariants[0].quantityAvailable]);
+
+  const [addToCartPopUp, setAddToCartPopUp] = useState<boolean>(false);
+
+  const tryAddToCart = () => {
+    fetch(apiUrl, {
+      method: "POST",
+      body: JSON.stringify({
+        query: `
+        query  ProductVariant($id: ID!, $channel: String){
+          productVariant(id:$id channel:$channel){
+            quantityAvailable
+          }
+        }
+        `,
+        variables: {
+          id: variantId,
+          channel: channelSlug,
+        },
+      }),
+      headers: {
+        "content-type": "application/json",
+      },
+    }).then(data =>
+      data.json().then(data => {
+        if (data.data.productVariant.quantityAvailable !== 0) {
+          onAddToCart(variantId, quantity);
+        } else {
+          setAddToCartPopUp(true);
+        }
+      })
+    );
+  };
+
   return (
     <S.AddToCartSelection>
       <S.ProductNameHeader data-test="productName">{name}</S.ProductNameHeader>
@@ -168,10 +205,13 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
           testingContext="addToCartQuantity"
         />
       </S.QuantityInput>
-      <AddToCartButton
-        onSubmit={() => onAddToCart(variantId, quantity)}
-        disabled={disableButton}
-      />
+      <AddToCartButton onSubmit={tryAddToCart} disabled={disableButton} />
+      {addToCartPopUp && (
+        <div>
+          Nie można dodać produktu do koszyka. Twój produkt został wykupiony.
+          <button onClick={() => setAddToCartPopUp(false)}>Dalej</button>
+        </div>
+      )}
     </S.AddToCartSelection>
   );
 };

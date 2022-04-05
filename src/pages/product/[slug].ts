@@ -30,7 +30,9 @@ export const getStaticProps: GetStaticProps<
       query: `
         query ProductDetails($id: ID!, $channel: String) {
           product(id: $id, channel: $channel) {
-            __typename
+            variants{
+              quantityAvailable
+            }
             pricing{
               onSale
               priceRange{
@@ -107,6 +109,8 @@ export const getStaticProps: GetStaticProps<
   }).then(result =>
     result.json().then(result => {
       data.pricing = result.data.product.pricing;
+      data.variants[0].quantityAvailable =
+        result.data.product.variants[0].quantityAvailable;
     })
   );
   return {
