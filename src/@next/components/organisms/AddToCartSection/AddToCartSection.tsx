@@ -7,6 +7,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useIntl } from "react-intl";
 
+import { CustomPopup } from "@components/atoms/CustomPopup/CustomPopup";
 import { apiUrl, channelSlug } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
 import { IProductVariantsAttributesSelectedValues } from "@types";
@@ -207,10 +208,16 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
       </S.QuantityInput>
       <AddToCartButton onSubmit={tryAddToCart} disabled={disableButton} />
       {addToCartPopUp && (
-        <div>
-          Nie można dodać produktu do koszyka. Twój produkt został wykupiony.
-          <button onClick={() => setAddToCartPopUp(false)}>Dalej</button>
-        </div>
+        <CustomPopup>
+          <S.CustomModalTitle>Informacja</S.CustomModalTitle>
+          <S.CustomModalText>
+            Nie można dodać produktu do koszyka. Wygląda na to, że produkt
+            został wykupiony
+          </S.CustomModalText>
+          <S.CustomModalCloseButton onClick={() => setAddToCartPopUp(false)}>
+            Zamknij okno
+          </S.CustomModalCloseButton>
+        </CustomPopup>
       )}
     </S.AddToCartSelection>
   );
