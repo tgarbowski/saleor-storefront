@@ -4,11 +4,13 @@ import {
   ProductDetails_product_variants,
   ProductDetails_product_variants_pricing,
 } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useIntl } from "react-intl";
 
+import { CustomPopup } from "@components/atoms/CustomPopup/CustomPopup";
 import CreditCardIcon from "@styles/CreditCardIcon";
 import ShippingIcon from "@styles/ShippingIcon";
+import { apiUrl, channelSlug } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
 import { IProductVariantsAttributesSelectedValues } from "@types";
 
@@ -151,6 +153,42 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
     },
   ];
 
+  useEffect(() => {
+    setVariantStock(productVariants[0].quantityAvailable);
+  }, [productVariants[0].quantityAvailable]);
+
+  const [addToCartPopUp, setAddToCartPopUp] = useState<boolean>(false);
+
+  const tryAddToCart = () => {
+    fetch(apiUrl, {
+      method: "POST",
+      body: JSON.stringify({
+        query: `
+        query  ProductVariant($id: ID!, $channel: String){
+          productVariant(id:$id channel:$channel){
+            quantityAvailable
+          }
+        }
+        `,
+        variables: {
+          id: variantId,
+          channel: channelSlug,
+        },
+      }),
+      headers: {
+        "content-type": "application/json",
+      },
+    }).then(data =>
+      data.json().then(data => {
+        if (data.data.productVariant.quantityAvailable !== 0) {
+          onAddToCart(variantId, quantity);
+        } else {
+          setAddToCartPopUp(true);
+        }
+      })
+    );
+  };
+
   return (
     <S.AddToCartSelection>
       <S.ProductNameHeader data-test="productName">{name}</S.ProductNameHeader>
@@ -213,10 +251,19 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
           testingContext="addToCartQuantity"
         />
       </S.QuantityInput>
-      <AddToCartButton
-        onSubmit={() => onAddToCart(variantId, quantity)}
-        disabled={disableButton}
-      />
+      <AddToCartButton onSubmit={tryAddToCart} disabled={disableButton} />
+      {addToCartPopUp && (
+        <CustomPopup>
+          <S.CustomModalTitle>Informacja</S.CustomModalTitle>
+          <S.CustomModalText>
+            Nie można dodać produktu do koszyka. Wygląda na to, że produkt
+            został wykupiony
+          </S.CustomModalText>
+          <S.CustomModalCloseButton onClick={() => setAddToCartPopUp(false)}>
+            Zamknij okno
+          </S.CustomModalCloseButton>
+        </CustomPopup>
+      )}
       <Accordion items={accordionItems} />
     </S.AddToCartSelection>
   );

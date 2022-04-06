@@ -22,7 +22,7 @@ import OtherProducts from "./Other";
 import { IProps } from "./types";
 
 import { smallScreen } from "../../globalStyles/scss/variables.scss";
-
+// test rebuild
 const populateBreadcrumbs = (product: ProductDetails) => [
   {
     link: generatePath(paths.category, { slug: product.category.slug }),
@@ -66,6 +66,7 @@ const Page: React.FC<
   };
 
   const [productPricing, setProductPricing] = useState(null);
+  const [productVariants, setProductVariants] = useState(null);
 
   useEffect(() => {
     fetch(apiUrl, {
@@ -74,7 +75,9 @@ const Page: React.FC<
         query: `
         query ProductDetails($id: ID!, $channel: String) {
           product(id: $id, channel: $channel) {
-            __typename
+            variants{
+              quantityAvailable
+            }
             pricing{
               onSale
               priceRange{
@@ -151,41 +154,46 @@ const Page: React.FC<
     }).then(data =>
       data.json().then(data => {
         setProductPricing(data.data.product.pricing);
+        const newProductVariants = product.variants;
+        newProductVariants[0].quantityAvailable =
+          data.data.product.variants[0].quantityAvailable;
+        setProductVariants(newProductVariants);
       })
     );
   }, []);
 
-  const addToCartSection = productPricing ? (
-    <AddToCartSection
-      items={items}
-      productId={product.id}
-      name={product.name}
-      productVariants={product.variants}
-      productPricing={productPricing}
-      queryAttributes={queryAttributes}
-      setVariantId={setVariantId}
-      variantId={variantId}
-      onAddToCart={handleAddToCart}
-      onAttributeChangeHandler={onAttributeChangeHandler}
-      isAvailableForPurchase={product.isAvailableForPurchase}
-      availableForPurchase={product.availableForPurchase}
-    />
-  ) : (
-    <AddToCartSection
-      items={items}
-      productId={product.id}
-      name={product.name}
-      productVariants={product.variants}
-      productPricing={product.pricing}
-      queryAttributes={queryAttributes}
-      setVariantId={setVariantId}
-      variantId={variantId}
-      onAddToCart={handleAddToCart}
-      onAttributeChangeHandler={onAttributeChangeHandler}
-      isAvailableForPurchase={product.isAvailableForPurchase}
-      availableForPurchase={product.availableForPurchase}
-    />
-  );
+  const addToCartSection =
+    productVariants && productPricing ? (
+      <AddToCartSection
+        items={items}
+        productId={product.id}
+        name={product.name}
+        productVariants={productVariants}
+        productPricing={productPricing}
+        queryAttributes={queryAttributes}
+        setVariantId={setVariantId}
+        variantId={variantId}
+        onAddToCart={handleAddToCart}
+        onAttributeChangeHandler={onAttributeChangeHandler}
+        isAvailableForPurchase={product.isAvailableForPurchase}
+        availableForPurchase={product.availableForPurchase}
+      />
+    ) : (
+      <AddToCartSection
+        items={items}
+        productId={product.id}
+        name={product.name}
+        productVariants={product.variants}
+        productPricing={product.pricing}
+        queryAttributes={queryAttributes}
+        setVariantId={setVariantId}
+        variantId={variantId}
+        onAddToCart={handleAddToCart}
+        onAttributeChangeHandler={onAttributeChangeHandler}
+        isAvailableForPurchase={product.isAvailableForPurchase}
+        availableForPurchase={product.availableForPurchase}
+      />
+    );
 
   return (
     <div className="product-page">
