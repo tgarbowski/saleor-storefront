@@ -1,6 +1,5 @@
 @import "../../../globalStyles/scss/variables.scss";
 
-
 .side-nav {
   $item-height: 3.7rem;
   max-width: calc(100vw - 5rem);
@@ -44,6 +43,12 @@
 
       &:hover {
         color: $turquoise;
+        @if $env == "FASHION4YOU" {
+          color: $primary;
+        }
+        @if $env == "CLOTHES4U" {
+          color: $red;
+        }
       }
 
       svg * {
@@ -95,6 +100,13 @@
 
     &--parent {
       color: $gray;
+
+      @media (max-width: $small-screen) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 20px 20px 0;
+      }
 
       a {
         color: inherit;

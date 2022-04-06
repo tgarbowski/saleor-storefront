@@ -28,6 +28,7 @@ interface CheckoutReviewSubpageProps extends SubpageBaseProps {
   selectedPaymentGatewayToken?: string;
   paymentGatewayFormRef: React.RefObject<HTMLFormElement>;
   payuUrl?: string;
+  noteRef?: any;
 }
 
 const CheckoutReviewSubpageWithRef: RefForwardingComponent<
@@ -40,6 +41,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
     changeSubmitProgress,
     onSubmitSuccess,
     payuUrl,
+    noteRef,
   },
   ref
 ) => {
@@ -122,6 +124,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
       paymentMethodName={getPaymentMethodDescription()}
       email={checkout?.email}
       errors={errors}
+      noteRef={noteRef}
     />
   );
 };

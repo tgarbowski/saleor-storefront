@@ -33,8 +33,13 @@ export const SubTitle = styled.h4`
 export const TextSummary = styled.p`
   line-height: 1.6;
   font-size: ${props => props.theme.typography.h4FontSize};
+  word-break: break-word;
 `;
 
 export const ErrorMessages = styled.div`
   margin-top: 30px;
+`;
+
+export const CustomerNoteContainer = styled.section`
+  grid-column: 1 / -1;
 `;

@@ -306,7 +306,11 @@ export const MainMenu: React.FC<MainMenuProps> = ({
                       <span className="main-menu__cart__quantity">
                         {cartItemsQuantity}
                       </span>
-                    ) : null}
+                    ) : (
+                      <span className="main-menu__cart__quantity">
+                        {cartItemsQuantity}
+                      </span>
+                    )}
                   </>
                 )}
               </li>

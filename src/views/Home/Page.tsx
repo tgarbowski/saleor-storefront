@@ -1,16 +1,15 @@
-import classNames from "classnames";
 import Link from "next/link";
 import * as React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { generatePath } from "react-router";
 
 import { paths } from "@paths";
+import DefaultHero from "@styles/DefaultHeroImg";
 import { shopName } from "@temp/constants";
 import { FeaturedProducts } from "@utils/ssr";
 
 import { Button, ProductsFeatured } from "../../components";
 import { structuredData } from "../../core/SEO/Homepage/structuredData";
-import noPhotoImg from "../../images/no-photo.svg";
 import {
   HomePageProducts_categories,
   HomePageProducts_shop,
@@ -27,6 +26,11 @@ const Page: React.FC<{
     return categories && categories.edges && categories.edges.length > 0;
   };
   const intl = useIntl();
+
+  const visibleCategory =
+    shopName === "FASHION4YOU"
+      ? categories.edges.slice(0, -2)
+      : categories.edges;
   return (
     <>
       <script className="structured-data-list" type="application/ld+json">
@@ -39,7 +43,9 @@ const Page: React.FC<{
             ? {
                 backgroundImage: `url(${featuredProducts.backgroundImage.url})`,
               }
-            : null
+            : {
+                backgroundImage: `url(${DefaultHero})`,
+              }
         }
       >
         <div className="home-page__hero-text">
@@ -77,51 +83,35 @@ const Page: React.FC<{
           )}
         </div>
       </div>
-      <ProductsFeatured
-        products={featuredProducts.products}
-        title={intl.formatMessage({ defaultMessage: "Featured" })}
-      />
       {categoriesExist() && (
         <div className="home-page__categories">
-          <div className="container">
-            <h3>
-              <FormattedMessage defaultMessage="KATEGORIE" />
-            </h3>
+          <div className="container home-page__categories_container">
+            <h2>
+              <FormattedMessage defaultMessage="WYBIERZ KATEGORIĘ" />
+            </h2>
             <div className="home-page__categories__list">
-              {categories.edges.map(({ node: category }) => (
-                <div key={category.id}>
-                  <Link
-                    href={generatePath(paths.category, {
-                      slug: category.slug,
-                    })}
-                    key={category.id}
-                  >
-                    <a>
-                      <div
-                        className={classNames(
-                          "home-page__categories__list__image",
-                          {
-                            "home-page__categories__list__image--no-photo":
-                              !category.backgroundImage,
-                          }
-                        )}
-                        style={{
-                          backgroundImage: `url(${
-                            category.backgroundImage
-                              ? category.backgroundImage.url
-                              : noPhotoImg
-                          })`,
-                        }}
-                      />
-                      <h3>{category.name}</h3>
-                    </a>
-                  </Link>
-                </div>
-              ))}
+              {visibleCategory.map(({ node: category }) => {
+                return (
+                  <div key={category.id} className="home-page__category-item">
+                    <Link
+                      href={generatePath(paths.category, {
+                        slug: category.slug,
+                      })}
+                      key={category.id}
+                    >
+                      {category.name}
+                    </Link>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
       )}
+      <ProductsFeatured
+        products={featuredProducts.products}
+        title={intl.formatMessage({ defaultMessage: "Featured" })}
+      />
     </>
   );
 };

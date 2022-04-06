@@ -19,12 +19,14 @@ $drawer-width: 25rem;
 
   &__input {
     .input__icon-right {
+      margin-top: 1.1rem;
       svg * {
         fill: $primary;
       }
     }
 
     .input__icon-left {
+      margin-top: 1.1rem;
       svg * {
         fill: $base-font-color;
       }
@@ -34,9 +36,13 @@ $drawer-width: 25rem;
       background-color: $turquoise-light;
       border: none;
       box-shadow: none;
-      padding-bottom: 1.2rem;
+      padding-bottom: 1.25rem;
       padding-top: 1.25rem;
       width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: 95px;
 
       &:focus {
         box-shadow: none;

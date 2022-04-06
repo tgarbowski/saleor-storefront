@@ -17,6 +17,7 @@ const salingDefaultStyle = {
   grayDark: "#323232",
   grayLight: "#f1f5f5",
   green: "#3ed256",
+  red: "#FF0000",
   overlayColor: "rgba(199, 207, 207, 0.8)",
   rose: "#c22d74",
   turquoise: "#13bebb",
@@ -153,6 +154,7 @@ const c4uStyle = {
   blueOverlay: `rgba(33,18,94,0.1)`,
   blueOverlayDark: `rgba(33,18,94,0.2)`,
   gray: "#7d7d7d",
+  red: "#FF0000",
   grayMedium: "#c4c4c4",
   grayDark: "#323232",
   grayLight: "#f1f5f5",
@@ -170,7 +172,7 @@ const c4uStyle = {
   secondaryGreyDark: "#9D9FB1",
   secondaryBlue: "#036DFF",
   clothesForYouRed: "#d3000e",
-  clothesForYouLightRed: "#ff434f",
+  clothesForYouLightRed: "#ffafb4",
   clothesForYouDarkRed: "#980009",
   clothesForYouBlack: "#262626",
 
@@ -240,7 +242,7 @@ const c4uStyle = {
 };
 
 const c4uTheme = {
-  activeMenuOption: c4uStyle.darkGreen,
+  activeMenuOption: c4uStyle.red,
   autofill: c4uStyle.autofillColor,
   autofillSelected: c4uStyle.autofillColorSelected,
   bannerBackground: c4uStyle.secondaryGrey,
@@ -258,7 +260,7 @@ const c4uTheme = {
   light: c4uStyle.grayLight,
   lightFont: c4uStyle.gray,
   listAttributeName: c4uStyle.baseFontColorSemiTransparent,
-  listBullet: c4uStyle.darkGreen,
+  listBullet: c4uStyle.red,
   overlay: c4uStyle.overlayColor,
   primary: c4uStyle.clothesForYouRed,
   primaryDark: c4uStyle.clothesForYouDarkRed,
@@ -270,10 +272,10 @@ const c4uTheme = {
   secondaryOverlay: c4uStyle.clothesForYouBlack,
   secondaryOverlayDark: c4uStyle.clothesForYouBlack,
   success: c4uStyle.green,
-  tabTitle: c4uStyle.darkGreen,
+  tabTitle: c4uStyle.red,
   tableDivider: c4uStyle.tabelGray,
   tabsBorder: c4uStyle.baseFontColorTransparent,
-  thumbnailBorder: c4uStyle.darkGreen,
+  thumbnailBorder: c4uStyle.red,
   white: c4uStyle.white,
 };
 
@@ -291,6 +293,7 @@ const f4uStyle = {
   blueOverlay: `rgba(33,18,94,0.1)`,
   blueOverlayDark: `rgba(33,18,94,0.2)`,
   gray: "#7d7d7d",
+  red: "#FF0000",
   grayMedium: "#c4c4c4",
   grayDark: "#323232",
   grayLight: "#f1f5f5",
@@ -378,7 +381,7 @@ const f4uStyle = {
 };
 
 const f4uTheme = {
-  activeMenuOption: f4uStyle.darkGreen,
+  activeMenuOption: f4uStyle.green,
   autofill: f4uStyle.autofillColor,
   autofillSelected: f4uStyle.autofillColorSelected,
   bannerBackground: f4uStyle.secondaryGrey,
@@ -396,7 +399,7 @@ const f4uTheme = {
   light: f4uStyle.grayLight,
   lightFont: f4uStyle.gray,
   listAttributeName: f4uStyle.baseFontColorSemiTransparent,
-  listBullet: f4uStyle.darkGreen,
+  listBullet: f4uStyle.green,
   overlay: f4uStyle.overlayColor,
   primary: f4uStyle.fashionForYouGreen,
   primaryDark: f4uStyle.fashionForYouDarkGreen,
@@ -408,10 +411,10 @@ const f4uTheme = {
   secondaryOverlay: f4uStyle.fashionForYouBlack,
   secondaryOverlayDark: f4uStyle.fashionForYouBlack,
   success: f4uStyle.green,
-  tabTitle: f4uStyle.darkGreen,
+  tabTitle: f4uStyle.green,
   tableDivider: f4uStyle.tabelGray,
   tabsBorder: f4uStyle.baseFontColorTransparent,
-  thumbnailBorder: f4uStyle.darkGreen,
+  thumbnailBorder: f4uStyle.green,
   white: f4uStyle.white,
 };
 

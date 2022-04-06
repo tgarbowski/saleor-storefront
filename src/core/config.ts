@@ -2,7 +2,7 @@
 import { generatePath } from "react-router";
 
 import { paths } from "@paths";
-import { ssrMode } from "@temp/constants";
+import { shopName, ssrMode } from "@temp/constants";
 
 export const PRODUCTS_PER_PAGE = 6;
 export const SUPPORT_EMAIL = "support@example.com";
@@ -60,7 +60,19 @@ export const META_DEFAULTS = {
   image: `${
     !ssrMode ? window.location.origin : ""
   }${require("../images/logo.svg")}`,
-  title: "Sklep hurt4you",
-  type: "Hurt4You",
+  title: `${
+    shopName === "FASHION4YOU"
+      ? "Sklep Fashion4You"
+      : shopName === "CLOTHES4U"
+      ? "Sklep Clothes4You"
+      : "Sklep hurt4you"
+  }`,
+  type: `${
+    shopName === "FASHION4YOU"
+      ? "Fashion4You"
+      : shopName === "CLOTHES4U"
+      ? "Clothes4You"
+      : "Hurt4you"
+  }`,
   url: !ssrMode ? window.location.origin : "",
 };

@@ -1,10 +1,9 @@
 @import "../../../globalStyles/scss/variables.scss";
 
-  .article-page {
+.article-page {
   &__container {
     column-gap: $spacer * 1.5;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     margin: 60px 0;
 
     @media (max-width: $large-screen) {

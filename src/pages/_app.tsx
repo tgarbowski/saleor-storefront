@@ -16,8 +16,9 @@ import { ThemeProvider } from "styled-components";
 import { NotificationTemplate } from "@components/atoms";
 import { ServiceWorkerProvider } from "@components/containers";
 import { defaultTheme, GlobalStyle } from "@styles";
-import Favicon from '@styles/Favicon';
+import Favicon from "@styles/Favicon";
 import { NextQueryParamProvider } from "@temp/components";
+import { META_DEFAULTS } from "@temp/core/config";
 import { getSaleorApi, getShopConfig, ShopConfig } from "@utils/ssr";
 
 import { version } from "../../package.json";
@@ -36,7 +37,6 @@ import {
   serviceWorkerTimeout,
   ssrMode,
 } from "../constants";
-
 
 declare global {
   interface Window {
@@ -82,7 +82,7 @@ const App = ({
 }: AppProps) => (
   <>
     <Head>
-      <title>Demo PWA Storefront – Saleor Commerce</title>
+      <title>{META_DEFAULTS.title}</title>
       <link rel="preconnect" href={apiUrl} />
       <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
       <link rel="icon" type="image/png" href={Favicon} />

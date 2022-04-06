@@ -70,3 +70,58 @@ export const CustomModalTitle = styled.div`
   text-align: center;
   box-shadow: 0 3px 6px #2222220d;
 `;
+export const AccordionList = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+`;
+export const AccordionSingleItem = styled.li`
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: left;
+
+  &:not(:first-of-type) {
+    border-top: 0;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+  &:first-of-type {
+    margin-top: 2.5rem;
+  }
+`;
+
+export const AccordionTitle = styled.h2`
+  width: 100%;
+  margin: 0;
+  padding: 1rem 2rem;
+`;
+
+export const AccordionItemContent = styled.div`
+  border-top: 1px solid #cccccc;
+`;
+
+export const AccordionItemContainer = styled.div`
+  transition: height 0.2s ease-in-out;
+  overflow: hidden;
+  width: 100%;
+`;
+
+export const AccordionItemBox = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: left;
+  align-items: center;
+  gap: 2rem;
+`;
+
+export const AccordionContent = styled.div`
+  padding: 1rem 2rem;
+  width: 100%;
+`;
+
+export const AccordionListItem = styled.li`
+  padding: 1rem 0;
+`;

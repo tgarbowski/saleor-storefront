@@ -8,6 +8,8 @@ import React, { useEffect, useState } from "react";
 import { useIntl } from "react-intl";
 
 import { CustomPopup } from "@components/atoms/CustomPopup/CustomPopup";
+import CreditCardIcon from "@styles/CreditCardIcon";
+import ShippingIcon from "@styles/ShippingIcon";
 import { apiUrl, channelSlug } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
 import { IProductVariantsAttributesSelectedValues } from "@types";
@@ -15,6 +17,7 @@ import { IProductVariantsAttributesSelectedValues } from "@types";
 import AddToCartButton from "../../molecules/AddToCartButton";
 import QuantityInput from "../../molecules/QuantityInput";
 import ProductVariantPicker from "../ProductVariantPicker";
+import Accordion from "./Accordion";
 import {
   canAddToCart,
   getAvailableQuantity,
@@ -107,6 +110,48 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
     setVariantPricing(selectedVariant?.pricing);
     setVariantStock(selectedVariant?.quantityAvailable);
   };
+  const accordionItems = [
+    {
+      title: (
+        <S.AccordionItemBox>
+          <div>
+            <p>Sposoby płatności</p>
+          </div>
+          <div>
+            <img src={CreditCardIcon} alt="" />
+          </div>
+        </S.AccordionItemBox>
+      ),
+      content: (
+        <S.AccordionContent>
+          <ul>
+            <S.AccordionListItem>Payu</S.AccordionListItem>
+          </ul>
+        </S.AccordionContent>
+      ),
+    },
+    {
+      title: (
+        <S.AccordionItemBox>
+          <div>
+            <p>Sposoby dostawy</p>
+          </div>
+          <div>
+            <img src={ShippingIcon} alt="" />
+          </div>
+        </S.AccordionItemBox>
+      ),
+      content: (
+        <S.AccordionContent>
+          <ul>
+            <S.AccordionListItem>Kurier Inpost</S.AccordionListItem>
+            <S.AccordionListItem>Paczkomaty Inpost 24/7</S.AccordionListItem>
+            <S.AccordionListItem>Kurier DPD</S.AccordionListItem>
+          </ul>
+        </S.AccordionContent>
+      ),
+    },
+  ];
 
   useEffect(() => {
     setVariantStock(productVariants[0].quantityAvailable);
@@ -219,6 +264,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
           </S.CustomModalCloseButton>
         </CustomPopup>
       )}
+      <Accordion items={accordionItems} />
     </S.AddToCartSelection>
   );
 };
