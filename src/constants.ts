@@ -19,6 +19,9 @@ export const shopName = process.env.NEXT_PUBLIC_WEBSITE_NAME;
 
 export const ssrMode = typeof window === "undefined";
 
+export const underConstruction =
+  process.env.NEXT_PUBLIC_SHOP_UNDER_CONSTRUCTION;
+
 export const incrementalStaticRegenerationRevalidate = parseInt(
   process.env.INCREMENTAL_STATIC_REGENERATION_REVALIDATE!,
   10

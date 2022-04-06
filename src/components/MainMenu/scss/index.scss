@@ -75,6 +75,7 @@
           padding-top: 1rem;
           padding-bottom: 1rem;
           object-fit: cover;
+          height: auto;
         }
         @if $env == "CLOTHES4U" {
           width: 6rem;
