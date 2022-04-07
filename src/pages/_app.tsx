@@ -87,6 +87,11 @@ const App = ({
       <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
       <link rel="icon" type="image/png" href={Favicon} />
       <link rel="manifest" href="/manifest.json" />
+      <link
+        rel="stylesheet"
+        href="https://geowidget.easypack24.net/css/easypack.css"
+      />
+      <script src="https://geowidget.easypack24.net/js/sdk-for-javascript.js" />
     </Head>
     <ThemeProvider theme={defaultTheme}>
       <AlertProvider
