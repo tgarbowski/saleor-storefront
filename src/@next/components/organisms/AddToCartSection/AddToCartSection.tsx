@@ -253,16 +253,12 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
       </S.QuantityInput>
       <AddToCartButton onSubmit={tryAddToCart} disabled={disableButton} />
       {addToCartPopUp && (
-        <CustomPopup>
-          <S.CustomModalTitle>Informacja</S.CustomModalTitle>
-          <S.CustomModalText>
-            Nie można dodać produktu do koszyka. Wygląda na to, że produkt
-            został wykupiony
-          </S.CustomModalText>
-          <S.CustomModalCloseButton onClick={() => setAddToCartPopUp(false)}>
-            Zamknij okno
-          </S.CustomModalCloseButton>
-        </CustomPopup>
+        <CustomPopup
+          modalText="Nie można dodać produktu do koszyka. Wygląda na to, że produkt
+        został wykupiony"
+          title="Informacja"
+          buttonText="Zamknij okno"
+        />
       )}
       <Accordion items={accordionItems} />
     </S.AddToCartSelection>
