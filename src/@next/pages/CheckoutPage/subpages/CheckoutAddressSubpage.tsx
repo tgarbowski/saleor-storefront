@@ -10,10 +10,12 @@ import React, {
 } from "react";
 import { useIntl } from "react-intl";
 
+import { CustomPopup } from "@components/atoms/CustomPopup/CustomPopup";
 import { CheckoutAddress } from "@components/organisms";
 import { ShopContext } from "@temp/components/ShopProvider/context";
+import { apiUrl, channelSlug } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
-import { IAddress, IFormError } from "@types";
+import { IAddress, IFormError, IProduct } from "@types";
 import { filterNotEmptyArrayItems } from "@utils/misc";
 
 import {
@@ -42,11 +44,14 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
     setBillingAddress,
     setBillingAsShippingAddress,
   } = useCheckout();
-  const { items } = useCart();
+  const { items, removeItem } = useCart();
   const { countries } = useContext(ShopContext);
 
   const [shippingErrors, setShippingErrors] = useState<IFormError[]>([]);
   const [billingErrors, setBillingErrors] = useState<IFormError[]>([]);
+  const [notAvailableProducts, setNotAvailableProducts] = useState<
+    { id: string; product: IProduct }[]
+  >([]);
 
   const intl = useIntl();
 
@@ -80,9 +85,8 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
     }
   });
 
-  const [billingAsShippingState, setBillingAsShippingState] = useState(
-    billingAsShipping
-  );
+  const [billingAsShippingState, setBillingAsShippingState] =
+    useState(billingAsShipping);
   useEffect(() => {
     setBillingAsShippingState(billingAsShipping);
   }, [billingAsShipping]);
@@ -127,6 +131,62 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
     if (errors) {
       setShippingErrors(errors);
       changeSubmitProgress(false);
+
+      const ids: (string | undefined)[] = [];
+      items?.forEach(({ variant }) => {
+        ids.push(variant.id);
+      });
+      fetch(apiUrl, {
+        method: "POST",
+        body: JSON.stringify({
+          query: `
+          query ProductVariants($ids: [ID]!, $channel: String) {
+            productVariants(ids: $ids, channel: $channel first: 50) {
+              edges{
+                node{
+                  id
+                  quantityAvailable
+                  product{
+                    name
+                    thumbnail{
+                      url
+                      alt
+                    }
+                  }
+                }
+              }
+            }
+          }
+          `,
+          variables: {
+            ids,
+            channel: channelSlug,
+          },
+        }),
+        headers: {
+          "content-type": "application/json",
+        },
+      }).then(data =>
+        data.json().then(data => {
+          data.data.productVariants.edges.forEach(
+            (variant: {
+              node: {
+                id: string;
+                quantityAvailable: number;
+                product: IProduct;
+              };
+            }) => {
+              const { id, quantityAvailable, product } = variant.node;
+              if (quantityAvailable <= 0) {
+                setNotAvailableProducts(oldProducts => [
+                  ...oldProducts,
+                  { id, product },
+                ]);
+              }
+            }
+          );
+        })
+      );
     } else {
       setShippingErrors([]);
       if (billingAsShippingState) {
@@ -210,28 +270,70 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
     }));
 
   return (
-    <CheckoutAddress
-      shippingErrors={shippingErrors}
-      billingErrors={billingErrors}
-      shippingFormId={checkoutShippingAddressFormId}
-      shippingFormRef={checkoutShippingAddressFormRef}
-      billingFormId={checkoutBillingAddressFormId}
-      billingFormRef={checkoutBillingAddressFormRef}
-      checkoutShippingAddress={checkoutShippingAddress}
-      checkoutBillingAddress={checkoutBillingAddress}
-      billingAsShippingAddress={billingAsShippingState}
-      email={checkout?.email}
-      userAddresses={userAdresses}
-      selectedUserShippingAddressId={selectedShippingAddressId}
-      selectedUserBillingAddressId={selectedBillingAddressId}
-      countries={countries}
-      userId={user?.id}
-      newAddressFormId={checkoutNewAddressFormId}
-      shippingAddressRequired={!!isShippingRequiredForProducts}
-      setShippingAddress={handleSetShippingAddress}
-      setBillingAddress={handleSetBillingAddress}
-      setBillingAsShippingAddress={setBillingAsShippingState}
-    />
+    <div>
+      <CheckoutAddress
+        shippingErrors={shippingErrors}
+        billingErrors={billingErrors}
+        shippingFormId={checkoutShippingAddressFormId}
+        shippingFormRef={checkoutShippingAddressFormRef}
+        billingFormId={checkoutBillingAddressFormId}
+        billingFormRef={checkoutBillingAddressFormRef}
+        checkoutShippingAddress={checkoutShippingAddress}
+        checkoutBillingAddress={checkoutBillingAddress}
+        billingAsShippingAddress={billingAsShippingState}
+        email={checkout?.email}
+        userAddresses={userAdresses}
+        selectedUserShippingAddressId={selectedShippingAddressId}
+        selectedUserBillingAddressId={selectedBillingAddressId}
+        countries={countries}
+        userId={user?.id}
+        newAddressFormId={checkoutNewAddressFormId}
+        shippingAddressRequired={!!isShippingRequiredForProducts}
+        setShippingAddress={handleSetShippingAddress}
+        setBillingAddress={handleSetBillingAddress}
+        setBillingAsShippingAddress={setBillingAsShippingState}
+      />
+      {notAvailableProducts.length !== 0 && (
+        <CustomPopup
+          buttonText="Zamknij okno"
+          title="Przepraszamy"
+          modalText="Produkt, który masz w koszyku został wykupiony"
+          onClose={() => {
+            notAvailableProducts.forEach(({ id }) => {
+              removeItem(id);
+            });
+            window.location.reload();
+          }}
+        >
+          <div
+            style={{ overflowY: "auto", height: "300px", maxHeight: "100%" }}
+          >
+            {notAvailableProducts &&
+              notAvailableProducts.map(({ product }) => {
+                return (
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      gap: "2rem",
+                      marginTop: "1rem",
+                      marginBottom: "2rem",
+                    }}
+                  >
+                    <img
+                      style={{ objectFit: "cover", width: "6rem" }}
+                      src={product.thumbnail?.url}
+                      alt={product.thumbnail?.alt || ""}
+                    />
+                    <div>{product.name}</div>
+                  </div>
+                );
+              })}
+          </div>
+        </CustomPopup>
+      )}
+    </div>
   );
 };
 

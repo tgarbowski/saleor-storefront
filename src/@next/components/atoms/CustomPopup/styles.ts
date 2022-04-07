@@ -28,3 +28,35 @@ export const CustomModalContent = styled.div`
   -ms-flex-direction: column;
   flex-direction: column;
 `;
+
+export const CustomModalCloseButton = styled.p`
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 8px 12px;
+  background: #65c947;
+  border-radius: 7px;
+  margin: 0 auto;
+  text-align: center;
+  display: inline-block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  &:hover {
+    text-decoration: none;
+    cursor: pointer;
+  }
+`;
+
+export const CustomModalText = styled.p`
+  padding: 30px 30px;
+  word-break: break-word;
+`;
+
+export const CustomModalTitle = styled.div`
+  padding: 20px 0 20px 0;
+  font-size: 18px;
+  color: black;
+  text-align: center;
+  box-shadow: 0 3px 6px #2222220d;
+`;
