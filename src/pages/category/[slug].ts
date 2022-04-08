@@ -3,6 +3,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import {
   incrementalStaticRegenerationRevalidate,
   staticPathsFallback,
+  staticPathsFetchBatch,
 } from "@temp/constants";
 import { CategoryView, CategoryViewProps } from "@temp/views/Category";
 import {
@@ -15,7 +16,15 @@ export default CategoryView;
 
 export const getStaticPaths: GetStaticPaths<CategoryViewProps["params"]> =
   async () => {
-    return { paths: [], fallback: staticPathsFallback };
+    const { api } = await getSaleorApi();
+    const { data } = await api.categories.getList({
+      first: staticPathsFetchBatch,
+    });
+
+    const paths = data.map(({ slug }) => ({
+      params: { slug },
+    }));
+    return { paths, fallback: staticPathsFallback };
   };
 
 export const getStaticProps: GetStaticProps<
