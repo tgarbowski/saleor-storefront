@@ -245,46 +245,6 @@
   }
 }
 
-.scroll-down {
-  position: relative;
-}
-.arrows {
-  width: 60px;
-  height: 72px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 130px;
-  left: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  text-align: center;
-
-  @media (max-width: $small-screen) {
-    position: unset;
-    width: 60px;
-    height: 72px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin: 0 auto;
-    display: flex;
-    margin-bottom: 12px;
-  }
-}
-
-.arrows path {
-  stroke: $white;
-  fill: transparent;
-  stroke-width: 3px;
-  animation: arrow 2s infinite;
-  -webkit-animation: arrow 2s infinite;
-}
-
 @keyframes arrow {
   0% {
     opacity: 0;
@@ -300,7 +260,7 @@
   }
 }
 
-@-webkit-keyframes arrow /*Safari and Chrome*/ {
+@-webkit-keyframes arrow {
   0% {
     opacity: 0;
   }
@@ -315,17 +275,55 @@
   }
 }
 
-.arrows path.a1 {
-  animation-delay: -1s;
-  -webkit-animation-delay: -1s; /* Safari 和 Chrome */
-}
+.scroll-down {
+  position: relative;
+  .arrows {
+    width: 60px;
+    height: 72px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 130px;
+    left: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
 
-.arrows path.a2 {
-  animation-delay: -0.5s;
-  -webkit-animation-delay: -0.5s; /* Safari 和 Chrome */
-}
+    @media (max-width: $small-screen) {
+      position: unset;
+      width: 60px;
+      height: 72px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      margin: 0 auto;
+      display: flex;
+      margin-bottom: 12px;
+    }
 
-.arrows path.a3 {
-  animation-delay: 0s;
-  -webkit-animation-delay: 0s; /* Safari 和 Chrome */
+    path {
+      stroke: $white;
+      fill: transparent;
+      stroke-width: 3px;
+      animation: arrow 2s infinite;
+      -webkit-animation: arrow 2s infinite;
+
+      &.a1 {
+        animation-delay: -1s;
+        -webkit-animation-delay: -1s; /* Safari 和 Chrome */
+      }
+      &.a2 {
+        animation-delay: -0.5s;
+        -webkit-animation-delay: -0.5s; /* Safari 和 Chrome */
+      }
+      &.a3 {
+        animation-delay: 0s;
+        -webkit-animation-delay: 0s; /* Safari 和 Chrome */
+      }
+    }
+  }
 }
