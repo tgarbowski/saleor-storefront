@@ -2,26 +2,28 @@
 
 .home-page {
   &__hero {
-    background-color: $blue-overlay;
+    background-color: $black-overlay;
     background-blend-mode: multiply;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     object-fit: cover;
-    text-align: center;
-    padding: 12rem 0;
+    padding: 15rem 4rem;
 
     &-text {
       overflow: hidden;
+      margin-bottom: 2.2rem;
     }
 
     @media (max-width: $small-screen) {
+      background-color: $black-overlay-mobile;
       align-items: center;
       display: flex;
       flex-direction: column;
       height: 100%;
       justify-content: space-between;
       padding: $spacer;
+      text-align: center;
 
       &-text {
         margin-top: $spacer * 5;
@@ -32,15 +34,31 @@
         margin-bottom: $spacer * 3;
         width: 100%;
         margin-top: 42px;
+
+        @media (max-width: $small-screen) {
+          margin-top: 0;
+          margin-bottom: 82px;
+        }
+
+        a > button.button {
+          width: 100%;
+          max-width: 100%;
+
+          @media (max-width: $small-screen) {
+            padding-left: 2rem;
+            padding-right: 2rem;
+            width: 88%;
+            max-width: 88%;
+            margin: 0 auto;
+          }
+        }
       }
     }
 
     &__title {
-      background-color: $white;
       display: inline-block;
-      transform: skew(45deg);
-      padding: $spacer $spacer * 3;
       margin-bottom: $spacer / 2;
+      font-family: "Poppins", sans-serif !important;
 
       @media (max-width: $small-screen) {
         padding: 0.6rem $spacer;
@@ -49,20 +67,51 @@
 
       h1 {
         display: inline-block;
-        transform: skew(-45deg);
         font-weight: $bold-font-weight;
-        text-transform: uppercase;
-        color: $blue;
+        color: $white;
         font-size: $h1-font-size;
-        font-weight: 800;
+        font-weight: 600;
 
         @media (max-width: $small-screen) {
-          font-size: 2rem;
+          font-size: 35px;
           transform: none;
         }
 
         @media (min-width: $small-screen) and (max-width: $large-screen) {
           font-size: 48px;
+        }
+      }
+    }
+    &__subtitle {
+      display: inline-block;
+      margin-bottom: $spacer / 2;
+      font-family: "Poppins", sans-serif !important;
+
+      @media (max-width: $small-screen) {
+        padding: 0.6rem 0;
+        transform: none;
+      }
+
+      h1 {
+        display: inline-block;
+        font-weight: 600;
+        color: $white;
+        font-size: 21px;
+        font-weight: 500;
+        word-break: break-word;
+        width: 100%;
+        max-width: 575px;
+        line-height: 130%;
+        margin-top: 10px;
+
+        @media (max-width: $small-screen) {
+          font-size: 18px;
+          transform: none;
+          margin-top: -1rem;
+        }
+
+        @media (min-width: $small-screen) and (max-width: $large-screen) {
+          font-size: 32px;
         }
       }
     }
@@ -79,13 +128,20 @@
     }
 
     h2 {
-      text-transform: uppercase;
-      font-weight: $semibold-font-weight;
+      font-size: 38px;
+      line-height: 55px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+      color: $black;
+      margin-top: 20px;
       text-align: center;
-      margin-bottom: 4rem;
-      text-align: center;
-      font-size: 2.5rem;
-      margin-top: 2rem;
+      margin-bottom: 2.5rem;
+      text-transform: lowercase;
+
+      &::first-letter {
+        text-transform: uppercase;
+      }
 
       @media (max-width: $small-screen) {
         font-size: 1.6rem;
@@ -114,18 +170,25 @@
         margin: 0 auto;
         width: 100%;
         transition: 0.3s all ease-in-out;
-        border: 3px solid black;
         border-radius: 18px;
+        background-color: $white;
+        padding: $button-padding;
+        border: 2px solid black;
+        box-shadow: $button-box-shadow;
+        transition: $button-transition;
+        outline: none;
+        font-family: $base-font-family;
+        cursor: pointer;
+        border-radius: 408px;
+        box-shadow: $button-box-shadow;
+
         a {
-          text-decoration: none;
-          color: $base-font-color;
-          border-radius: 100px;
-          text-transform: uppercase;
-          width: 100%;
-          padding: 20px 0;
-          font-size: 1.525rem;
-          font-weight: 600;
-          line-height: 1.25rem;
+          display: inline-block;
+          color: $black;
+          font-size: $button-font-size;
+          text-transform: $button-text-transform;
+          font-weight: $button-font-weight;
+          line-height: $button-line-height;
 
           h3 {
             text-transform: uppercase;
@@ -151,10 +214,15 @@
           background: $turquoise-light;
 
           @if $env == "FASHION4YOU" {
-            background: $primaryLight;
+            background: $primary;
           }
           @if $env == "CLOTHES4U" {
-            background: $primaryLight;
+            background: $red;
+          }
+        }
+        &:hover > a {
+          @if $env == "CLOTHES4U" {
+            color: $white;
           }
         }
       }
@@ -172,6 +240,89 @@
           background-repeat: no-repeat;
           background-size: contain;
         }
+      }
+    }
+  }
+}
+
+@keyframes arrow {
+  0% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes arrow {
+  0% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.scroll-down {
+  position: relative;
+  .arrows {
+    width: 60px;
+    height: 72px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 130px;
+    left: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+
+    @media (max-width: $small-screen) {
+      position: unset;
+      width: 60px;
+      height: 72px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      margin: 0 auto;
+      display: flex;
+      margin-bottom: 12px;
+    }
+
+    path {
+      stroke: $white;
+      fill: transparent;
+      stroke-width: 3px;
+      animation: arrow 2s infinite;
+      -webkit-animation: arrow 2s infinite;
+
+      &.a1 {
+        animation-delay: -1s;
+        -webkit-animation-delay: -1s; /* Safari 和 Chrome */
+      }
+      &.a2 {
+        animation-delay: -0.5s;
+        -webkit-animation-delay: -0.5s; /* Safari 和 Chrome */
+      }
+      &.a3 {
+        animation-delay: 0s;
+        -webkit-animation-delay: 0s; /* Safari 和 Chrome */
       }
     }
   }
