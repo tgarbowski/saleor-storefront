@@ -3,8 +3,9 @@ import { useRouter } from "next/router";
 import React from "react";
 
 import { Loader } from "@components/atoms";
+import { UnderConstruction } from "@components/organisms/UnderConstruction/UnderConstruction";
 import { useDynamicRouteRedirect } from "@hooks";
-import { demoMode } from "@temp/constants";
+import { demoMode, shopName, underConstruction } from "@temp/constants";
 import { ShopConfig } from "@utils/ssr";
 
 import {
@@ -31,6 +32,10 @@ const App: React.FC<AppProps> = ({
   const willRedirect = useDynamicRouteRedirect();
   const { tokenRefreshing, tokenVerifying } = useAuth();
   const loading = tokenRefreshing || tokenVerifying || willRedirect;
+
+  if (underConstruction === "true" && shopName === "FASHION4YOU") {
+    return <UnderConstruction />;
+  }
 
   return (
     <ShopProvider shopConfig={shopConfig}>
