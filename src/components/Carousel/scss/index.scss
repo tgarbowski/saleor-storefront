@@ -3,8 +3,15 @@
 .carousel {
   &__control {
     padding: $carousel-control-padding;
-    background-color: $white;
+    background-color: $turquoise;
+    @if $env == "FASHION4YOU" {
+      background-color: $primary;
+    }
+    @if $env == "CLOTHES4U" {
+      background-color: $red;
+    }
     box-shadow: $carousel-control-shadow;
+    border-radius: 7px;
 
     &:hover {
       cursor: pointer;
@@ -18,7 +25,6 @@
       }
 
       svg {
-        transform: rotate(180deg);
         margin-top: 0.5rem;
       }
     }

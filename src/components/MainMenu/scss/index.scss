@@ -66,6 +66,8 @@
 
     svg {
       width: 6rem;
+      object-fit: cover;
+      height: auto;
 
       @media (min-width: $small-screen) {
         width: 10rem;
@@ -96,7 +98,7 @@
       transition: 0.3s;
 
       &:hover {
-        color: $white;
+        color: $primary;
       }
     }
   }
@@ -268,10 +270,31 @@
     &--active {
       background-color: $turquoise-light;
       transition: 0.3s all ease-in-out;
+
+      & > li > a {
+        color: $black;
+        @if $env == "FASHION4YOU" {
+          color: $white;
+        }
+        @if $env == "CLOTHES4U" {
+          color: $white;
+        }
+        &:hover {
+          color: $black;
+          @if $env == "FASHION4YOU" {
+            color: $white;
+          }
+          @if $env == "CLOTHES4U" {
+            color: $white;
+          }
+        }
+      }
       @if $env == "FASHION4YOU" {
+        color: $white;
         background-color: $primary;
       }
       @if $env == "CLOTHES4U" {
+        color: $white;
         background-color: $red;
       }
     }
