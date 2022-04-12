@@ -42,6 +42,7 @@ const CheckoutShipping: React.FC<IProps> = ({
   errors,
   formId,
   formRef,
+  setLockerId,
 }) => {
   const [pointName, setPointName] = useState(``);
   const [showMap, setShowMap] = useState(false);
@@ -63,6 +64,9 @@ const CheckoutShipping: React.FC<IProps> = ({
         });
         window.easyPack.mapWidget("easypack-map", (point: Point) => {
           setPointName(`Wybrany paczkomat: ${point.name}`);
+          if (setLockerId) {
+            setLockerId(point.name);
+          }
         });
       };
     };

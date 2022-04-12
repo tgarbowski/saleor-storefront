@@ -27,4 +27,5 @@ export interface IProps {
   errors?: IFormError[];
   formId?: string;
   formRef?: React.RefObject<HTMLFormElement>;
+  setLockerId?: React.Dispatch<React.SetStateAction<string>>;
 }

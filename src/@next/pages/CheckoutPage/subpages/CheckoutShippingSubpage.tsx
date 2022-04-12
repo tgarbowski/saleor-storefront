@@ -24,9 +24,14 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
   const checkoutShippingFormRef = useRef<HTMLFormElement>(null);
 
   const [errors, setErrors] = useState<IFormError[]>([]);
+  const [lockerId, setLockerId] = useState<string>("");
 
-  const { checkout, availableShippingMethods, setShippingMethod } =
-    useCheckout();
+  const {
+    checkout,
+    availableShippingMethods,
+    setShippingMethod,
+    setShippingLockerId,
+  } = useCheckout();
 
   const shippingMethods = availableShippingMethods || [];
 
@@ -44,8 +49,14 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
     if (errors) {
       setErrors(errors);
     } else {
-      setErrors([]);
-      onSubmitSuccess(CheckoutStep.Shipping);
+      const { dataError } = await setShippingLockerId(lockerId);
+      const errors = dataError?.error;
+      if (errors) {
+        setErrors(errors);
+      } else {
+        setErrors([]);
+        onSubmitSuccess(CheckoutStep.Shipping);
+      }
     }
   };
 
@@ -57,6 +68,7 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
       selectShippingMethod={handleSetShippingMethod}
       formId={checkoutShippingFormId}
       formRef={checkoutShippingFormRef}
+      setLockerId={setLockerId}
     />
   );
 };
