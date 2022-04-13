@@ -28,6 +28,7 @@ export const AddressForm: React.FC<IProps> = ({
   formId,
   defaultValue,
   countriesOptions,
+  setNip,
   ...props
 }: IProps) => {
   let addressWithPickedFields: Partial<IAddress> = {};
@@ -68,6 +69,7 @@ export const AddressForm: React.FC<IProps> = ({
               setFieldTouched,
               setFieldValue,
               values,
+              setNip,
             }}
             {...props}
           />

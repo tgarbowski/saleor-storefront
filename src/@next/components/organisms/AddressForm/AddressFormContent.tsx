@@ -21,6 +21,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
   setFieldValue,
   testingContext,
   includeEmail = false,
+  setNip,
 }) => {
   const [showInvoiceVat, setShowInvoiceVat] = useState(false);
   const basicInputProps = useCallback(
@@ -173,6 +174,11 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
               autoComplete="companyNip"
               errors={fieldErrors!.companyNip}
               {...basicInputProps()}
+              onBlur={(e: React.FormEvent<HTMLInputElement>) => {
+                if (setNip) {
+                  setNip(e.currentTarget.value);
+                }
+              }}
             />
             <TextField
               name="companyName"

@@ -2,13 +2,14 @@ import { OrderStatus, useCheckout } from "@saleor/sdk";
 import React, {
   forwardRef,
   RefForwardingComponent,
+  useEffect,
   useImperativeHandle,
   useState,
 } from "react";
 
 import { CheckoutReview } from "@components/organisms";
 import { statuses as dummyStatuses } from "@components/organisms/DummyPaymentGateway";
-import { paymentGatewayNames } from "@temp/constants";
+import { apiUrl, paymentGatewayNames } from "@temp/constants";
 import { IFormError } from "@types";
 
 import {
@@ -48,6 +49,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
   const { checkout, payment, completeCheckout } = useCheckout();
 
   const [errors, setErrors] = useState<IFormError[]>([]);
+  const [nip, setNip] = useState<string>("");
 
   const checkoutShippingAddress = checkout?.shippingAddress
     ? {
@@ -116,6 +118,40 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
     }
   });
 
+  useEffect(() => {
+    fetch(apiUrl, {
+      method: "POST",
+      body: JSON.stringify({
+        query: `
+        query CheckoutMetadata($token: UUID!) {
+          checkout(token: $token){
+            metadata{
+              key
+              value
+            }
+          }
+        }
+        `,
+        variables: {
+          token: checkout?.token,
+        },
+      }),
+      headers: {
+        "content-type": "application/json",
+      },
+    }).then(data =>
+      data.json().then(json => {
+        json.data.checkout.metadata.forEach(
+          ({ key, value }: { key: string; value: string }) => {
+            if (key === "vat_id") {
+              setNip(value);
+            }
+          }
+        );
+      })
+    );
+  }, []);
+
   return (
     <CheckoutReview
       shippingAddress={checkoutShippingAddress}
@@ -125,6 +161,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
       email={checkout?.email}
       errors={errors}
       noteRef={noteRef}
+      nip={nip}
     />
   );
 };

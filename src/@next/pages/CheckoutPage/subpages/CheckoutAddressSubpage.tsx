@@ -41,6 +41,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
     selectedBillingAddressId,
     billingAsShipping,
     setShippingAddress,
+    setShippingNip,
     setBillingAddress,
     setBillingAsShippingAddress,
   } = useCheckout();
@@ -52,6 +53,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
   const [notAvailableProducts, setNotAvailableProducts] = useState<
     { id: string; product: IProduct }[]
   >([]);
+  const [nip, setNip] = useState<string>("");
 
   const intl = useIntl();
 
@@ -188,13 +190,20 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
         })
       );
     } else {
-      setShippingErrors([]);
-      if (billingAsShippingState) {
-        handleSetBillingAddress();
+      const { dataError } = await setShippingNip(nip);
+      const errors = dataError?.error;
+      if (errors) {
+        setShippingErrors(errors);
+        changeSubmitProgress(false);
       } else {
-        checkoutBillingAddressFormRef.current?.dispatchEvent(
-          new Event("submit", { cancelable: true })
-        );
+        setShippingErrors([]);
+        if (billingAsShippingState) {
+          handleSetBillingAddress();
+        } else {
+          checkoutBillingAddressFormRef.current?.dispatchEvent(
+            new Event("submit", { cancelable: true })
+          );
+        }
       }
     }
   };
@@ -292,6 +301,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
         setShippingAddress={handleSetShippingAddress}
         setBillingAddress={handleSetBillingAddress}
         setBillingAsShippingAddress={setBillingAsShippingState}
+        setNip={setNip}
       />
       {notAvailableProducts.length !== 0 && (
         <CustomPopup
