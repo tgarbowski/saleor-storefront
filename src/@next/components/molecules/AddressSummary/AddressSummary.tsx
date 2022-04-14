@@ -17,7 +17,12 @@ const AddressSummary: React.FC<IProps> = ({ address, email }: IProps) => {
         <br />
         {address.companyName && (
           <>
-            {address.companyName} <br />
+            Nazwa firmy: {address.companyName} <br />
+          </>
+        )}
+        {address.companyNip && (
+          <>
+            NIP: {address.companyNip} <br />
           </>
         )}
         {address.streetAddress1}

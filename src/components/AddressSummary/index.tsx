@@ -22,6 +22,11 @@ const AddressSummary: React.FC<{
             {address.companyName} <br />
           </>
         )}
+        {address.companyNip && (
+          <>
+            {address.companyNip} <br />
+          </>
+        )}
         {address.streetAddress1}
         <br />
         {address.streetAddress2 && (

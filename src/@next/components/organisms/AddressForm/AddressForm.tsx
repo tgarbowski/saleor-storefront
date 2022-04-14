@@ -19,6 +19,7 @@ const ADDRESS_FIELDS = [
   "streetAddress1",
   "streetAddress2",
   "email",
+  "companyNip",
 ];
 
 export const AddressForm: React.FC<IProps> = ({
