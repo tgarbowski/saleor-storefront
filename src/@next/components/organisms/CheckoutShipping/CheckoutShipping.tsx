@@ -42,9 +42,12 @@ const CheckoutShipping: React.FC<IProps> = ({
   errors,
   formId,
   formRef,
+  setLockerId,
 }) => {
   const [pointName, setPointName] = useState(``);
-  const [showMap, setShowMap] = useState(false);
+  const [isShowMap, setShowMap] = useState<boolean>(false);
+  const styleHidden = { height: "500px", visibility: "hidden" };
+  const styleShown = { height: "500px" };
 
   useEffect(() => {
     const getLocation = () => {
@@ -63,15 +66,14 @@ const CheckoutShipping: React.FC<IProps> = ({
         });
         window.easyPack.mapWidget("easypack-map", (point: Point) => {
           setPointName(`Wybrany paczkomat: ${point.name}`);
+          if (setLockerId) {
+            setLockerId(point.name);
+          }
         });
       };
     };
     getLocation();
   }, []);
-
-  const handleShowMap = () => {
-    setShowMap(!showMap);
-  };
 
   return (
     <section>
@@ -109,50 +111,56 @@ const CheckoutShipping: React.FC<IProps> = ({
                   const checked =
                     !!values.shippingMethod && values.shippingMethod === id;
 
+                  const isParcel = () => {
+                    if (name === "Inpost paczkomaty") {
+                      setShowMap(!isShowMap);
+                    } else setShowMap(false);
+                  };
+
                   return (
-                    <S.Tile
-                      checked={checked}
-                      key={id}
-                      data-test="shippingMethodTile"
-                      data-test-id={id}
-                    >
-                      <Radio
-                        name="shippingMethod"
-                        value={id}
+                    <>
+                      <S.Tile
                         checked={checked}
-                        customLabel
-                        onChange={() => setFieldValue("shippingMethod", id)}
+                        key={id}
+                        data-test="shippingMethodTile"
+                        data-test-id={id}
                       >
-                        <S.TileTitle>
-                          <span data-test="checkoutShippingMethodOptionName">
-                            {name}
-                          </span>
-                          <S.Price>
-                            {" "}
-                            | +
-                            <Money
-                              data-test="checkoutShippingMethodOptionPrice"
-                              money={price}
-                            />
-                          </S.Price>
-                        </S.TileTitle>
-                      </Radio>
-                    </S.Tile>
+                        <Radio
+                          name="shippingMethod"
+                          value={id}
+                          checked={checked}
+                          customLabel
+                          onChange={() => {
+                            setFieldValue("shippingMethod", id);
+                            isParcel();
+                          }}
+                        >
+                          <S.TileTitle>
+                            <span data-test="checkoutShippingMethodOptionName">
+                              {name}
+                            </span>
+                            <S.Price>
+                              {" "}
+                              | +
+                              <Money
+                                data-test="checkoutShippingMethodOptionPrice"
+                                money={price}
+                              />
+                            </S.Price>
+                          </S.TileTitle>
+                        </Radio>
+                      </S.Tile>
+                    </>
                   );
                 })}
+                <div style={isShowMap ? styleShown : styleHidden}>
+                  <div id="easypack-map" />
+                  <div className="point-name">
+                    <S.PointNameText>{pointName}</S.PointNameText>
+                  </div>
+                </div>
                 <ErrorMessage errors={errors} />
               </S.ShippingMethodForm>
-              <div>
-                <button onClick={handleShowMap}>Paczkomaty inpost 24/7</button>
-                {showMap ? (
-                  <>
-                    <div id="easypack-map" />
-                    <div className="point-name">
-                      <p>{pointName}</p>
-                    </div>
-                  </>
-                ) : null}
-              </div>
             </>
           );
         }}
