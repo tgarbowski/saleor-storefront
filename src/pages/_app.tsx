@@ -91,7 +91,7 @@ const App = ({
         rel="stylesheet"
         href="https://geowidget.easypack24.net/css/easypack.css"
       />
-      <script src="https://geowidget.easypack24.net/js/sdk-for-javascript.js" />
+      <script async src="https://geowidget.easypack24.net/js/sdk-for-javascript.js" />
       <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet"
