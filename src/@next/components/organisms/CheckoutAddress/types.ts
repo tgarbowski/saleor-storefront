@@ -28,4 +28,6 @@ export interface IProps {
   setShippingAddress: (address?: IAddress, email?: string, id?: string) => void;
   setBillingAddress: (address?: IAddress, email?: string, id?: string) => void;
   setBillingAsShippingAddress: (billingAsShippingAddress: boolean) => void;
+  setNip?: React.Dispatch<React.SetStateAction<string>>;
+  handleInvoiceChange?: (invoice: boolean) => void;
 }

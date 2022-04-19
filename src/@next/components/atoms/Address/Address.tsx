@@ -15,7 +15,7 @@ export const Address: React.FC<IAddress> = ({
   countryArea,
   country,
   phone,
-  companyNip,
+  vatId,
 }: IAddress) => (
   <div>
     <S.Name>{`${firstName} ${lastName}`}</S.Name>
@@ -24,9 +24,9 @@ export const Address: React.FC<IAddress> = ({
         {companyName} <br />
       </>
     )}
-    {companyNip && (
+    {vatId && (
       <>
-        {companyNip} <br />
+        {vatId} <br />
       </>
     )}
     {streetAddress1}

@@ -19,7 +19,6 @@ const ADDRESS_FIELDS = [
   "streetAddress1",
   "streetAddress2",
   "email",
-  "companyNip",
 ];
 
 export const AddressForm: React.FC<IProps> = ({
@@ -28,6 +27,7 @@ export const AddressForm: React.FC<IProps> = ({
   formId,
   defaultValue,
   countriesOptions,
+  handleInvoiceChange,
   ...props
 }: IProps) => {
   let addressWithPickedFields: Partial<IAddress> = {};
@@ -68,6 +68,7 @@ export const AddressForm: React.FC<IProps> = ({
               setFieldTouched,
               setFieldValue,
               values,
+              handleInvoiceChange,
             }}
             {...props}
           />

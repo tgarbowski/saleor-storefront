@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
 import { Checkbox } from "@components/atoms";
@@ -21,6 +21,7 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
   setFieldValue,
   testingContext,
   includeEmail = false,
+  handleInvoiceChange,
 }) => {
   const [showInvoiceVat, setShowInvoiceVat] = useState(false);
   const basicInputProps = useCallback(
@@ -41,6 +42,12 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
   const handleChangeShowShowInvoiceVat = () => {
     setShowInvoiceVat(!showInvoiceVat);
   };
+
+  useEffect(() => {
+    if (handleInvoiceChange) {
+      handleInvoiceChange(showInvoiceVat);
+    }
+  }, [showInvoiceVat]);
 
   return (
     <S.AddressForm
@@ -167,11 +174,11 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
         {showInvoiceVat && (
           <S.RowWithTwoCells>
             <TextField
-              name="companyNip"
+              name="vatId"
               label={intl.formatMessage({ defaultMessage: "NIP" })}
-              value={values!.companyNip}
-              autoComplete="companyNip"
-              errors={fieldErrors!.companyNip}
+              value={values!.vatId}
+              autoComplete="vatId"
+              errors={fieldErrors!.vatId}
               {...basicInputProps()}
             />
             <TextField

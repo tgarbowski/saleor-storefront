@@ -20,6 +20,7 @@ const CheckoutReview: React.FC<IProps> = ({
   email,
   errors,
   noteRef,
+  nip,
 }) => {
   return (
     <S.Wrapper data-test="sectionTitle">
@@ -32,14 +33,14 @@ const CheckoutReview: React.FC<IProps> = ({
             <FormattedMessage {...checkoutMessages.shippingAddress} />
           </S.SubTitle>
           <S.Divider />
-          <AddressSummary address={shippingAddress} email={email} />
+          <AddressSummary address={shippingAddress} email={email} nip={nip} />
         </section>
         <section data-test="billingAddressSection">
           <S.SubTitle>
             <FormattedMessage defaultMessage="Adres rozliczeniowy" />
           </S.SubTitle>
           <S.Divider />
-          <AddressSummary address={billingAddress} email={email} />
+          <AddressSummary address={billingAddress} email={email} nip={nip} />
         </section>
         <section>
           <S.SubTitle>

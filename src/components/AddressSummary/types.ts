@@ -9,4 +9,5 @@ export interface FormAddressType extends Omit<AddressType, "country"> {
   asNew?: boolean;
   email?: string;
   country: { country?: string; code?: string; value?: string };
+  vatId?: string;
 }
