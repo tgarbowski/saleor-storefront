@@ -125,9 +125,8 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
         query: `
         query CheckoutMetadata($token: UUID!) {
           checkout(token: $token){
-            metadata{
-              key
-              value
+            shippingAddress{
+              vatId
             }
           }
         }
@@ -141,13 +140,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
       },
     }).then(data =>
       data.json().then(json => {
-        json.data.checkout.metadata.forEach(
-          ({ key, value }: { key: string; value: string }) => {
-            if (key === "vat_id") {
-              setNip(value);
-            }
-          }
-        );
+        setNip(json.data.checkout.shippingAddress.vatId);
       })
     );
   }, []);

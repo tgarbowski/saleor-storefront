@@ -41,7 +41,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
     selectedBillingAddressId,
     billingAsShipping,
     setShippingAddress,
-    setShippingNip,
+    setInvoice,
     setBillingAddress,
     setBillingAsShippingAddress,
   } = useCheckout();
@@ -53,7 +53,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
   const [notAvailableProducts, setNotAvailableProducts] = useState<
     { id: string; product: IProduct }[]
   >([]);
-  const [nip, setNip] = useState<string>("");
+  const [isInvoiceTrue, setIsInvoiceTrue] = useState(false);
 
   const intl = useIntl();
 
@@ -190,7 +190,11 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
         })
       );
     } else {
-      const { dataError } = await setShippingNip(nip);
+      let invoice = "false";
+      if (isInvoiceTrue) {
+        invoice = "true";
+      }
+      const { dataError } = await setInvoice(invoice);
       const errors = dataError?.error;
       if (errors) {
         setShippingErrors(errors);
@@ -206,6 +210,10 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
         }
       }
     }
+  };
+
+  const handleInvoiceChange = (invoice: boolean) => {
+    setIsInvoiceTrue(invoice);
   };
 
   const handleSetBillingAddress = async (
@@ -301,7 +309,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
         setShippingAddress={handleSetShippingAddress}
         setBillingAddress={handleSetBillingAddress}
         setBillingAsShippingAddress={setBillingAsShippingState}
-        setNip={setNip}
+        handleInvoiceChange={handleInvoiceChange}
       />
       {notAvailableProducts.length !== 0 && (
         <CustomPopup

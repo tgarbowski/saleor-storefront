@@ -31,6 +31,7 @@ export interface IProps {
   includeEmail?: boolean;
   testingContext?: string;
   setNip?: React.Dispatch<React.SetStateAction<string>>;
+  handleInvoiceChange?: (invoice: boolean) => void;
 }
 
 export type PropsWithFormik = Omit<IProps, "handleSubmit"> & IFormikProps;
