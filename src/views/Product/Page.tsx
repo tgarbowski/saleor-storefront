@@ -22,7 +22,7 @@ import OtherProducts from "./Other";
 import { IProps } from "./types";
 
 import { smallScreen } from "../../globalStyles/scss/variables.scss";
-// test rebuild
+
 const populateBreadcrumbs = (product: ProductDetails) => [
   {
     link: generatePath(paths.category, { slug: product.category.slug }),
@@ -68,7 +68,7 @@ const Page: React.FC<
   const [productPricing, setProductPricing] = useState(null);
   const [productVariants, setProductVariants] = useState(null);
 
-  useEffect(() => {
+  const updateProduct = () => {
     fetch(apiUrl, {
       method: "POST",
       body: JSON.stringify({
@@ -160,7 +160,17 @@ const Page: React.FC<
         setProductVariants(newProductVariants);
       })
     );
+  };
+
+  useEffect(() => {
+    updateProduct();
   }, []);
+
+  useEffect(() => {
+    setProductVariants(null);
+    setProductPricing(null);
+    updateProduct();
+  }, [product]);
 
   const addToCartSection =
     productVariants && productPricing ? (
