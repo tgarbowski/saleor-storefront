@@ -5,18 +5,19 @@ import { generatePath } from "react-router";
 
 import { paths } from "@paths";
 import DefaultHero from "@styles/DefaultHeroImg";
+import { FooterUsp } from "@temp/components/FooterUsp/FooterUsp";
 import { shopName } from "@temp/constants";
 import { FeaturedProducts } from "@utils/ssr";
 
 import { Button, ProductsFeatured } from "../../components";
 import { structuredData } from "../../core/SEO/Homepage/structuredData";
 import {
-  HomePageProducts_categories,
-  HomePageProducts_shop,
+HomePageProducts_categories,
+HomePageProducts_shop,
 } from "./gqlTypes/HomePageProducts";
 
 import "./scss/index.scss";
-import { FooterUsp } from "@temp/components/FooterUsp/FooterUsp";
+
 
 const Page: React.FC<{
   categories: HomePageProducts_categories;

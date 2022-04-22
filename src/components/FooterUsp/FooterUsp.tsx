@@ -1,9 +1,9 @@
-import { ShippedIcon, CreditIcon, ParcelIcon, DashedRectangleImg } from "@styles/FooterUspIcons";
 import * as React from "react";
-import { FooterUspItem } from "./FooterUspItem";
 import ReactSVG from "react-svg";
 
-import "./scss/index.scss";
+import { CreditIcon, DashedRectangleImg, ParcelIcon, ShippedIcon } from "@styles/FooterUspIcons";
+
+import { FooterUspItem } from "./FooterUspItem";
 
 export const FooterUsp = () => {
     return (
