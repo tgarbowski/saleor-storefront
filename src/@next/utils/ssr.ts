@@ -60,14 +60,15 @@ export const exhaustList = async <
         return resolve(result);
       }
 
-      if (!triesLeft) {
-        return reject(new Error("Max tries exeeded"));
+      if (!triesLeft || triesLeft < 0) {
+        return resolve(result);
+        // return reject(new Error("Max tries exeeded"));
       }
 
       await next();
 
       fetch(listApi, --triesLeft);
-    })(listApi, tries);
+    })(listApi, tries - 1);
   });
 
 export type FeaturedProducts = {

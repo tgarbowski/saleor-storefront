@@ -7,7 +7,7 @@ import {
   staticPathsFallback,
   staticPathsFetchBatch,
 } from "@temp/constants";
-import { getSaleorApi } from "@utils/ssr";
+import { exhaustList, getSaleorApi } from "@utils/ssr";
 
 import { ProductPage, ProductPageProps } from "../../views/Product";
 
@@ -16,10 +16,13 @@ export default ProductPage;
 export const getStaticPaths: GetStaticPaths<ProductPageProps["params"]> =
   async () => {
     const { api } = await getSaleorApi();
-    const { data } = await api.products.getList({
-      first: staticPathsFetchBatch,
-      channel: channelSlug,
-    });
+    const { data } = await exhaustList(
+      api.products.getList({
+        first: 50,
+        channel: channelSlug,
+      }),
+      staticPathsFetchBatch
+    );
 
     const paths = data.map(({ slug }) => ({
       params: { slug },
