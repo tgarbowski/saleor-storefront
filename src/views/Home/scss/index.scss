@@ -173,7 +173,7 @@
         border-radius: 18px;
         background-color: $white;
         padding: $button-padding;
-        border: 2px solid black;
+        border: 2px solid $primary;
         box-shadow: $button-box-shadow;
         transition: $button-transition;
         outline: none;
@@ -181,7 +181,7 @@
         cursor: pointer;
         border-radius: 408px;
         box-shadow: $button-box-shadow;
-
+        
         a {
           display: inline-block;
           color: $black;
@@ -196,13 +196,7 @@
             margin-bottom: 0;
 
             &:after {
-              content: url("../../../images/carousel-arrow.svg");
-              @if $env == "CLOTHES4U" {
-                content: url("../../../images/carousel-arrow-c4u.svg");
-              }
-              @if $env == "FASHION4YOU" {
-                content: url("../../../images/carousel-arrow-f4u.svg");
-              }
+              content: $contentAfterPrimary;
               display: inline-block;
               transform: rotate(180deg);
               margin-left: 1rem;
@@ -211,14 +205,7 @@
           }
         }
         &:hover {
-          background: $turquoise-light;
-
-          @if $env == "FASHION4YOU" {
-            background: $primary;
-          }
-          @if $env == "CLOTHES4U" {
-            background: $red;
-          }
+          background: $primary;
         }
         &:hover > a {
           @if $env == "CLOTHES4U" {

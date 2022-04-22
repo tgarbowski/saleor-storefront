@@ -166,7 +166,7 @@
 
             &:before {
               content: "";
-              background: $turquoise;
+              background: $primary;
               display: block;
               position: absolute;
               bottom: -5px;
@@ -174,13 +174,6 @@
               width: 0;
               height: 2px;
               transition: all 0.3s ease-in-out;
-
-              @if $env == "CLOTHES4U" {
-                background: $red;
-              }
-              @if $env == "FASHION4YOU" {
-                background: $green;
-              }
             }
             &:hover {
               background-position: 0;

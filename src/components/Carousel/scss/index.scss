@@ -3,13 +3,7 @@
 .carousel {
   &__control {
     padding: $carousel-control-padding;
-    background-color: $turquoise;
-    @if $env == "FASHION4YOU" {
-      background-color: $primary;
-    }
-    @if $env == "CLOTHES4U" {
-      background-color: $red;
-    }
+    background-color: $primary;
     box-shadow: $carousel-control-shadow;
     border-radius: 7px;
 

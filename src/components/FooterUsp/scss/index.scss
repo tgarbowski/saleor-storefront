@@ -23,12 +23,7 @@
 
             svg {
                 rect {
-                    @if $env == "FASHION4YOU" {
-                        stroke: $primary;
-                    }
-                    @if $env == "CLOTHES4U" {
-                        stroke: $primary;
-                    }
+                    stroke: $primary
                 }
             }
         }

@@ -42,13 +42,7 @@
       transition: 0.3s;
 
       &:hover {
-        color: $turquoise;
-        @if $env == "FASHION4YOU" {
-          color: $primary;
-        }
-        @if $env == "CLOTHES4U" {
-          color: $red;
-        }
+        color: $primary;
       }
 
       svg * {
