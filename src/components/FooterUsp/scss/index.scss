@@ -1,0 +1,83 @@
+@import "../../../globalStyles/scss/variables.scss";
+
+.footer-usp-section {
+    margin: 6rem 0 4rem 0;
+    background: #F8F8F8;
+    padding: 4rem 0 4rem 0;
+    position: relative;
+
+    @media (max-width: $medium-screen) {
+        margin: 2rem 0;
+    }
+
+    .footer-usp-dashed-image {
+        &--1,
+        &--2, 
+        &--3 {
+            position: absolute;
+            z-index: -999;
+
+            @media (max-width: $medium-screen) {
+                display: none;
+            }
+
+            svg {
+                rect {
+                    @if $env == "FASHION4YOU" {
+                        stroke: $primary;
+                    }
+                    @if $env == "CLOTHES4U" {
+                        stroke: $primary;
+                    }
+                }
+            }
+        }
+        &--1 {
+            top: -45px;
+            left: 20%;
+        }
+        &--2 {
+            bottom: -45px;
+            left: 50%;
+        }
+        &--3 {
+            top: -45px;
+            right: 20%;
+        }
+    }
+    &-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: start;
+        text-align: center;
+        gap: 110px;
+
+        @media (max-width: $large-screen) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 80px;
+        }
+
+        .footer-usp-item {
+            width: 100%;
+            max-width: 281px;
+            &--image {
+                margin-bottom: 1.5rem;
+            }
+            &--heading {
+                margin-bottom: 1.5rem;
+                font-weight: 600;
+                font-size: 20px;
+                color: $black;
+            }
+            &--text {
+                font-size: 18px;
+                font-weight: 500;
+                color: #4F4F4F;
+            }
+        }
+    }
+}

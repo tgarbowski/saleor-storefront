@@ -16,6 +16,7 @@ import {
 } from "./gqlTypes/HomePageProducts";
 
 import "./scss/index.scss";
+import { FooterUsp } from "@temp/components/FooterUsp/FooterUsp";
 
 const Page: React.FC<{
   categories: HomePageProducts_categories;
@@ -118,6 +119,7 @@ const Page: React.FC<{
           </div>
         </div>
       )}
+      <FooterUsp/>
       <ProductsFeatured
         products={featuredProducts.products}
         title={intl.formatMessage({ defaultMessage: "Featured" })}
