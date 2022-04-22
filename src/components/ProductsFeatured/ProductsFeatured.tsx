@@ -24,7 +24,7 @@ export const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({
       <div className="container products-featured-container">
         <h2>
           <FormattedMessage defaultMessage="POLECANE PRODUKTY" />
-          <span></span>
+          <span/>
         </h2>
         <Carousel>
           {products.map(product => (
