@@ -20,8 +20,9 @@ export const getStaticPaths: GetStaticPaths<CollectionViewProps["params"]> =
     const { api } = await getSaleorApi();
     const { data } = await exhaustList(
       api.collections.getList({
-        first: staticPathsFetchBatch,
-      })
+        first: 50,
+      }),
+      staticPathsFetchBatch
     );
 
     const paths = data.map(({ slug }) => ({

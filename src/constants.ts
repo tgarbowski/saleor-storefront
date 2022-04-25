@@ -27,7 +27,8 @@ export const incrementalStaticRegenerationRevalidate = parseInt(
   10
 );
 
-export const staticPathsFetchBatch = 50;
+export const staticPathsFetchBatch =
+  parseInt(process.env.NEXT_PUBLIC_STATIC_PATHS_FETCH_BATCH, 10) || 0;
 
 export const staticPathsFallback = (
   exportMode ? false : process.env.NEXT_PUBLIC_STATIC_PATHS_FALLBACK
