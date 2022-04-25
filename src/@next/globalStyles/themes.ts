@@ -52,14 +52,14 @@ export const defaultTheme = {
       primary: {
         activeBackground: C.theme.primaryTransparent,
         background: C.theme.primaryLight,
-        color: C.theme.primaryDark,
+        color: C.theme.primary,
         hoverBackground: "none",
         hoverColor: C.theme.primaryDark,
       },
       secondary: {
         activeBackground: C.theme.primaryTransparent,
         background: C.theme.secondaryLight,
-        color: C.theme.secondaryDark,
+        color: C.theme.secondary,
         hoverBackground: "none",
         hoverColor: C.theme.secondaryDark,
       },
