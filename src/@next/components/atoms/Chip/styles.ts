@@ -69,11 +69,6 @@ export const CloseButton = styled.button<{
     }
   }
 
-  &:active {
-    background-color: ${props =>
-      props.theme.chip.colors[props.color].activeBackground};
-  }
-
   &:disabled {
     background-color: ${props => props.theme.colors.disabled};
 
