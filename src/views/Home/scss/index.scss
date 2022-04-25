@@ -163,7 +163,24 @@
       }
 
       .home-page__category-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin: 0 auto;
+        width: 100%;
+        transition: 0.3s all ease-in-out;
+        border-radius: 18px;
+        background-color: $white;
+        padding: $button-padding;
+        border: 2px solid $primary;
+        box-shadow: $button-box-shadow;
+        transition: $button-transition;
+        outline: none;
+        font-family: $base-font-family;
+        cursor: pointer;
         border-radius: 408px;
+        box-shadow: $button-box-shadow;
 
         a {
           color: $black;
@@ -210,6 +227,14 @@
               margin-left: 1rem;
               height: 30px;
             }
+          }
+        }
+        &:hover {
+          background: $primary;
+        }
+        &:hover > a {
+          @if $env == "CLOTHES4U" {
+            color: $white;
           }
         }
       }
