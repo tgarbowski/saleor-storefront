@@ -47,17 +47,9 @@
       .not-found-page-container-text,
       .not-found-page-container-text-second {
         font-size: 54px;
-        color: $turquoise;
+        color: $primary;
         font-weight: bold;
         line-height: 108%;
-
-        @if $env == "CLOTHES4U" {
-          color: $red;
-        }
-
-        @if $env == "FASHION4YOU" {
-          color: $primary;
-        }
 
         @media (max-width: $large-screen) {
           font-size: 44px;
