@@ -14,6 +14,7 @@ export const SortLine = styled.div`
   align-items: center;
   justify-content: space-between;
   padding-bottom: 0.5rem;
+  cursor: pointer;
 `;
 
 export const Value = styled.div`

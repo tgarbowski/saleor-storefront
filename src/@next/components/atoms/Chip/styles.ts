@@ -3,12 +3,12 @@ import { styled } from "@styles";
 import { Size } from "./types";
 
 const padding = {
-  md: "0.4rem 0.4rem 0.4rem 0.8rem",
+  md: "0.5rem 1.4rem 0.5rem 1.4rem;",
   sm: "0.1rem",
 };
 
 const paddingCloseButton = {
-  md: "0.4rem 0.4rem 0.3rem 0.4rem",
+  md: "0.4rem 1rem 0.3rem 0.4rem",
   sm: "0.1rem",
 };
 
@@ -22,23 +22,17 @@ export const Primary = styled.div<{
   fullWidth?: boolean;
   size: Size;
 }>`
-  background-color: ${props => props.theme.chip.colors[props.color].background};
+  background-color: #fff;
   padding: ${props => padding[props.size]};
   border: none;
   transition: 0.3s;
   outline: none;
-  border-radius: 2rem;
-  color: ${props => props.theme.chip.colors[props.color].color};
-  width: ${props => (props.fullWidth ? "100%" : "auto")}
+  color: #222;
+  width: ${props => (props.fullWidth ? "100%" : "auto")};
   display: inline-block;
   cursor: default;
-`;
-
-export const Secondary = styled(Primary)`
-  box-shadow: inset 0px 0px 0px 3px
-    ${props => props.theme.chip.colors.secondary.color};
-  border-left: 1px solid ${props => props.theme.chip.colors.secondary.color};
-  border-right: 1px solid ${props => props.theme.chip.colors.secondary.color};
+  box-shadow: 0 8px 24px rgb(149 157 165 / 20%);
+  border-radius: 45px;
 `;
 
 export const Text = styled.span<{ size: Size }>`
@@ -62,7 +56,6 @@ export const CloseButton = styled.button<{
   padding: ${props => paddingCloseButton[props.size]};
   vertical-align: middle;
   cursor: pointer;
-  border-radius: 1rem;
 
   > svg > path {
     fill: ${props => props.theme.chip.colors[props.color].color};

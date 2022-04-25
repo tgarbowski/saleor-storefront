@@ -13,11 +13,10 @@ export const Chip: React.FC<IProps> = ({
   onClose = () => null,
   ...props
 }: IProps) => {
-  const ChipWithTheme = color === "primary" ? S.Primary : S.Secondary;
+  const ChipWithTheme = color === "primary" ? S.Primary : null;
 
   return (
     <ChipWithTheme color={color} fullWidth={fullWidth} size={size} {...props}>
-      <S.Text size={size}>{children}</S.Text>
       <S.CloseButton
         size={size}
         color={color}
@@ -26,6 +25,7 @@ export const Chip: React.FC<IProps> = ({
       >
         <Icon name="x_light" size={16} />
       </S.CloseButton>
+      <S.Text size={size}>{children}</S.Text>
     </ChipWithTheme>
   );
 };
