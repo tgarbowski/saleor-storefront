@@ -32,5 +32,5 @@ export const PointName = styled.div`
 
 export const PointNameText = styled.p`
   font-weight: 600;
-  margin-top: 3rem;
+  margin-top: 1rem;
 `;
