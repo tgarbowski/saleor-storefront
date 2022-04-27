@@ -78,3 +78,12 @@ export const UnderConstructionPeopleImg = styled.img`
     width: 100%;
   }
 `;
+
+export const SocialMediaSection = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  text-align: center;
+`;
