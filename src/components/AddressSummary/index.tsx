@@ -22,6 +22,11 @@ const AddressSummary: React.FC<{
             {address.companyName} <br />
           </>
         )}
+        {/* {address.vatId && (
+          <>
+            {address.vatId} <br />
+          </>
+        )} */}
         {address.streetAddress1}
         <br />
         {address.streetAddress2 && (

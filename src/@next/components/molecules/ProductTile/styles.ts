@@ -9,13 +9,17 @@ const textProps = css`
 `;
 
 export const Wrapper = styled.div`
-  background: ${props => props.theme.colors.light};
-  padding: 2.5rem;
+  background: whitesmoke;
+  border-radius: 5px;
+  padding: 1rem;
   text-align: center;
   height: 26rem;
   display: flex;
   flex-direction: column;
   transition: 0.3s;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 
   :hover {
     background-color: ${props => props.theme.colors.hoverLightBackground};

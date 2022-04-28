@@ -9,4 +9,5 @@ export interface IProps {
   email?: string;
   errors?: IFormError[];
   noteRef?: any;
+  nip?: string;
 }

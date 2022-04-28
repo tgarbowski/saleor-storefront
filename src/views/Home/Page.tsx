@@ -5,17 +5,19 @@ import { generatePath } from "react-router";
 
 import { paths } from "@paths";
 import DefaultHero from "@styles/DefaultHeroImg";
+import { FooterUsp } from "@temp/components/FooterUsp/FooterUsp";
 import { shopName } from "@temp/constants";
 import { FeaturedProducts } from "@utils/ssr";
 
 import { Button, ProductsFeatured } from "../../components";
 import { structuredData } from "../../core/SEO/Homepage/structuredData";
 import {
-  HomePageProducts_categories,
-  HomePageProducts_shop,
+HomePageProducts_categories,
+HomePageProducts_shop,
 } from "./gqlTypes/HomePageProducts";
 
 import "./scss/index.scss";
+
 
 const Page: React.FC<{
   categories: HomePageProducts_categories;
@@ -52,16 +54,19 @@ const Page: React.FC<{
           <div>
             <span className="home-page__hero__title">
               <h1>
-                <FormattedMessage defaultMessage="Witamy" />
+                <FormattedMessage
+                  defaultMessage="{shopname}"
+                  values={{ shopname: shopName }}
+                />
               </h1>
             </span>
           </div>
           <div>
-            <span className="home-page__hero__title">
+            <span className="home-page__hero__subtitle">
               <h1>
                 <FormattedMessage
-                  defaultMessage="W SKLEPIE {shopname}"
                   values={{ shopname: shopName }}
+                  defaultMessage="{shopname} to sklep z jakościową odzieżą używaną. Różne marki w jednym miejscu. Przekonaj się sam!"
                 />
               </h1>
             </span>
@@ -81,6 +86,13 @@ const Page: React.FC<{
               </a>
             </Link>
           )}
+        </div>
+        <div className="scroll-down">
+          <svg className="arrows">
+            <path className="a1" d="M0 0 L30 32 L60 0" />
+            <path className="a2" d="M0 20 L30 52 L60 20" />
+            <path className="a3" d="M0 40 L30 72 L60 40" />
+          </svg>
         </div>
       </div>
       {categoriesExist() && (
@@ -108,6 +120,7 @@ const Page: React.FC<{
           </div>
         </div>
       )}
+      <FooterUsp/>
       <ProductsFeatured
         products={featuredProducts.products}
         title={intl.formatMessage({ defaultMessage: "Featured" })}

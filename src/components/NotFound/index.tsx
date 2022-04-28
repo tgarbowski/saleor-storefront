@@ -4,9 +4,8 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { paths } from "@paths";
+import NotFoundProductImage, { NotFoundPageImage } from "@styles/NotFoundImg";
 
-import notFoundPageImg from "../../images/not-found-page-img.png";
-import notFoundProductImg from "../../images/not-found-product-img.png";
 import Button from "../Button";
 
 import "./scss/index.scss";
@@ -65,18 +64,22 @@ const NotFound: NextPage<NotFoundProps> = () => {
         <div className="not-found-page-container-right">
           {currentPath[1] === "product" ? (
             <img
-              src={notFoundProductImg}
+              src={NotFoundProductImage}
               alt=""
               className="not-found-product-img"
             />
           ) : currentPath[1] === "category" ? (
             <img
-              src={notFoundProductImg}
+              src={NotFoundProductImage}
               alt=""
               className="not-found-product-img"
             />
           ) : (
-            <img src={notFoundPageImg} alt="" className="not-found-page-img" />
+            <img
+              src={NotFoundPageImage}
+              alt=""
+              className="not-found-page-img"
+            />
           )}
         </div>
       </div>

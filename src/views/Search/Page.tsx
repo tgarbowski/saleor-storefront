@@ -99,7 +99,7 @@ const Page: React.FC<PageProps> = ({
                   <TextField
                     autoFocus
                     label={intl.formatMessage({
-                      defaultMessage: "Search term:",
+                      defaultMessage: "Szukany produkt:",
                     })}
                     onChange={change}
                     value={value}
@@ -129,7 +129,17 @@ const Page: React.FC<PageProps> = ({
           onChange={onOrder}
           onCloseFilterAttribute={onAttributeFiltersChange}
         />
-        {canDisplayProducts && (
+        {!displayLoader && !hasProducts ? (
+          <>
+            <h3 className="NotFoundProductsTitle">
+              Przepraszamy, ale nie znaleziono produktów
+            </h3>
+            <ProductsFeatured
+              products={featuredProducts}
+              title={intl.formatMessage(commonMessages.youMightLike)}
+            />
+          </>
+        ) : (
           <ProductList
             products={products.edges.map(edge => edge.node)}
             canLoadMore={hasNextPage}
@@ -138,13 +148,6 @@ const Page: React.FC<PageProps> = ({
           />
         )}
       </div>
-
-      {!hasProducts && (
-        <ProductsFeatured
-          products={featuredProducts}
-          title={intl.formatMessage(commonMessages.youMightLike)}
-        />
-      )}
     </div>
   );
 };

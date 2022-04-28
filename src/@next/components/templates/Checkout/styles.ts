@@ -58,5 +58,5 @@ export const CartSummary = styled.div`
 `;
 export const Button = styled.div`
   grid-area: button;
-  margin: 3rem 0 0 0;
+  margin: 4rem 0 0 0;
 `;

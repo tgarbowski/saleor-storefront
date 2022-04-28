@@ -66,6 +66,8 @@
 
     svg {
       width: 6rem;
+      object-fit: cover;
+      height: auto;
 
       @media (min-width: $small-screen) {
         width: 10rem;
@@ -96,7 +98,7 @@
       transition: 0.3s;
 
       &:hover {
-        color: $white;
+        color: $primary;
       }
     }
   }
@@ -135,13 +137,7 @@
     &--hover {
       svg {
         path {
-          fill: $turquoise;
-          @if $env == "FASHION4YOU" {
-            fill: $primary;
-          }
-          @if $env == "CLOTHES4U" {
-            fill: $red;
-          }
+          fill: $primary;
         }
       }
     }
@@ -188,12 +184,8 @@
 
   &__user {
     &--active * {
-      fill: $turquoise;
+      fill: $primary;
       fill-rule: $primaryLight;
-
-      @if $env == "FASHION4YOU" {
-        fill: $green;
-      }
     }
   }
 
@@ -268,11 +260,32 @@
     &--active {
       background-color: $turquoise-light;
       transition: 0.3s all ease-in-out;
+
+      & > li > a {
+        color: $black;
+        @if $env == "FASHION4YOU" {
+          color: $white;
+        }
+        @if $env == "CLOTHES4U" {
+          color: $white;
+        }
+        &:hover {
+          color: $black;
+          @if $env == "FASHION4YOU" {
+            color: $white;
+          }
+          @if $env == "CLOTHES4U" {
+            color: $white;
+          }
+        }
+      }
       @if $env == "FASHION4YOU" {
+        color: $white;
         background-color: $primary;
       }
       @if $env == "CLOTHES4U" {
-        background-color: $red;
+        color: $white;
+        background-color: $primary;
       }
     }
 
@@ -322,7 +335,7 @@
 
           &:before {
             content: "";
-            background: $turquoise;
+            background: $primary;
             display: block;
             position: absolute;
             bottom: -5px;
@@ -330,13 +343,6 @@
             width: 0;
             height: 2px;
             transition: all 0.3s ease-in-out;
-
-            @if $env == "CLOTHES4U" {
-              background: $red;
-            }
-            @if $env == "FASHION4YOU" {
-              background: $green;
-            }
           }
           &:hover {
             background-position: 0;
@@ -379,7 +385,7 @@
 
             &:before {
               content: "";
-              background: $turquoise;
+              background: $primary;
               display: block;
               position: absolute;
               bottom: -5px;
@@ -387,13 +393,6 @@
               width: 0;
               height: 2px;
               transition: all 0.3s ease-in-out;
-
-              @if $env == "CLOTHES4U" {
-                background: $red;
-              }
-              @if $env == "FASHION4YOU" {
-                background: $green;
-              }
             }
             &:hover {
               background-position: 0;

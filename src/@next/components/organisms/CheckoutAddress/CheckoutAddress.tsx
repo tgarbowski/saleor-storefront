@@ -34,6 +34,7 @@ const CheckoutAddress: React.FC<IProps> = ({
   shippingErrors,
   billingErrors,
   newAddressFormId,
+  handleInvoiceChange,
 }: IProps) => {
   return (
     <S.Wrapper>
@@ -73,6 +74,7 @@ const CheckoutAddress: React.FC<IProps> = ({
                 }
                 includeEmail
                 errors={shippingErrors}
+                handleInvoiceChange={handleInvoiceChange}
               />
             )}
           </section>

@@ -42,7 +42,7 @@ $drawer-width: 25rem;
       display: flex;
       flex-direction: row;
       align-items: center;
-      height: 95px;
+      height: 93px;
 
       &:focus {
         box-shadow: none;
@@ -121,6 +121,9 @@ $drawer-width: 25rem;
       padding: $spacer 0;
       background-color: $white;
       width: 100vw;
+      justify-content: center;
+      display: flex;
+      align-items: center;
 
       @media (min-width: $large-screen) {
         width: 25rem;

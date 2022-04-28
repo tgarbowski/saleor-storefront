@@ -1,8 +1,13 @@
 import { VariantAttributeScope } from "@saleor/sdk";
 import { GetStaticPaths, GetStaticProps } from "next";
 
-import { apiUrl, channelSlug, staticPathsFallback } from "@temp/constants";
-import { getSaleorApi } from "@utils/ssr";
+import {
+  apiUrl,
+  channelSlug,
+  staticPathsFallback,
+  staticPathsFetchBatch,
+} from "@temp/constants";
+import { exhaustList, getSaleorApi } from "@utils/ssr";
 
 import { ProductPage, ProductPageProps } from "../../views/Product";
 
@@ -10,7 +15,19 @@ export default ProductPage;
 
 export const getStaticPaths: GetStaticPaths<ProductPageProps["params"]> =
   async () => {
-    return { paths: [], fallback: staticPathsFallback };
+    const { api } = await getSaleorApi();
+    const { data } = await exhaustList(
+      api.products.getList({
+        first: 50,
+        channel: channelSlug,
+      }),
+      staticPathsFetchBatch
+    );
+
+    const paths = data.map(({ slug }) => ({
+      params: { slug },
+    }));
+    return { paths, fallback: staticPathsFallback };
   };
 
 export const getStaticProps: GetStaticProps<

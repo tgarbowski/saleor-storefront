@@ -25,3 +25,12 @@ export const TileTitle = styled.span`
 export const Price = styled.span`
   color: #21125e;
 `;
+
+export const PointName = styled.div`
+  margin-top: 4rem;
+`;
+
+export const PointNameText = styled.p`
+  font-weight: 600;
+  margin-top: 1rem;
+`;

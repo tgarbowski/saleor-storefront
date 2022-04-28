@@ -1,6 +1,7 @@
-import React, { useCallback } from "react";
-import { useIntl } from "react-intl";
+import React, { useCallback, useEffect, useState } from "react";
+import { FormattedMessage, useIntl } from "react-intl";
 
+import { Checkbox } from "@components/atoms";
 import { InputSelect, TextField } from "@components/molecules";
 import { commonMessages } from "@temp/intl";
 
@@ -20,7 +21,9 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
   setFieldValue,
   testingContext,
   includeEmail = false,
+  handleInvoiceChange,
 }) => {
+  const [showInvoiceVat, setShowInvoiceVat] = useState(false);
   const basicInputProps = useCallback(
     () => ({ onBlur: handleBlur, onChange: handleChange }),
     [handleChange, handleBlur]
@@ -35,6 +38,16 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
         : [{ message }];
     });
   }
+
+  const handleChangeShowShowInvoiceVat = () => {
+    setShowInvoiceVat(!showInvoiceVat);
+  };
+
+  useEffect(() => {
+    if (handleInvoiceChange) {
+      handleInvoiceChange(showInvoiceVat);
+    }
+  }, [showInvoiceVat]);
 
   return (
     <S.AddressForm
@@ -63,16 +76,6 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
           />
         </S.RowWithTwoCells>
         <S.RowWithTwoCells>
-          <TextField
-            name="companyName"
-            label={intl.formatMessage({
-              defaultMessage: "Nazwa firmy (opcjonalnie)",
-            })}
-            value={values!.companyName}
-            autoComplete="organization"
-            errors={fieldErrors!.companyName}
-            {...basicInputProps()}
-          />
           <TextField
             name="phone"
             label={intl.formatMessage(commonMessages.phone)}
@@ -156,6 +159,36 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
               value={values!.email}
               autoComplete="email"
               errors={fieldErrors!.email}
+              {...basicInputProps()}
+            />
+          </S.RowWithTwoCells>
+        )}
+        <Checkbox
+          data-test="addInvoiceVatCheckbox"
+          name="invoice-vat-checkbox"
+          checked={showInvoiceVat}
+          onChange={handleChangeShowShowInvoiceVat}
+        >
+          <FormattedMessage defaultMessage="Czy chcesz otrzymać fakture VAT?" />
+        </Checkbox>
+        {showInvoiceVat && (
+          <S.RowWithTwoCells>
+            <TextField
+              name="vatId"
+              label={intl.formatMessage({ defaultMessage: "NIP" })}
+              value={values!.vatId}
+              autoComplete="vatId"
+              errors={fieldErrors!.vatId}
+              {...basicInputProps()}
+            />
+            <TextField
+              name="companyName"
+              label={intl.formatMessage({
+                defaultMessage: "Nazwa firmy",
+              })}
+              value={values!.companyName}
+              autoComplete="organization"
+              errors={fieldErrors!.companyName}
               {...basicInputProps()}
             />
           </S.RowWithTwoCells>

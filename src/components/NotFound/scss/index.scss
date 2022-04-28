@@ -8,7 +8,7 @@
   text-align: center;
   padding: $spacer * 2 $spacer;
 
-  &-container { 
+  &-container {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -32,7 +32,7 @@
       justify-content: space-between;
       gap: 0;
     }
-    
+
     &-left {
       text-align: left;
       width: 50%;
@@ -47,7 +47,7 @@
       .not-found-page-container-text,
       .not-found-page-container-text-second {
         font-size: 54px;
-        color: $green;
+        color: $primary;
         font-weight: bold;
         line-height: 108%;
 
@@ -62,9 +62,6 @@
         margin: 20px 0 30px 0;
         font-size: 18px;
         color: $gray-light-2;
-      }
-      .not-found-page-container-button {
-        margin-left: 24px;
       }
     }
     &-right {

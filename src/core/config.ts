@@ -44,12 +44,24 @@ export const STATIC_PAGES = [
 export const SOCIAL_MEDIA = [
   {
     ariaLabel: "facebook",
-    href: "https://www.facebook.com/salingopl/",
+    href: `${
+      shopName === "FASHION4YOU"
+        ? "https://www.facebook.com/Fashion4you-107849631906695"
+        : shopName === "CLOTHES4U"
+        ? "Clothes4You"
+        : "https://www.facebook.com/salingopl/"
+    }`,
     path: require("../images/facebook-icon.svg"),
   },
   {
     ariaLabel: "instagram",
-    href: "https://www.instagram.com/salingo.pl/",
+    href: `${
+      shopName === "FASHION4YOU"
+        ? "https://www.instagram.com/fashion4youpl"
+        : shopName === "CLOTHES4U"
+        ? "Clothes4You"
+        : "https://www.facebook.com/salingopl/"
+    }`,
     path: require("../images/instagram-icon.svg"),
   },
 ];

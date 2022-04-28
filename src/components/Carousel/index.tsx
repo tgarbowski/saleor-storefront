@@ -3,11 +3,8 @@ import * as React from "react";
 import Media from "react-media";
 import ReactSVG from "react-svg";
 
-import { shopName } from "@temp/constants";
-
-import arrowImg from "../../images/carousel-arrow.svg";
-import arrowImgC4U from "../../images/carousel-arrow-c4u.svg";
-import arrowImgF4U from "../../images/carousel-arrow-f4u.svg";
+import arrowLeft from "../../images/left-arrow.svg";
+import arrowRight from "../../images/right-arrow.svg";
 
 import "./scss/index.scss";
 import {
@@ -29,15 +26,7 @@ const Carousel: React.FC<CarouselType> = ({ children, ...rest }) => {
           onClick={previousSlide}
           className="carousel__control carousel__control--left"
         >
-          <ReactSVG
-            path={
-              shopName === "FASHION4YOU"
-                ? arrowImgF4U
-                : shopName === "CLOTHES4U"
-                ? arrowImgC4U
-                : arrowImg
-            }
-          />
+          <ReactSVG path={arrowLeft} />
         </div>
       ) : null,
     renderCenterRightControls: ({
@@ -51,15 +40,7 @@ const Carousel: React.FC<CarouselType> = ({ children, ...rest }) => {
           onClick={nextSlide}
           className="carousel__control carousel__control--right"
         >
-          <ReactSVG
-            path={
-              shopName === "FASHION4YOU"
-                ? arrowImgF4U
-                : shopName === "CLOTHES4U"
-                ? arrowImgC4U
-                : arrowImg
-            }
-          />
+          <ReactSVG path={arrowRight} />
         </div>
       ) : null,
     ...rest,

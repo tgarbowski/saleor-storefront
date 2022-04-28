@@ -25,7 +25,8 @@ export const Primary = styled.button<{
   outline: none;
   cursor: pointer;
   color: ${props => props.theme.button.colors[props.color].color};
-  width: ${props => (props.fullWidth ? "100%" : "auto")}
+  width: ${props => (props.fullWidth ? "100%" : "auto")};
+  border-radius: 45px;
 
   &:hover {
     background-color: ${props =>

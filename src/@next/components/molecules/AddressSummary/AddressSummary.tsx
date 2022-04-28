@@ -9,7 +9,7 @@ import { IProps } from "./types";
 /**
  * Address summary
  */
-const AddressSummary: React.FC<IProps> = ({ address, email }: IProps) => {
+const AddressSummary: React.FC<IProps> = ({ address, email, nip }: IProps) => {
   if (address) {
     return (
       <S.Wrapper data-test="addressTile">
@@ -17,7 +17,14 @@ const AddressSummary: React.FC<IProps> = ({ address, email }: IProps) => {
         <br />
         {address.companyName && (
           <>
-            {address.companyName} <br />
+            Nazwa firmy: {address.companyName} <br />
+          </>
+        )}
+        {nip !== "" && (
+          <>
+            NIP:
+            {nip}
+            <br />
           </>
         )}
         {address.streetAddress1}

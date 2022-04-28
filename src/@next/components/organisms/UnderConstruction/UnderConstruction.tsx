@@ -1,9 +1,11 @@
-import React from "react";
+import React from 'react';
 
-import Logo from "@styles/Logo";
-import UnderConstructionImg from "@styles/UnderConstructionImage";
+import Logo from '@styles/Logo';
+import UnderConstructionImg from '@styles/UnderConstructionImage';
+import { SOCIAL_MEDIA } from '@temp/core/config';
 
-import * as S from "./styles";
+import SocialMediaIcon from '../../../../components/SocialMediaIcon/index';
+import * as S from './styles';
 
 export const UnderConstruction = () => {
   return (
@@ -20,6 +22,11 @@ export const UnderConstruction = () => {
       <S.UnderConstructionTextSmall>
         Pozdrawiamy - zespół Fashion4You
       </S.UnderConstructionTextSmall>
+      <S.SocialMediaSection>
+        {SOCIAL_MEDIA.map(medium => (
+          <SocialMediaIcon medium={medium} key={medium.ariaLabel} />
+        ))}
+      </S.SocialMediaSection>
       <S.UnderConstructionPeopleImg src={UnderConstructionImg} alt="" />
     </S.UnderConstructionWrapper>
   );
