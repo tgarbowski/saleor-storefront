@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FormattedMessage } from "react-intl";
 
 import { ErrorMessage, Radio } from "@components/atoms";
@@ -46,34 +46,33 @@ const CheckoutShipping: React.FC<IProps> = ({
 }) => {
   const [pointName, setPointName] = useState(``);
   const [isShowMap, setShowMap] = useState<boolean>(false);
-  const styleHidden = { height: "500px", visibility: "hidden" };
+  const styleHidden = { height: "500px", position: "absolute", left: "-999px" };
   const styleShown = { height: "500px" };
 
-  useEffect(() => {
-    const getLocation = () => {
-      window.easyPackAsyncInit = () => {
-        window.easyPack.init({
-          instance: "pl",
-          mapType: "osm",
-          searchType: "osm",
-          points: {
-            types: ["parcel_locker"],
-          },
-          map: {
-            useGeolocation: true,
-            initialTypes: ["parcel_locker"],
-          },
-        });
-        window.easyPack.mapWidget("easypack-map", (point: Point) => {
-          setPointName(`Wybrany paczkomat: ${point.name}`);
-          if (setLockerId) {
-            setLockerId(point.name);
-          }
-        });
-      };
+  const getLocation = () => {
+    window.easyPackAsyncInit = () => {
+      window.easyPack.init({
+        instance: "pl",
+        mapType: "osm",
+        searchType: "osm",
+        points: {
+          types: ["parcel_locker"],
+        },
+        map: {
+          useGeolocation: true,
+          initialTypes: ["parcel_locker"],
+        },
+      });
+      window.easyPack.mapWidget("easypack-map", (point: Point) => {
+        setPointName(`Wybrany paczkomat: ${point.name}`);
+        if (setLockerId) {
+          setLockerId(point.name);
+        }
+      });
     };
-    getLocation();
-  }, []);
+  };
+
+  window.setTimeout(getLocation, 1500);
 
   return (
     <section>
