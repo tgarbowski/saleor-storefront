@@ -51,7 +51,7 @@ export const OrderTable: React.FC<IProps> = ({ orders, isGuest }: IProps) => {
         {(matches: boolean) => {
           return (
             <>
-              <S.Row>{header(matches)}</S.Row>
+              <S.HeaderRow>{header(matches)}</S.HeaderRow>
               {orders.map(
                 ({ created, token, number, lines, total, statusDisplay }) => {
                   const date = new Date(created);
@@ -75,16 +75,17 @@ export const OrderTable: React.FC<IProps> = ({ orders, isGuest }: IProps) => {
                           <>
                             <S.ProductsOrdered>
                               {lines.slice(0, 5).map(line => (
-                                <Link
-                                  href={generatePath(paths.product, {
-                                    slug: line!.variant!.product.slug,
-                                  })}
-                                  key={line!.variant!.product.id}
-                                >
-                                  <a>
-                                    <Thumbnail source={line!} />
-                                  </a>
-                                </Link>
+                                // <Link
+                                //   href={generatePath(paths.product, {
+                                //     slug: line!.variant!.product.slug,
+                                //   })}
+                                //   key={line!.variant!.product.id}
+                                // >
+                                //   <a>
+                                //     <Thumbnail source={line!} />
+                                //   </a>
+                                // </Link>
+                                <Thumbnail source={line!} />
                               ))}
                             </S.ProductsOrdered>
                             <S.DateOfOrder>
