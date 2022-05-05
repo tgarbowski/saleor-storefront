@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
   border-radius: 5px;
   padding: 1rem;
   text-align: center;
-  height: 26rem;
+  height: 29rem;
   display: flex;
   flex-direction: column;
   transition: 0.3s;
@@ -33,7 +33,10 @@ export const Wrapper = styled.div`
 export const Title = styled.h4`
   text-transform: uppercase;
   font-weight: normal;
-  ${textProps}
+  font-size: 1rem;
+  margin: 0 0 0.5rem 0;
+  text-align: center;
+  word-break: break-all;
 `;
 
 export const Price = styled.p`
