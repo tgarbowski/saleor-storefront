@@ -1,16 +1,19 @@
-import { media, styled } from "@styles";
+import { styled } from "@styles";
 
-export const Wrapper = styled.div``;
-
-export const Row = styled.div`
-  display: flex;
+export const Wrapper = styled.div`
   width: 100%;
-  flex-direction: row;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
+  overflow-x: auto;
+`;
+
+export const TableHead = styled.thead`
+  background: #fafafa;
+`;
+
+export const Row = styled.tr`
   height: 5rem;
   cursor: pointer;
+  width: 100%;
+  text-align: center;
 
   border-bottom: 1px solid ${props => props.theme.colors.tableDivider};
 
@@ -26,17 +29,15 @@ export const HeaderRow = styled(Row as any)`
   }
 `;
 
-export const IndexNumber = styled.div`
-  width: 15%;
-  ${media.smallScreen`
-     width: 50%;
-  `}
+export const IndexNumber = styled.td`
+  white-space: nowrap;
+  text-align: center;
 `;
-export const ProductsOrdered = styled.div`
-  width: 25%;
+export const ProductsOrdered = styled.td`
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
+  white-space: nowrap;
 
   img {
     max-width: 50px;
@@ -44,15 +45,15 @@ export const ProductsOrdered = styled.div`
     height: auto;
   }
 `;
-export const DateOfOrder = styled.div`
-  width: 25%;
+export const DateOfOrder = styled.td`
+  white-space: nowrap;
+  text-align: center;
 `;
-export const Value = styled.div`
-  width: 10%;
+export const Value = styled.td`
+  white-space: nowrap;
+  text-align: center;
 `;
-export const Status = styled.div`
-  width: 25%;
-  ${media.smallScreen`
-     width: 50%;
-  `}
+export const Status = styled.td`
+  white-space: nowrap;
+  text-align: center;
 `;
