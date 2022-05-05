@@ -13,11 +13,17 @@ export const Row = styled.div`
   cursor: pointer;
 
   border-bottom: 1px solid ${props => props.theme.colors.tableDivider};
-`;
 
-export const HeaderRow = styled(Row)`
+  &:hover {
+    background-color: #f2f2f2;
+  }
+`;
+export const HeaderRow = styled(Row as any)`
   color: ${props => props.theme.colors.lightFont};
   cursor: default;
+  &:hover {
+    background: none;
+  }
 `;
 
 export const IndexNumber = styled.div`
