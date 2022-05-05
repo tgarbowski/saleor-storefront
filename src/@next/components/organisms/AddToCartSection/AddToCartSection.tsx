@@ -258,6 +258,9 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
         został wykupiony"
           title="Informacja"
           buttonText="Zamknij okno"
+          onClose={() => {
+            window.location.reload();
+          }}
         />
       )}
       <Accordion items={accordionItems} />
