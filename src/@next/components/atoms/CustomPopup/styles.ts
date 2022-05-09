@@ -1,4 +1,4 @@
-import { styled } from "@styles";
+import { media, styled } from "@styles";
 
 export const CustomModal = styled.div`
   position: fixed;
@@ -27,6 +27,10 @@ export const CustomModalContent = styled.div`
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+
+  ${media.largeScreen`
+   width: 90%;
+  `}
 `;
 
 export const CustomModalCloseButton = styled.p`
