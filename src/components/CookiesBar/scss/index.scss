@@ -1,0 +1,53 @@
+@import "../../../globalStyles/scss/variables.scss";
+
+.cookies-box.active {
+  position: fixed;
+  bottom: 19px;
+  left: 20px;
+  z-index: 1000;
+  background: $white;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 10px;
+  text-align: center;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 5px;
+  max-width: 686px;
+  word-break: break-word;
+
+  .cookie-btn {
+    padding: 7px 14px;
+    background: $primary;
+    color: $white;
+    margin-top: 1rem;
+  }
+
+  img {
+    height: 110px;
+    animation: image 10s linear infinite;
+  }
+  h3 {
+    color: #333;
+    font-size: 23px;
+    padding: 5px 0;
+  }
+  p {
+    color: #333;
+    font-size: 13px;
+    padding: 5px 0;
+    line-height: 1.8;
+  }
+}
+
+.cookies-box {
+  display: none;
+}
+
+@keyframes image {
+  0% {
+    transform: rotate(360deg);
+  }
+}
