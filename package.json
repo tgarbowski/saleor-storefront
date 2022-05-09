@@ -29,6 +29,7 @@
     "braintree-web": "^3.82.0",
     "caniuse-lite": "^1.0.30001324",
     "classnames": "^2.3.1",
+    "cookies-next": "^2.0.4",
     "core-js": "^2.6.12",
     "cross-env": "^5.2.0",
     "dompurify": "^2.3.3",
