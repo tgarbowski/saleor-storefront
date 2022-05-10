@@ -61,9 +61,9 @@ const CheckoutReview: React.FC<IProps> = ({
           </S.TextSummary>
         </section>
         <S.CustomerNoteContainer>
-          <S.SubTitle>
+          {/* <S.SubTitle>
             <FormattedMessage defaultMessage="Notatka do zamówienia" />
-          </S.SubTitle>
+          </S.SubTitle> */}
           <S.Divider />
           <S.TextSummary data-test="paymentMethodName">
             {noteRef.current}

@@ -27,7 +27,7 @@ const CheckoutPayment: React.FC<IProps> = ({
     !!promoCodeDiscount?.voucherCode
   );
 
-  const [inputValue, setInputValue] = useState("");
+  // const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     const isVoucherCode = !!promoCodeDiscount?.voucherCode;
@@ -53,9 +53,9 @@ const CheckoutPayment: React.FC<IProps> = ({
     }
   };
 
-  useEffect(() => {
-    noteRef.current = inputValue;
-  }, [inputValue]);
+  // useEffect(() => {
+  //   noteRef.current = inputValue;
+  // }, [inputValue]);
 
   return (
     <S.Wrapper>
@@ -83,7 +83,7 @@ const CheckoutPayment: React.FC<IProps> = ({
           </S.DiscountField>
         )}
         <S.Divider />
-        <S.CustomerNote>
+        {/* <S.CustomerNote>
           <FormattedMessage defaultMessage="Uwagi do zamówienia: (opcjonalnie)" />
           <S.InputCustomerNote
             onChange={e => setInputValue(e.target.value)}
@@ -92,7 +92,7 @@ const CheckoutPayment: React.FC<IProps> = ({
             maxLength={1000}
           />
         </S.CustomerNote>
-        <S.Divider />
+        <S.Divider /> */}
       </section>
     </S.Wrapper>
   );
