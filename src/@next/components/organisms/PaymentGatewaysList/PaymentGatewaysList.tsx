@@ -7,9 +7,10 @@ import {
   AdyenPaymentGateway,
   BraintreePaymentGateway,
   DummyPaymentGateway,
-  StripePaymentGateway,
+  StripePaymentGateway
 } from "..";
 import { PayuPaymentGateway } from "../PayuPaymentGateway";
+import { CodPaymentGateway } from "../CodPaymentGateway";
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -90,6 +91,36 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                 </S.Tile>
                 {checked && (
                   <DummyPaymentGateway
+                    formRef={formRef}
+                    formId={formId}
+                    processPayment={token => processPayment(id, token)}
+                    initialStatus={selectedPaymentGatewayToken}
+                  />
+                )}
+              </div>
+            );
+          
+          case PROVIDERS.COD.label:
+            return (
+              <div key={index}>
+                <S.Tile checked={checked}>
+                  <Radio
+                    data-test="checkoutPaymentGatewayCodInput"
+                    name="payment-method"
+                    value="cod"
+                    checked={checked}
+                    onChange={() =>
+                      selectPaymentGateway && selectPaymentGateway(id)
+                    }
+                    customLabel
+                  >
+                    <span data-test="checkoutPaymentGatewayCodName">
+                      {name}
+                    </span>
+                  </Radio>
+                </S.Tile>
+                {checked && (
+                  <CodPaymentGateway
                     formRef={formRef}
                     formId={formId}
                     processPayment={token => processPayment(id, token)}
