@@ -104,7 +104,8 @@ const CheckoutPage: React.FC<NextPage> = () => {
   const noteRef = useRef(null);
 
   const checkoutSubpage = useMemo(() => {
-    const reviewStep = selectedPaymentGateway === "salingo.payments.payu" ?
+    const reviewStep =
+      selectedPaymentGateway === "salingo.payments.payu" ? (
         <TypedGeneratePaymentUrl variables={generatePaymentUrlVariables}>
           {({ ...urlData }) => (
             <CheckoutReviewSubpage
@@ -116,14 +117,14 @@ const CheckoutPage: React.FC<NextPage> = () => {
             />
           )}
         </TypedGeneratePaymentUrl>
-        :
+      ) : (
         <CheckoutReviewSubpage
-              {...pageProps}
-              paymentGatewayFormRef={checkoutGatewayFormRef}
-              selectedPaymentGatewayToken={selectedPaymentGatewayToken}
-              noteRef={noteRef}
+          {...pageProps}
+          paymentGatewayFormRef={checkoutGatewayFormRef}
+          selectedPaymentGatewayToken={selectedPaymentGatewayToken}
+          noteRef={noteRef}
         />
-
+      );
 
     const subpageMapping: Partial<Record<CheckoutStep, JSX.Element>> = {
       [CheckoutStep.Address]: <CheckoutAddressSubpage {...pageProps} />,
