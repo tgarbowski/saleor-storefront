@@ -24,7 +24,12 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
   SubpageCompleteHandler,
   CheckoutPaymentSubpageProps
 > = (
-  { paymentGatewayFormRef, changeSubmitProgress, onPaymentGatewayError, noteRef },
+  {
+    paymentGatewayFormRef,
+    changeSubmitProgress,
+    onPaymentGatewayError,
+    noteRef,
+  },
   ref
 ) => {
   const { promoCodeDiscount, addPromoCode, removePromoCode } = useCheckout();

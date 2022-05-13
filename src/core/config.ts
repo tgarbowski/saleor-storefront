@@ -19,6 +19,9 @@ export const PROVIDERS = {
   PAYU: {
     label: "PayU",
   },
+  COD: {
+    label: "Cod",
+  },
   ADYEN: {
     label: "Adyen",
     script: {
