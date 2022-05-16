@@ -1,8 +1,10 @@
 import { useCheckout } from "@saleor/sdk";
 import React, { useEffect } from "react";
+import { FormattedMessage } from "react-intl";
 
 import { ErrorMessage, Radio } from "@components/atoms";
 import { PROVIDERS } from "@temp/core/config";
+import { commonMessages } from "@temp/intl";
 
 import {
   AdyenPaymentGateway,
@@ -66,7 +68,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                       customLabel
                     >
                       <span data-test="checkoutPaymentGatewayCodName">
-                        {name}
+                        <FormattedMessage {...commonMessages.cod} />
                       </span>
                     </Radio>
                   </S.Tile>
