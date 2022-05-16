@@ -1,4 +1,4 @@
-import { OrderStatus } from "@saleor/sdk";
+import { OrderStatus, useCheckout } from "@saleor/sdk";
 import Link from "next/link";
 import React from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
@@ -32,6 +32,8 @@ const ThankYou: React.FC<IProps> = ({
   continueShoppingUrl,
   orderDetailsUrl,
 }: IProps) => {
+  const { checkout } = useCheckout();
+
   return (
     <Container data-test="thankYouView">
       <S.Wrapper>
@@ -42,9 +44,13 @@ const ThankYou: React.FC<IProps> = ({
             <FormattedMessage defaultMessage="za twoje zamówienie!" />
           </span>
           <br />
-          <div id="payuLabel">
-            <FormattedMessage defaultMessage="Za chwile zostaniesz przekierowany na stronę PayU ..." />
-          </div>
+          {checkout?.shippingMethod?.id === "U2hpcHBpbmdNZXRob2Q6NjU=" ? (
+            <p> </p>
+          ) : (
+            <div id="payuLabel">
+              <FormattedMessage defaultMessage="Za chwile zostaniesz przekierowany na stronę PayU ..." />
+            </div>
+          )}
         </S.ThankYouHeader>
         <S.Paragraph>
           <FormattedMessage defaultMessage="Numer twojego zamówienia" />{" "}

@@ -113,10 +113,12 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
           orderNumber: data?.order?.number,
           token: data?.order?.token,
         });
-        setTimeout(() => {
-          window.open(payuUrl, "_blank", "noopener,noreferrer");
-          // @ts-ignore
-        }, 2000);
+        if (payment?.gateway === paymentGatewayNames.payu) {
+          setTimeout(() => {
+            window.open(payuUrl, "_blank", "noopener,noreferrer");
+            // @ts-ignore
+          }, 2000);
+        }
       }
     }
   });
