@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 
 import { ErrorMessage, Radio } from "@components/atoms";
@@ -72,7 +72,11 @@ const CheckoutShipping: React.FC<IProps> = ({
     };
   };
 
-  window.setTimeout(getLocation, 1500);
+  useEffect(() => {
+    setTimeout(() => {
+      getLocation();
+    }, 1500);
+  }, []);
 
   return (
     <section>
