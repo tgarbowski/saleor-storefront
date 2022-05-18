@@ -59,13 +59,11 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
 
         if (shippingMethodId === "U2hpcHBpbmdNZXRob2Q6NjQ=") {
           if (lockerId === null || lockerId === "") {
-            return (
-              <CustomPopup
-                modalText="Musisz wybrać paczkomat"
-                title="Informacja"
-                buttonText="Zamknij okno"
-              />
-            );
+            <CustomPopup
+              modalText="Musisz wybrać paczkomat"
+              title="Informacja"
+              buttonText="Zamknij okno"
+            />;
           } else {
             onSubmitSuccess(CheckoutStep.Shipping);
           }
