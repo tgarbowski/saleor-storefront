@@ -1,42 +1,41 @@
-import { getCookie, setCookies } from 'cookies-next';
-import React, { useEffect, useRef } from 'react';
-
-import './scss/index.scss';
+import React from "react";
+import CookieConsent from "react-cookie-consent";
 
 const CookiesBar = () => {
-  const cookieContainer = useRef(null);
-  const cookieButton = useRef(null);
-
-  const handleClose = () => {
-    cookieContainer.current.classList.remove("active");
-    setCookies("cookieBannerDisplayed", "true");
-  };
-
-  useEffect(() => {
-    cookieButton.current.addEventListener("click", () => {
-      cookieContainer.current.classList.remove("active");
-      setCookies("cookieBannerDisplayed", "true");
-    });
-    setTimeout(() => {
-      if (!getCookie("cookieBannerDisplayed")) {
-        cookieContainer.current.classList.add("active");
-      }
-    }, 3000);
-    return cookieButton.current.removeEventListener("click", handleClose);
-  }, []);
-
   return (
-    <div className="cookies-box" ref={cookieContainer}>
-      <p>
-        Ta strona używa plików cookie, aby zapewnić Ci jak najlepsze z
-        korzystanie z jej funkcjonalności. Aby dowiedzieć się więcej, zapoznaj
-        się z naszą polityką prywatności i plikami cookie.
-      </p>
-
-      <button className="cookie-btn" ref={cookieButton}>
-        Zrozumiałem
-      </button>
-    </div>
+    <CookieConsent
+      buttonText="Zrozumiałem"
+      expires={150}
+      disableStyles
+      location="bottom"
+      style={{
+        position: "fixed",
+        bottom: "20px",
+        left: "20px",
+        zIndex: "1000",
+        background: "#fff",
+        boxShadow: "0px 10px 15px rgba(0, 0, 0, 0.1)",
+        textAlign: "center",
+        padding: "30px",
+        borderRadius: "5px",
+        maxWidth: "686px",
+        wordBreak: " break-word",
+        display: "block",
+        color: "black",
+      }}
+      cookieName="cookieBannerDisplayed"
+      buttonStyle={{
+        padding: "7px 14px",
+        background: "#65c947",
+        color: "#fff",
+        marginTop: "2rem",
+      }}
+      sameSite="strict"
+    >
+      Ta strona używa plików cookie, aby zapewnić Ci jak najlepsze z korzystanie
+      z jej funkcjonalności. Aby dowiedzieć się więcej, zapoznaj się z naszą
+      polityką prywatności i plikami cookie.
+    </CookieConsent>
   );
 };
 export default CookiesBar;
