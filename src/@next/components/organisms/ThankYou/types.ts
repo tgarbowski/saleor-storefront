@@ -6,4 +6,5 @@ export interface IProps {
   orderNumber: string;
   continueShoppingUrl: string | UrlObject;
   orderDetailsUrl: string | UrlObject;
+  shippingMethod: string;
 }

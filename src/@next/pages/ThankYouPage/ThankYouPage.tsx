@@ -10,12 +10,13 @@ import NotFound from "@temp/components/NotFound";
 import { IProps } from "./types";
 
 export const ThankYouPage: NextPage<IProps> = ({
-  query: { orderNumber, token, orderStatus },
+  query: { orderNumber, token, orderStatus, shippingMethod },
 }) => {
   const { user } = useAuth();
 
   return token && orderNumber && orderStatus ? (
     <ThankYou
+      shippingMethod={shippingMethod}
       continueShoppingUrl={paths.home}
       orderNumber={orderNumber}
       orderDetailsUrl={generatePath(

@@ -186,6 +186,7 @@ const CheckoutPage: React.FC<NextPage> = () => {
       orderStatus: order?.status,
       orderNumber: order?.number,
       token: order?.token,
+      shippingMethod: order?.shippingMethod?.id
     });
   };
 
@@ -262,6 +263,7 @@ const CheckoutPage: React.FC<NextPage> = () => {
           orderStatus: data?.order?.status,
           orderNumber: data?.order?.number,
           token: data?.order?.token,
+          shippingMethod: data?.order?.shippingMethod?.id
         });
       }
     } else {

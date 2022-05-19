@@ -6,11 +6,7 @@ import { ErrorMessage, Radio } from "@components/atoms";
 import { PROVIDERS } from "@temp/core/config";
 import { commonMessages } from "@temp/intl";
 
-import {
-  AdyenPaymentGateway,
-  BraintreePaymentGateway,
-  StripePaymentGateway,
-} from "..";
+import { AdyenPaymentGateway, StripePaymentGateway } from "..";
 import { CodPaymentGateway } from "../CodPaymentGateway";
 import { PayuPaymentGateway } from "../PayuPaymentGateway";
 import * as S from "./styles";
@@ -87,40 +83,6 @@ const PaymentGatewaysList: React.FC<IProps> = ({
           }
         } else {
           switch (name) {
-            case PROVIDERS.BRAINTREE.label:
-              return (
-                <div key={index}>
-                  <S.Tile checked={checked}>
-                    <Radio
-                      data-test="checkoutPaymentGatewayBraintreeInput"
-                      name="payment-method"
-                      value="credit-card"
-                      checked={checked}
-                      onChange={() =>
-                        selectPaymentGateway && selectPaymentGateway(id)
-                      }
-                      customLabel
-                    >
-                      <span data-test="checkoutPaymentGatewayBraintreeName">
-                        {name}
-                      </span>
-                    </Radio>
-                  </S.Tile>
-                  {checked && (
-                    <BraintreePaymentGateway
-                      config={config}
-                      formRef={formRef}
-                      formId={formId}
-                      processPayment={(token, cardData) =>
-                        processPayment(id, token, cardData)
-                      }
-                      errors={errors}
-                      onError={onError}
-                    />
-                  )}
-                </div>
-              );
-
             case PROVIDERS.STRIPE.label:
               return (
                 <div key={index}>
