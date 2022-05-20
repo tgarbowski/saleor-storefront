@@ -84,11 +84,11 @@ const App = ({
     <Head>
       <title>{META_DEFAULTS.title}</title>
       <link rel="preconnect" href={apiUrl} />
-      <link href="https://rsms.me/inter/inter.css" rel="preload" />
+      <link href="https://rsms.me/inter/inter.css"/>
       <link rel="icon" type="image/png" href={Favicon} />
       <link rel="manifest" href="/manifest.json" />
       <link
-        rel="preload"
+        rel="stylesheet"
         href="https://geowidget.easypack24.net/css/easypack.css"
       />
       <script
