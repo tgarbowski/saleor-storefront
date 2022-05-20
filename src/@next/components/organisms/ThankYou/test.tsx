@@ -14,6 +14,7 @@ describe("<ThankYou />", () => {
     orderNumber: "123",
     orderDetailsUrl: "/order/xyz",
     continueShoppingUrl: "/",
+    shippingMethod: "Kurier GLS, pobranie"
   };
 
   it("exists", () => {

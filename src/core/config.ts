@@ -7,9 +7,6 @@ import { shopName, ssrMode } from "@temp/constants";
 export const PRODUCTS_PER_PAGE = 8;
 export const SUPPORT_EMAIL = "support@example.com";
 export const PROVIDERS = {
-  BRAINTREE: {
-    label: "Braintree",
-  },
   DUMMY: {
     label: "Dummy",
   },

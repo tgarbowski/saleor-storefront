@@ -23,6 +23,7 @@ export interface ISubmitCheckoutData {
   orderNumber: string;
   token: string;
   orderStatus: OrderStatus;
+  shippingMethod: string;
 }
 
 interface CheckoutReviewSubpageProps extends SubpageBaseProps {
@@ -112,6 +113,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
           orderStatus: data?.order?.status,
           orderNumber: data?.order?.number,
           token: data?.order?.token,
+          shippingMethod: data?.order?.shippingMethod?.id
         });
         if (payment?.gateway === paymentGatewayNames.payu) {
           setTimeout(() => {

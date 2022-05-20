@@ -8,6 +8,7 @@ storiesOf("@components/organisms/ThankYou", module)
   .addParameters({ component: ThankYou })
   .add("default", () => (
     <ThankYou
+      shippingMethod="Kurier GLS, pobranie"
       orderStatus={OrderStatus.UNFULFILLED}
       orderNumber="#341414"
       continueShoppingUrl="/"
@@ -16,6 +17,7 @@ storiesOf("@components/organisms/ThankYou", module)
   ))
   .add("with order unfulfilled", () => (
     <ThankYou
+      shippingMethod="Kurier GLS, pobranie"
       orderStatus={OrderStatus.UNFULFILLED}
       orderNumber="#341414"
       continueShoppingUrl="/"
@@ -24,6 +26,7 @@ storiesOf("@components/organisms/ThankYou", module)
   ))
   .add("with order unconfirmed", () => (
     <ThankYou
+      shippingMethod="Kurier GLS, pobranie"
       orderStatus={OrderStatus.UNCONFIRMED}
       orderNumber="#341414"
       continueShoppingUrl="/"

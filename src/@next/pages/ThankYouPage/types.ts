@@ -5,5 +5,6 @@ export type IProps = {
     orderNumber?: string;
     token?: string;
     orderStatus?: OrderStatus;
+    shippingMethod: string;
   };
 };
