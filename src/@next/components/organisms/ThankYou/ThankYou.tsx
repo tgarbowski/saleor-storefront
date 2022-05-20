@@ -31,6 +31,7 @@ const ThankYou: React.FC<IProps> = ({
   orderNumber,
   continueShoppingUrl,
   orderDetailsUrl,
+  shippingMethod
 }: IProps) => {
   return (
     <Container data-test="thankYouView">
@@ -42,9 +43,15 @@ const ThankYou: React.FC<IProps> = ({
             <FormattedMessage defaultMessage="za twoje zamówienie!" />
           </span>
           <br />
-          <div id="payuLabel">
-            <FormattedMessage defaultMessage="Za chwile zostaniesz przekierowany na stronę PayU ..." />
-          </div>
+          {shippingMethod === "U2hpcHBpbmdNZXRob2Q6NjU=" ? (
+            <S.Paragraph>
+              <FormattedMessage defaultMessage="Zamówienie zostało pomyślnie przekazane do realizacji" />
+            </S.Paragraph>
+          ) : (
+            <div id="payuLabel">
+              <FormattedMessage defaultMessage="Za chwile zostaniesz przekierowany na stronę PayU ..." />
+            </div>
+          )}
         </S.ThankYouHeader>
         <S.Paragraph>
           <FormattedMessage defaultMessage="Numer twojego zamówienia" />{" "}

@@ -1,14 +1,13 @@
-import React from "react";
+import { useCheckout } from "@saleor/sdk";
+import React, { useEffect } from "react";
+import { FormattedMessage } from "react-intl";
 
 import { ErrorMessage, Radio } from "@components/atoms";
 import { PROVIDERS } from "@temp/core/config";
+import { commonMessages } from "@temp/intl";
 
-import {
-  AdyenPaymentGateway,
-  BraintreePaymentGateway,
-  DummyPaymentGateway,
-  StripePaymentGateway,
-} from "..";
+import { AdyenPaymentGateway, StripePaymentGateway } from "..";
+import { CodPaymentGateway } from "../CodPaymentGateway";
 import { PayuPaymentGateway } from "../PayuPaymentGateway";
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -29,184 +28,169 @@ const PaymentGatewaysList: React.FC<IProps> = ({
   errors,
   onError,
 }: IProps) => {
+  const { checkout } = useCheckout();
+
+  useEffect(() => {
+    if (paymentGateways) {
+      if (PROVIDERS.COD.label) {
+        selectPaymentGateway("salingo.payments.cod");
+        selectedPaymentGateway = "salingo.payments.cod";
+      } else {
+        selectPaymentGateway(paymentGateways[0].id);
+        selectedPaymentGateway = paymentGateways[0].id;
+      }
+    }
+  }, [paymentGateways]);
+
   return (
     <S.Wrapper>
       {paymentGateways.map(({ id, name, config }, index) => {
         const checked = selectedPaymentGateway === id;
 
-        switch (name) {
-          case PROVIDERS.BRAINTREE.label:
-            return (
-              <div key={index}>
-                <S.Tile checked={checked}>
-                  <Radio
-                    data-test="checkoutPaymentGatewayBraintreeInput"
-                    name="payment-method"
-                    value="credit-card"
-                    checked={checked}
-                    onChange={() =>
-                      selectPaymentGateway && selectPaymentGateway(id)
-                    }
-                    customLabel
-                  >
-                    <span data-test="checkoutPaymentGatewayBraintreeName">
-                      {name}
-                    </span>
-                  </Radio>
-                </S.Tile>
-                {checked && (
-                  <BraintreePaymentGateway
-                    config={config}
-                    formRef={formRef}
-                    formId={formId}
-                    processPayment={(token, cardData) =>
-                      processPayment(id, token, cardData)
-                    }
-                    errors={errors}
-                    onError={onError}
-                  />
-                )}
-              </div>
-            );
+        if (checkout?.shippingMethod?.id === "U2hpcHBpbmdNZXRob2Q6NjU=") {
+          switch (name) {
+            case PROVIDERS.COD.label:
+              return (
+                <div key={index}>
+                  <S.Tile checked={checked}>
+                    <Radio
+                      data-test="checkoutPaymentGatewayCodInput"
+                      name="payment-method"
+                      value="cod"
+                      checked={checked}
+                      onChange={() =>
+                        selectPaymentGateway && selectPaymentGateway(id)
+                      }
+                      customLabel
+                    >
+                      <span data-test="checkoutPaymentGatewayCodName">
+                        <FormattedMessage {...commonMessages.cod} />
+                      </span>
+                    </Radio>
+                  </S.Tile>
+                  {checked && (
+                    <CodPaymentGateway
+                      formRef={formRef}
+                      formId={formId}
+                      processPayment={token => processPayment(id, token)}
+                      initialStatus={selectedPaymentGatewayToken}
+                    />
+                  )}
+                </div>
+              );
+            default:
+              return null;
+          }
+        } else {
+          switch (name) {
+            case PROVIDERS.STRIPE.label:
+              return (
+                <div key={index}>
+                  <S.Tile checked={checked}>
+                    <Radio
+                      data-test="checkoutPaymentGatewayStripeInput"
+                      name="payment-method"
+                      value="stripe"
+                      checked={checked}
+                      onChange={() =>
+                        selectPaymentGateway && selectPaymentGateway(id)
+                      }
+                      customLabel
+                    >
+                      <span data-test="checkoutPaymentGatewayStripeName">
+                        {name}
+                      </span>
+                    </Radio>
+                  </S.Tile>
+                  {checked && (
+                    <StripePaymentGateway
+                      config={config}
+                      formRef={formRef}
+                      formId={formId}
+                      processPayment={(token, cardData) =>
+                        processPayment(id, token, cardData)
+                      }
+                      submitPayment={submitPayment}
+                      submitPaymentSuccess={submitPaymentSuccess}
+                      errors={errors}
+                      onError={onError}
+                    />
+                  )}
+                </div>
+              );
 
-          case PROVIDERS.DUMMY.label:
-            return (
-              <div key={index}>
-                <S.Tile checked={checked}>
-                  <Radio
-                    data-test="checkoutPaymentGatewayDummyInput"
-                    name="payment-method"
-                    value="dummy"
-                    checked={checked}
-                    onChange={() =>
-                      selectPaymentGateway && selectPaymentGateway(id)
-                    }
-                    customLabel
-                  >
-                    <span data-test="checkoutPaymentGatewayDummyName">
-                      {name}
-                    </span>
-                  </Radio>
-                </S.Tile>
-                {checked && (
-                  <DummyPaymentGateway
-                    formRef={formRef}
-                    formId={formId}
-                    processPayment={token => processPayment(id, token)}
-                    initialStatus={selectedPaymentGatewayToken}
-                  />
-                )}
-              </div>
-            );
+            case PROVIDERS.ADYEN.label:
+              return (
+                <div key={index}>
+                  <S.Tile checked={checked}>
+                    <Radio
+                      data-test="checkoutPaymentGatewayAdyenInput"
+                      name="payment-method"
+                      value="adyen"
+                      checked={checked}
+                      onChange={() =>
+                        selectPaymentGateway && selectPaymentGateway(id)
+                      }
+                      customLabel
+                    >
+                      <span data-test="checkoutPaymentGatewayAdyenName">
+                        {name}
+                      </span>
+                    </Radio>
+                  </S.Tile>
+                  {checked && (
+                    <AdyenPaymentGateway
+                      config={config}
+                      formRef={formRef}
+                      scriptConfig={PROVIDERS.ADYEN.script}
+                      styleConfig={PROVIDERS.ADYEN.style}
+                      processPayment={() => processPayment(id)}
+                      submitPayment={submitPayment}
+                      submitPaymentSuccess={submitPaymentSuccess}
+                      errors={errors}
+                      onError={onError}
+                    />
+                  )}
+                </div>
+              );
 
-          case PROVIDERS.STRIPE.label:
-            return (
-              <div key={index}>
-                <S.Tile checked={checked}>
-                  <Radio
-                    data-test="checkoutPaymentGatewayStripeInput"
-                    name="payment-method"
-                    value="stripe"
-                    checked={checked}
-                    onChange={() =>
-                      selectPaymentGateway && selectPaymentGateway(id)
-                    }
-                    customLabel
-                  >
-                    <span data-test="checkoutPaymentGatewayStripeName">
-                      {name}
-                    </span>
-                  </Radio>
-                </S.Tile>
-                {checked && (
-                  <StripePaymentGateway
-                    config={config}
-                    formRef={formRef}
-                    formId={formId}
-                    processPayment={(token, cardData) =>
-                      processPayment(id, token, cardData)
-                    }
-                    submitPayment={submitPayment}
-                    submitPaymentSuccess={submitPaymentSuccess}
-                    errors={errors}
-                    onError={onError}
-                  />
-                )}
-              </div>
-            );
-
-          case PROVIDERS.ADYEN.label:
-            return (
-              <div key={index}>
-                <S.Tile checked={checked}>
-                  <Radio
-                    data-test="checkoutPaymentGatewayAdyenInput"
-                    name="payment-method"
-                    value="adyen"
-                    checked={checked}
-                    onChange={() =>
-                      selectPaymentGateway && selectPaymentGateway(id)
-                    }
-                    customLabel
-                  >
-                    <span data-test="checkoutPaymentGatewayAdyenName">
-                      {name}
-                    </span>
-                  </Radio>
-                </S.Tile>
-                {checked && (
-                  <AdyenPaymentGateway
-                    config={config}
-                    formRef={formRef}
-                    scriptConfig={PROVIDERS.ADYEN.script}
-                    styleConfig={PROVIDERS.ADYEN.style}
-                    processPayment={() => processPayment(id)}
-                    submitPayment={submitPayment}
-                    submitPaymentSuccess={submitPaymentSuccess}
-                    errors={errors}
-                    onError={onError}
-                  />
-                )}
-              </div>
-            );
-
-          case PROVIDERS.PAYU.label:
-            return (
-              <div key={index}>
-                <S.Tile checked={checked}>
-                  <Radio
-                    data-test="checkoutPaymentGatewayPayUInput"
-                    name="payment-method"
-                    value="payU"
-                    checked={checked}
-                    onChange={() =>
-                      selectPaymentGateway && selectPaymentGateway(id)
-                    }
-                    customLabel
-                  >
-                    <span data-test="checkoutPaymentGatewayPayUName">
-                      {name}
-                    </span>
-                  </Radio>
-                </S.Tile>
-                {checked && (
-                  <PayuPaymentGateway
-                    config={config}
-                    formRef={formRef}
-                    scriptConfig={PROVIDERS.ADYEN.script}
-                    styleConfig={PROVIDERS.ADYEN.style}
-                    processPayment={() => processPayment(id)}
-                    submitPayment={submitPayment}
-                    submitPaymentSuccess={submitPaymentSuccess}
-                    errors={errors}
-                    onError={onError}
-                  />
-                )}
-              </div>
-            );
-
-          default:
-            return null;
+            case PROVIDERS.PAYU.label:
+              return (
+                <div key={index}>
+                  <S.Tile checked={checked}>
+                    <Radio
+                      data-test="checkoutPaymentGatewayPayUInput"
+                      name="payment-method"
+                      value="payU"
+                      checked={checked}
+                      onChange={() =>
+                        selectPaymentGateway && selectPaymentGateway(id)
+                      }
+                      customLabel
+                    >
+                      <span data-test="checkoutPaymentGatewayPayUName">
+                        {name}
+                      </span>
+                    </Radio>
+                  </S.Tile>
+                  {checked && (
+                    <PayuPaymentGateway
+                      config={config}
+                      formRef={formRef}
+                      scriptConfig={PROVIDERS.ADYEN.script}
+                      styleConfig={PROVIDERS.ADYEN.style}
+                      processPayment={() => processPayment(id)}
+                      submitPayment={submitPayment}
+                      submitPaymentSuccess={submitPaymentSuccess}
+                      errors={errors}
+                      onError={onError}
+                    />
+                  )}
+                </div>
+              );
+            default:
+              return null;
+          }
         }
       })}
       {!selectedPaymentGateway && errors && <ErrorMessage errors={errors} />}

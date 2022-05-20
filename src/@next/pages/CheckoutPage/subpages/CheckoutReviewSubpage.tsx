@@ -23,6 +23,7 @@ export interface ISubmitCheckoutData {
   orderNumber: string;
   token: string;
   orderStatus: OrderStatus;
+  shippingMethod: string;
 }
 
 interface CheckoutReviewSubpageProps extends SubpageBaseProps {
@@ -76,6 +77,9 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
     if (payment?.gateway === paymentGatewayNames.adyen) {
       return `Adyen payments`;
     }
+    if (payment?.gateway === "salingo.payments.cod") {
+      return `Płatność przy odbiorze`;
+    }
     if (payment?.gateway === "salingo.payments.payu") {
       return `Płatność PayU`;
     }
@@ -109,11 +113,14 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
           orderStatus: data?.order?.status,
           orderNumber: data?.order?.number,
           token: data?.order?.token,
+          shippingMethod: data?.order?.shippingMethod?.id
         });
-        setTimeout(() => {
-          window.open(payuUrl, "_blank", "noopener,noreferrer");
-          // @ts-ignore
-        }, 2000);
+        if (payment?.gateway === paymentGatewayNames.payu) {
+          setTimeout(() => {
+            window.open(payuUrl, "_blank", "noopener,noreferrer");
+            // @ts-ignore
+          }, 2000);
+        }
       }
     }
   });

@@ -104,18 +104,15 @@ const CheckoutPage: React.FC<NextPage> = () => {
   const noteRef = useRef(null);
 
   const checkoutSubpage = useMemo(() => {
-    const subpageMapping: Partial<Record<CheckoutStep, JSX.Element>> = {
-      [CheckoutStep.Address]: <CheckoutAddressSubpage {...pageProps} />,
-      [CheckoutStep.Shipping]: <CheckoutShippingSubpage {...pageProps} />,
-      [CheckoutStep.Payment]: (
-        <CheckoutPaymentSubpage
+    const reviewStep =
+      selectedPaymentGateway === "salingo.payments.cod" ? (
+        <CheckoutReviewSubpage
           {...pageProps}
           paymentGatewayFormRef={checkoutGatewayFormRef}
-          onPaymentGatewayError={setPaymentGatewayErrors}
+          selectedPaymentGatewayToken={selectedPaymentGatewayToken}
           noteRef={noteRef}
         />
-      ),
-      [CheckoutStep.Review]: (
+      ) : (
         <TypedGeneratePaymentUrl variables={generatePaymentUrlVariables}>
           {({ ...urlData }) => (
             <CheckoutReviewSubpage
@@ -127,7 +124,20 @@ const CheckoutPage: React.FC<NextPage> = () => {
             />
           )}
         </TypedGeneratePaymentUrl>
+      );
+
+    const subpageMapping: Partial<Record<CheckoutStep, JSX.Element>> = {
+      [CheckoutStep.Address]: <CheckoutAddressSubpage {...pageProps} />,
+      [CheckoutStep.Shipping]: <CheckoutShippingSubpage {...pageProps} />,
+      [CheckoutStep.Payment]: (
+        <CheckoutPaymentSubpage
+          {...pageProps}
+          paymentGatewayFormRef={checkoutGatewayFormRef}
+          onPaymentGatewayError={setPaymentGatewayErrors}
+          noteRef={noteRef}
+        />
       ),
+      [CheckoutStep.Review]: reviewStep,
     };
     return subpageMapping[activeStep.step];
   }, [activeStep.step]);
@@ -176,6 +186,7 @@ const CheckoutPage: React.FC<NextPage> = () => {
       orderStatus: order?.status,
       orderNumber: order?.number,
       token: order?.token,
+      shippingMethod: order?.shippingMethod?.id
     });
   };
 
@@ -252,6 +263,7 @@ const CheckoutPage: React.FC<NextPage> = () => {
           orderStatus: data?.order?.status,
           orderNumber: data?.order?.number,
           token: data?.order?.token,
+          shippingMethod: data?.order?.shippingMethod?.id
         });
       }
     } else {

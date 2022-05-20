@@ -5,6 +5,7 @@ import React from "react";
 import { Loader } from "@components/atoms";
 import { UnderConstruction } from "@components/organisms/UnderConstruction/UnderConstruction";
 import { useDynamicRouteRedirect } from "@hooks";
+import CookiesBar from "@temp/components/CookiesBar";
 import { demoMode, shopName, underConstruction } from "@temp/constants";
 import { ShopConfig } from "@utils/ssr";
 
@@ -44,6 +45,7 @@ const App: React.FC<AppProps> = ({
         <MainMenu loading={loading} demoMode={demoMode} menu={mainMenu} />
         {loading ? <Loader fullScreen /> : children}
         <Footer menu={footer} />
+        <CookiesBar />
         <OverlayManager />
         <Notifications />
       </OverlayProvider>

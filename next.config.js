@@ -8,6 +8,10 @@ const withBaseConfig = require("./config/next/config.base");
 const withDevConfig = require("./config/next/config.dev");
 const withProdConfig = require("./config/next/config.prod");
 
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
+
 module.exports = withPlugins(
   [
     [withOptimizedImages, { handleImages: ["jpeg", "png", "webp", "gif"] }],
@@ -16,6 +20,7 @@ module.exports = withPlugins(
     withServiceWorkerConfig,
     [withDevConfig, {}, [PHASE_DEVELOPMENT_SERVER]],
     [withProdConfig, {}, ["!" + PHASE_DEVELOPMENT_SERVER]],
+    [withBundleAnalyzer],
   ],
   {
     async headers() {

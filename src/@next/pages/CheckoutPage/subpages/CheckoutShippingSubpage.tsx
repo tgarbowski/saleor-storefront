@@ -7,6 +7,7 @@ import React, {
   useState,
 } from "react";
 
+import { CustomPopup } from "@components/atoms/CustomPopup/CustomPopup";
 import { CheckoutShipping } from "@components/organisms";
 import { IFormError } from "@types";
 
@@ -55,7 +56,20 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
         setErrors(errors);
       } else {
         setErrors([]);
-        onSubmitSuccess(CheckoutStep.Shipping);
+
+        if (shippingMethodId === "U2hpcHBpbmdNZXRob2Q6NjQ=") {
+          if (lockerId === null || lockerId === "") {
+            <CustomPopup
+              modalText="Musisz wybrać paczkomat"
+              title="Informacja"
+              buttonText="Zamknij okno"
+            />;
+          } else {
+            onSubmitSuccess(CheckoutStep.Shipping);
+          }
+        } else {
+          onSubmitSuccess(CheckoutStep.Shipping);
+        }
       }
     }
   };

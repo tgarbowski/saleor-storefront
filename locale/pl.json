@@ -3,13 +3,13 @@
     "string": "Dodaj nowy {type}"
   },
   "@next_dot_components_dot_atoms_dot_DemoBanner_dot_DemoBanner_dot_214739616": {
-    "string": "Play with <emphasis>GraphQL API</emphasis>"
+    "string": "Zabawa z <emphasis>GraphQL API</emphasis>"
   },
   "@next_dot_components_dot_atoms_dot_DemoBanner_dot_DemoBanner_dot_2367386033": {
     "string": "API"
   },
   "@next_dot_components_dot_atoms_dot_DemoBanner_dot_DemoBanner_dot_2844777114": {
-    "string": "Explore <emphasis>Store’s dashboard</emphasis>"
+    "string": "Poznaj <emphasis>Przeglądarkę sklepu</emphasis>."
   },
   "@next_dot_components_dot_atoms_dot_DemoBanner_dot_DemoBanner_dot_3662390044": {
     "string": "Panel sterowania"
@@ -18,7 +18,7 @@
     "string": "Sortuj:"
   },
   "@next_dot_components_dot_molecules_dot_AccountMenuMobile_dot_AccountMenuMobile_dot_2132071990": {
-    "string": "Go to"
+    "string": "Przejdź do"
   },
   "@next_dot_components_dot_molecules_dot_AccountTabTiles_dot_AccountTile_dot_3253048083": {
     "string": "Dane użytkownika"
@@ -127,39 +127,39 @@
   },
   "@next_dot_components_dot_organisms_dot_AdyenPaymentGateway_dot_AdyenPaymentGateway_dot_adyenConfirmationErrorMessages_dot_cancelled": {
     "context": "Adyen payment gateway error",
-    "string": "Payment was cancelled."
+    "string": "Płatność została anulowana."
   },
   "@next_dot_components_dot_organisms_dot_AdyenPaymentGateway_dot_AdyenPaymentGateway_dot_adyenConfirmationErrorMessages_dot_error": {
     "context": "Adyen payment gateway error",
-    "string": "Error processing payment occured."
+    "string": "Wystąpił błąd przetwarzania płatności."
   },
   "@next_dot_components_dot_organisms_dot_AdyenPaymentGateway_dot_AdyenPaymentGateway_dot_adyenConfirmationErrorMessages_dot_general": {
     "context": "Adyen payment gateway error",
-    "string": "Payment confirmation went wrong."
+    "string": "Potwierdzenie płatności nie powiodło się."
   },
   "@next_dot_components_dot_organisms_dot_AdyenPaymentGateway_dot_AdyenPaymentGateway_dot_adyenConfirmationErrorMessages_dot_refused": {
     "context": "Adyen payment gateway error",
-    "string": "The payment was refused. Try the payment again using a different payment method or card."
+    "string": "Płatność została odrzucona. Spróbuj ponownie dokonać płatności przy użyciu innej metody płatności lub karty."
   },
   "@next_dot_components_dot_organisms_dot_AdyenPaymentGateway_dot_AdyenPaymentGateway_dot_adyenErrorMessages_dot_cannotHandlePaymentConfirmation": {
     "context": "Adyen payment gateway error",
-    "string": "Payment gateway did not provide payment confirmation handler."
+    "string": "Bramka płatnicza nie udostępniła obsługi potwierdzenia płatności."
   },
   "@next_dot_components_dot_organisms_dot_AdyenPaymentGateway_dot_AdyenPaymentGateway_dot_adyenErrorMessages_dot_invalidPaymentSubmission": {
     "context": "Adyen payment gateway error",
-    "string": "Invalid payment submission."
+    "string": "Nieprawidłowe przesłanie płatności."
   },
   "@next_dot_components_dot_organisms_dot_AdyenPaymentGateway_dot_AdyenPaymentGateway_dot_adyenErrorMessages_dot_paymentMalformedConfirmationData": {
     "context": "Adyen payment gateway error",
-    "string": "Payment needs confirmation but data required for confirmation received from the server is malformed."
+    "string": "Płatność wymaga potwierdzenia, ale dane wymagane do potwierdzenia otrzymane z serwera są nieprawidłowo sformatowane."
   },
   "@next_dot_components_dot_organisms_dot_AdyenPaymentGateway_dot_AdyenPaymentGateway_dot_adyenErrorMessages_dot_paymentNoConfirmationData": {
     "context": "Adyen payment gateway error",
-    "string": "Payment needs confirmation but data required for confirmation not received from the server."
+    "string": "Płatność wymaga potwierdzenia, ale dane wymagane do potwierdzenia nie zostały odebrane z serwera."
   },
   "@next_dot_components_dot_organisms_dot_AdyenPaymentGateway_dot_AdyenPaymentGateway_dot_adyenErrorMessages_dot_unknownPayment": {
     "context": "Adyen payment gateway error",
-    "string": "Unknown payment submission error occured."
+    "string": "Wystąpił nieznany błąd składania płatności."
   },
   "@next_dot_components_dot_organisms_dot_CartSummary_dot_CartSummary_dot_2088494495": {
     "string": "Podsumowanie koszyka"
@@ -180,7 +180,7 @@
     "string": "Adres rozliczeniowy"
   },
   "@next_dot_components_dot_organisms_dot_DiscountForm_dot_DiscountForm_dot_3476123": {
-    "string": "Apply"
+    "string": "Zatwierdź"
   },
   "@next_dot_components_dot_organisms_dot_ProductList_dot_ProductList_dot_2783099424": {
     "string": "Więcej +"
@@ -198,7 +198,7 @@
     "string": "Twoje zamówienie ma numer"
   },
   "@next_dot_components_dot_organisms_dot_ThankYou_dot_ThankYou_dot_3364990704": {
-    "string": "We’ve emailed you an order confirmation, and we’ll notify you when the order has been shipped."
+    "string": "Wysłaliśmy do Ciebie wiadomość e-mail z potwierdzeniem zamówienia, a następnie powiadomimy Cię o jego wysłaniu."
   },
   "@next_dot_components_dot_organisms_dot_ThankYou_dot_ThankYou_dot_3752098833": {
     "string": "SZCZEGÓŁY ZAMÓWIENIA"
@@ -219,13 +219,13 @@
     "string": "Mój koszyk"
   },
   "@next_dot_pages_dot_CheckoutPage_dot_subpages_dot_CheckoutAddressSubpage_dot_2558335134": {
-    "string": "Please provide billing address."
+    "string": "Należy podać adres rozliczeniowy."
   },
   "@next_dot_pages_dot_CheckoutPage_dot_subpages_dot_CheckoutAddressSubpage_dot_929802659": {
     "string": "Proszę podaj adres dostawy."
   },
   "@next_dot_pages_dot_OrdersHistory_dot_OrdersHistory_dot_1138265409": {
-    "string": "Load more"
+    "string": "Załaduj więcej"
   },
   "account_dot_AddressBook_dot_AddressBook_dot_2776756156": {
     "string": "Edytuj adres"
@@ -279,19 +279,19 @@
     "string": "Offline"
   },
   "components_dot_NotFound_dot_index_dot_1723676032": {
-    "string": "Back to home"
+    "string": "Powrót do strony głównej"
   },
   "components_dot_NotFound_dot_index_dot_1782529840": {
-    "string": "You may have mistyped the address or the page may have moved."
+    "string": "Adres mógł zostać błędnie wpisany lub strona mogła zostać przeniesiona."
   },
   "components_dot_NotFound_dot_index_dot_3141549744": {
-    "string": "We’re sorry for the error and hope you’ll have a good day."
+    "string": "Przepraszamy za błąd i mamy nadzieję, że będziesz miał dobry dzień."
   },
   "components_dot_NotFound_dot_index_dot_3478767873": {
     "string": "404"
   },
   "components_dot_NotFound_dot_index_dot_680965574": {
-    "string": "We can’t seem to find a page you are looking for!"
+    "string": "Nie możemy znaleźć strony, której szukasz!"
   },
   "components_dot_OverlayManager_dot_Cart_dot_Cart_dot_1316031908": {
     "string": "Mój koszyk,"
@@ -352,16 +352,16 @@
     "string": "Wszystkie wyniki"
   },
   "components_dot_PasswordResetRequestForm_dot_index_dot_1587628595": {
-    "string": "Check your inbox"
+    "string": "Sprawdź skrzynkę odbiorczą"
   },
   "components_dot_PasswordResetRequestForm_dot_index_dot_2925394684": {
     "string": "Zresetuj hasło"
   },
   "components_dot_PasswordResetRequestForm_dot_index_dot_805890313": {
-    "string": "Please provide us your email address so we can share you a link to reset your password"
+    "string": "Podaj nam swój adres e-mail, abyśmy mogli przesłać Ci link umożliwiający zresetowanie hasła."
   },
   "components_dot_Select_dot_SelectOptionsList_dot_1394135378": {
-    "string": "No Options"
+    "string": "Brak opcji"
   },
   "intl_dot_checkoutMessages_dot_addNewAddress": {
     "string": "Dodaj nowy adres"
@@ -424,7 +424,7 @@
     "string": "Złóż zamówienie"
   },
   "intl_dot_commonMessages_dot_choosePaymentMethod": {
-    "string": "Please choose payment method."
+    "string": "Proszę wybrać metodę płatności"
   },
   "intl_dot_commonMessages_dot_clearFilterHeader": {
     "string": "Wyczyść filtry"
@@ -460,10 +460,10 @@
     "string": "Moje konto"
   },
   "intl_dot_commonMessages_dot_noItemsAvailable": {
-    "string": "No items available"
+    "string": "Brak dostępnych przedmiotów"
   },
   "intl_dot_commonMessages_dot_noPurchaseAvailable": {
-    "string": "Not available for purchase"
+    "string": "Niedostępne w sprzedaży"
   },
   "intl_dot_commonMessages_dot_orderHistory": {
     "string": "Zamówienia"
@@ -493,7 +493,7 @@
     "string": "Proszę podaj adres e-mail."
   },
   "intl_dot_commonMessages_dot_purchaseAvailableOn": {
-    "string": "Will become available for purchase on {date} at {time}"
+    "string": "Będzie można je kupić {date} o {time}"
   },
   "intl_dot_commonMessages_dot_qty": {
     "string": "Szt."
@@ -535,7 +535,7 @@
     "string": "Wariant"
   },
   "intl_dot_commonMessages_dot_youMightLike": {
-    "string": "You might like"
+    "string": "Może ci się spodobać"
   },
   "intl_dot_orderStatusMessages_dot_canceled": {
     "string": "Anulowane"
@@ -589,11 +589,11 @@
     "string": "Najstarsze"
   },
   "userAccount_dot_views_dot_OrderDetails_dot_Page_dot_1857586798": {
-    "string": "Your order no.: {orderNum}"
+    "string": "Twój numer zamówienia: {orderNum}"
   },
   "userAccount_dot_views_dot_OrderDetails_dot_Page_dot_2670827143": {
     "context": "action in popup menu in order view",
-    "string": "Download invoice"
+    "string": "Pobierz fakturę"
   },
   "userAccount_dot_views_dot_OrderDetails_dot_Page_dot_624688748": {
     "string": "Wróć do historii zamówień"

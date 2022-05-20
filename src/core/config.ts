@@ -4,12 +4,9 @@ import { generatePath } from "react-router";
 import { paths } from "@paths";
 import { shopName, ssrMode } from "@temp/constants";
 
-export const PRODUCTS_PER_PAGE = 6;
+export const PRODUCTS_PER_PAGE = 8;
 export const SUPPORT_EMAIL = "support@example.com";
 export const PROVIDERS = {
-  BRAINTREE: {
-    label: "Braintree",
-  },
   DUMMY: {
     label: "Dummy",
   },
@@ -18,6 +15,9 @@ export const PROVIDERS = {
   },
   PAYU: {
     label: "PayU",
+  },
+  COD: {
+    label: "Cod",
   },
   ADYEN: {
     label: "Adyen",

@@ -16,7 +16,7 @@ export const UnderConstruction = () => {
         <S.UnderConstructionTitleColor>niedługo.</S.UnderConstructionTitleColor>
       </S.UnderConstructionTitle>
       <S.UnderConstructionText>
-        Zapraszamy już w Maju, na wielkie otwarcie sklepu z jakościową odzieżą
+        Zapraszamy już w Czerwcu, na wielkie otwarcie sklepu z jakościową odzieżą
         używaną ONLINE.
       </S.UnderConstructionText>
       <S.UnderConstructionTextSmall>

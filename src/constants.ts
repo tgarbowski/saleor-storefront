@@ -38,4 +38,6 @@ export const paymentGatewayNames = {
   dummy: "mirumee.payments.dummy",
   adyen: "mirumee.payments.adyen",
   stripe: "saleor.payments.stripe",
+  cod: "salingo.payments.cod",
+  payu: "salingo.payments.payu",
 };
