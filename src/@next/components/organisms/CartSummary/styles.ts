@@ -30,6 +30,11 @@ export const CartSummaryProductList = styled.div`
   margin-bottom: 30px;
 `;
 
+export const CartSummaryProductListWrapper = styled.div`
+  overflow-y: auto;
+  max-height: 542px;
+`;
+
 export const HR = styled.hr`
   display: block;
   height: 1px;
