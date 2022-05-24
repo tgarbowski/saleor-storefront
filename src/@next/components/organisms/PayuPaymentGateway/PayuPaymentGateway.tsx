@@ -116,7 +116,6 @@ export interface IProps {
    * Method called after the form is submitted.
    */
   processPayment: () => void;
-  initialStatus?: string;
   /**
    * Method to call on gateway payment submission.
    */
@@ -150,7 +149,6 @@ const PayuPaymentGateway: React.FC<IProps> = ({
   submitPaymentSuccess,
   errors,
   onError,
-  initialStatus
 }: IProps) => {
   const intl = useIntl();
 
