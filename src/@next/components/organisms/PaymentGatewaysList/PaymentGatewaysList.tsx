@@ -31,16 +31,15 @@ const PaymentGatewaysList: React.FC<IProps> = ({
   const { checkout } = useCheckout();
 
   useEffect(() => {
-    if (paymentGateways) {
-      if (PROVIDERS.COD.label) {
-        selectPaymentGateway("salingo.payments.cod");
-        selectedPaymentGateway = "salingo.payments.cod";
-      } else {
-        selectPaymentGateway(paymentGateways[0].id);
-        selectedPaymentGateway = paymentGateways[0].id;
-      }
+
+    if (checkout?.shippingMethod?.id === "U2hpcHBpbmdNZXRob2Q6NjU=") {
+      selectPaymentGateway("salingo.payments.cod");
+      selectedPaymentGateway = "salingo.payments.cod";
+    } else {
+      selectPaymentGateway("salingo.payments.payu");
+      selectedPaymentGateway = "salingo.payments.payu";
     }
-  }, [paymentGateways]);
+  }, [checkout?.shippingMethod?.id]);
 
   return (
     <S.Wrapper>
