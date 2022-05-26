@@ -8,6 +8,7 @@ import { GlobalFonts } from './styles';
 export const UnderConstruction = () => {
   return (
     <S.UnderConstructionWrapper>
+
       <GlobalFonts />
       <S.TopInformationTitle>
           Baw się Modą z 

@@ -31,6 +31,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
   const { checkout } = useCheckout();
 
   useEffect(() => {
+
     if (checkout?.shippingMethod?.id === "U2hpcHBpbmdNZXRob2Q6NjU=") {
       selectPaymentGateway("salingo.payments.cod");
       selectedPaymentGateway = "salingo.payments.cod";
