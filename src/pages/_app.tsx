@@ -88,14 +88,8 @@ const App = ({
       <link href="https://rsms.me/inter/inter.css"/>
       <link rel="icon" type="image/png" href={Favicon} />
       <link rel="manifest" href="/manifest.json" />
-      <link
-        rel="preload"
-        href="https://geowidget.easypack24.net/css/easypack.css"
-      />
-      <script
-        async
-        src="https://geowidget.easypack24.net/js/sdk-for-javascript.js"
-      />
+      <link rel="stylesheet" href="https://geowidget.easypack24.net/css/easypack.css"/>
+      <script async src="https://geowidget.easypack24.net/js/sdk-for-javascript.js"/>
       <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet"
