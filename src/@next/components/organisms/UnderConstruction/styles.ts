@@ -1,28 +1,5 @@
-import {createGlobalStyle} from 'styled-components';
-
 import { styled } from "@styles";
 import UnderConstructionImage, { CloudMainImage, CloudMainSmallImageFirst, CloudMainSmallImageSecond } from '@styles/UnderConstructionImage';
-
-export const GlobalFonts = createGlobalStyle`
-  @font-face {
-    font-family: 'Bittermilk';
-    src: url("../../fonts/Bittermilk") format('woff'),
-          url("../../fonts/Bittermilk") format('truetype'),
-          url("../../fonts/Bittermilk") format('woff2'),
-  }
-  @font-face {
-    font-family: 'Archivo bold';
-    src: url("../../fonts/archivo-bold") format('woff'),
-          url("../../fonts/archivo-bold") format('truetype'),
-          url("../../fonts/archivo-bold") format('woff2')
-  }
-  @font-face {
-    font-family: 'Archivo regular';
-    src: url("../../fonts/archivo-regular") format('woff'),
-          url("../../fonts/archivo-regular") format('truetype'),
-          url("../../fonts/archivo-regular") format('woff2')
-  }
-`;
 
 export const UnderConstructionWrapper = styled.div`
   display: flex;
@@ -222,6 +199,10 @@ export const MainContentSub = styled.p`
   font-family: 'Bittermilk',sans-serif;
   line-height: 50px;
   width: 684px;
+  @media (max-width: 1172px) {
+    width: unset;
+    max-width: 738px;
+  }
 `;
 
 export const MainContentSmallText = styled.span`
