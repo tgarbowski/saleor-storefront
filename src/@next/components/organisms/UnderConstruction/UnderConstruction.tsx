@@ -3,13 +3,10 @@ import React from 'react';
 import { F4UUnderConstructionLogoImage, FacebookSmallIcn, InstagramSmallIcn } from '@styles/UnderConstructionImage';
 
 import * as S from './styles';
-import { GlobalFonts } from './styles';
 
 export const UnderConstruction = () => {
   return (
     <S.UnderConstructionWrapper>
-
-      <GlobalFonts />
       <S.TopInformationTitle>
           Baw się Modą z 
             <S.TopInformationShopTitle>
@@ -42,13 +39,13 @@ export const UnderConstruction = () => {
         <S.SocialLinksTitle>
           Znajdziesz nas na:
         </S.SocialLinksTitle>
-        <S.SocialLinkBlock href="#">
+        <S.SocialLinkBlock href="https://www.facebook.com/Fashion4you-107849631906695">
           <S.SocialLinkImg src={FacebookSmallIcn} alt="" />
           <S.SocialLinkText>
             /fashion4youpl
           </S.SocialLinkText>
         </S.SocialLinkBlock>
-        <S.SocialLinkBlock href="#">
+        <S.SocialLinkBlock href="https://instagram.com/fashion4you_goeco">
           <S.SocialLinkImg src={InstagramSmallIcn} alt="" />
           <S.SocialLinkText>
             /fashion4you
