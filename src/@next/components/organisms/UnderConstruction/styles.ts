@@ -222,6 +222,10 @@ export const MainContentSub = styled.p`
   font-family: 'Bittermilk',sans-serif;
   line-height: 50px;
   width: 684px;
+  @media (max-width: 1172px) {
+    width: unset;
+    max-width: 738px;
+  }
 `;
 
 export const MainContentSmallText = styled.span`
