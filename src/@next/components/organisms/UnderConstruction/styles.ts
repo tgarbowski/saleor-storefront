@@ -28,7 +28,7 @@ export const UnderConstructionImageFirst = styled.img`
 `;
 
 export const TopInformationTitle = styled.h1`
-  font-size: 39px;
+  font-size: 50px;
   color: #fff;
   display: -webkit-box;
   display: -webkit-flex;
