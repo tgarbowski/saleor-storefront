@@ -42,13 +42,13 @@ export const UnderConstruction = () => {
         <S.SocialLinksTitle>
           Znajdziesz nas na:
         </S.SocialLinksTitle>
-        <S.SocialLinkBlock href="#">
+        <S.SocialLinkBlock href="https://www.facebook.com/Fashion4you-107849631906695">
           <S.SocialLinkImg src={FacebookSmallIcn} alt="" />
           <S.SocialLinkText>
             /fashion4youpl
           </S.SocialLinkText>
         </S.SocialLinkBlock>
-        <S.SocialLinkBlock href="#">
+        <S.SocialLinkBlock href="https://instagram.com/fashion4you_goeco">
           <S.SocialLinkImg src={InstagramSmallIcn} alt="" />
           <S.SocialLinkText>
             /fashion4you
