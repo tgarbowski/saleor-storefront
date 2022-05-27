@@ -3,13 +3,10 @@ import React from 'react';
 import { F4UUnderConstructionLogoImage, FacebookSmallIcn, InstagramSmallIcn } from '@styles/UnderConstructionImage';
 
 import * as S from './styles';
-import { GlobalFonts } from './styles';
 
 export const UnderConstruction = () => {
   return (
     <S.UnderConstructionWrapper>
-
-      <GlobalFonts />
       <S.TopInformationTitle>
           Baw się Modą z 
             <S.TopInformationShopTitle>

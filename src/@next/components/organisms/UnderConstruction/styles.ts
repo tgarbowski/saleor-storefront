@@ -1,28 +1,5 @@
-import {createGlobalStyle} from 'styled-components';
-
 import { styled } from "@styles";
 import UnderConstructionImage, { CloudMainImage, CloudMainSmallImageFirst, CloudMainSmallImageSecond } from '@styles/UnderConstructionImage';
-
-export const GlobalFonts = createGlobalStyle`
-  @font-face {
-    font-family: 'Bittermilk';
-    src: url("../../fonts/Bittermilk") format('woff'),
-          url("../../fonts/Bittermilk") format('truetype'),
-          url("../../fonts/Bittermilk") format('woff2'),
-  }
-  @font-face {
-    font-family: 'Archivo bold';
-    src: url("../../fonts/archivo-bold") format('woff'),
-          url("../../fonts/archivo-bold") format('truetype'),
-          url("../../fonts/archivo-bold") format('woff2')
-  }
-  @font-face {
-    font-family: 'Archivo regular';
-    src: url("../../fonts/archivo-regular") format('woff'),
-          url("../../fonts/archivo-regular") format('truetype'),
-          url("../../fonts/archivo-regular") format('woff2')
-  }
-`;
 
 export const UnderConstructionWrapper = styled.div`
   display: flex;
