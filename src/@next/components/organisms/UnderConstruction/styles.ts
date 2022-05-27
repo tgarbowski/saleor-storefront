@@ -5,20 +5,22 @@ import UnderConstructionImage, { CloudMainImage, CloudMainSmallImageFirst, Cloud
 
 export const GlobalFonts = createGlobalStyle`
   @font-face {
-    font-family: 'Gill Sans Ultra Bold';
-    src: url("../../fonts/Gill-Sans-MT-Ultra-Bold") format('truetype')
-  }
-  @font-face {
     font-family: 'Bittermilk';
-    src: url("../../fonts/Bittermilk") format('truetype')
+    src: url("../../fonts/Bittermilk") format('woff'),
+          url("../../fonts/Bittermilk") format('truetype'),
+          url("../../fonts/Bittermilk") format('woff2'),
   }
   @font-face {
     font-family: 'Archivo bold';
-    src: url("../../fonts/archivo-bold") format('truetype')
+    src: url("../../fonts/archivo-bold") format('woff'),
+          url("../../fonts/archivo-bold") format('truetype'),
+          url("../../fonts/archivo-bold") format('woff2')
   }
   @font-face {
     font-family: 'Archivo regular';
-    src: url("../../fonts/archivo-regular") format('truetype')
+    src: url("../../fonts/archivo-regular") format('woff'),
+          url("../../fonts/archivo-regular") format('truetype'),
+          url("../../fonts/archivo-regular") format('woff2')
   }
 `;
 
@@ -49,22 +51,30 @@ export const UnderConstructionImageFirst = styled.img`
 `;
 
 export const TopInformationTitle = styled.h1`
-  font-size: 66px;
+  font-size: 39px;
   color: #fff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   text-align: center;
   position: absolute;
-  top: 43px;
-  font-family: 'Bittermilk', sans-serif;
+  top: 26px;
+  font-family: 'Bittermilk',sans-serif;
   @media (max-width: 1172px) {
     position: unset;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 40px;
+    font-size: 30px;
   }
 `;
 
@@ -74,12 +84,12 @@ export const TopInformationShopTitle = styled.span`
 
 export const TopInformationLogo = styled.img`
   object-fit: cover;
-  width: 17rem;
-  height: 13rem;
+  width: 11rem;
+  height: 9rem;
   margin-bottom: 35px;
   position: absolute;
   right: 62px;
-  top: 48px;
+  top: 13px;
   @media (max-width: 1172px) {
     width: 10rem;
     height: 7rem;
@@ -97,8 +107,8 @@ export const CloudMainSmallFirst = styled.div`
   background-repeat: no-repeat;
   object-fit: cover;
   background-size: cover;
-  width: 283px;
-  height: 270px;
+  width: 231px;
+  height: 220px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -113,13 +123,13 @@ export const CloudMainSmallFirst = styled.div`
 
 export const CloudMainSmallFirstText = styled.div`
   color: #fff;
-  font-size: 32px;
+  font-size: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   transform: rotate(-45deg);
-  max-width: 257px;
+  max-width: 212px;  
   font-family: 'Bittermilk', sans-serif;
   line-height: 35px;
 `;
@@ -129,8 +139,8 @@ export const CloudMainSmallSecond = styled.div`
   background-repeat: no-repeat;
   object-fit: cover;
   background-size: cover;
-  width: 255px;
-  height: 253px;
+  width: 184px;
+  height: 183px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -145,14 +155,25 @@ export const CloudMainSmallSecond = styled.div`
 
 export const CloudMainSmallSecondText = styled.div`
   color: #fff;
-  font-size: 32px;
+  font-size: 21px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
   justify-content: center;
   text-align: center;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
   transform: rotate(45deg);
-  max-width: 225px;
-  font-family: 'Bittermilk', sans-serif;
+  max-width: 154px;
+  font-family: 'Bittermilk',sans-serif;
   line-height: 35px;
 `;
 
@@ -162,8 +183,8 @@ export const CloudInfoMain = styled.main`
   background-repeat: no-repeat;
   object-fit: cover;
   background-size: cover;
-  width: 977px;
-  height: 442px;
+  width: 795px;
+  height: 360px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -185,7 +206,7 @@ export const CloudInfoMain = styled.main`
 
 export const MainContentTitle = styled.h2`
   color: #fff;
-  font-size: 59px;
+  font-size: 48px;
   font-family: 'Bittermilk', sans-serif;
   line-height: 35px;
   @media (max-width: 1172px) {
@@ -195,17 +216,18 @@ export const MainContentTitle = styled.h2`
 
 export const MainContentSub = styled.p`
   color: #fff;
-  font-size: 32px;
+  font-size: 27px;
   margin-top: 22px;
   text-align: center;
-  font-family: 'Bittermilk', sans-serif;
+  font-family: 'Bittermilk',sans-serif;
   line-height: 50px;
+  width: 684px;
 `;
 
 export const MainContentSmallText = styled.span`
   color: #fff;
   font-family: 'Bittermilk', sans-serif;
-  font-size: 30px;
+  font-size: 27px;
   line-height: 35px;
   margin-top: 16px;
 `;
@@ -213,13 +235,13 @@ export const MainContentSmallText = styled.span`
 export const MainContentSubDate = styled.span`
   color: #222;
   font-weight: bold;
-  font-size: 40px;
+  font-size: 34px;
 `;
 
 export const SocialLinksBlock = styled.div`
   position: absolute;
   left: 0;
-  bottom: 120px;
+  bottom: 52px;
   @media (max-width: 1172px) {
     margin-top: 42px;
     position: unset;
