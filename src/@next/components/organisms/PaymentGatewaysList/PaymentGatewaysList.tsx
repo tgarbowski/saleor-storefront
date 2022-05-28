@@ -32,7 +32,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
 
   useEffect(() => {
 
-    if (checkout?.shippingMethod?.id === "U2hpcHBpbmdNZXRob2Q6NjU=") {
+    if (checkout?.shippingMethod?.name === "Kurier pobranie, GLS") {
       selectPaymentGateway("salingo.payments.cod");
       selectedPaymentGateway = "salingo.payments.cod";
     } else {
