@@ -57,7 +57,7 @@ export const SOCIAL_MEDIA = [
     ariaLabel: "instagram",
     href: `${
       shopName === "FASHION4YOU"
-        ? "https://www.instagram.com/fashion4youpl"
+        ? "https://www.instagram.com/fashion4you_goeco/"
         : shopName === "CLOTHES4U"
         ? "Clothes4You"
         : "https://www.facebook.com/salingopl/"
