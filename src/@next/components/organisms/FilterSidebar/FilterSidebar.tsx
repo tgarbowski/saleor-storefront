@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FormattedMessage } from "react-intl";
 
 import { IconButton } from "@components/atoms";
@@ -32,10 +32,17 @@ export const FilterSidebar: React.FC<IProps> = ({
   attributes,
   target,
   onAttributeFiltersChange,
+  title,
+  name,
+  values,
+  onValueClick
 }: IProps) => {
   const { setElementRef } = useHandlerWhenClickedOutside(() => {
     hide();
+    setSearchFilter("");
   });
+
+  const [searchFilter, setSearchFilter] = useState<string>("");
 
   return (
     <Overlay
@@ -59,26 +66,67 @@ export const FilterSidebar: React.FC<IProps> = ({
             color="000"
           />
         </S.Header>
-        {attributes.map(({ id, slug, name, choices }) => {
-          const values = (choices?.edges.map(({ node }) => node) ||
-            []) as IFilterAttribute[];
+        <S.SearchWrapper>
+          <S.Search
+            name="Szukaj"
+            placeholder="Szukaj"
+            type="text"
+            onChange={(event: any) => {
+              setSearchFilter(event.target.value);
+            }}
+          />
+        </S.SearchWrapper>
+        { searchFilter === "" ? (
+             attributes.map(({ id, slug, name, choices }) => {
+              const values = (choices?.edges.map(({ node }) => node) ||
+                []) as IFilterAttribute[];
+              return (
+                <AttributeValuesChecklist
+                  key={id}
+                  title={name}
+                  name={slug!}
+                  values={values.map(value => ({
+                    ...value,
+                    selected: checkIfAttributeIsChecked(filters, value, slug!),
+                  }))}
+                  valuesShowLimit
+                  onValueClick={value =>
+                    onAttributeFiltersChange(slug!, value.slug)
+                  }
+                />
+              );
+            })
+        ) : (
+          attributes.map(({ id, slug, name, choices }) => {
+            const values = (choices?.edges.map(({ node }) => node) ||
+              []) as IFilterAttribute[];
 
-          return (
-            <AttributeValuesChecklist
-              key={id}
-              title={name}
-              name={slug!}
-              values={values.map(value => ({
-                ...value,
-                selected: checkIfAttributeIsChecked(filters, value, slug!),
-              }))}
-              valuesShowLimit
-              onValueClick={value =>
-                onAttributeFiltersChange(slug!, value.slug)
-              }
-            />
-          );
-        })}
+            return (
+              <AttributeValuesChecklist
+                key={id}
+                title={name}
+                name={slug!}
+                values={
+                  values
+                  .filter((val) => {
+                    if ( searchFilter === "") {
+                      return val;
+                    } 
+                    if (val.name.toLowerCase().includes(searchFilter.toLowerCase())) return val;
+
+                  })
+                  .map(value => ({
+                  ...value,
+                  selected: checkIfAttributeIsChecked(filters, value, slug!),
+                }))}
+                valuesShowLimit
+                onValueClick={value =>
+                  onAttributeFiltersChange(slug!, value.slug)
+                }
+              />
+            );
+          })
+        )}
       </S.Wrapper>
     </Overlay>
   );

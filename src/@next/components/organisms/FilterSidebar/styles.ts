@@ -22,3 +22,13 @@ export const Header = styled.div`
   font-weight: ${props => props.theme.typography.boldFontWeight};
   font-size: ${props => props.theme.typography.h3FontSize};
 `;
+
+export const SearchWrapper = styled.div`
+  width: 80%;
+  padding-bottom: 2rem;
+`;
+
+export const Search = styled.input`
+  width: 100%;
+  padding: 10px 12px;
+`;
