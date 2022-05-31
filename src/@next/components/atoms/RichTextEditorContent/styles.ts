@@ -6,7 +6,6 @@ export const Content = styled.div`
   }
   ul,
   ol {
-    list-style: inherit;
     padding-left: 2rem;
     padding-top: 1rem;
   }
@@ -14,6 +13,16 @@ export const Content = styled.div`
     display: block;
     font-size: 1.5em;
     margin: 0.8 rem;
+    font-weight: bold;
+  }
+  p {
+    margin: 20px 0;
+  }
+  b {
+    font-weight: bold;
+  }
+  a {
+    text-decoration: underline;
     font-weight: bold;
   }
 `;
