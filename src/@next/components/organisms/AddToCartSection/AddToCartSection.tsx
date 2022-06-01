@@ -125,7 +125,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
       content: (
         <S.AccordionContent>
           <ul>
-            <S.AccordionListItem>Payu</S.AccordionListItem>
+            {/* <S.AccordionListItem>Payu</S.AccordionListItem> */}
             <S.AccordionListItem>Płatność za pobraniem</S.AccordionListItem>
           </ul>
         </S.AccordionContent>
@@ -145,8 +145,8 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
       content: (
         <S.AccordionContent>
           <ul>
-            <S.AccordionListItem>Paczkomaty Inpost 24/7</S.AccordionListItem>
-            <S.AccordionListItem>Kurier DPD</S.AccordionListItem>
+            {/* <S.AccordionListItem>Paczkomaty Inpost 24/7</S.AccordionListItem> */}
+            {/* <S.AccordionListItem>Kurier DPD</S.AccordionListItem> */}
             <S.AccordionListItem>Kurier GLS, pobranie</S.AccordionListItem>
           </ul>
         </S.AccordionContent>
