@@ -43,13 +43,13 @@ const ThankYou: React.FC<IProps> = ({
             <FormattedMessage defaultMessage="za twoje zamówienie!" />
           </span>
           <br />
-          {shippingMethod === "U2hpcHBpbmdNZXRob2Q6NjU=" ? (
+          {shippingMethod === "Kurier pobranie, GLS" ? (
             <S.Paragraph>
               <FormattedMessage defaultMessage="Zamówienie zostało pomyślnie przekazane do realizacji" />
             </S.Paragraph>
           ) : (
             <div id="payuLabel">
-              <FormattedMessage defaultMessage="Za chwile zostaniesz przekierowany na stronę PayU ..." />
+              <FormattedMessage defaultMessage="Za chwilę zostaniesz przekierowany na stronę PayU ..." />
             </div>
           )}
         </S.ThankYouHeader>
