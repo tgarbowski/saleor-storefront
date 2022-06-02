@@ -25,8 +25,6 @@ import {
 } from "./stockHelpers";
 import * as S from "./styles";
 
-const LOW_STOCK_QUANTITY: number = 5;
-
 export interface IAddToCartSection {
   productId: string;
   productVariants: ProductDetails_product_variants[];
@@ -73,11 +71,6 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
     availableForPurchase &&
     Date.parse(availableForPurchase);
   const isNoItemsAvailable = !!variantId && !isOutOfStock && !availableQuantity;
-  const isLowStock =
-    !!variantId &&
-    !isOutOfStock &&
-    !isNoItemsAvailable &&
-    availableQuantity < LOW_STOCK_QUANTITY;
 
   const disableButton = !canAddToCart(
     items,
@@ -222,11 +215,6 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
             }).format(purchaseAvailableDate),
           }),
           "timeRestrictedAvailability"
-        )}
-      {isLowStock &&
-        renderErrorMessage(
-          intl.formatMessage(commonMessages.lowStock),
-          "lowStockWarning"
         )}
       {isNoItemsAvailable &&
         renderErrorMessage(
