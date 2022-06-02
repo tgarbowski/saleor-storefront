@@ -113,7 +113,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
           orderStatus: data?.order?.status,
           orderNumber: data?.order?.number,
           token: data?.order?.token,
-          shippingMethod: data?.order?.shippingMethod?.id
+          shippingMethod: data?.order?.shippingMethod?.name
         });
         if (payment?.gateway === paymentGatewayNames.payu) {
           setTimeout(() => {

@@ -39,7 +39,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
       selectPaymentGateway("salingo.payments.payu");
       selectedPaymentGateway = "salingo.payments.payu";
     }
-  }, [checkout?.shippingMethod?.id]);
+  }, [checkout?.shippingMethod?.name]);
 
   return (
     <S.Wrapper>
