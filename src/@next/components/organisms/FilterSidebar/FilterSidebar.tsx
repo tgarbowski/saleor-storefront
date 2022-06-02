@@ -55,27 +55,29 @@ export const FilterSidebar: React.FC<IProps> = ({
     >
       <S.Wrapper ref={setElementRef()} data-test="filterSidebar">
         <S.Header>
-          <span>
-            <FormattedMessage {...commonMessages.filterHeader} />
-          </span>
-          <IconButton
-            testingContext="hideFilters"
-            onClick={hide}
-            name="x"
-            size={18}
-            color="000"
-          />
+          <S.HeaderName>
+            <span>
+              <FormattedMessage {...commonMessages.filterHeader} />
+            </span>
+            <IconButton
+              testingContext="hideFilters"
+              onClick={hide}
+              name="x"
+              size={18}
+              color="000"
+            />
+          </S.HeaderName>
+          <S.SearchWrapper>
+            <S.Search
+              name="Szukaj"
+              placeholder="Szukaj"
+              type="text"
+              onChange={(event: any) => {
+                setSearchFilter(event.target.value);
+              }}
+            />
+          </S.SearchWrapper>
         </S.Header>
-        <S.SearchWrapper>
-          <S.Search
-            name="Szukaj"
-            placeholder="Szukaj"
-            type="text"
-            onChange={(event: any) => {
-              setSearchFilter(event.target.value);
-            }}
-          />
-        </S.SearchWrapper>
         { searchFilter === "" ? (
              attributes.map(({ id, slug, name, choices }) => {
               const values = (choices?.edges.map(({ node }) => node) ||
