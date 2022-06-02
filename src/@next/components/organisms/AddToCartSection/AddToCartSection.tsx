@@ -25,8 +25,6 @@ import {
 } from "./stockHelpers";
 import * as S from "./styles";
 
-const LOW_STOCK_QUANTITY: number = 5;
-
 export interface IAddToCartSection {
   productId: string;
   productVariants: ProductDetails_product_variants[];
