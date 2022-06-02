@@ -73,11 +73,6 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
     availableForPurchase &&
     Date.parse(availableForPurchase);
   const isNoItemsAvailable = !!variantId && !isOutOfStock && !availableQuantity;
-  const isLowStock =
-    !!variantId &&
-    !isOutOfStock &&
-    !isNoItemsAvailable &&
-    availableQuantity < LOW_STOCK_QUANTITY;
 
   const disableButton = !canAddToCart(
     items,
@@ -222,11 +217,6 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
             }).format(purchaseAvailableDate),
           }),
           "timeRestrictedAvailability"
-        )}
-      {isLowStock &&
-        renderErrorMessage(
-          intl.formatMessage(commonMessages.lowStock),
-          "lowStockWarning"
         )}
       {isNoItemsAvailable &&
         renderErrorMessage(
