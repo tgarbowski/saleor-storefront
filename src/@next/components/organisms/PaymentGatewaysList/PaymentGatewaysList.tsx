@@ -46,7 +46,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
       {paymentGateways.map(({ id, name, config }, index) => {
         const checked = selectedPaymentGateway === id;
 
-        if (checkout?.shippingMethod?.id === "U2hpcHBpbmdNZXRob2Q6NjU=") {
+        if (checkout?.shippingMethod?.name === "Kurier pobranie, GLS") {
           switch (name) {
             case PROVIDERS.COD.label:
               return (
