@@ -10,6 +10,7 @@ import { DemoBanner } from "@components/atoms";
 import { ShopMenusQuery } from "@graphql/gqlTypes/ShopMenusQuery";
 import { paths } from "@paths";
 import Logo from "@styles/Logo";
+import { shopName } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
 
 import cartImg from "../../images/cart.svg";
@@ -77,6 +78,11 @@ export const MainMenu: React.FC<MainMenuProps> = ({
     }
   }, [activeDropdown]);
 
+  const visibleCategoryOnMenu =
+    shopName === "FASHION4YOU"
+      ? menuItems.slice(0, -2)
+      : menuItems;
+
   return (
     <header
       className={classNames({
@@ -115,7 +121,7 @@ export const MainMenu: React.FC<MainMenuProps> = ({
             <Media
               query={{ minWidth: mediumScreen }}
               render={() =>
-                menuItems.map(item => {
+                visibleCategoryOnMenu.map(item => {
                   const hasSubNavigation = !!item?.children?.length;
                   return (
                     <li

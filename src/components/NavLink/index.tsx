@@ -4,6 +4,7 @@ import { generatePath } from "react-router";
 
 import { MenuItem } from "@graphql/gqlTypes/MenuItem";
 import { paths } from "@paths";
+import { shopName } from "@temp/constants";
 
 interface NavLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   item: MenuItem;
@@ -30,6 +31,15 @@ export const NavLink: React.FC<NavLinkProps> = ({ item, ...props }) => {
     return link(generatePath(paths.collection, { slug: collection.slug }));
   }
   if (page) {
+    if ( shopName === "CLOTHES4U" ) {
+     if ( page.slug.includes("-c4u")) {
+        return link(generatePath(paths.page, { slug: page.slug }));
+     }
+     return null;
+    }
+    if ( page.slug.includes("-c4u")) {
+      return null;
+    }
     return link(generatePath(paths.page, { slug: page.slug }));
   }
 
