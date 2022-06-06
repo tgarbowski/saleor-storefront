@@ -37,10 +37,12 @@ export const NavLink: React.FC<NavLinkProps> = ({ item, ...props }) => {
      }
      return null;
     }
-    if ( page.slug.includes("-c4u")) {
-      return null;
+    if ( shopName === "FASHION4YOU" ) {
+      if ( page.slug.includes("-c4u")) {
+        return null;
+      }
+      return link(generatePath(paths.page, { slug: page.slug }));
     }
-    return link(generatePath(paths.page, { slug: page.slug }));
   }
 
   return <span {...props}>{name}</span>;
