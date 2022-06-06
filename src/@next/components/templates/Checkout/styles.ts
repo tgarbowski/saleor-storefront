@@ -54,6 +54,7 @@ export const CartSummary = styled.div`
   ${media.mediumScreen`
     position: fixed;
     bottom: 0;
+    z-index: 1;
   `}
 `;
 export const Button = styled.div`
