@@ -164,12 +164,6 @@ const Page: React.FC<
 
   useEffect(() => {
     updateProduct();
-  }, []);
-
-  useEffect(() => {
-    setProductVariants(null);
-    setProductPricing(null);
-    updateProduct();
   }, [product]);
 
   const addToCartSection =

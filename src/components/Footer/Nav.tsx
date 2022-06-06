@@ -5,6 +5,7 @@ import ReactSVG from "react-svg";
 import { ShopMenusQuery } from "@graphql/gqlTypes/ShopMenusQuery";
 import { paths } from "@paths";
 import LogoFooter from "@styles/LogoFooter";
+import { shopName } from "@temp/constants";
 import { SOCIAL_MEDIA } from "@temp/core/config";
 
 import { NavLink, SocialMediaIcon } from "..";
@@ -13,8 +14,11 @@ import "./scss/index.scss";
 
 export type NavProps = { menu: ShopMenusQuery["footer"] };
 
-export const Nav: React.FC<NavProps> = ({ menu }) => (
-  <footer className="footer-nav">
+export const Nav: React.FC<NavProps> = ({ menu }) => {
+
+ 
+  return (
+    <footer className="footer-nav">
     <div className="container">
       <div className="footer-nav-container-left">
         {menu?.items.map(item => (
@@ -23,11 +27,18 @@ export const Nav: React.FC<NavProps> = ({ menu }) => (
               <NavLink item={item} />
             </h4>
             <div className="footer-nav__section-content">
-              {item.children.map(subItem => (
-                <p key={subItem.id}>
-                  <NavLink item={subItem} />
-                </p>
-              ))}
+              {shopName === "FASHION4YOU" && item.name === "Kategorie" ? (
+                item.children.slice(0, -2).map(subItem => (
+                  <p key={subItem.id}>
+                    <NavLink item={subItem} />
+                  </p>
+                ))
+              ) : (
+                item.children.map(subItem => (
+                  <p key={subItem.id}>
+                    <NavLink item={subItem} />
+                  </p>
+                )))}
             </div>
           </div>
         ))}
@@ -46,4 +57,5 @@ export const Nav: React.FC<NavProps> = ({ menu }) => (
       </div>
     </div>
   </footer>
-);
+  );
+};
