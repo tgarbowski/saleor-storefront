@@ -6,6 +6,7 @@ import ReactSVG from "react-svg";
 import { IconButton } from "@components/atoms";
 import { paths } from "@paths";
 import Logo from "@styles/Logo";
+import { shopName } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
 
 import backImg from "../../images/arrow-back.svg";
@@ -66,6 +67,11 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
 
     const defaultCloseIcon = !!hideOverlay;
 
+    const visibleCategoryOnMenu =
+    shopName === "FASHION4YOU"
+      ? displayedItems.slice(0, -2)
+      : displayedItems;
+
     return (
       <ul>
         {parent ? (
@@ -102,8 +108,8 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
             </li>
           </>
         )}
-
-        {displayedItems.map(item => (
+      
+        {visibleCategoryOnMenu.map(item => (
           <NavItem
             key={item.id}
             hideOverlay={hideOverlay}
