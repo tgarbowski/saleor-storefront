@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   padding: 0;
-  margin: 0;
+  margin-top: 15px;
   cursor: pointer;
 
   width: ${props => `${props.theme.iconButton.size}px`};
