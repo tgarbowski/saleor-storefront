@@ -18,7 +18,7 @@ import {
 } from "../../components";
 import { structuredData } from "../../core/SEO/Product/structuredData";
 import GalleryCarousel from "./GalleryCarousel";
-import OtherProducts from "./Other";
+// import OtherProducts from "./Other";
 import { IProps } from "./types";
 
 import { smallScreen } from "../../globalStyles/scss/variables.scss";
@@ -56,7 +56,6 @@ const Page: React.FC<
         return variant.images;
       }
     }
-
     return product.images;
   };
 
@@ -249,7 +248,7 @@ const Page: React.FC<
           />
         </div>
       </div>
-      <OtherProducts products={product.category.products.edges} />
+      {/* <OtherProducts products={product.category.products.edges} /> */}
     </div>
   );
 };

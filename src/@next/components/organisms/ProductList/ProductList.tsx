@@ -24,7 +24,11 @@ export const ProductList: React.FC<IProps> = ({
         return (
           slug &&
           name && (
-            <Link href={generatePath(paths.product, { slug })} key={slug}>
+            <Link
+              href={generatePath(paths.product, { slug })}
+              key={slug}
+              prefetch={false}
+            >
               <a>
                 <ProductTile product={product} />
               </a>
