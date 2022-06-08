@@ -21,11 +21,12 @@ export type CategoryViewProps = {
 export const CategoryView: NextPage<CategoryViewProps> = ({
   data: category,
 }) => {
-  const [sort, setSort] = useQueryParam("sortBy", StringParam);
+  const [sort = "-updated_at", setSort] = useQueryParam("sortBy", StringParam);
   const [attributeFilters, setAttributeFilters] = useQueryParam(
     "filters",
     FilterQuerySet
   );
+
   const filters: IFilters = {
     attributes: attributeFilters,
     pageSize: PRODUCTS_PER_PAGE,
