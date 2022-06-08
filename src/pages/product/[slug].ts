@@ -131,7 +131,7 @@ export const getStaticProps: GetStaticProps<
     })
   );
   return {
-    revalidate: 5,
+    revalidate: 259200,
     props: { data: data || null, params },
   };
 };

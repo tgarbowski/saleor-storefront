@@ -37,12 +37,12 @@ export const ProductListHeader: React.FC<IProps> = ({
         </S.LeftSide>
 
         <S.RightSide>
-          <S.Element data-test="productsFoundCounter">
+          {/* <S.Element data-test="productsFoundCounter">
             <S.Label>
-              <FormattedMessage defaultMessage="Liczba produktów:" />{" "}
+              <FormattedMessage defaultMessage="Liczba produktów:" />
             </S.Label>
             {numberOfProducts}
-          </S.Element>
+          </S.Element> */}
           <S.Element>
             <S.Sort>
               <DropdownSelect
@@ -57,24 +57,25 @@ export const ProductListHeader: React.FC<IProps> = ({
         </S.RightSide>
       </S.Bar>
       <S.FiltersChipsWrapper>
-        {activeFilters > 0 ? 
-          (
-            <>
+        {activeFilters > 0 ? (
+          <>
             <S.FiltersChipsHeading>Aktywne filtry</S.FiltersChipsHeading>
-              <>
-                {activeFiltersAttributes.map(
-                  ({ attributeSlug, valueName, valueSlug }) => (
-                    <Chip
-                      key={valueSlug}
-                      onClose={() => onCloseFilterAttribute(attributeSlug, valueSlug)}
-                    >
-                      {valueName}
-                    </Chip>
-                  )
-                )}
-              </>
+            <>
+              {activeFiltersAttributes.map(
+                ({ attributeSlug, valueName, valueSlug }) => (
+                  <Chip
+                    key={valueSlug}
+                    onClose={() =>
+                      onCloseFilterAttribute(attributeSlug, valueSlug)
+                    }
+                  >
+                    {valueName}
+                  </Chip>
+                )
+              )}
             </>
-          ) : null}
+          </>
+        ) : null}
       </S.FiltersChipsWrapper>
     </S.Wrapper>
   );
