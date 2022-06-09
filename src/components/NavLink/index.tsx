@@ -28,17 +28,28 @@ export const NavLink: React.FC<NavLinkProps> = ({ item, ...props }) => {
     return link(generatePath(paths.category, { slug: category.slug }));
   }
   if (collection) {
-    return link(generatePath(paths.collection, { slug: collection.slug }));
+    if (shopName === "CLOTHES4U") {
+      if (collection.slug.includes("c4u")) {
+        return link(generatePath(paths.collection, { slug: collection.slug }));
+      }
+      return null;
+    }
+    if (shopName === "FASHION4YOU") {
+      if (collection.slug.includes("c4u")) {
+        return null;
+      }
+      return link(generatePath(paths.collection, { slug: collection.slug }));
+    }
   }
   if (page) {
-    if ( shopName === "CLOTHES4U" ) {
-     if ( page.slug.includes("-c4u")) {
+    if (shopName === "CLOTHES4U") {
+      if (page.slug.includes("-c4u")) {
         return link(generatePath(paths.page, { slug: page.slug }));
-     }
-     return null;
+      }
+      return null;
     }
-    if ( shopName === "FASHION4YOU" ) {
-      if ( page.slug.includes("-c4u")) {
+    if (shopName === "FASHION4YOU") {
+      if (page.slug.includes("-c4u")) {
         return null;
       }
       return link(generatePath(paths.page, { slug: page.slug }));

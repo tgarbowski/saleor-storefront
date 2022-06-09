@@ -75,12 +75,9 @@ export type FeaturedProducts = {
   products: FeaturedProductsQuery_collection_products_edges_node[];
 } & Partial<Pick<FeaturedProductsQuery_collection, "name" | "backgroundImage">>;
 
-
 export const getFeaturedProducts = async (): Promise<FeaturedProducts> => {
   const featuredProductsBranding =
-    shopName === "CLOTHES4U"
-    ? "polecane-produkty-c4u"
-    : "polecane-produkty-f4u";
+    shopName === "CLOTHES4U" ? "polecane-produkty-c4u" : "polecane-produkty";
 
   const { apolloClient } = await getSaleorApi();
   const { data } = await apolloClient.query<
@@ -88,9 +85,9 @@ export const getFeaturedProducts = async (): Promise<FeaturedProducts> => {
     FeaturedProductsQueryVariables
   >({
     query: featuredProductsQuery,
-    variables: { 
-      slug: featuredProductsBranding, 
-      channel: channelSlug 
+    variables: {
+      slug: featuredProductsBranding,
+      channel: channelSlug,
     },
   });
 
