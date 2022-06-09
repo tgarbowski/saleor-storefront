@@ -288,4 +288,5 @@ export interface FeaturedProductsQuery {
 
 export interface FeaturedProductsQueryVariables {
   channel: string;
+  slug: string;
 }

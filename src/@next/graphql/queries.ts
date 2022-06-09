@@ -39,7 +39,7 @@ export const useTypedQuery = <TData = any, TVariables = OperationVariables>(
 
 export const featuredProductsQuery = gql`
   ${featuredProductsFragment}
-  query FeaturedProductsQuery($channel: String!) {
+  query FeaturedProductsQuery($slug: String!, $channel: String!) {
     ...FeaturedProducts
   }
 `;

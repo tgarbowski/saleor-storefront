@@ -23,7 +23,7 @@ import {
   ShopMenusQuery,
   ShopMenusQueryVariables,
 } from "@graphql/gqlTypes/ShopMenusQuery";
-import { apiUrl, channelSlug } from "@temp/constants";
+import { apiUrl, channelSlug, shopName } from "@temp/constants";
 import { RequireOnlyOne } from "@utils/tsUtils";
 
 let CONNECTION: ConnectResult | null = null;
@@ -76,13 +76,19 @@ export type FeaturedProducts = {
 } & Partial<Pick<FeaturedProductsQuery_collection, "name" | "backgroundImage">>;
 
 export const getFeaturedProducts = async (): Promise<FeaturedProducts> => {
+  const featuredProductsBranding =
+    shopName === "CLOTHES4U" ? "polecane-produkty-c4u" : "polecane-produkty";
+
   const { apolloClient } = await getSaleorApi();
   const { data } = await apolloClient.query<
     FeaturedProductsQuery,
     FeaturedProductsQueryVariables
   >({
     query: featuredProductsQuery,
-    variables: { channel: channelSlug },
+    variables: {
+      slug: featuredProductsBranding,
+      channel: channelSlug,
+    },
   });
 
   return {
