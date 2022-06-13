@@ -1,20 +1,22 @@
-import Link from 'next/link';
-import * as React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
-import { generatePath } from 'react-router';
+import Link from "next/link";
+import * as React from "react";
+import { FormattedMessage, useIntl } from "react-intl";
+import { generatePath } from "react-router";
 
-import { paths } from '@paths';
-import DefaultHero from '@styles/DefaultHeroImg';
-import { FooterUsp } from '@temp/components/FooterUsp/FooterUsp';
-import { shopName } from '@temp/constants';
-import { FeaturedProducts } from '@utils/ssr';
+import { paths } from "@paths";
+import DefaultHero from "@styles/DefaultHeroImg";
+import { FooterUsp } from "@temp/components/FooterUsp/FooterUsp";
+import { shopName } from "@temp/constants";
+import { FeaturedProducts } from "@utils/ssr";
 
-import { Button, ProductsFeatured } from '../../components';
-import { structuredData } from '../../core/SEO/Homepage/structuredData';
-import { HomePageProducts_categories, HomePageProducts_shop } from './gqlTypes/HomePageProducts';
+import { Button, ProductsFeatured } from "../../components";
+import { structuredData } from "../../core/SEO/Homepage/structuredData";
+import {
+  HomePageProducts_categories,
+  HomePageProducts_shop,
+} from "./gqlTypes/HomePageProducts";
 
-import './scss/index.scss';
-
+import "./scss/index.scss";
 
 const Page: React.FC<{
   categories: HomePageProducts_categories;
@@ -29,7 +31,7 @@ const Page: React.FC<{
   const visibleCategory =
     shopName === "FASHION4YOU"
       ? categories.edges.slice(0, -2)
-      : categories.edges;
+      : categories.edges.slice(0, -1);
   return (
     <>
       <script className="structured-data-list" type="application/ld+json">
