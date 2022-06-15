@@ -102,7 +102,8 @@ const Page: React.FC<{
             </h2>
             <div className="home-page__categories__list">
               {visibleCategory.map(({ node: category }) => {
-                return (
+                return shopName === "CLOTHES4U" &&
+                  category.name === "Detal" ? null : (
                   <div key={category.id} className="home-page__category-item">
                     <Link
                       href={generatePath(paths.category, {

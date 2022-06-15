@@ -46,7 +46,13 @@ export const Nav: React.FC<NavProps> = ({ menu }) => {
                         </p>
                       ))
                   : shopName === "CLOTHES4U"
-                  ? item.name === "Kolekcje"
+                  ? item.name === "Kategorie"
+                    ? item.children.slice(0, -1).map(subItem => (
+                        <p key={subItem.id}>
+                          <NavLink item={subItem} />
+                        </p>
+                      ))
+                    : item.name === "Kolekcje"
                     ? item.children.map(subItem =>
                         subItem.name === "Polecane produkty" ? null : (
                           <p key={subItem.id}>
