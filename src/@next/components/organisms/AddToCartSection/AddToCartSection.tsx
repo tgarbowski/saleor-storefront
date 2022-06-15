@@ -8,8 +8,7 @@ import React, { useEffect, useState } from "react";
 import { useIntl } from "react-intl";
 
 import { CustomPopup } from "@components/atoms/CustomPopup/CustomPopup";
-import CreditCardIcon from "@styles/CreditCardIcon";
-import ShippingIcon from "@styles/ShippingIcon";
+import { CreditCardIcon, ShippingIcon } from "@styles/icons";
 import { apiUrl, channelSlug } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
 import { IProductVariantsAttributesSelectedValues } from "@types";
@@ -118,7 +117,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
       content: (
         <S.AccordionContent>
           <ul>
-            {/* <S.AccordionListItem>Payu</S.AccordionListItem> */}
+            <S.AccordionListItem>Payu</S.AccordionListItem>
             <S.AccordionListItem>Płatność za pobraniem</S.AccordionListItem>
           </ul>
         </S.AccordionContent>
@@ -139,7 +138,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
         <S.AccordionContent>
           <ul>
             {/* <S.AccordionListItem>Paczkomaty Inpost 24/7</S.AccordionListItem> */}
-            {/* <S.AccordionListItem>Kurier DPD</S.AccordionListItem> */}
+            <S.AccordionListItem>Kurier DPD</S.AccordionListItem>
             <S.AccordionListItem>Kurier GLS, pobranie</S.AccordionListItem>
           </ul>
         </S.AccordionContent>
