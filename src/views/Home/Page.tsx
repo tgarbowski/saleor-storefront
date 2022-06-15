@@ -4,7 +4,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { generatePath } from "react-router";
 
 import { paths } from "@paths";
-import DefaultHero from "@styles/DefaultHeroImg";
+import { DefaultHero } from "@styles/pictures";
 import { FooterUsp } from "@temp/components/FooterUsp/FooterUsp";
 import { shopName } from "@temp/constants";
 import { FeaturedProducts } from "@utils/ssr";

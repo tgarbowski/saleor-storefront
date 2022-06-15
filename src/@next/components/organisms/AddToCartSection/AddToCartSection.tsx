@@ -8,8 +8,7 @@ import React, { useEffect, useState } from "react";
 import { useIntl } from "react-intl";
 
 import { CustomPopup } from "@components/atoms/CustomPopup/CustomPopup";
-import CreditCardIcon from "@styles/CreditCardIcon";
-import ShippingIcon from "@styles/ShippingIcon";
+import { CreditCardIcon, ShippingIcon } from "@styles/icons";
 import { apiUrl, channelSlug } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
 import { IProductVariantsAttributesSelectedValues } from "@types";

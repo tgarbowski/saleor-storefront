@@ -4,7 +4,7 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { paths } from "@paths";
-import NotFoundProductImage, { NotFoundPageImage } from "@styles/NotFoundImg";
+import { NotFoundPageImage, NotFoundProductImage } from "@styles/pictures";
 
 import Button from "../Button";
 
