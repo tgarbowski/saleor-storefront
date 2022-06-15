@@ -29,10 +29,8 @@ export const NavDropdown: React.FC<NavDropdownProps> = props => {
       onMouseOver={onShowDropdown}
       onMouseLeave={onHideDropdown}
     >
-      <li>
-        <NavLink item={props} onClick={onHideDropdown} />
-      </li>
-      <li
+      <NavLink item={props} onClick={onHideDropdown} />
+      <div
         className={classNames({
           "main-menu__nav-dropdown__body": true,
           "main-menu__nav-dropdown__body--visible": showDropdown,
@@ -43,7 +41,7 @@ export const NavDropdown: React.FC<NavDropdownProps> = props => {
             <NavItem key={i} hideOverlay={onHideDropdown} {...subItem} />
           ))}
         </ul>
-      </li>
+      </div>
     </ul>
   );
 };

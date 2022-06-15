@@ -2,7 +2,6 @@
 
 .search-page {
   &__header {
-    background-color: $primary;
     padding: $spacer * 3 0;
 
     &__input {
@@ -11,20 +10,24 @@
           text-transform: uppercase;
           font-size: $h3-font-size;
           font-weight: $extra-bold-font-weight;
+          left: -7px !important;
+          bottom: 20px;
+          background-color: none;
+          color: #000 !important;
         }
 
         &__field {
           border: none;
           box-shadow: none;
-          border-bottom: 1px solid $white;
+          border-bottom: 1px solid $primary;
           font-size: 2rem;
           padding: $spacer / 2 0;
-          color: $white;
+          color: #000;
           font-weight: 600;
 
           &:focus {
             box-shadow: none;
-            color: $white;
+            color: #000;
           }
         }
       }

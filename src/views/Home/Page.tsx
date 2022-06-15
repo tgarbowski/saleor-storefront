@@ -31,8 +31,7 @@ const Page: React.FC<{
   const visibleCategory =
     shopName === "FASHION4YOU"
       ? categories.edges.slice(0, -2)
-      : categories.edges;
-
+      : categories.edges.slice(0, -1);
   return (
     <>
       <script className="structured-data-list" type="application/ld+json">
