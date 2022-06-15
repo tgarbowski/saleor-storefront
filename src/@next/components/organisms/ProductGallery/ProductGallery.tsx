@@ -1,5 +1,5 @@
 import React from "react";
-import { Magnifier, TOUCH_ACTIVATION } from "react-image-magnifiers";
+import { Magnifier, MOUSE_ACTIVATION } from "react-image-magnifiers";
 import { useInView } from "react-intersection-observer";
 
 import { Icon } from "@components/atoms";
@@ -124,7 +124,7 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
             imageSrc={images[imageIndex].url}
             imageAlt={images[imageIndex].alt}
             largeImageSrc={images[imageIndex].url}
-            touchActivation={TOUCH_ACTIVATION.TAP}
+            mouseActivation={MOUSE_ACTIVATION.CLICK}
           />
         )}
         {images.length === 0 && <CachedImage />}
