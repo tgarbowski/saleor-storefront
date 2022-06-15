@@ -6,7 +6,7 @@ import { FormattedMessage } from "react-intl";
 import Media from "react-media";
 import ReactSVG from "react-svg";
 
-import { DemoBanner } from "@components/atoms";
+import { DemoBanner, Icon } from "@components/atoms";
 import { ShopMenusQuery } from "@graphql/gqlTypes/ShopMenusQuery";
 import { paths } from "@paths";
 import Logo from "@styles/Logo";
@@ -56,6 +56,11 @@ export const MainMenu: React.FC<MainMenuProps> = ({
       items.reduce((prevVal, currVal) => prevVal + currVal.quantity, 0)) ||
     0;
 
+  const wishlistItemsQuantity =
+    (items &&
+      items.reduce((prevVal, currVal) => prevVal + currVal.quantity, 0)) ||
+    0;
+
   const handleSignOut = () => signOut();
 
   const showDropdownHandler = (itemId: string, hasSubNavigation: boolean) => {
@@ -79,9 +84,7 @@ export const MainMenu: React.FC<MainMenuProps> = ({
   }, [activeDropdown]);
 
   const visibleCategoryOnMenu =
-    shopName === "FASHION4YOU"
-      ? menuItems.slice(0, -2)
-      : menuItems;
+    shopName === "FASHION4YOU" ? menuItems.slice(0, -2) : menuItems;
 
   return (
     <header
@@ -315,6 +318,28 @@ export const MainMenu: React.FC<MainMenuProps> = ({
                     ) : (
                       <span className="main-menu__cart__quantity">
                         {cartItemsQuantity}
+                      </span>
+                    )}
+                  </>
+                )}
+              </li>
+              <li
+                data-test="menuCartOverlayLink"
+                className="main-menu__icon main-menu__cart"
+                onClick={() => {
+                  overlayContext.show(OverlayType.wishlist, OverlayTheme.right);
+                }}
+              >
+                {!loading && (
+                  <>
+                    <Icon name="heart" size={64} />
+                    {wishlistItemsQuantity > 0 ? (
+                      <span className="main-menu__cart__quantity">
+                        {wishlistItemsQuantity}
+                      </span>
+                    ) : (
+                      <span className="main-menu__cart__quantity">
+                        {wishlistItemsQuantity}
                       </span>
                     )}
                   </>

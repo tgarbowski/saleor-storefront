@@ -43,6 +43,7 @@ const DEFAULT_PROPS: IAddToCartSection = {
   setVariantId: variantId => undefined,
   variantId: "",
   onAddToCart: (variantId, quantity) => undefined,
+  onAddToWishlist: variantId => undefined,
   onAttributeChangeHandler: (slug, value) => undefined,
   availableForPurchase: null,
   isAvailableForPurchase: null,

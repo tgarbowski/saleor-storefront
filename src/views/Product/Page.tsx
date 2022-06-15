@@ -39,7 +39,14 @@ const Page: React.FC<
     queryAttributes: Record<string, string>;
     onAttributeChangeHandler: (slug: string | null, value: string) => void;
   }
-> = ({ add, product, items, queryAttributes, onAttributeChangeHandler }) => {
+> = ({
+  add,
+  addToWishlist,
+  product,
+  items,
+  queryAttributes,
+  onAttributeChangeHandler,
+}) => {
   const overlayContext = React.useContext(OverlayContext);
 
   const productGallery: React.RefObject<HTMLDivElement> = React.useRef();
@@ -62,6 +69,11 @@ const Page: React.FC<
   const handleAddToCart = (variantId, quantity) => {
     add(variantId, quantity);
     overlayContext.show(OverlayType.cart, OverlayTheme.right);
+  };
+
+  const handleAddToWishlist = variantId => {
+    addToWishlist(variantId);
+    overlayContext.show(OverlayType.wishlist, OverlayTheme.right);
   };
 
   const [productPricing, setProductPricing] = useState(null);
@@ -177,6 +189,7 @@ const Page: React.FC<
         setVariantId={setVariantId}
         variantId={variantId}
         onAddToCart={handleAddToCart}
+        onAddToWishlist={handleAddToWishlist}
         onAttributeChangeHandler={onAttributeChangeHandler}
         isAvailableForPurchase={product.isAvailableForPurchase}
         availableForPurchase={product.availableForPurchase}
@@ -192,6 +205,7 @@ const Page: React.FC<
         setVariantId={setVariantId}
         variantId={variantId}
         onAddToCart={handleAddToCart}
+        onAddToWishlist={handleAddToWishlist}
         onAttributeChangeHandler={onAttributeChangeHandler}
         isAvailableForPurchase={product.isAvailableForPurchase}
         availableForPurchase={product.availableForPurchase}

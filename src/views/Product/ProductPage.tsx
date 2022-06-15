@@ -13,6 +13,7 @@ import Page from "./Page";
 import { IProps } from "./types";
 
 import "./scss/index.scss";
+import { boolean } from "yup";
 
 const canDisplay = (product?: ProductDetails) =>
   !!product?.name && !!product?.pricing && !!product?.variants;
@@ -101,6 +102,10 @@ export const ProductPage: NextPage<ProductPageProps> = ({ data: product }) => {
   const { addItem, items } = useCart();
   const { asPath } = useRouter();
 
+  const addToWishlist = (variantId: string) => ({
+    pending: boolean,
+  });
+
   return (
     <NetworkStatus>
       {isOnline => {
@@ -112,6 +117,7 @@ export const ProductPage: NextPage<ProductPageProps> = ({ data: product }) => {
               <PageWithQueryAttributes
                 product={product}
                 add={addItem}
+                addToWishlist={addToWishlist}
                 items={items}
               />
             </MetaWrapper>

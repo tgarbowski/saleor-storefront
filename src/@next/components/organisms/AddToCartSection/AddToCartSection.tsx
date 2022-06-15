@@ -15,6 +15,7 @@ import { commonMessages } from "@temp/intl";
 import { IProductVariantsAttributesSelectedValues } from "@types";
 
 import AddToCartButton from "../../molecules/AddToCartButton";
+import AddToWishlistButton from "../../molecules/AddToWishlistButton";
 import QuantityInput from "../../molecules/QuantityInput";
 import ProductVariantPicker from "../ProductVariantPicker";
 import Accordion from "./Accordion";
@@ -37,6 +38,7 @@ export interface IAddToCartSection {
   variantId: string;
   setVariantId(variantId: string): void;
   onAddToCart(variantId: string, quantity?: number): void;
+  onAddToWishlist(variantId: string): void;
   onAttributeChangeHandler(slug: string | null, value: string): void;
 }
 
@@ -49,6 +51,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
   productVariants,
   queryAttributes,
   onAddToCart,
+  onAddToWishlist,
   onAttributeChangeHandler,
   setVariantId,
   variantId,
@@ -183,6 +186,33 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
     );
   };
 
+  const tryAddToWishlist = () => {
+    fetch(apiUrl, {
+      method: "POST",
+      body: JSON.stringify({
+        query: `
+        query  ProductVariant($id: ID!, $channel: String){
+          productVariant(id:$id channel:$channel){
+            quantityAvailable
+          }
+        }
+        `,
+        variables: {
+          id: variantId,
+          channel: channelSlug,
+        },
+      }),
+      headers: {
+        "content-type": "application/json",
+      },
+    }).then(data =>
+      data.json().then(data => {
+        onAddToWishlist(variantId);
+        console.log(variantId);
+      })
+    );
+  };
+
   return (
     <S.AddToCartSelection>
       <S.ProductNameHeader data-test="productName">{name}</S.ProductNameHeader>
@@ -241,6 +271,10 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
         />
       </S.QuantityInput>
       <AddToCartButton onSubmit={tryAddToCart} disabled={disableButton} />
+      <AddToWishlistButton
+        onSubmit={tryAddToWishlist}
+        disabled={disableButton}
+      />
       {addToCartPopUp && (
         <CustomPopup
           modalText="Nie można dodać produktu do koszyka. Wygląda na to, że produkt
