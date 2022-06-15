@@ -36,7 +36,7 @@ export const Title = styled.h4`
   font-size: 1rem;
   margin: 0 0 0.5rem 0;
   text-align: center;
-  word-break: break-all;
+  word-break: break-word;
 `;
 
 export const Price = styled.p`

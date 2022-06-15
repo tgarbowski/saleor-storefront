@@ -92,14 +92,33 @@
     text-transform: uppercase;
 
     a {
-      text-decoration: none;
-      color: $base-font-color;
-      position: relative;
-      transition: 0.3s;
+          font-size: $base-font-size;
+          position: relative;
+          text-transform: uppercase;
+          transition: all 0.3s ease-in-out;
+          max-width: 100%;
 
-      &:hover {
-        color: $primary;
-      }
+          &:hover {
+            color: $primary;
+          }
+
+          &:before {
+            content: "";
+            background: $primary;
+            display: block;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            transition: all 0.3s ease-in-out;
+          }
+          &:hover {
+            background-position: 0;
+          }
+          &:hover::before {
+            width: 100%;
+          }
     }
   }
 
@@ -255,37 +274,40 @@
   }
 
   &__nav-dropdown {
-    padding: 1.3rem;
+    margin: 0 1.3rem;
 
     &--active {
-      background-color: $turquoise-light;
       transition: 0.3s all ease-in-out;
 
       & > li > a {
-        color: $black;
-        @if $env == "FASHION4YOU" {
-          color: $white;
-        }
-        @if $env == "CLOTHES4U" {
-          color: $white;
-        }
-        &:hover {
-          color: $black;
-          @if $env == "FASHION4YOU" {
-            color: $white;
+          font-size: $base-font-size;
+          position: relative;
+          text-transform: uppercase;
+          margin-bottom: 30px;
+          transition: all 0.3s ease-in-out;
+          max-width: 100%;
+
+          &:hover {
+            color: $primary;
           }
-          @if $env == "CLOTHES4U" {
-            color: $white;
+
+          &:before {
+            content: "";
+            background: $primary;
+            display: block;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            transition: all 0.3s ease-in-out;
           }
-        }
-      }
-      @if $env == "FASHION4YOU" {
-        color: $white;
-        background-color: $primary;
-      }
-      @if $env == "CLOTHES4U" {
-        color: $white;
-        background-color: $primary;
+          &:hover {
+            background-position: 0;
+          }
+          &:hover::before {
+            width: 100%;
+          }
       }
     }
 
@@ -353,7 +375,6 @@
         }
         > ul > li:first-child {
           position: relative;
-          padding-top: 20px;
           width: 100%;
 
           &:before {

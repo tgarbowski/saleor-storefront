@@ -310,7 +310,7 @@ const f4uStyle = {
   secondaryGreyDark: "#9D9FB1",
   secondaryBlue: "#036DFF",
   fashionForYouGreen: "#65C947",
-  fashionForYouLightGreen: "#A8E098",
+  fashionForYouLightGreen: "#d4ffc8",
   fashionForYouDarkGreen: "#3E8828",
   fashionForYouBlack: "#262626",
 

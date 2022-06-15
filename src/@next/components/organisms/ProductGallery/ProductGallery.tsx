@@ -1,4 +1,5 @@
 import React from "react";
+import { Magnifier, MOUSE_ACTIVATION } from "react-image-magnifiers";
 import { useInView } from "react-intersection-observer";
 
 import { Icon } from "@components/atoms";
@@ -119,9 +120,11 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
       <S.Preview data-test="imagePreview">
         <h3>{images[imageIndex].alt}</h3>
         {images && images.length > 0 && imageIndex < images.length && (
-          <CachedImage
-            alt={images[imageIndex].alt}
-            url={images[imageIndex].url}
+          <Magnifier
+            imageSrc={images[imageIndex].url}
+            imageAlt={images[imageIndex].alt}
+            largeImageSrc={images[imageIndex].url}
+            mouseActivation={MOUSE_ACTIVATION.CLICK}
           />
         )}
         {images.length === 0 && <CachedImage />}

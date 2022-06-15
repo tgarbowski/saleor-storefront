@@ -68,9 +68,9 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
     const defaultCloseIcon = !!hideOverlay;
 
     const visibleCategoryOnMenu =
-    shopName === "FASHION4YOU"
-      ? displayedItems.slice(0, -2)
-      : displayedItems;
+      shopName === "FASHION4YOU"
+        ? displayedItems.slice(0, -2)
+        : displayedItems.slice(0, -1);
 
     return (
       <ul>
@@ -108,7 +108,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
             </li>
           </>
         )}
-      
+
         {visibleCategoryOnMenu.map(item => (
           <NavItem
             key={item.id}

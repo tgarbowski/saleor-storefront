@@ -74,13 +74,8 @@ export const ThumbnailList = styled.div`
 `;
 
 export const Preview = styled.div`
-  grid-area: preview;
   width: auto;
-  max-height: 560px;
-  overflow: hidden;
   img {
-    height: 100%;
-    width: 100%;
-    object-fit: contain;
+    transition: all 0.3s ease 0s;
   }
 `;
