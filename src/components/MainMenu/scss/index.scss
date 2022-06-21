@@ -326,11 +326,12 @@
       border-top-width: 1px;
       display: none;
       left: 0;
-      padding: 2rem;
+      padding: 1.4rem;
       position: absolute;
       top: 100%;
       width: 100%;
       z-index: 3;
+      border-bottom: 1px solid $gray-light;
 
       &--visible {
         display: block;
@@ -351,7 +352,7 @@
           font-size: $base-font-size;
           position: relative;
           text-transform: uppercase;
-          margin-bottom: 30px;
+          margin-bottom: 15px;
           transition: all 0.3s ease-in-out;
           max-width: 100%;
 
@@ -399,7 +400,7 @@
           a {
             font-size: $small-font-size;
             font-weight: normal;
-            padding: 6px 0;
+            padding: 10px 0;
             text-transform: capitalize;
             transition: all 0.3s ease-in-out;
             max-width: 100%;
