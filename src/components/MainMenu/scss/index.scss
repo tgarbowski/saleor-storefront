@@ -15,6 +15,10 @@
   align-items: center;
   position: relative;
   justify-content: center;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
 
   @media (min-width: $small-screen) {
     height: 6rem;
