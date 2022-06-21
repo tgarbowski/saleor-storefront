@@ -78,4 +78,9 @@ export const Preview = styled.div`
   img {
     transition: all 0.3s ease 0s;
   }
+  &:hover {
+    cursor: -moz-zoom-in;
+    cursor: -webkit-zoom-in;
+    cursor: zoom-in;
+  }
 `;
