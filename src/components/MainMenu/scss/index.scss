@@ -77,9 +77,8 @@
         width: 10rem;
 
         @if $env == "FASHION4YOU" {
-          width: 12rem;
+          width: 10rem;
           padding-top: 1rem;
-          padding-bottom: 1rem;
           object-fit: cover;
           height: auto;
         }
