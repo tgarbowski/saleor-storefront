@@ -1,5 +1,6 @@
-import { styled } from "@styles";
 import { Magnifier } from "react-image-magnifiers";
+
+import { styled } from "@styles";
 
 export const Wrapper = styled.div`
   display: grid;
