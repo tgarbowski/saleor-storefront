@@ -1,4 +1,5 @@
 import { styled } from "@styles";
+import { Magnifier } from "react-image-magnifiers";
 
 export const Wrapper = styled.div`
   display: grid;
@@ -77,10 +78,26 @@ export const Preview = styled.div`
   width: auto;
   img {
     transition: all 0.3s ease 0s;
+    &:hover {
+      cursor: -moz-zoom-in;
+      cursor: -webkit-zoom-in;
+      cursor: zoom-in !important;
+    }
   }
+  cursor: zoom-in !important;
   &:hover {
     cursor: -moz-zoom-in;
     cursor: -webkit-zoom-in;
-    cursor: zoom-in;
+    cursor: zoom-in !important;
+  }
+`;
+
+export const MagnifierStyle = styled(Magnifier)`
+  cursor: zoom-in !important;
+
+  &:hover {
+    cursor: -moz-zoom-in;
+    cursor: -webkit-zoom-in;
+    cursor: zoom-in !important;
   }
 `;

@@ -11,6 +11,7 @@ body {
   color: $base-font-color;
   overflow-x: hidden;
   margin-right: calc(-1 * (100vw - 100%));
+  margin-top: 90px;
 
   * {
     box-sizing: border-box;
