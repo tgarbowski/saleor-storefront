@@ -67,11 +67,6 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
 
     const defaultCloseIcon = !!hideOverlay;
 
-    const visibleCategoryOnMenu =
-      shopName === "FASHION4YOU"
-        ? displayedItems.slice(0, -2)
-        : displayedItems.slice(0, -1);
-
     return (
       <ul>
         {parent ? (
@@ -108,15 +103,42 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
             </li>
           </>
         )}
+        {/* {displayedItems.map(item => {
+          return (shopName === "FASHION4YOU" && item.name === "Detal") ||
+            item.name === "Hurt" ||
+            (shopName === "CLOTHES4U" && item.name === "Detal") ? null : (
+            <NavItem
+              key={item.id}
+              hideOverlay={hideOverlay}
+              showSubItems={this.handleShowSubItems}
+              {...item}
+            />
+          );
+        })} */}
 
-        {visibleCategoryOnMenu.map(item => (
-          <NavItem
-            key={item.id}
-            hideOverlay={hideOverlay}
-            showSubItems={this.handleShowSubItems}
-            {...item}
-          />
-        ))}
+        {shopName === "CLOTHES4U" &&
+          displayedItems.map(item => {
+            return item.name === "Detal" ? null : (
+              <NavItem
+                key={item.id}
+                hideOverlay={hideOverlay}
+                showSubItems={this.handleShowSubItems}
+                {...item}
+              />
+            );
+          })}
+
+        {shopName === "FASHION4YOU" &&
+          displayedItems.map(item => {
+            return item.name === "Detal" || item.name === "Hurt" ? null : (
+              <NavItem
+                key={item.id}
+                hideOverlay={hideOverlay}
+                showSubItems={this.handleShowSubItems}
+                {...item}
+              />
+            );
+          })}
       </ul>
     );
   }
