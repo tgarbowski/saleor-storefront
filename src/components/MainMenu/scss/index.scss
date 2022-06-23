@@ -95,7 +95,7 @@
     text-transform: uppercase;
 
     a {
-          font-size: $base-font-size;
+          font-size: $h4-font-size;
           position: relative;
           text-transform: uppercase;
           transition: all 0.3s ease-in-out;
@@ -333,25 +333,36 @@
       border-bottom: 1px solid $gray-light;
 
       &--visible {
-        display: block;
+        display: inline;
+      }
+
+      ul {
+        display: flex;
+        flex-direction: column;
       }
 
       li *,
       ul * {
-        display: block !important;
+        display: flex;
+        flex-direction: row !important;
+        flex-wrap: wrap;
       }
 
       > ul > li {
         align-self: flex-start;
         margin-left: 2rem;
         position: relative;
+        padding: 15px 0;
+        display: flex !important;
+        align-items: center;
 
         // 2nd level name
         > a {
           font-size: $base-font-size;
           position: relative;
           text-transform: uppercase;
-          margin-bottom: 15px;
+          margin-right: 20px;
+          font-weight: bold;
           transition: all 0.3s ease-in-out;
           max-width: 100%;
 
@@ -379,27 +390,25 @@
         }
         > ul > li:first-child {
           position: relative;
-          width: 100%;
-
-          &:before {
-            background-color: $turquoise-light;
-            content: "";
-            height: 1px;
-            left: 0;
-            position: absolute;
-            top: -6px;
-            width: 100%;
-            bottom: -5px;
-            transition: all 0.3s ease-in-out;
-          }
         }
 
         ul {
-          // 3rd+ level names
+          display: flex;
+          flex-direction: row !important;
+          flex-wrap: wrap;
+          li {
+            align-self: flex-start;
+            padding-bottom: 20px;
+            display: flex !important;
+            align-items: center;
+            flex-direction: row;
+
+            // 3rd+ level names
           a {
             font-size: $small-font-size;
             font-weight: normal;
-            padding: 10px 0;
+            margin-bottom: 15px;
+            margin-right: 20px;
             text-transform: capitalize;
             transition: all 0.3s ease-in-out;
             max-width: 100%;
@@ -429,6 +438,7 @@
 
           li > ul {
             margin-left: 10px;
+          }
           }
         }
       }

@@ -18,6 +18,7 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
     font-size: ${props => props.theme.typography.baseFontSize};
     line-height: ${props => props.theme.typography.baseLineHeight};
     color: ${props => props.theme.colors.baseFont};
+    margin-top: 90px;
   }
 
   input, textarea, button {
