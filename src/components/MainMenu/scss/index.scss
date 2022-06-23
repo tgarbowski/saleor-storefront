@@ -365,6 +365,7 @@
           font-weight: bold;
           transition: all 0.3s ease-in-out;
           max-width: 100%;
+          margin-bottom: 15px;
 
           &:hover {
             color: $primary;
@@ -406,12 +407,13 @@
             // 3rd+ level names
           a {
             font-size: $small-font-size;
-            font-weight: normal;
-            margin-bottom: 15px;
+            font-weight: 400;
+            margin-bottom: -5px;
             margin-right: 20px;
             text-transform: capitalize;
-            transition: all 0.3s ease-in-out;
+            transition: all .3s ease-in-out;
             max-width: 100%;
+        }
 
             &:hover {
               color: $primary;
