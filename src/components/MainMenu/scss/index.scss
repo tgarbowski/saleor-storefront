@@ -352,7 +352,7 @@
         align-self: flex-start;
         margin-left: 2rem;
         position: relative;
-        padding: 20px 0;
+        padding: 15px 0;
         display: flex !important;
         align-items: center;
 
@@ -361,7 +361,6 @@
           font-size: $base-font-size;
           position: relative;
           text-transform: uppercase;
-          margin-bottom: 15px;
           margin-right: 20px;
           font-weight: bold;
           transition: all 0.3s ease-in-out;
@@ -399,7 +398,7 @@
           flex-wrap: wrap;
           li {
             align-self: flex-start;
-            padding: 20px 0;
+            padding-bottom: 20px;
             display: flex !important;
             align-items: center;
             flex-direction: row;
