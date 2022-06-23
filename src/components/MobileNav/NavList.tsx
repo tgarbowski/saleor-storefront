@@ -103,18 +103,6 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
             </li>
           </>
         )}
-        {/* {displayedItems.map(item => {
-          return (shopName === "FASHION4YOU" && item.name === "Detal") ||
-            item.name === "Hurt" ||
-            (shopName === "CLOTHES4U" && item.name === "Detal") ? null : (
-            <NavItem
-              key={item.id}
-              hideOverlay={hideOverlay}
-              showSubItems={this.handleShowSubItems}
-              {...item}
-            />
-          );
-        })} */}
 
         {shopName === "CLOTHES4U" &&
           displayedItems.map(item => {
