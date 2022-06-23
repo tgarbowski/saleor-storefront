@@ -9,7 +9,7 @@ import React, {
 
 import { CheckoutReview } from "@components/organisms";
 import { statuses as dummyStatuses } from "@components/organisms/DummyPaymentGateway";
-import { apiUrl, paymentGatewayNames } from "@temp/constants";
+import { apiUrl, channelSlug, paymentGatewayNames } from "@temp/constants";
 import { IFormError } from "@types";
 
 import {
@@ -17,6 +17,9 @@ import {
   SubpageBaseProps,
   SubpageCompleteHandler,
 } from "../utils";
+
+import { PayuRedirectUrl } from "../queries";
+
 
 export interface ISubmitCheckoutData {
   id: string;
@@ -33,6 +36,21 @@ interface CheckoutReviewSubpageProps extends SubpageBaseProps {
   noteRef?: any;
 }
 
+const generatePayuUrl = async (variables: any) => {
+  const response = await fetch(apiUrl, {
+    method: "POST",
+    body: JSON.stringify({
+      query: PayuRedirectUrl,
+      variables: variables
+    }),
+    headers: {
+      "content-type": "application/json",
+    },
+  })
+  const data = await response.json();
+  return data?.data?.generatePaymentUrl?.paymentUrl
+};
+
 const CheckoutReviewSubpageWithRef: RefForwardingComponent<
   SubpageCompleteHandler,
   CheckoutReviewSubpageProps
@@ -42,7 +60,6 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
     paymentGatewayFormRef,
     changeSubmitProgress,
     onSubmitSuccess,
-    payuUrl,
     noteRef,
   },
   ref
@@ -90,6 +107,8 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
     changeSubmitProgress(true);
     let data;
     let dataError;
+    let payu_url: any;
+
     if (payment?.gateway === paymentGatewayNames.adyen) {
       paymentGatewayFormRef.current?.dispatchEvent(
         new Event("submitComplete", { cancelable: true })
@@ -99,6 +118,14 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
         new Event("submitComplete", { cancelable: true })
       );
     } else {
+      if (payment?.gateway === paymentGatewayNames.payu) {
+        payu_url = await generatePayuUrl(
+          {
+            paymentId: payment?.id,
+            channel: channelSlug
+          }
+        )
+      }
       const response = await completeCheckout();
       data = response.data;
       dataError = response.dataError;
@@ -117,7 +144,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
         });
         if (payment?.gateway === paymentGatewayNames.payu) {
           setTimeout(() => {
-            window.open(payuUrl, "_blank", "noopener,noreferrer");
+            window.open(payu_url, "_blank", "noopener,noreferrer");
             // @ts-ignore
           }, 2000);
         }
@@ -126,6 +153,10 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
   });
 
   useEffect(() => {
+    if (checkout?.token === undefined) {
+      setNip("");
+      return;
+    };
     fetch(apiUrl, {
       method: "POST",
       body: JSON.stringify({
@@ -150,7 +181,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
         setNip(json.data.checkout.shippingAddress.vatId);
       })
     );
-  }, []);
+  }, [nip]);
 
   return (
     <CheckoutReview
