@@ -16,7 +16,7 @@ export const PayuRedirectUrl = `
     generatePaymentUrl(paymentId: $paymentId, channel: $channel) {
       paymentUrl
     }
-  }`
+  }`;
 
 export const TypedGeneratePaymentUrl = TypedQuery<
   PaymentUrl,

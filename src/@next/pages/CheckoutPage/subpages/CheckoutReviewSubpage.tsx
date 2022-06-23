@@ -12,13 +12,12 @@ import { statuses as dummyStatuses } from "@components/organisms/DummyPaymentGat
 import { apiUrl, channelSlug, paymentGatewayNames } from "@temp/constants";
 import { IFormError } from "@types";
 
+import { PayuRedirectUrl } from "../queries";
 import {
   CheckoutStep,
   SubpageBaseProps,
   SubpageCompleteHandler,
 } from "../utils";
-
-import { PayuRedirectUrl } from "../queries";
 
 
 export interface ISubmitCheckoutData {
@@ -41,14 +40,14 @@ const generatePayuUrl = async (variables: any) => {
     method: "POST",
     body: JSON.stringify({
       query: PayuRedirectUrl,
-      variables: variables
+      variables
     }),
     headers: {
       "content-type": "application/json",
     },
-  })
+  });
   const data = await response.json();
-  return data?.data?.generatePaymentUrl?.paymentUrl
+  return data?.data?.generatePaymentUrl?.paymentUrl;
 };
 
 const CheckoutReviewSubpageWithRef: RefForwardingComponent<
@@ -124,7 +123,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
             paymentId: payment?.id,
             channel: channelSlug
           }
-        )
+        );
       }
       const response = await completeCheckout();
       data = response.data;
@@ -156,7 +155,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
     if (checkout?.token === undefined) {
       setNip("");
       return;
-    };
+    }
     fetch(apiUrl, {
       method: "POST",
       body: JSON.stringify({
