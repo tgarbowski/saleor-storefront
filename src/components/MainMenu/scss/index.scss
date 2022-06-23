@@ -413,8 +413,7 @@
             text-transform: capitalize;
             transition: all .3s ease-in-out;
             max-width: 100%;
-        }
-
+      
             &:hover {
               color: $primary;
             }
@@ -446,4 +445,4 @@
       }
     }
   }
-
+}
