@@ -125,3 +125,10 @@ export const AccordionContent = styled.div`
 export const AccordionListItem = styled.li`
   padding: 1rem 0;
 `;
+
+export const SocialSharingWrapper = styled.div`
+  margin-top: 3.2rem;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+`;
