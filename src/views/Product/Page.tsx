@@ -180,6 +180,7 @@ const Page: React.FC<
         onAttributeChangeHandler={onAttributeChangeHandler}
         isAvailableForPurchase={product.isAvailableForPurchase}
         availableForPurchase={product.availableForPurchase}
+        product={product}
       />
     ) : (
       <AddToCartSection
@@ -195,6 +196,7 @@ const Page: React.FC<
         onAttributeChangeHandler={onAttributeChangeHandler}
         isAvailableForPurchase={product.isAvailableForPurchase}
         availableForPurchase={product.availableForPurchase}
+        product={product}
       />
     );
 
