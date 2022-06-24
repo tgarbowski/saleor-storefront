@@ -1,3 +1,4 @@
+import { ProductDetails } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
 import { ICheckoutModelLine } from "@saleor/sdk/lib/helpers";
 import {
   ProductDetails_product_pricing,
@@ -6,6 +7,7 @@ import {
 } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
 import React, { useEffect, useState } from "react";
 import { useIntl } from "react-intl";
+import { FacebookIcon, FacebookShareButton } from "react-share";
 
 import { CustomPopup } from "@components/atoms/CustomPopup/CustomPopup";
 import { CreditCardIcon, ShippingIcon } from "@styles/icons";
@@ -37,6 +39,7 @@ export interface IAddToCartSection {
   setVariantId(variantId: string): void;
   onAddToCart(variantId: string, quantity?: number): void;
   onAttributeChangeHandler(slug: string | null, value: string): void;
+  product: ProductDetails;
 }
 
 const AddToCartSection: React.FC<IAddToCartSection> = ({
@@ -51,12 +54,15 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
   onAttributeChangeHandler,
   setVariantId,
   variantId,
+  product,
 }) => {
   const intl = useIntl();
   const [quantity, setQuantity] = useState<number>(1);
   const [variantStock, setVariantStock] = useState<number>(0);
   const [variantPricing, setVariantPricing] =
     useState<ProductDetails_product_variants_pricing | null>(null);
+
+  const shareUrl = window?.location.href ?? "";
 
   const availableQuantity = getAvailableQuantity(
     items,
@@ -240,6 +246,9 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
         />
       </S.QuantityInput>
       <AddToCartButton onSubmit={tryAddToCart} disabled={disableButton} />
+      <FacebookShareButton url={shareUrl}>
+        <FacebookIcon size={32} />
+      </FacebookShareButton>
       {addToCartPopUp && (
         <CustomPopup
           modalText="Nie można dodać produktu do koszyka. Wygląda na to, że produkt

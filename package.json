@@ -66,6 +66,7 @@
     "react-responsive": "^7.0.0",
     "react-router": "^5.2.0",
     "react-select": "^2.4.4",
+    "react-share": "^4.4.0",
     "react-svg": "^5.0.6",
     "react-transition-group": "^4.4.2",
     "register-service-worker": "^1.7.2",
