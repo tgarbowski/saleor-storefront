@@ -6,8 +6,18 @@ import {
   ProductDetails_product_variants_pricing,
 } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
 import React, { useEffect, useState } from "react";
+import Helmet from "react-helmet";
 import { useIntl } from "react-intl";
-import { FacebookIcon, FacebookShareButton } from "react-share";
+import {
+  EmailIcon,
+  EmailShareButton,
+  FacebookIcon,
+  FacebookShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
+} from "react-share";
 
 import { CustomPopup } from "@components/atoms/CustomPopup/CustomPopup";
 import { CreditCardIcon, ShippingIcon } from "@styles/icons";
@@ -188,8 +198,20 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
     );
   };
 
+  const imageURL = "";
+  const productName = product.name;
+
   return (
     <S.AddToCartSelection>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{productName}</title>
+        <meta property="og:url" content={shareUrl} />
+        <meta
+          property="og:image"
+          content={imageURL !== "" ? `${product.thumbnail}` : ""}
+        />
+      </Helmet>
       <S.ProductNameHeader data-test="productName">{name}</S.ProductNameHeader>
       {isOutOfStock ? (
         renderErrorMessage(
@@ -246,9 +268,20 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
         />
       </S.QuantityInput>
       <AddToCartButton onSubmit={tryAddToCart} disabled={disableButton} />
-      <FacebookShareButton url={shareUrl}>
-        <FacebookIcon size={32} />
-      </FacebookShareButton>
+      <S.SocialSharingWrapper>
+        <FacebookShareButton url={shareUrl}>
+          <FacebookIcon size={32} round />
+        </FacebookShareButton>
+        <EmailShareButton url={shareUrl}>
+          <EmailIcon size={32} round />
+        </EmailShareButton>
+        <TwitterShareButton url={shareUrl}>
+          <TwitterIcon size={32} round />
+        </TwitterShareButton>
+        <WhatsappShareButton url={shareUrl}>
+          <WhatsappIcon size={32} round />
+        </WhatsappShareButton>
+      </S.SocialSharingWrapper>
       {addToCartPopUp && (
         <CustomPopup
           modalText="Nie można dodać produktu do koszyka. Wygląda na to, że produkt
