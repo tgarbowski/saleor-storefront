@@ -1,3 +1,4 @@
+import { IItems } from "@saleor/sdk/lib/api/Cart/types";
 import { ICheckoutModelLine } from "@saleor/sdk/lib/helpers";
 import {
   ProductDetails_product_pricing,
@@ -32,13 +33,14 @@ export interface IAddToCartSection {
   name: string;
   productPricing: ProductDetails_product_pricing;
   items: ICheckoutModelLine[];
+  itemsWishlist: ICheckoutModelLine[];
   queryAttributes: Record<string, string>;
   isAvailableForPurchase: boolean | null;
   availableForPurchase: string | null;
   variantId: string;
   setVariantId(variantId: string): void;
   onAddToCart(variantId: string, quantity?: number): void;
-  onAddToWishlist(variantId: string): void;
+  onAddToWishlist(variantId: string, quantity?: number): void;
   onAttributeChangeHandler(slug: string | null, value: string): void;
 }
 
@@ -55,6 +57,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
   onAttributeChangeHandler,
   setVariantId,
   variantId,
+  itemsWishlist,
 }) => {
   const intl = useIntl();
   const [quantity, setQuantity] = useState<number>(1);
@@ -179,6 +182,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
       data.json().then(data => {
         if (data.data.productVariant.quantityAvailable !== 0) {
           onAddToCart(variantId, quantity);
+          console.log(variantId);
         } else {
           setAddToCartPopUp(true);
         }
@@ -193,7 +197,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
         query: `
         query  ProductVariant($id: ID!, $channel: String){
           productVariant(id:$id channel:$channel){
-            id
+            quantityAvailable
           }
         }
         `,
@@ -207,8 +211,12 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
       },
     }).then(data =>
       data.json().then(data => {
-        onAddToWishlist(variantId);
-        console.log(variantId);
+        if (data.data.productVariant.quantityAvailable !== 0) {
+          onAddToWishlist(variantId, quantity);
+          console.log(variantId);
+        } else {
+          setAddToCartPopUp(true);
+        }
       })
     );
   };

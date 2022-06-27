@@ -1,4 +1,5 @@
 import { useCart } from "@saleor/sdk";
+import { IItems } from "@saleor/sdk/lib/api/Cart/types";
 import { ProductDetails } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
@@ -95,11 +96,23 @@ const PageWithQueryAttributes: React.FC<IProps> = props => {
 export type ProductPageProps = {
   params: { slug: string } | undefined;
   data: ProductDetails | undefined | null;
+  itemsWishlist: IItems;
 };
 
-export const ProductPage: NextPage<ProductPageProps> = ({ data: product }) => {
+export const ProductPage: NextPage<ProductPageProps> = (
+  { data: product },
+  itemsWishlist
+) => {
   const { addItem, items } = useCart();
   const { asPath } = useRouter();
+
+  const handleAddToWishlist = (variantId: any, quantity: any) => {
+    console.log(variantId, quantity);
+  };
+
+  useEffect(() => {
+    console.log(addItem);
+  }, []);
 
   return (
     <NetworkStatus>
@@ -113,6 +126,8 @@ export const ProductPage: NextPage<ProductPageProps> = ({ data: product }) => {
                 product={product}
                 add={addItem}
                 items={items}
+                addToWishlist={handleAddToWishlist}
+                itemsWishlist={itemsWishlist}
               />
             </MetaWrapper>
           );

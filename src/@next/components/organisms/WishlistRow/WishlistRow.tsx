@@ -1,9 +1,9 @@
 import Link from "next/link";
-import React from "react";
-import { FormattedMessage } from "react-intl";
+import React, { useEffect, useState } from "react";
+import { FormattedMessage, useIntl } from "react-intl";
 import { generatePath } from "react-router";
 
-import { IconButton } from "@components/atoms";
+import { ErrorMessage, Icon, IconButton, Input } from "@components/atoms";
 import { CachedImage } from "@components/molecules";
 import { paths } from "@paths";
 import { commonMessages } from "@temp/intl";
@@ -17,6 +17,8 @@ export const WishlistRow: React.FC<IProps> = ({
   unitPrice,
   name,
   sku,
+  quantity,
+  maxQuantity,
   thumbnail,
   attributes = [],
   onRemove,
@@ -24,14 +26,55 @@ export const WishlistRow: React.FC<IProps> = ({
   slug,
   type = "responsive",
 }: IProps) => {
+  const [tempQuantity, setTempQuantity] = useState<string>(quantity.toString());
+  const [isTooMuch, setIsTooMuch] = useState(false);
+  const intl = useIntl();
+
+  const handleBlurQuantityInput = () => {
+    let newQuantity = parseInt(tempQuantity, 10);
+
+    if (isNaN(newQuantity) || newQuantity <= 0) {
+      newQuantity = quantity;
+    } else if (newQuantity > maxQuantity) {
+      newQuantity = maxQuantity;
+    }
+
+    if (quantity !== newQuantity) {
+      onQuantityChange(newQuantity);
+    }
+
+    const newTempQuantity = newQuantity.toString();
+    if (tempQuantity !== newTempQuantity) {
+      setTempQuantity(newTempQuantity);
+    }
+
+    setIsTooMuch(false);
+  };
+
+  useEffect(() => {
+    setTempQuantity(quantity.toString());
+  }, [quantity]);
+
+  const handleQuantityChange = (evt: React.ChangeEvent<any>) => {
+    const newQuantity = parseInt(evt.target.value, 10);
+
+    setTempQuantity(evt.target.value);
+
+    setIsTooMuch(!isNaN(newQuantity) && newQuantity > maxQuantity);
+  };
+
+  const quantityErrors = isTooMuch
+    ? [
+        {
+          message: intl.formatMessage(commonMessages.maxQtyIs, { maxQuantity }),
+        },
+      ]
+    : undefined;
+
   const productUrl = generatePath(paths.product, { slug });
 
   return (
-    <S.Wrapper
-      wishlistRowType={type}
-      data-test="wishlistRow"
-      data-test-id={sku}
-    >
+    <S.Wrapper wishlistRowType={type} data-test="cartRow" data-test-id={sku}>
       <S.Photo wishlistRowType={type}>
         <Link href={productUrl}>
           <a>
@@ -51,6 +94,19 @@ export const WishlistRow: React.FC<IProps> = ({
             <span data-test="itemSKU">{sku || "-"}</span>
           </S.LightFont>
         </S.Sku>
+        <S.Attributes wishlistRowType={type} data-test="itemAttributes">
+          {attributes.map(({ attribute, values }, attributeIndex) => (
+            <S.SingleAttribute key={attribute.id}>
+              <span
+                data-test="itemSingleAttribute"
+                data-test-id={attributeIndex}
+              >
+                <S.LightFont>{attribute.name}:</S.LightFont>{" "}
+                {values.map(value => value.name).join(", ")}
+              </span>
+            </S.SingleAttribute>
+          ))}
+        </S.Attributes>
       </S.Description>
       <S.Trash>
         <IconButton

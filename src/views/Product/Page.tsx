@@ -44,6 +44,7 @@ const Page: React.FC<
   addToWishlist,
   product,
   items,
+  itemsWishlist,
   queryAttributes,
   onAttributeChangeHandler,
 }) => {
@@ -71,8 +72,8 @@ const Page: React.FC<
     overlayContext.show(OverlayType.cart, OverlayTheme.right);
   };
 
-  const handleAddToWishlist = variantId => {
-    addToWishlist(variantId);
+  const handleAddToWishlist = (variantId: string, quantity: number) => {
+    addToWishlist(variantId, quantity);
     overlayContext.show(OverlayType.wishlist, OverlayTheme.right);
   };
 
@@ -180,6 +181,7 @@ const Page: React.FC<
   const addToCartSection =
     productVariants && productPricing ? (
       <AddToCartSection
+        itemsWishlist={itemsWishlist}
         items={items}
         productId={product.id}
         name={product.name}
@@ -196,6 +198,7 @@ const Page: React.FC<
       />
     ) : (
       <AddToCartSection
+        itemsWishlist={itemsWishlist}
         items={items}
         productId={product.id}
         name={product.name}

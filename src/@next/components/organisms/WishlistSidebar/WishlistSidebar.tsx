@@ -1,5 +1,5 @@
 import { IItems } from "@saleor/sdk/lib/api/Cart/types";
-import React from "react";
+import React, { useEffect } from "react";
 import { FormattedMessage } from "react-intl";
 
 import { Button, Icon, Loader, OfflinePlaceholder } from "@components/atoms";
@@ -12,10 +12,10 @@ import { Overlay, WishlistRow } from "..";
 import * as S from "./styles";
 
 const generateWishlist = (
-  items: IItems,
+  itemsWishlist: IItems,
   removeItem: (variantId: string) => any
 ) => {
-  return items?.map(({ id, variant, totalPrice }, index) => (
+  return itemsWishlist?.map(({ id, variant, quantity, totalPrice }, index) => (
     <WishlistRow
       type="condense"
       key={id ? `id-${id}` : `idx-${index}`}
@@ -23,6 +23,8 @@ const generateWishlist = (
       id={variant?.product?.id || ""}
       slug={variant.product?.slug || ""}
       name={variant?.product?.name || ""}
+      maxQuantity={variant.quantityAvailable || quantity}
+      quantity={quantity}
       onRemove={() => removeItem(variant.id)}
       thumbnail={{
         ...variant?.product?.thumbnail,
@@ -51,9 +53,8 @@ const generateWishlist = (
 };
 
 export interface IWishlistSidebar {
-  items: IItems;
+  itemsWishlist: IItems;
   removeItem: (variantId: string) => any;
-  updateItem: (variantId: string, quantity: number) => any;
   totalPrice?: ITaxedMoney | null;
   shippingTaxedPrice?: ITaxedMoney | null;
   promoTaxedPrice?: ITaxedMoney | null;
@@ -65,7 +66,7 @@ export interface IWishlistSidebar {
 }
 
 const WishlistSidebar: React.FC<IWishlistSidebar> = ({
-  items,
+  itemsWishlist,
   removeItem,
   hide,
   show,
@@ -78,9 +79,9 @@ const WishlistSidebar: React.FC<IWishlistSidebar> = ({
     hide();
   });
 
-  const missingVariants = () => {
-    return items?.find(item => !item.variant || !item.totalPrice);
-  };
+  useEffect(() => {
+    console.log(itemsWishlist);
+  }, []);
 
   return (
     <Overlay
@@ -106,12 +107,8 @@ const WishlistSidebar: React.FC<IWishlistSidebar> = ({
             <S.EmptyCart>
               <OfflinePlaceholder />
             </S.EmptyCart>
-          ) : items?.length ? (
-            missingVariants() ? (
-              <Loader />
-            ) : (
-              <S.Cart>{generateWishlist(items, removeItem)}</S.Cart>
-            )
+          ) : itemsWishlist?.length ? (
+            <S.Cart>{generateWishlist(itemsWishlist, removeItem)}</S.Cart>
           ) : (
             <S.EmptyCart>
               <S.EmptyCartTitle>
@@ -129,7 +126,7 @@ const WishlistSidebar: React.FC<IWishlistSidebar> = ({
             </S.EmptyCart>
           )}
         </S.Content>
-        {online && !!items?.length && (
+        {online && !!itemsWishlist?.length && (
           <S.Footer>
             <Button
               name="gotoWishlistView"

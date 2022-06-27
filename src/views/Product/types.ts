@@ -4,6 +4,7 @@ import { ICheckoutModelLine } from "@saleor/sdk/lib/helpers";
 export interface IProps {
   product: ProductDetails;
   add: (variantId: string, quantity: number) => any;
-  addToWishlist: (variantId: string) => any;
+  addToWishlist: (variantId: string, quantity: number) => any;
   items: ICheckoutModelLine[];
+  itemsWishlist: ICheckoutModelLine[];
 }

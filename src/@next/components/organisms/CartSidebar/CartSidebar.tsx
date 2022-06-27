@@ -1,5 +1,5 @@
 import { IItems } from "@saleor/sdk/lib/api/Cart/types";
-import React from "react";
+import React, { useEffect } from "react";
 import { FormattedMessage } from "react-intl";
 import ReactSVG from "react-svg";
 
@@ -102,6 +102,10 @@ const CartSidebar: React.FC<ICartSidebar> = ({
   const missingVariants = () => {
     return items?.find(item => !item.variant || !item.totalPrice);
   };
+
+  useEffect(() => {
+    console.log(items);
+  }, []);
 
   return (
     <Overlay

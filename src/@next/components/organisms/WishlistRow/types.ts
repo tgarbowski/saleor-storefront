@@ -30,6 +30,17 @@ export interface IProps {
    * Stock keeping unit
    */
   sku?: string;
+  /**
+   * Quantity of particular item
+   */
+  quantity: number;
+  /**
+   * Maximum possible quantity of particular item
+   */
+  maxQuantity: number;
+  /**
+   * Method run when removing item from cart
+   */
   onRemove: () => void;
   /**
    * Product thumbnail image
@@ -45,5 +56,5 @@ export interface IProps {
   /**
    * Visual row style
    */
-  type?: IWishlistRowType;
+  type?: ICartRowType;
 }
