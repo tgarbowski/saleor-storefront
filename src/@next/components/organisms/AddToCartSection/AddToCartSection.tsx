@@ -193,7 +193,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
         query: `
         query  ProductVariant($id: ID!, $channel: String){
           productVariant(id:$id channel:$channel){
-            quantityAvailable
+            id
           }
         }
         `,

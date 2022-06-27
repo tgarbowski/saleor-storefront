@@ -3,7 +3,6 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 import { IntlProvider } from "react-intl";
 
-import { WishlistSidebar } from "./WishlistSidebar";
 import {
   ITEMS,
   PROMO_PRICE,
@@ -11,6 +10,7 @@ import {
   SUBTOTAL_PRICE,
   TOTAL_PRICE,
 } from "./fixtures";
+import { WishlistSidebar } from "./WishlistSidebar";
 
 let portalRoot = document.getElementById("portal-root");
 if (!portalRoot) {

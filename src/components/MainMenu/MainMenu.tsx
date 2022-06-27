@@ -51,6 +51,7 @@ export const MainMenu: React.FC<MainMenuProps> = ({
   const [activeDropdown, setActiveDropdown] = useState<string>(undefined);
 
   const menuItems = menu?.items || [];
+
   const cartItemsQuantity =
     (items &&
       items.reduce((prevVal, currVal) => prevVal + currVal.quantity, 0)) ||
@@ -324,8 +325,8 @@ export const MainMenu: React.FC<MainMenuProps> = ({
                 )}
               </li>
               <li
-                data-test="menuCartOverlayLink"
-                className="main-menu__icon main-menu__cart"
+                data-test="menuWishlistOverlayLink"
+                className="main-menu__icon main-menu__wishlist"
                 onClick={() => {
                   overlayContext.show(OverlayType.wishlist, OverlayTheme.right);
                 }}
@@ -334,11 +335,11 @@ export const MainMenu: React.FC<MainMenuProps> = ({
                   <>
                     <Icon name="heart" size={64} />
                     {wishlistItemsQuantity > 0 ? (
-                      <span className="main-menu__cart__quantity">
+                      <span className="main-menu__wishlist__quantity">
                         {wishlistItemsQuantity}
                       </span>
                     ) : (
-                      <span className="main-menu__cart__quantity">
+                      <span className="main-menu__wishlist__quantity">
                         {wishlistItemsQuantity}
                       </span>
                     )}

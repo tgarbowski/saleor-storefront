@@ -1,42 +1,29 @@
 import { IItems } from "@saleor/sdk/lib/api/Cart/types";
 import React from "react";
 import { FormattedMessage } from "react-intl";
-import ReactSVG from "react-svg";
 
-import {
-  Button,
-  CartCostsSummary,
-  Icon,
-  Loader,
-  OfflinePlaceholder,
-} from "@components/atoms";
+import { Button, Icon, Loader, OfflinePlaceholder } from "@components/atoms";
 import { TaxedMoney } from "@components/containers";
 import { CardHeader } from "@components/molecules";
 import { useHandlerWhenClickedOutside, useNetworkStatus } from "@hooks";
 import { ITaxedMoney } from "@types";
 
-import { CartRow, Overlay } from "..";
+import { Overlay, WishlistRow } from "..";
 import * as S from "./styles";
 
-import cartImg from "images/cart.svg";
-
-const generateCart = (
+const generateWishlist = (
   items: IItems,
-  removeItem: (variantId: string) => any,
-  updateItem: (variantId: string, quantity: number) => any
+  removeItem: (variantId: string) => any
 ) => {
-  return items?.map(({ id, variant, quantity, totalPrice }, index) => (
-    <CartRow
+  return items?.map(({ id, variant, totalPrice }, index) => (
+    <WishlistRow
       type="condense"
       key={id ? `id-${id}` : `idx-${index}`}
       index={index}
       id={variant?.product?.id || ""}
       slug={variant.product?.slug || ""}
       name={variant?.product?.name || ""}
-      maxQuantity={variant.quantityAvailable || quantity}
-      quantity={quantity}
       onRemove={() => removeItem(variant.id)}
-      onQuantityChange={quantity => updateItem(variant.id, quantity)}
       thumbnail={{
         ...variant?.product?.thumbnail,
         alt: variant?.product?.thumbnail?.alt || "",
@@ -80,11 +67,6 @@ export interface IWishlistSidebar {
 const WishlistSidebar: React.FC<IWishlistSidebar> = ({
   items,
   removeItem,
-  updateItem,
-  totalPrice,
-  shippingTaxedPrice,
-  promoTaxedPrice,
-  subtotalPrice,
   hide,
   show,
   target,
@@ -128,7 +110,7 @@ const WishlistSidebar: React.FC<IWishlistSidebar> = ({
             missingVariants() ? (
               <Loader />
             ) : (
-              <S.Cart>{generateCart(items, removeItem, updateItem)}</S.Cart>
+              <S.Cart>{generateWishlist(items, removeItem)}</S.Cart>
             )
           ) : (
             <S.EmptyCart>

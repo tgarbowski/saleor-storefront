@@ -1,4 +1,4 @@
-import { useAuth, useCart, useCheckout } from "@saleor/sdk";
+import { useCart, useCheckout } from "@saleor/sdk";
 import { useRouter } from "next/router";
 import * as React from "react";
 

@@ -14,6 +14,7 @@ export * from "./ProductGallery";
 export * from "./ProductList";
 export * from "./CartSummary";
 export * from "./CartRow";
+export * from "./WishlistRow";
 export * from "./AddressGridSelector";
 export * from "./StripeCreditCardForm";
 export * from "./DummyPaymentGateway";
