@@ -100,6 +100,12 @@ export const CartRow: React.FC<IProps> = ({
 
   const productUrl = generatePath(paths.product, { slug });
 
+  const removeItem = () => {
+    onRemove();
+    localStorage.removeItem("data_checkout");
+    localStorage.removeItem("data_payment");
+  };
+
   return (
     <S.Wrapper cartRowType={type} data-test="cartRow" data-test-id={sku}>
       <S.Photo cartRowType={type}>
@@ -155,7 +161,7 @@ export const CartRow: React.FC<IProps> = ({
           testingContextId={sku}
           size={22}
           name="trash"
-          onClick={onRemove}
+          onClick={removeItem}
         />
       </S.Trash>
 
