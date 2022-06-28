@@ -11,7 +11,7 @@ body {
   color: $base-font-color;
   overflow-x: hidden;
   margin-right: calc(-1 * (100vw - 100%));
-  margin-top: 90px;
+  margin-top: 65px;
 
   * {
     box-sizing: border-box;
@@ -150,7 +150,7 @@ body {
 
 @font-face {
   font-family: "Bittermilk";
-  src: url('/fonts/Bittermilk.woff2') format("woff2");
+  src: url("/fonts/Bittermilk.woff2") format("woff2");
   font-display: swap;
   font-style: normal;
 }
