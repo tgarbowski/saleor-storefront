@@ -1,0 +1,18 @@
+.marketing-bar-global {
+  position: absolute;
+  font-size: 14px;
+  line-height: 22px;
+  overflow: hidden;
+  transition: background-color 0.2s linear;
+  text-align: center;
+  background: black;
+  padding: 20px;
+  color: #fff;
+  width: 100%;
+  top: 0;
+
+  @media only screen and (max-width: 479px) {
+    padding: 10px;
+    font-size: 10px;
+  }
+}
