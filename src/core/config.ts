@@ -48,7 +48,7 @@ export const SOCIAL_MEDIA = [
       shopName === "FASHION4YOU"
         ? "https://www.facebook.com/Fashion4you-107849631906695"
         : shopName === "CLOTHES4U"
-        ? "Clothes4You"
+        ? "https://www.facebook.com/Clothes4YouPL/"
         : "https://www.facebook.com/salingopl/"
     }`,
     path: require("../images/facebook-icon.svg"),
@@ -59,7 +59,7 @@ export const SOCIAL_MEDIA = [
       shopName === "FASHION4YOU"
         ? "https://www.instagram.com/fashion4youpl/"
         : shopName === "CLOTHES4U"
-        ? "Clothes4You"
+        ? "https://www.instagram.com/clothes4you.pl/"
         : "https://www.facebook.com/salingopl/"
     }`,
     path: require("../images/instagram-icon.svg"),

@@ -79,7 +79,9 @@ export const MainMenu: React.FC<MainMenuProps> = ({
   }, [activeDropdown]);
 
   const visibleCategoryOnMenu =
-    shopName === "FASHION4YOU" ? menuItems.slice(0, -2) : menuItems.slice(0, -1);
+    shopName === "FASHION4YOU"
+      ? menuItems.slice(0, -2)
+      : menuItems.slice(0, -1);
 
   return (
     <header

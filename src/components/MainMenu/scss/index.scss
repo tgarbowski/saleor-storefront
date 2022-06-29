@@ -15,8 +15,6 @@
   align-items: center;
   position: relative;
   justify-content: center;
-  position: fixed;
-  top: 0;
   z-index: 1;
   width: 100%;
 
@@ -95,33 +93,33 @@
     text-transform: uppercase;
 
     a {
-          font-size: $h4-font-size;
-          position: relative;
-          text-transform: uppercase;
-          transition: all 0.3s ease-in-out;
-          max-width: 100%;
+      font-size: $h4-font-size;
+      position: relative;
+      text-transform: uppercase;
+      transition: all 0.3s ease-in-out;
+      max-width: 100%;
 
-          &:hover {
-            color: $primary;
-          }
+      &:hover {
+        color: $primary;
+      }
 
-          &:before {
-            content: "";
-            background: $primary;
-            display: block;
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            transition: all 0.3s ease-in-out;
-          }
-          &:hover {
-            background-position: 0;
-          }
-          &:hover::before {
-            width: 100%;
-          }
+      &:before {
+        content: "";
+        background: $primary;
+        display: block;
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        transition: all 0.3s ease-in-out;
+      }
+      &:hover {
+        background-position: 0;
+      }
+      &:hover::before {
+        width: 100%;
+      }
     }
   }
 
@@ -283,34 +281,34 @@
       transition: 0.3s all ease-in-out;
 
       & > li > a {
-          font-size: $base-font-size;
-          position: relative;
-          text-transform: uppercase;
-          margin-bottom: 30px;
+        font-size: $base-font-size;
+        position: relative;
+        text-transform: uppercase;
+        margin-bottom: 30px;
+        transition: all 0.3s ease-in-out;
+        max-width: 100%;
+
+        &:hover {
+          color: $primary;
+        }
+
+        &:before {
+          content: "";
+          background: $primary;
+          display: block;
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+          width: 0;
+          height: 2px;
           transition: all 0.3s ease-in-out;
-          max-width: 100%;
-
-          &:hover {
-            color: $primary;
-          }
-
-          &:before {
-            content: "";
-            background: $primary;
-            display: block;
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            transition: all 0.3s ease-in-out;
-          }
-          &:hover {
-            background-position: 0;
-          }
-          &:hover::before {
-            width: 100%;
-          }
+        }
+        &:hover {
+          background-position: 0;
+        }
+        &:hover::before {
+          width: 100%;
+        }
       }
     }
 
@@ -407,41 +405,41 @@
             flex-direction: row;
 
             // 3rd+ level names
-          a {
-            font-size: $small-font-size;
-            font-weight: 400;
-            margin-bottom: -5px;
-            margin-right: 20px;
-            text-transform: capitalize;
-            transition: all .3s ease-in-out;
-            max-width: 100%;
-      
-            &:hover {
-              color: $primary;
-            }
-
-            &:before {
-              content: "";
-              background: $primary;
-              display: block;
-              position: absolute;
-              bottom: -5px;
-              left: 0;
-              width: 0;
-              height: 2px;
+            a {
+              font-size: $small-font-size;
+              font-weight: 400;
+              margin-bottom: -5px;
+              margin-right: 20px;
+              text-transform: capitalize;
               transition: all 0.3s ease-in-out;
-            }
-            &:hover {
-              background-position: 0;
-            }
-            &:hover::before {
-              width: 100%;
-            }
-          }
+              max-width: 100%;
 
-          li > ul {
-            margin-left: 10px;
-          }
+              &:hover {
+                color: $primary;
+              }
+
+              &:before {
+                content: "";
+                background: $primary;
+                display: block;
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                width: 0;
+                height: 2px;
+                transition: all 0.3s ease-in-out;
+              }
+              &:hover {
+                background-position: 0;
+              }
+              &:hover::before {
+                width: 100%;
+              }
+            }
+
+            li > ul {
+              margin-left: 10px;
+            }
           }
         }
       }
