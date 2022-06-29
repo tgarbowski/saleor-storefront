@@ -11,11 +11,142 @@ import { ITaxedMoney } from "@types";
 import { Overlay, WishlistRow } from "..";
 import * as S from "./styles";
 
+export interface Wishlist_lines_variant_pricing_price_net {
+    __typename: "Money";
+    /**
+     * Amount of money.
+     */
+    amount: number;
+    /**
+     * Currency code.
+     */
+    currency: string;
+}
+
+export interface Wishlist_lines_variant_pricing_price_gross {
+    __typename: "Money";
+    /**
+     * Amount of money.
+     */
+    amount: number;
+    /**
+     * Currency code.
+     */
+    currency: string;
+}
+
+export interface Wishlist_lines_variant_pricing_price {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: Wishlist_lines_variant_pricing_price_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: Wishlist_lines_variant_pricing_price_net;
+}
+
+export interface Wishlist_lines_variant_pricing_priceUndiscounted_net {
+    __typename: "Money";
+    /**
+     * Amount of money.
+     */
+    amount: number;
+    /**
+     * Currency code.
+     */
+    currency: string;
+}
+
+export interface Wishlist_lines_variant_pricing_priceUndiscounted_gross {
+  __typename: "Money";
+  /**
+   * Amount of money.
+   */
+  amount: number;
+  /**
+   * Currency code.
+   */
+  currency: string;
+}
+export interface Wishlist_lines_variant_pricing_priceUndiscounted {
+  __typename: "TaxedMoney";
+  /**
+   * Amount of money including taxes.
+   */
+  gross: Wishlist_lines_variant_pricing_priceUndiscounted_gross;
+  /**
+   * Amount of money without taxes.
+   */
+  net: Wishlist_lines_variant_pricing_priceUndiscounted_net;
+}
+
+export interface Wishlist_lines_variant_pricing {
+  __typename: "VariantPricingInfo";
+  /**
+   * Whether it is in sale or not.
+   */
+  onSale: boolean | null;
+  /**
+   * The price without any discount.
+   */
+  priceUndiscounted: Wishlist_lines_variant_pricing_priceUndiscounted | null;
+  /**
+   * The price, with any discount subtracted.
+   */
+  price: Wishlist_lines_variant_pricing_price | null;
+}
+export interface Wishlist_lines_variant_product_thumbnail {
+  __typename: "Image";
+  url: string;
+  alt: string | null;
+}
+export interface Wishlist_lines_variant_product {
+  __typename: "Product";
+  id: string;
+  name: string;
+  slug: string;
+  thumbnail: Wishlist_lines_variant_product_thumbnail | null;
+}
+
+export interface IWishlistModelPriceValue {
+  amount: number;
+  currency: string;
+}
+export interface IWishlistModelLineTotalPrice {
+  gross: IWishlistModelPriceValue;
+  net: IWishlistModelPriceValue;
+}
+
+export interface IWishlistModelLineVariant {
+  id: string;
+  name?: string;
+  sku?: string;
+  product?: Wishlist_lines_variant_product;
+  pricing?: Wishlist_lines_variant_pricing | null;
+}
+
+export interface IWishlistModelLine {
+  id?: string;
+  variant: IWishlistModelLineVariant;
+  totalPrice?: IWishlistModelLineTotalPrice | null;
+}
+
+export interface IWishlistSidebar {
+  itemsWishlist: IWishlistModelLine[];
+  removeItem: (variantId: string) => any;
+  hide: () => void;
+  show: boolean;
+  target?: HTMLElement | null;
+  goToWishlist: () => void;
+}
+
 const generateWishlist = (
-  itemsWishlist: IItems,
+  itemsWishlist: IWishlistModelLine[],
   removeItem: (variantId: string) => any
 ) => {
-  return itemsWishlist?.map(({ id, variant, quantity, totalPrice }, index) => (
+  return itemsWishlist?.map(({ id, variant }, index) => (
     <WishlistRow
       type="condense"
       key={id ? `id-${id}` : `idx-${index}`}
@@ -23,47 +154,16 @@ const generateWishlist = (
       id={variant?.product?.id || ""}
       slug={variant.product?.slug || ""}
       name={variant?.product?.name || ""}
-      maxQuantity={variant.quantityAvailable || quantity}
-      quantity={quantity}
       onRemove={() => removeItem(variant.id)}
       thumbnail={{
         ...variant?.product?.thumbnail,
         alt: variant?.product?.thumbnail?.alt || "",
       }}
-      totalPrice={<TaxedMoney taxedMoney={totalPrice} />}
+      sku={variant.sku} 
       unitPrice={<TaxedMoney taxedMoney={variant?.pricing?.price} />}
-      sku={variant.sku}
-      attributes={variant.attributes?.map(attribute => {
-        return {
-          attribute: {
-            id: attribute.attribute.id,
-            name: attribute.attribute.name || "",
-          },
-          values: attribute.values.map(value => {
-            return {
-              id: value?.id,
-              name: value?.name || "",
-              value: value?.value,
-            };
-          }),
-        };
-      })}
-    />
+      />
   ));
 };
-
-export interface IWishlistSidebar {
-  itemsWishlist: IItems;
-  removeItem: (variantId: string) => any;
-  totalPrice?: ITaxedMoney | null;
-  shippingTaxedPrice?: ITaxedMoney | null;
-  promoTaxedPrice?: ITaxedMoney | null;
-  subtotalPrice?: ITaxedMoney | null;
-  hide: () => void;
-  show: boolean;
-  target?: HTMLElement | null;
-  goToWishlist: () => void;
-}
 
 const WishlistSidebar: React.FC<IWishlistSidebar> = ({
   itemsWishlist,
@@ -79,9 +179,13 @@ const WishlistSidebar: React.FC<IWishlistSidebar> = ({
     hide();
   });
 
-  useEffect(() => {
-    console.log(itemsWishlist);
-  }, []);
+  const missingVariants = () => {
+    return itemsWishlist?.find(item => !item.variant);
+  };
+
+  useEffect(() => { 
+    console.log(variant?.product?.id)
+  }, [])
 
   return (
     <Overlay
@@ -108,7 +212,11 @@ const WishlistSidebar: React.FC<IWishlistSidebar> = ({
               <OfflinePlaceholder />
             </S.EmptyCart>
           ) : itemsWishlist?.length ? (
-            <S.Cart>{generateWishlist(itemsWishlist, removeItem)}</S.Cart>
+            missingVariants() ? (
+              <Loader />
+            ) : (
+              <S.Cart>{generateWishlist(itemsWishlist, removeItem)}</S.Cart>
+            )
           ) : (
             <S.EmptyCart>
               <S.EmptyCartTitle>

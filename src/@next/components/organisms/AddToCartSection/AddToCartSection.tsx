@@ -19,6 +19,7 @@ import AddToCartButton from "../../molecules/AddToCartButton";
 import AddToWishlistButton from "../../molecules/AddToWishlistButton";
 import QuantityInput from "../../molecules/QuantityInput";
 import ProductVariantPicker from "../ProductVariantPicker";
+import { IWishlistModelLine } from "../WishlistSidebar/WishlistSidebar";
 import Accordion from "./Accordion";
 import {
   canAddToCart,
@@ -33,7 +34,7 @@ export interface IAddToCartSection {
   name: string;
   productPricing: ProductDetails_product_pricing;
   items: ICheckoutModelLine[];
-  itemsWishlist: ICheckoutModelLine[];
+  itemsWishlist: IWishlistModelLine[];
   queryAttributes: Record<string, string>;
   isAvailableForPurchase: boolean | null;
   availableForPurchase: string | null;
@@ -195,9 +196,9 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
       method: "POST",
       body: JSON.stringify({
         query: `
-        query  ProductVariant($id: ID!, $channel: String){
+        query ProductVariant($id: ID!, $channel: String){
           productVariant(id:$id channel:$channel){
-            quantityAvailable
+            id,
           }
         }
         `,
@@ -211,12 +212,8 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
       },
     }).then(data =>
       data.json().then(data => {
-        if (data.data.productVariant.quantityAvailable !== 0) {
-          onAddToWishlist(variantId, quantity);
-          console.log(variantId);
-        } else {
-          setAddToCartPopUp(true);
-        }
+        onAddToWishlist(variantId);
+        console.log(variantId);
       })
     );
   };

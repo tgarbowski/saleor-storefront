@@ -72,8 +72,8 @@ const Page: React.FC<
     overlayContext.show(OverlayType.cart, OverlayTheme.right);
   };
 
-  const handleAddToWishlist = (variantId: string, quantity: number) => {
-    addToWishlist(variantId, quantity);
+  const handleAddToWishlist = (variantId: string) => {
+    addToWishlist(variantId);
     overlayContext.show(OverlayType.wishlist, OverlayTheme.right);
   };
 

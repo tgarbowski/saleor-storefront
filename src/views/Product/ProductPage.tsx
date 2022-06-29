@@ -1,5 +1,4 @@
 import { useCart } from "@saleor/sdk";
-import { IItems } from "@saleor/sdk/lib/api/Cart/types";
 import { ProductDetails } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
@@ -7,6 +6,7 @@ import queryString from "query-string";
 import React, { useEffect, useState } from "react";
 
 import { Loader, OfflinePlaceholder } from "@components/atoms";
+import { ILine, IWishlistModelLine, WishlistDetail_lines } from "@components/organisms/WishlistSidebar/WishlistSidebar";
 
 import { MetaWrapper, NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
@@ -14,6 +14,7 @@ import Page from "./Page";
 import { IProps } from "./types";
 
 import "./scss/index.scss";
+import checkout from "@temp/pages/checkout";
 
 const canDisplay = (product?: ProductDetails) =>
   !!product?.name && !!product?.pricing && !!product?.variants;
@@ -96,7 +97,7 @@ const PageWithQueryAttributes: React.FC<IProps> = props => {
 export type ProductPageProps = {
   params: { slug: string } | undefined;
   data: ProductDetails | undefined | null;
-  itemsWishlist: IItems;
+  itemsWishlist: IWishlistModelLine[] | null | undefined;
 };
 
 export const ProductPage: NextPage<ProductPageProps> = (
@@ -106,13 +107,47 @@ export const ProductPage: NextPage<ProductPageProps> = (
   const { addItem, items } = useCart();
   const { asPath } = useRouter();
 
-  const handleAddToWishlist = (variantId: any, quantity: any) => {
-    console.log(variantId, quantity);
-  };
+  const [ itemsWishlist2 ] = useState(itemsWishlist)
 
-  useEffect(() => {
-    console.log(addItem);
-  }, []);
+  // const handleAddToWishlist = (variantId: any) => {
+  //   localStorage.setItem("fav_product", JSON.stringify(variantId));
+  // };
+
+  // const addItemToWishlist = (variantId: string) => {
+  //   const lines = checkout?.lines || [];
+  //   let variantInWishlist = lines.find(
+  //     variant => variant.variant.id === variantId
+  //   );
+  //   const alteredLines = lines.filter(
+  //     variant => variant.variant.id !== variantId
+  //   );
+  //   if (variantInWishlist) {
+  //     alteredLines.push(variantInWishlist);
+  //   } else {
+  //     variantInWishlist = {
+  //       variant: {
+  //         id: variantId,
+  //       },
+  //     };
+  //     alteredLines.push(variantInWishlist);
+  //   }
+  //   const alteredWishlist = checkout
+  //     ? {
+  //         ...checkout,
+  //         lines: alteredLines,
+  //       }
+  //     : {
+  //         lines: alteredLines,
+  //       };
+  //   localStorage.setItem("fav_wishlist", alteredWishlist);
+
+  //   return alteredWishlist;
+  // };
+
+  const addItemWishlist = async (variantId: string) => {
+    // addItemToWishlist(variantId);
+    console.log(variantId)
+  };
 
   return (
     <NetworkStatus>
@@ -126,8 +161,8 @@ export const ProductPage: NextPage<ProductPageProps> = (
                 product={product}
                 add={addItem}
                 items={items}
-                addToWishlist={handleAddToWishlist}
-                itemsWishlist={itemsWishlist}
+                addToWishlist={addItemWishlist}
+                itemsWishlist={itemsWishlist2}
               />
             </MetaWrapper>
           );
