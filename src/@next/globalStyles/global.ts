@@ -19,6 +19,10 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
     line-height: ${props => props.theme.typography.baseLineHeight};
     color: ${props => props.theme.colors.baseFont};
     margin-top: 65px;
+
+    @media only screen and (max-width: 479px) {
+      margin-top: 50px;
+    }
   }
 
   input, textarea, button {
