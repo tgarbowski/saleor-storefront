@@ -7,6 +7,7 @@ import Media from "react-media";
 import ReactSVG from "react-svg";
 
 import { DemoBanner, Icon } from "@components/atoms";
+import { IWishlistModelLine } from "@components/organisms/WishlistSidebar/WishlistSidebar";
 import { ShopMenusQuery } from "@graphql/gqlTypes/ShopMenusQuery";
 import { paths } from "@paths";
 import Logo from "@styles/Logo";
@@ -38,12 +39,14 @@ interface MainMenuProps {
   demoMode: boolean;
   menu: ShopMenusQuery["mainMenu"];
   loading: boolean;
+  itemsWishlist?: IWishlistModelLine[];
 }
 
 export const MainMenu: React.FC<MainMenuProps> = ({
   demoMode,
   menu,
   loading,
+  itemsWishlist,
 }) => {
   const overlayContext = useContext(OverlayContext);
   const { user, signOut } = useAuth();
@@ -58,8 +61,11 @@ export const MainMenu: React.FC<MainMenuProps> = ({
     0;
 
   const wishlistItemsQuantity =
-    (items &&
-      items.reduce((prevVal, currVal) => prevVal + currVal.quantity, 0)) ||
+    (itemsWishlist &&
+      itemsWishlist.reduce(
+        (prevVal, currVal) => prevVal + currVal.quantity,
+        0
+      )) ||
     0;
 
   const handleSignOut = () => signOut();

@@ -6,23 +6,10 @@ import {
 import { ITaxedMoney } from "@types";
 
 import productImage from "./productImage.png";
+import { IWishlistModelLine } from "./WishlistSidebar";
 
 const ITEM_VARIANT_UNIT_NET_PRICE = 10;
 const ITEM_VARIANT_UNIT_GROSS_PRICE = 12.5;
-
-const ITEM_TOTAL_PRICE = (quantity: number) => ({
-  gross: {
-    amount: ITEM_VARIANT_UNIT_GROSS_PRICE * quantity,
-    currency: "PLN",
-    __typename: "Money",
-  },
-  net: {
-    amount: ITEM_VARIANT_UNIT_NET_PRICE * quantity,
-    currency: "PLN",
-    __typename: "Money",
-  },
-  __typename: "TaxedMoney",
-});
 
 const ITEM_VARIANT = (id: string): ICheckoutModelLineVariant => ({
   attributes: [
@@ -147,22 +134,19 @@ const ITEM_VARIANT = (id: string): ICheckoutModelLineVariant => ({
   },
 });
 
-export const ITEMS: ICheckoutModelLine[] = [
+export const ITEMS_WISHLIST: IWishlistModelLine[] = [
   {
     variant: ITEM_VARIANT("BYIUBubibyguybuy"),
-    totalPrice: ITEM_TOTAL_PRICE(3),
     quantity: 3,
     id: "UHJvZHVjdDoz",
   },
   {
     variant: ITEM_VARIANT("Ibniyfsidbfibuib"),
-    totalPrice: ITEM_TOTAL_PRICE(3),
     quantity: 3,
     id: "YFNUIgybuBUs",
   },
   {
     variant: ITEM_VARIANT("UHBXFDFfffytUYub"),
-    totalPrice: ITEM_TOTAL_PRICE(3),
     quantity: 3,
     id: "JHBIbyubyBhk",
   },

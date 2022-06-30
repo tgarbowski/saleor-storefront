@@ -3,13 +3,7 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 import { IntlProvider } from "react-intl";
 
-import {
-  ITEMS,
-  PROMO_PRICE,
-  SHIPPING_PRICE,
-  SUBTOTAL_PRICE,
-  TOTAL_PRICE,
-} from "./fixtures";
+import { ITEMS_WISHLIST } from "./fixtures";
 import { WishlistSidebar } from "./WishlistSidebar";
 
 let portalRoot = document.getElementById("portal-root");
@@ -20,7 +14,6 @@ if (!portalRoot) {
 }
 
 const removeItem = action("remove item");
-const updateItem = action("update item");
 const hide = action("hide");
 const goToWishlist = action("go to wishlist");
 
@@ -29,13 +22,8 @@ storiesOf("@components/organisms/WishlistSidebar", module)
   .addDecorator(story => <IntlProvider locale="en">{story()}</IntlProvider>)
   .add("default", () => (
     <WishlistSidebar
-      items={ITEMS}
+      itemsWishlist={ITEMS_WISHLIST}
       removeItem={removeItem}
-      updateItem={updateItem}
-      totalPrice={TOTAL_PRICE}
-      subtotalPrice={SUBTOTAL_PRICE}
-      shippingTaxedPrice={SHIPPING_PRICE}
-      promoTaxedPrice={PROMO_PRICE}
       target={portalRoot}
       show
       hide={hide}
@@ -44,13 +32,8 @@ storiesOf("@components/organisms/WishlistSidebar", module)
   ))
   .add("empty", () => (
     <WishlistSidebar
-      items={[]}
+      itemsWishlist={ITEMS_WISHLIST}
       removeItem={removeItem}
-      updateItem={updateItem}
-      totalPrice={TOTAL_PRICE}
-      subtotalPrice={SUBTOTAL_PRICE}
-      shippingTaxedPrice={SHIPPING_PRICE}
-      promoTaxedPrice={PROMO_PRICE}
       target={portalRoot}
       show
       hide={hide}

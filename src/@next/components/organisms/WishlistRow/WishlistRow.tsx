@@ -1,6 +1,6 @@
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import React from "react";
+import { FormattedMessage } from "react-intl";
 import { generatePath } from "react-router";
 
 import { IconButton } from "@components/atoms";
@@ -12,18 +12,16 @@ import * as S from "./styles";
 import { IProps } from "./types";
 
 export const WishlistRow: React.FC<IProps> = ({
-  index,
   unitPrice,
   name,
   sku,
   thumbnail,
+  quantity,
   onRemove,
   id,
   slug,
   type = "responsive",
 }: IProps) => {
-  const intl = useIntl();
-
   const productUrl = generatePath(paths.product, { slug });
 
   return (
@@ -32,6 +30,7 @@ export const WishlistRow: React.FC<IProps> = ({
         <Link href={productUrl}>
           <a>
             <CachedImage data-test="itemImage" {...thumbnail} />
+            {quantity}
           </a>
         </Link>
       </S.Photo>
@@ -64,7 +63,6 @@ export const WishlistRow: React.FC<IProps> = ({
             <FormattedMessage {...commonMessages.totalPrice} />:
           </S.LightFont>
         </S.PriceLabel>
-        <p data-test="totalPrice">{totalPrice}</p>
       </S.TotalPrice>
       <S.UnitPrice wishlistRowType={type}>
         <S.PriceLabel wishlistRowType={type}>

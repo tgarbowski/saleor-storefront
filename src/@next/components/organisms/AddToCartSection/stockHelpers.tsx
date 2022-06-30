@@ -7,6 +7,7 @@ import isEqual from "lodash/isEqual";
 import * as React from "react";
 
 import { TaxedMoney } from "../../containers";
+import { IWishlistModelLine } from "../WishlistSidebar/WishlistSidebar";
 
 /**
  * Renders formatted price for chosen variant or product.
@@ -43,6 +44,23 @@ export const canAddToCart = (
     quantity > 0 &&
     !!variantId &&
     variantStock >= syncedQuantityWithCart
+  );
+};
+
+export const canAddToWishlist = (
+  itemsWishlist: IWishlistModelLine[],
+  variantId: string,
+  variantStock: number,
+  quantity: number
+): boolean => {
+  const wishlistItem = itemsWishlist?.find(
+    item => item.variant.id === variantId
+  );
+  const syncedQuantityWithWishlist = wishlistItem
+    ? quantity + (wishlistItem?.quantity || 0)
+    : quantity;
+  return (
+    quantity > 0 && !!variantId && variantStock >= syncedQuantityWithWishlist
   );
 };
 

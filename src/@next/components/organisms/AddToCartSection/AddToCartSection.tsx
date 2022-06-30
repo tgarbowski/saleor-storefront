@@ -1,4 +1,3 @@
-import { IItems } from "@saleor/sdk/lib/api/Cart/types";
 import { ICheckoutModelLine } from "@saleor/sdk/lib/helpers";
 import {
   ProductDetails_product_pricing,
@@ -23,6 +22,7 @@ import { IWishlistModelLine } from "../WishlistSidebar/WishlistSidebar";
 import Accordion from "./Accordion";
 import {
   canAddToCart,
+  canAddToWishlist,
   getAvailableQuantity,
   getProductPrice,
 } from "./stockHelpers";
@@ -82,6 +82,13 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
   const disableButton = !canAddToCart(
     items,
     !!isAvailableForPurchase,
+    variantId,
+    variantStock,
+    quantity
+  );
+
+  const disableButtonWishlist = !canAddToWishlist(
+    itemsWishlist,
     variantId,
     variantStock,
     quantity
@@ -212,7 +219,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
       },
     }).then(data =>
       data.json().then(data => {
-        onAddToWishlist(variantId);
+        onAddToWishlist(variantId, quantity);
         console.log(variantId);
       })
     );
@@ -278,7 +285,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
       <AddToCartButton onSubmit={tryAddToCart} disabled={disableButton} />
       <AddToWishlistButton
         onSubmit={tryAddToWishlist}
-        disabled={disableButton}
+        disabled={disableButtonWishlist}
       />
       {addToCartPopUp && (
         <CustomPopup

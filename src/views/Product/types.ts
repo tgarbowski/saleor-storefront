@@ -6,7 +6,7 @@ import { IWishlistModelLine } from "@components/organisms/WishlistSidebar/Wishli
 export interface IProps {
   product: ProductDetails;
   add: (variantId: string, quantity: number) => any;
-  addToWishlist: (variantId: string) => any;
+  addToWishlist: (variantId: string, quantity: number) => any;
   items: ICheckoutModelLine[];
-  itemsWishlist: IWishlistModelLine[],
+  itemsWishlist: IWishlistModelLine[];
 }

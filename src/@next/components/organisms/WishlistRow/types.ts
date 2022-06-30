@@ -14,4 +14,5 @@ export interface IProps {
   onRemove: () => void;
   thumbnail?: IImage;
   type?: IWishlistRowType;
+  quantity: number;
 }
