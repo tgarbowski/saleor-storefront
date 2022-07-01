@@ -6,7 +6,11 @@ import queryString from "query-string";
 import React, { useEffect, useState } from "react";
 
 import { Loader, OfflinePlaceholder } from "@components/atoms";
-import { IItemsWishlist } from "@components/organisms/WishlistSidebar/WishlistSidebar";
+import {
+  IItemsWishlist,
+  IWishlistModelProps,
+  useWishlist,
+} from "@components/organisms/WishlistSidebar/WishlistSidebar";
 
 import { MetaWrapper, NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
@@ -96,14 +100,11 @@ const PageWithQueryAttributes: React.FC<IProps> = props => {
 export type ProductPageProps = {
   params: { slug: string } | undefined;
   data: ProductDetails | undefined | null;
-  itemsWishlist: IItemsWishlist;
 };
 
-export const ProductPage: NextPage<ProductPageProps> = (
-  { data: product },
-  itemsWishlist
-) => {
+export const ProductPage: NextPage<ProductPageProps> = ({ data: product }) => {
   const { addItem, items } = useCart();
+  const { itemsWishlist } = useWishlist();
   const { asPath } = useRouter();
 
   const addItemWishlist = async (variantId: string) => {

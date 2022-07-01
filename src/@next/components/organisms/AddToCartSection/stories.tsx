@@ -47,7 +47,7 @@ const DEFAULT_PROPS: IAddToCartSection = {
   onAttributeChangeHandler: (slug, value) => undefined,
   availableForPurchase: null,
   isAvailableForPurchase: null,
-  itemsWishlist: undefined,
+  itemsWishlist: [],
 };
 
 storiesOf("@components/organisms/AddToCartSection", module).add(

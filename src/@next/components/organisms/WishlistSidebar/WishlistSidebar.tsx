@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 
 import { Button, Icon, Loader, OfflinePlaceholder } from "@components/atoms";
@@ -152,6 +152,28 @@ export interface IWishlistModelLine {
   variant: IWishlistModelLineVariant;
   totalPrice?: IWishlistModelLineTotalPrice | null;
 }
+
+export interface IWishlistModelProps {
+  itemsWishlist: IWishlistModelLine[];
+}
+
+export const useWishlist = () => {
+  const [itemsWishlist, setItemsWishlist] = useState<
+    IWishlistModelLine | undefined
+  >(undefined);
+
+  useEffect(() => {
+    setItemsWishlist({
+      quantity: 1,
+      id: "123",
+      variant: {
+        id: "igor",
+      },
+    });
+  }, [itemsWishlist]);
+
+  return itemsWishlist;
+};
 
 const generateWishlist = (
   itemsWishlist: IItemsWishlist,
