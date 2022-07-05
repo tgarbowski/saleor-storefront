@@ -130,7 +130,7 @@
     h2 {
       font-size: 38px;
       line-height: 55px;
-      font-weight: 700;
+      font-weight: 600;
       margin-bottom: 16px;
       letter-spacing: -0.01em;
       color: $black;
@@ -193,9 +193,9 @@
 
           &:hover {
             background: $primary;
-              @if $env == "CLOTHES4U" {
-                color: $white;
-              }
+            @if $env == "CLOTHES4U" {
+              color: $white;
+            }
           }
 
           h3 {
@@ -234,6 +234,73 @@
           background-color: $turquoise-light;
           background-repeat: no-repeat;
           background-size: contain;
+        }
+      }
+    }
+  }
+  &__collections {
+    &_container {
+      &-heading {
+        font-size: 38px;
+        line-height: 55px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        color: $black;
+        padding-bottom: 0.6rem;
+      }
+      &-text {
+        padding-bottom: 2.2rem;
+        color: #777f85;
+      }
+    }
+    &__list {
+      display: flex;
+      flex-direction: row;
+      gap: 4rem;
+      flex-wrap: wrap;
+      .home-page__collection-item {
+        width: 540px;
+        &:hover {
+          cursor: pointer;
+        }
+        .home-page__collection-image-text {
+          position: relative;
+          background-size: cover;
+          background-position: 50%;
+          width: 100%;
+          margin: 0 0 1.5em;
+          display: flex;
+          flex-wrap: wrap;
+          align-content: center;
+          .home-page__collection-text {
+            font-size: 1.8rem;
+            background: #fff;
+            padding: 1.6rem 1.6rem 1.6rem 1.6rem;
+            font-weight: 600;
+            margin-right: auto;
+            left: 0;
+            line-height: 2.5rem;
+            word-break: break-word;
+            position: absolute;
+            bottom: 3.6rem;
+          }
+          .home-page__collection-image {
+            height: auto;
+            max-height: 100%;
+            width: 600px;
+            max-width: 100%;
+            vertical-align: middle;
+            object-fit: cover;
+            transition: 0.5s all ease-in-out;
+            &:hover {
+              -webkit-filter: brightness(60%);
+              -webkit-transition: all 0.5s ease;
+              -moz-transition: all 0.5s ease;
+              -o-transition: all 0.5s ease;
+              -ms-transition: all 0.5s ease;
+              transition: all 0.5s ease;
+            }
+          }
         }
       }
     }

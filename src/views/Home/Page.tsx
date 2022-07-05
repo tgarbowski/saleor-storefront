@@ -13,6 +13,7 @@ import { Button, ProductsFeatured } from "../../components";
 import { structuredData } from "../../core/SEO/Homepage/structuredData";
 import {
   HomePageProducts_categories,
+  HomePageProducts_collections,
   HomePageProducts_shop,
 } from "./gqlTypes/HomePageProducts";
 
@@ -20,11 +21,15 @@ import "./scss/index.scss";
 
 const Page: React.FC<{
   categories: HomePageProducts_categories;
+  collections: HomePageProducts_collections;
   featuredProducts: FeaturedProducts;
   shop: HomePageProducts_shop;
-}> = ({ categories, featuredProducts, shop }) => {
+}> = ({ categories, featuredProducts, shop, collections }) => {
   const categoriesExist = () => {
     return categories && categories.edges && categories.edges.length > 0;
+  };
+  const collectionsExist = () => {
+    return collections && collections.edges && collections.edges.length > 0;
   };
   const intl = useIntl();
 
@@ -72,10 +77,10 @@ const Page: React.FC<{
           </div>
         </div>
         <div className="home-page__hero-action">
-          {categoriesExist() && (
+          {collectionsExist() && (
             <Link
-              href={generatePath(paths.category, {
-                slug: categories.edges[1].node.slug,
+              href={generatePath(paths.collection, {
+                slug: collections.edges[0].node.slug,
               })}
             >
               <a>
@@ -112,6 +117,46 @@ const Page: React.FC<{
                       key={category.id}
                     >
                       {category.name}
+                    </Link>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+      {collectionsExist() && (
+        <div className="home-page__collections">
+          <div className="container home-page__collections_container">
+            <h2 className="home-page__collections_container-heading">
+              <FormattedMessage defaultMessage="Kolekcje" />
+            </h2>
+            <p className="home-page__collections_container-text">
+              <FormattedMessage defaultMessage="Poznaj nasze popularne kolekcje i wybierz coś dla siebie!" />
+            </p>
+            <div className="home-page__collections__list">
+              {collections?.edges.map(({ node: collection }) => {
+                return (
+                  <div
+                    key={collection.id}
+                    className="home-page__collection-item"
+                  >
+                    <Link
+                      href={generatePath(paths.collection, {
+                        slug: collection.slug,
+                      })}
+                      key={collection.id}
+                    >
+                      <div className="home-page__collection-image-text">
+                        <img
+                          className="home-page__collection-image"
+                          src={collection.backgroundImage?.url}
+                          alt=""
+                        />
+                        <h4 className="home-page__collection-text">
+                          {collection.name}
+                        </h4>
+                      </div>
                     </Link>
                   </div>
                 );

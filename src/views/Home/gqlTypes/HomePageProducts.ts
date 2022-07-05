@@ -51,13 +51,37 @@ export interface HomePageProducts_categories {
   edges: HomePageProducts_categories_edges[];
 }
 
+
+export interface HomePageProducts_collections_edges_node_backgroundImage {
+  __typename: "Image";
+  url: string;
+}
+
+export interface HomePageProducts_collections_edges_node {
+  __typename: "Collection";
+  id: string;
+  name: string;
+  slug: string;
+  backgroundImage: HomePageProducts_collections_edges_node_backgroundImage | null;
+}
+
+export interface HomePageProducts_collections_edges {
+  __typename: "CollectionCountableEdge";
+  node: HomePageProducts_collections_edges_node;
+}
+
+export interface HomePageProducts_collections {
+  __typename: "CollectionCountableConnection";
+  edges: HomePageProducts_collections_edges[];
+}
+
+
+export interface HomePageCollections {
+  collections: HomePageProducts_collections | null;
+}
 export interface HomePageProducts {
-  /**
-   * Return information about the shop.
-   */
   shop: HomePageProducts_shop;
-  /**
-   * List of the shop's categories.
-   */
   categories: HomePageProducts_categories | null;
 }
+
+
