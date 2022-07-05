@@ -4,6 +4,7 @@ import {
   channelSlug,
   incrementalStaticRegenerationRevalidate,
 } from "@temp/constants";
+import { getCollectionsQuery } from "@temp/sitemap/queries";
 import { getFeaturedProducts, getSaleorApi } from "@utils/ssr";
 
 import { homePageProductsQuery, HomeView, HomeViewProps } from "../views/Home";
@@ -23,8 +24,17 @@ export const getStaticProps: GetStaticProps<HomeViewProps> = async () => {
     getFeaturedProducts(),
   ]);
 
+  const [collectionsData] = await Promise.all([
+    apolloClient
+      .query<any>({
+        query: getCollectionsQuery,
+        variables: { channel: channelSlug, perPage: 5 },
+      })
+      .then(({ data }) => data),
+  ]);
+
   return {
     revalidate: incrementalStaticRegenerationRevalidate,
-    props: { data: { ...data, featuredProducts } },
+    props: { data: { ...data, featuredProducts, ...collectionsData } },
   };
 };
