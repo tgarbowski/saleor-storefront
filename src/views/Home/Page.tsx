@@ -127,7 +127,7 @@ const Page: React.FC<{
       )}
       {collectionsExist() && (
         <div className="home-page__collections">
-          <div className="container home-page__collections_container">
+          <div className="home-page__collections_container">
             <h2 className="home-page__collections_container-heading">
               <FormattedMessage defaultMessage="Kolekcje" />
             </h2>
