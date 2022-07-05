@@ -1,3 +1,5 @@
+import { useWishlist } from "@saleor/sdk";
+import { ProductDetails } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
 import { ICheckoutModelLine } from "@saleor/sdk/lib/helpers";
 import {
   ProductDetails_product_pricing,
@@ -39,6 +41,7 @@ export interface IAddToCartSection {
   isAvailableForPurchase: boolean | null;
   availableForPurchase: string | null;
   variantId: string;
+  product?: ProductDetails;
   setVariantId(variantId: string): void;
   onAddToCart(variantId: string, quantity?: number): void;
   onAddToWishlist(variantId: string, quantity?: number): void;
@@ -58,6 +61,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
   onAttributeChangeHandler,
   setVariantId,
   variantId,
+  product,
   itemsWishlist,
 }) => {
   const intl = useIntl();
@@ -190,7 +194,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
       data.json().then(data => {
         if (data.data.productVariant.quantityAvailable !== 0) {
           onAddToCart(variantId, quantity);
-          console.log(variantId);
+          // console.log(variantId);
         } else {
           setAddToCartPopUp(true);
         }
@@ -198,30 +202,15 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
     );
   };
 
+  const { addItem, removeItem } = useWishlist();
+
   const tryAddToWishlist = () => {
-    fetch(apiUrl, {
-      method: "POST",
-      body: JSON.stringify({
-        query: `
-        query ProductVariant($id: ID!, $channel: String){
-          productVariant(id:$id channel:$channel){
-            id,
-          }
-        }
-        `,
-        variables: {
-          id: variantId,
-          channel: channelSlug,
-        },
-      }),
-      headers: {
-        "content-type": "application/json",
-      },
-    }).then(data =>
-      data.json().then(data => {
-        onAddToWishlist(variantId, quantity);
-        console.log(variantId);
-      })
+    addItem(
+      variantId,
+      product?.slug,
+      product?.thumbnail?.url,
+      product?.thumbnail2x?.url,
+      product?.pricing
     );
   };
 
@@ -285,6 +274,10 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
       <AddToCartButton onSubmit={tryAddToCart} disabled={disableButton} />
       <AddToWishlistButton
         onSubmit={tryAddToWishlist}
+        disabled={disableButtonWishlist}
+      />
+      <AddToWishlistButton
+        onSubmit={() => removeItem(variantId)}
         disabled={disableButtonWishlist}
       />
       {addToCartPopUp && (

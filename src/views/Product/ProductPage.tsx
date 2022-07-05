@@ -6,12 +6,12 @@ import queryString from "query-string";
 import React, { useEffect, useState } from "react";
 
 import { Loader, OfflinePlaceholder } from "@components/atoms";
-import {
-  IItemsWishlist,
-  IWishlistModelProps,
-  useWishlist,
-} from "@components/organisms/WishlistSidebar/WishlistSidebar";
 
+// import {
+// IItemsWishlist,
+// IWishlistModelProps,
+// useWishlist,
+// } from "@components/organisms/WishlistSidebar/WishlistSidebar";
 import { MetaWrapper, NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import Page from "./Page";
@@ -104,12 +104,12 @@ export type ProductPageProps = {
 
 export const ProductPage: NextPage<ProductPageProps> = ({ data: product }) => {
   const { addItem, items } = useCart();
-  const { itemsWishlist } = useWishlist();
+  // const { itemsWishlist } = useWishlist();
   const { asPath } = useRouter();
 
   const addItemWishlist = async (variantId: string) => {
     // addItemToWishlist(variantId);
-    console.log(variantId);
+    // console.log(variantId);
     localStorage.setItem("fav_product", JSON.stringify(variantId));
   };
 
@@ -126,7 +126,7 @@ export const ProductPage: NextPage<ProductPageProps> = ({ data: product }) => {
                 add={addItem}
                 items={items}
                 addToWishlist={addItemWishlist}
-                itemsWishlist={itemsWishlist}
+                // itemsWishlist={itemsWishlist}
               />
             </MetaWrapper>
           );

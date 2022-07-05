@@ -1,5 +1,5 @@
 import {
-  ICheckoutModelLine,
+  // ICheckoutModelLine,
   ICheckoutModelLineVariant,
 } from "@saleor/sdk/lib/helpers";
 

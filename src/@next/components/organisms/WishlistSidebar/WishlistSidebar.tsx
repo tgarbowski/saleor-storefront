@@ -227,7 +227,7 @@ const WishlistSidebar: React.FC<IWishlistSidebar> = ({
   };
 
   useEffect(() => {
-    console.log(itemsWishlist);
+    // console.log(itemsWishlist);
   }, []);
 
   return (

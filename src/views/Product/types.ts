@@ -8,5 +8,5 @@ export interface IProps {
   add: (variantId: string, quantity: number) => any;
   addToWishlist: (variantId: string, quantity: number) => any;
   items: ICheckoutModelLine[];
-  itemsWishlist: IWishlistModelLine[];
+  itemsWishlist?: IWishlistModelLine[];
 }

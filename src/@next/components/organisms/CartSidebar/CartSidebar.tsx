@@ -104,7 +104,7 @@ const CartSidebar: React.FC<ICartSidebar> = ({
   };
 
   useEffect(() => {
-    console.log(items);
+    // console.log(items);
   }, []);
 
   return (

@@ -190,6 +190,7 @@ const Page: React.FC<
         queryAttributes={queryAttributes}
         setVariantId={setVariantId}
         variantId={variantId}
+        product={product}
         onAddToCart={handleAddToCart}
         onAddToWishlist={handleAddToWishlist}
         onAttributeChangeHandler={onAttributeChangeHandler}
@@ -207,6 +208,7 @@ const Page: React.FC<
         queryAttributes={queryAttributes}
         setVariantId={setVariantId}
         variantId={variantId}
+        product={product}
         onAddToCart={handleAddToCart}
         onAddToWishlist={handleAddToWishlist}
         onAttributeChangeHandler={onAttributeChangeHandler}
