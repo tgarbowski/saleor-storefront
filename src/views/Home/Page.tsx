@@ -148,10 +148,17 @@ const Page: React.FC<{
                       key={collection.id}
                     >
                       <div className="home-page__collection-image-text">
-                        <img
+                        <div
                           className="home-page__collection-image"
-                          src={collection.backgroundImage?.url}
-                          alt=""
+                          style={
+                            collection.backgroundImage
+                              ? {
+                                  backgroundImage: `url(${collection.backgroundImage?.url})`,
+                                }
+                              : {
+                                  backgroundImage: `url(${DefaultHero})`,
+                                }
+                          }
                         />
                         <h4 className="home-page__collection-text">
                           {collection.name}
