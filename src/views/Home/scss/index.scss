@@ -259,6 +259,9 @@
       gap: 4rem;
       flex-wrap: wrap;
       .home-page__collection-item {
+        @media only screen and (max-width: 1200px) {
+          width: 100%;
+        }
         width: 540px;
         &:hover {
           cursor: pointer;
@@ -290,8 +293,15 @@
             width: 600px;
             max-width: 100%;
             vertical-align: middle;
-            object-fit: cover;
             transition: 0.5s all ease-in-out;
+            background-size: cover;
+            background-repeat: no-repeat;
+            object-fit: cover;
+            padding: 10rem 4rem;
+
+            @media only screen and (max-width: 1200px) {
+              width: 100%;
+            }
             &:hover {
               -webkit-filter: brightness(60%);
               -webkit-transition: all 0.5s ease;
