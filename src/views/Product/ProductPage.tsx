@@ -1,4 +1,4 @@
-import { useCart } from "@saleor/sdk";
+import { useCart, useWishlist } from "@saleor/sdk";
 import { ProductDetails } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
@@ -104,14 +104,8 @@ export type ProductPageProps = {
 
 export const ProductPage: NextPage<ProductPageProps> = ({ data: product }) => {
   const { addItem, items } = useCart();
-  // const { itemsWishlist } = useWishlist();
+  const { addItem: addWishlistItem, wishlist } = useWishlist();
   const { asPath } = useRouter();
-
-  const addItemWishlist = async (variantId: string) => {
-    // addItemToWishlist(variantId);
-    // console.log(variantId);
-    localStorage.setItem("fav_product", JSON.stringify(variantId));
-  };
 
   return (
     <NetworkStatus>
@@ -125,8 +119,8 @@ export const ProductPage: NextPage<ProductPageProps> = ({ data: product }) => {
                 product={product}
                 add={addItem}
                 items={items}
-                addToWishlist={addItemWishlist}
-                // itemsWishlist={itemsWishlist}
+                addToWishlist={addWishlistItem}
+                wishlist={wishlist?.lines}
               />
             </MetaWrapper>
           );

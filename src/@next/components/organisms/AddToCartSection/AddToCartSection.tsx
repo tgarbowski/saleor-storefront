@@ -1,6 +1,10 @@
 import { useWishlist } from "@saleor/sdk";
 import { ProductDetails } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
-import { ICheckoutModelLine } from "@saleor/sdk/lib/helpers";
+import {
+  ICheckoutModelLine,
+  IPricingModel,
+  IWishlistModelLine,
+} from "@saleor/sdk/lib/helpers";
 import {
   ProductDetails_product_pricing,
   ProductDetails_product_variants,
@@ -20,11 +24,9 @@ import AddToCartButton from "../../molecules/AddToCartButton";
 import AddToWishlistButton from "../../molecules/AddToWishlistButton";
 import QuantityInput from "../../molecules/QuantityInput";
 import ProductVariantPicker from "../ProductVariantPicker";
-import { IWishlistModelLine } from "../WishlistSidebar/WishlistSidebar";
 import Accordion from "./Accordion";
 import {
   canAddToCart,
-  canAddToWishlist,
   getAvailableQuantity,
   getProductPrice,
 } from "./stockHelpers";
@@ -36,7 +38,7 @@ export interface IAddToCartSection {
   name: string;
   productPricing: ProductDetails_product_pricing;
   items: ICheckoutModelLine[];
-  itemsWishlist: IWishlistModelLine[];
+  wishlist: IWishlistModelLine[];
   queryAttributes: Record<string, string>;
   isAvailableForPurchase: boolean | null;
   availableForPurchase: string | null;
@@ -44,7 +46,13 @@ export interface IAddToCartSection {
   product?: ProductDetails;
   setVariantId(variantId: string): void;
   onAddToCart(variantId: string, quantity?: number): void;
-  onAddToWishlist(variantId: string, quantity?: number): void;
+  onAddToWishlist(
+    variantId: string,
+    slug: string,
+    thumbnail: string,
+    thumbnail2x: string,
+    pricing: IPricingModel
+  ): void;
   onAttributeChangeHandler(slug: string | null, value: string): void;
 }
 
@@ -62,7 +70,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
   setVariantId,
   variantId,
   product,
-  itemsWishlist,
+  wishlist,
 }) => {
   const intl = useIntl();
   const [quantity, setQuantity] = useState<number>(1);
@@ -86,13 +94,6 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
   const disableButton = !canAddToCart(
     items,
     !!isAvailableForPurchase,
-    variantId,
-    variantStock,
-    quantity
-  );
-
-  const disableButtonWishlist = !canAddToWishlist(
-    itemsWishlist,
     variantId,
     variantStock,
     quantity
@@ -202,10 +203,11 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
     );
   };
 
-  const { addItem, removeItem } = useWishlist();
+  const { addItem: addWishlistItem, removeItem: removeWishlistItem } =
+    useWishlist();
 
   const tryAddToWishlist = () => {
-    addItem(
+    addWishlistItem(
       variantId,
       product?.slug,
       product?.thumbnail?.url,
@@ -272,14 +274,8 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
         />
       </S.QuantityInput>
       <AddToCartButton onSubmit={tryAddToCart} disabled={disableButton} />
-      <AddToWishlistButton
-        onSubmit={tryAddToWishlist}
-        disabled={disableButtonWishlist}
-      />
-      <AddToWishlistButton
-        onSubmit={() => removeItem(variantId)}
-        disabled={disableButtonWishlist}
-      />
+      <AddToWishlistButton onSubmit={tryAddToWishlist} />
+      <AddToWishlistButton onSubmit={() => removeWishlistItem(variantId)} />
       {addToCartPopUp && (
         <CustomPopup
           modalText="Nie można dodać produktu do koszyka. Wygląda na to, że produkt

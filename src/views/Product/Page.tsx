@@ -1,4 +1,5 @@
 import { ProductDetails } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
+import { IPricingModel } from "@saleor/sdk/lib/helpers";
 import classNames from "classnames";
 import React, { useEffect, useState } from "react";
 import Media from "react-media";
@@ -44,7 +45,7 @@ const Page: React.FC<
   addToWishlist,
   product,
   items,
-  itemsWishlist,
+  wishlist,
   queryAttributes,
   onAttributeChangeHandler,
 }) => {
@@ -72,9 +73,14 @@ const Page: React.FC<
     overlayContext.show(OverlayType.cart, OverlayTheme.right);
   };
 
-  const handleAddToWishlist = (variantId: string, quantity: number) => {
-    addToWishlist(variantId, quantity);
-    overlayContext.show(OverlayType.wishlist, OverlayTheme.right);
+  const handleAddToWishlist = (
+    variantId: string,
+    slug: string,
+    thumbnail: string,
+    thumbnail2x: string,
+    pricing: IPricingModel
+  ) => {
+    addToWishlist(variantId, slug, thumbnail, thumbnail2x, pricing);
   };
 
   const [productPricing, setProductPricing] = useState(null);
@@ -181,7 +187,7 @@ const Page: React.FC<
   const addToCartSection =
     productVariants && productPricing ? (
       <AddToCartSection
-        itemsWishlist={itemsWishlist}
+        wishlist={wishlist}
         items={items}
         productId={product.id}
         name={product.name}
@@ -199,7 +205,7 @@ const Page: React.FC<
       />
     ) : (
       <AddToCartSection
-        itemsWishlist={itemsWishlist}
+        wishlist={wishlist}
         items={items}
         productId={product.id}
         name={product.name}

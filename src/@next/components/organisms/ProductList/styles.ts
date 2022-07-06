@@ -20,3 +20,19 @@ export const Loader = styled.div`
   text-align: center;
   margin: 2.5rem 0;
 `;
+
+export const WishlistButton = styled.button`
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 22px;
+  font-size: 20px;
+`;
+
+export const WishlistIcon = styled.img`
+  margin-right: 20px;
+  width: 30px;
+  height: 30px;
+`;

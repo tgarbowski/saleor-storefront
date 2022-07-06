@@ -1,38 +1,61 @@
-import { NextPage } from "next";
-import React from "react";
+import { IWishlistModelLine } from "@saleor/sdk/lib/helpers";
+import { ProductList_products_edges_node } from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
+import React, { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 
-// import { TaxedMoney } from "@components/containers";
-// import { WishlistRow } from "@components/organisms";
-// import { IItemsWishlist } from "@components/organisms/WishlistSidebar/WishlistSidebar";
+import { ProductList } from "@components/organisms";
 
-// const generateWishlist = (
-//   itemsWishlist: IItemsWishlist,
-//   removeItem: (variantId: string) => any
-// ) => {
-//   return itemsWishlist?.map(({ id, variant, totalPrice }, index) => (
-//     <WishlistRow
-//       type="condense"
-//       key={id ? `id-${id}` : `idx-${index}`}
-//       index={index}
-//       id={variant?.product?.id || ""}
-//       slug={variant.product?.slug || ""}
-//       name={variant?.product?.name || ""}
-//       onRemove={() => removeItem(variant.id)}
-//       thumbnail={{
-//         ...variant?.product?.thumbnail,
-//         alt: variant?.product?.thumbnail?.alt || "",
-//       }}
-//       sku={variant.sku}
-//       unitPrice={<TaxedMoney taxedMoney={variant?.pricing?.price} />}
-//     />
-//   ));
-// };
+interface PageProps {
+  hasNextPage: boolean;
+  products: ProductList_products_edges_node[];
+  numberOfProducts: number;
+  onLoadMore: () => void;
+  wishlist: IWishlistModelLine[];
+  removeItem: (variantId: string) => any;
+  displayLoader: boolean;
+}
 
-export const WishlistPage: React.FC<NextPage> = () => {
+export const WishlistPage: React.FC<PageProps> = ({
+  hasNextPage,
+  products,
+  numberOfProducts,
+  wishlist,
+  removeItem,
+  onLoadMore,
+  displayLoader,
+}) => {
+  const [wishlistItems, setWishlistItems] = useState([]);
+  const hasProducts = wishlist?.length > 0;
+
+  useEffect(() => {
+    const wishlistItems = JSON.parse(
+      localStorage.getItem("data_wishlist") || "{}"
+    );
+    if (wishlistItems) {
+      setWishlistItems(wishlistItems);
+    }
+    console.log(wishlistItems);
+  }, []);
+
   return (
-    <h1 data-test="wishlistPageTitle">
-      <FormattedMessage defaultMessage="Ulubione" />
-    </h1>
+    <div className="wishlist">
+      <h1 data-test="wishlistPageTitle">
+        <FormattedMessage defaultMessage="Twoja lista życzeń" />
+      </h1>
+      <div className="container">
+        {!displayLoader && !hasProducts ? (
+          <h3 className="NotFoundProductsTitle">
+            Twoja lista życzeń jest pusta
+          </h3>
+        ) : (
+          <ProductList
+            products={products}
+            canLoadMore={hasNextPage}
+            loading={displayLoader}
+            onLoadMore={onLoadMore}
+          />
+        )}
+      </div>
+    </div>
   );
 };

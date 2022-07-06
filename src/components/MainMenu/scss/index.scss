@@ -185,6 +185,11 @@
   &__wishlist {
     position: relative;
 
+    &__icon {
+      width: 24px;
+      height: 24px;
+    }
+
     &__quantity {
       position: absolute;
       top: -0.3rem;

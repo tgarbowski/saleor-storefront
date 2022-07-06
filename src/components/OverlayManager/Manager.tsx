@@ -8,7 +8,6 @@ import Modal from "./Modal";
 import Notification from "./Notification";
 import Password from "./Password";
 import Search from "./Search";
-import Wishlist from "./Wishlist";
 
 const OverlayManager: React.FC = () => (
   <OverlayContext.Consumer>
@@ -22,9 +21,6 @@ const OverlayManager: React.FC = () => (
 
         case OverlayType.cart:
           return <Cart overlay={overlay} />;
-
-        case OverlayType.wishlist:
-          return <Wishlist overlay={overlay} />;
 
         case OverlayType.search:
           return <Search overlay={overlay} />;
