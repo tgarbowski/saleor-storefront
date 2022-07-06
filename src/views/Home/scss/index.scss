@@ -241,6 +241,9 @@
   &__collections {
     &_container {
       margin: 4.5rem 0;
+      width: 100%;
+      max-width: 100vw;
+      padding: 0 $spacer;
       &-heading {
         font-size: 38px;
         line-height: 55px;

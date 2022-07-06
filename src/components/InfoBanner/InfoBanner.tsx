@@ -7,7 +7,11 @@ export const InfoBanner = () => {
     <section className="marketing-bar-global">
       <div className="marketing-bar-content">
         <div className="marketing-bar-content-description">
-          CODZIENNIE NOWA DOSTAWA! SPRAWDŹ TERAZ NASZĄ OFERTĘ
+          UŻYJ NASZEGO KODU{" "}
+          <strong className="marketing-bar-content-description-bold">
+            DOSTAWA0
+          </strong>{" "}
+          ABY OTRZYMAĆ DARMOWĄ DOSTAWĘ DLA ZAMÓWIEŃ POWYŻEJ 200ZŁ.
         </div>
       </div>
     </section>
