@@ -11,8 +11,17 @@
   width: 100%;
   top: 0;
 
+  .marketing-bar-content {
+    &-description {
+      &-bold {
+        font-weight: 800 !important;
+      }
+    }
+  }
+
   @media only screen and (max-width: 479px) {
     padding: 10px;
     font-size: 10px;
+    line-height: 1rem;
   }
 }
