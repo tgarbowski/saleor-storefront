@@ -40,63 +40,6 @@ const Page: React.FC<{
       : categories.edges;
   return (
     <>
-      {/* <div
-          className="home-page__hero"
-          style={
-            featuredProducts.backgroundImage
-              ? {
-                  backgroundImage: `url(${featuredProducts.backgroundImage.url})`,
-                }
-              : {
-                  backgroundImage: `url(${DefaultHero})`,
-                }
-          }
-        >
-          <div className="home-page__hero-text">
-            <div>
-              <span className="home-page__hero__title">
-                <h1>
-                  <FormattedMessage
-                    defaultMessage="{shopname}"
-                    values={{ shopname: shopName }}
-                  />
-                </h1>
-              </span>
-            </div>
-            <div>
-              <span className="home-page__hero__subtitle">
-                <h1>
-                  <FormattedMessage
-                    values={{ shopname: shopName }}
-                    defaultMessage="{shopname} to sklep z jakościową odzieżą używaną. Różne marki w jednym miejscu. Przekonaj się sam!"
-                  />
-                </h1>
-              </span>
-            </div>
-          </div>
-          <div className="home-page__hero-action">
-            {collectionsExist() && (
-              <Link
-                href={generatePath(paths.collection, {
-                  slug: collections.edges[0].node.slug,
-                })}
-              >
-                <a>
-                  <Button testingContext="homepageHeroActionButton">
-                    <FormattedMessage defaultMessage="Sprawdź ofertę" />
-                  </Button>
-                </a>
-              </Link>
-            )}
-          </div>
-          <div className="scroll-down">
-            <svg className="arrows">
-              <path className="a1" d="M0 0 L30 32 L60 0" />
-              <path className="a2" d="M0 20 L30 52 L60 20" />
-              <path className="a3" d="M0 40 L30 72 L60 40" />
-            </svg>
-          </div>
-        </div> */}
       <script className="structured-data-list" type="application/ld+json">
         {structuredData(shop)}
       </script>
