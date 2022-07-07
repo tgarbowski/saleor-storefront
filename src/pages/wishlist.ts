@@ -1,3 +1,3 @@
-import { WishlistPage } from "@pages";
+import { WishlistView } from "@temp/views/Wishlist";
 
-export default WishlistPage;
+export default WishlistView;

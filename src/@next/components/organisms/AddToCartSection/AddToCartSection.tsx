@@ -207,13 +207,9 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
     useWishlist();
 
   const tryAddToWishlist = () => {
-    addWishlistItem(
-      variantId,
-      product?.slug,
-      product?.thumbnail?.url,
-      product?.thumbnail2x?.url,
-      product?.pricing
-    );
+    if (product) {
+      addItem(product.id);
+    }
   };
 
   return (
@@ -274,8 +270,19 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
         />
       </S.QuantityInput>
       <AddToCartButton onSubmit={tryAddToCart} disabled={disableButton} />
-      <AddToWishlistButton onSubmit={tryAddToWishlist} />
-      <AddToWishlistButton onSubmit={() => removeWishlistItem(variantId)} />
+      <AddToWishlistButton
+        onSubmit={tryAddToWishlist}
+        disabled={disableButtonWishlist}
+      />
+      <AddToWishlistButton
+        onSubmit={() => {
+          if (product) {
+            removeItem(product.id);
+          }
+        }}
+        disabled={disableButtonWishlist}
+      />
+
       {addToCartPopUp && (
         <CustomPopup
           modalText="Nie można dodać produktu do koszyka. Wygląda na to, że produkt
