@@ -205,13 +205,9 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
   const { addItem, removeItem } = useWishlist();
 
   const tryAddToWishlist = () => {
-    addItem(
-      variantId,
-      product?.slug,
-      product?.thumbnail?.url,
-      product?.thumbnail2x?.url,
-      product?.pricing
-    );
+    if (product) {
+      addItem(product.id);
+    }
   };
 
   return (
@@ -277,7 +273,11 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
         disabled={disableButtonWishlist}
       />
       <AddToWishlistButton
-        onSubmit={() => removeItem(variantId)}
+        onSubmit={() => {
+          if (product) {
+            removeItem(product.id);
+          }
+        }}
         disabled={disableButtonWishlist}
       />
       {addToCartPopUp && (
