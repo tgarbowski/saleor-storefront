@@ -2,6 +2,7 @@ import { BaseCategory } from "@saleor/sdk/lib/fragments/gqlTypes/BaseCategory";
 import { CategoryDetails } from "@saleor/sdk/lib/fragments/gqlTypes/CategoryDetails";
 import { ProductList_products_edges_node } from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
 import * as React from "react";
+import { FormattedMessage } from "react-intl";
 
 import { ProductList } from "@components/organisms";
 import { Attribute } from "@graphql/gqlTypes/Attribute";
@@ -32,11 +33,14 @@ export const Page: React.FC<PageProps> = ({
   const hasProducts = products.length > 0;
 
   return (
-    <div className="category">
+    <div className="wishlist">
+      <h1 data-test="wishlistPageTitle">
+        <FormattedMessage defaultMessage="Twoja lista życzeń" />
+      </h1>
       <div className="container">
         {!displayLoader && !hasProducts ? (
           <h3 className="NotFoundProductsTitle">
-            Przepraszamy, ale nie znaleziono produktów
+            Twoja lista życzeń jest pusta
           </h3>
         ) : (
           <ProductList

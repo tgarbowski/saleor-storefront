@@ -7,9 +7,9 @@ import { Page } from "./Page";
 import { useWishlistQuery } from "./queries";
 
 export const WishlistView: React.FC = () => {
-  const wishlist = JSON.parse(localStorage.getItem("data_wishlist"));
+  const wishlist = JSON.parse(localStorage.getItem("data_wishlist")).lines;
   const filters: IWishlistFilters = {
-    ids: wishlist.lines,
+    ids: wishlist || [""],
   };
 
   const { data, loadMore, loading } = useWishlistQuery(filters);

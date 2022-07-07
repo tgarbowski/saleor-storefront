@@ -1,9 +1,5 @@
 import { ProductDetails } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
-import {
-  ICheckoutModelLine,
-  IPricingModel,
-  IWishlistModelLine,
-} from "@saleor/sdk/lib/helpers";
+import { ICheckoutModelLine, IPricingModel } from "@saleor/sdk/lib/helpers";
 
 export interface IProps {
   product: ProductDetails;
@@ -16,5 +12,5 @@ export interface IProps {
     pricing: IPricingModel
   ) => any;
   items: ICheckoutModelLine[];
-  wishlist: IWishlistModelLine[];
+  wishlist: string[];
 }

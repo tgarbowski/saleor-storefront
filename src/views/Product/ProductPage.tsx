@@ -120,7 +120,7 @@ export const ProductPage: NextPage<ProductPageProps> = ({ data: product }) => {
                 add={addItem}
                 items={items}
                 addToWishlist={addWishlistItem}
-                wishlist={wishlist?.lines}
+                wishlist={wishlist}
               />
             </MetaWrapper>
           );

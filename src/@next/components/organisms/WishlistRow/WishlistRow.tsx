@@ -4,7 +4,6 @@ import { FormattedMessage } from "react-intl";
 import { generatePath } from "react-router";
 
 import { IconButton } from "@components/atoms";
-import { CachedImage } from "@components/molecules";
 import { paths } from "@paths";
 import { commonMessages } from "@temp/intl";
 

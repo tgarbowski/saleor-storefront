@@ -1,4 +1,4 @@
-import { useAuth, useCart, useWishlist } from "@saleor/sdk";
+import { useAuth, useCart } from "@saleor/sdk";
 import classNames from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -51,7 +51,7 @@ export const MainMenu: React.FC<MainMenuProps> = ({
   const { user, signOut } = useAuth();
   const { push } = useRouter();
   const { items } = useCart();
-  const { wishlist } = useWishlist();
+  const wishlist = JSON.parse(localStorage.getItem("data_wishlist"));
   const [activeDropdown, setActiveDropdown] = useState<string>(undefined);
 
   const menuItems = menu?.items || [];

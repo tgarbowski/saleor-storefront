@@ -1,10 +1,6 @@
 import { useWishlist } from "@saleor/sdk";
 import { ProductDetails } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
-import {
-  ICheckoutModelLine,
-  IPricingModel,
-  IWishlistModelLine,
-} from "@saleor/sdk/lib/helpers";
+import { ICheckoutModelLine, IPricingModel } from "@saleor/sdk/lib/helpers";
 import {
   ProductDetails_product_pricing,
   ProductDetails_product_variants,
@@ -38,7 +34,7 @@ export interface IAddToCartSection {
   name: string;
   productPricing: ProductDetails_product_pricing;
   items: ICheckoutModelLine[];
-  wishlist: IWishlistModelLine[];
+  wishlist: string[];
   queryAttributes: Record<string, string>;
   isAvailableForPurchase: boolean | null;
   availableForPurchase: string | null;
@@ -70,13 +66,22 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
   setVariantId,
   variantId,
   product,
-  wishlist,
 }) => {
   const intl = useIntl();
   const [quantity, setQuantity] = useState<number>(1);
   const [variantStock, setVariantStock] = useState<number>(0);
   const [variantPricing, setVariantPricing] =
     useState<ProductDetails_product_variants_pricing | null>(null);
+
+  let disableButtonWishlist = false;
+  useEffect(() => {
+    const wishlistData = localStorage.getItem("data_wishlist");
+    if (wishlistData) {
+      disableButtonWishlist = !JSON.parse(wishlistData).lines?.filter(
+        (id: string) => id === product?.id
+      ).length;
+    }
+  }, []);
 
   const availableQuantity = getAvailableQuantity(
     items,
@@ -208,7 +213,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
 
   const tryAddToWishlist = () => {
     if (product) {
-      addItem(product.id);
+      addWishlistItem(product.id);
     }
   };
 
@@ -277,10 +282,10 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
       <AddToWishlistButton
         onSubmit={() => {
           if (product) {
-            removeItem(product.id);
+            removeWishlistItem(product.id);
           }
         }}
-        disabled={disableButtonWishlist}
+        disabled={!disableButtonWishlist}
       />
 
       {addToCartPopUp && (

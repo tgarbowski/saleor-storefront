@@ -5,10 +5,12 @@ import { Button } from "@components/atoms";
 
 export interface IAddToWishlistButton {
   onSubmit: () => void;
+  disabled: boolean;
 }
 
 export const AddToWishlistButton: React.FC<IAddToWishlistButton> = ({
   onSubmit,
+  disabled,
 }) => {
   return (
     <Button
@@ -16,6 +18,7 @@ export const AddToWishlistButton: React.FC<IAddToWishlistButton> = ({
       testingContext="addToWishlistButton"
       onClick={onSubmit}
       color="primary"
+      disabled={disabled}
     >
       <FormattedMessage defaultMessage="Dodaj do ulubionych" />
     </Button>

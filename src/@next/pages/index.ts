@@ -2,7 +2,6 @@ export * from "./OrdersHistory";
 export * from "./AccountTab";
 export * from "./PasswordReset";
 export * from "./CartPage";
-export * from "./WishlistPage";
 export * from "./CheckoutPage";
 export * from "./ThankYouPage";
 export * from "./CapturedPaymentPage";

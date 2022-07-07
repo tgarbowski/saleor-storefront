@@ -7,6 +7,7 @@ import { IAddToWishlistButton } from "./AddToWishlistButton";
 
 const DEFAULT_PROPS: IAddToWishlistButton = {
   onSubmit: () => undefined,
+  disabled: true,
 };
 
 storiesOf("@components/molecules/AddToWishlistButton", module)
