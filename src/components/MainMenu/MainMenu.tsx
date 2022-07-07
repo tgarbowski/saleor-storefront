@@ -1,15 +1,16 @@
-import { useAuth, useCart } from "@saleor/sdk";
+import { useAuth, useCart, useWishlist } from "@saleor/sdk";
 import classNames from "classnames";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import Media from "react-media";
 import ReactSVG from "react-svg";
 
-import { DemoBanner, Icon } from "@components/atoms";
-import { IWishlistModelLine } from "@components/organisms/WishlistSidebar/WishlistSidebar";
+import { DemoBanner } from "@components/atoms";
 import { ShopMenusQuery } from "@graphql/gqlTypes/ShopMenusQuery";
 import { paths } from "@paths";
+import { HeartIconSmall } from "@styles/CreditCardIcon";
 import Logo from "@styles/Logo";
 import { shopName } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
@@ -39,18 +40,18 @@ interface MainMenuProps {
   demoMode: boolean;
   menu: ShopMenusQuery["mainMenu"];
   loading: boolean;
-  itemsWishlist?: IWishlistModelLine[];
 }
 
 export const MainMenu: React.FC<MainMenuProps> = ({
   demoMode,
   menu,
   loading,
-  itemsWishlist,
 }) => {
   const overlayContext = useContext(OverlayContext);
   const { user, signOut } = useAuth();
+  const { push } = useRouter();
   const { items } = useCart();
+  const { wishlist } = useWishlist();
   const [activeDropdown, setActiveDropdown] = useState<string>(undefined);
 
   const menuItems = menu?.items || [];
@@ -61,12 +62,7 @@ export const MainMenu: React.FC<MainMenuProps> = ({
     0;
 
   const wishlistItemsQuantity =
-    (itemsWishlist &&
-      itemsWishlist.reduce(
-        (prevVal, currVal) => prevVal + currVal.quantity,
-        0
-      )) ||
-    0;
+    wishlist?.lines.length > 0 ? wishlist?.lines.length : 0;
 
   const handleSignOut = () => signOut();
 
@@ -334,12 +330,16 @@ export const MainMenu: React.FC<MainMenuProps> = ({
                 data-test="menuWishlistOverlayLink"
                 className="main-menu__icon main-menu__wishlist"
                 onClick={() => {
-                  overlayContext.show(OverlayType.wishlist, OverlayTheme.right);
+                  push(paths.wishlist);
                 }}
               >
                 {!loading && (
                   <>
-                    <Icon name="heart" size={64} />
+                    <img
+                      className="main-menu__wishlist__icon"
+                      src={HeartIconSmall}
+                      alt=""
+                    />
                     {wishlistItemsQuantity > 0 ? (
                       <span className="main-menu__wishlist__quantity">
                         {wishlistItemsQuantity}

@@ -1,3 +1,6 @@
+import { IPricingModel, IWishlistModelLine } from "@saleor/sdk/lib/helpers";
+import { ProductDetails } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
+
 import { IProduct } from "@types";
 
 export interface IProps {

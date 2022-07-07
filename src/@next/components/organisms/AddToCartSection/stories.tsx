@@ -43,11 +43,12 @@ const DEFAULT_PROPS: IAddToCartSection = {
   setVariantId: variantId => undefined,
   variantId: "",
   onAddToCart: (variantId, quantity) => undefined,
-  onAddToWishlist: (variantId, quantity) => undefined,
+  onAddToWishlist: (variantId, slug, thumbnail, thumbnail2x, pricing) =>
+    undefined,
   onAttributeChangeHandler: (slug, value) => undefined,
   availableForPurchase: null,
   isAvailableForPurchase: null,
-  itemsWishlist: [],
+  wishlist: [],
 };
 
 storiesOf("@components/organisms/AddToCartSection", module).add(

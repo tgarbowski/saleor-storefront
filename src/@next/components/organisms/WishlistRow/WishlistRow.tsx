@@ -13,10 +13,6 @@ import { IProps } from "./types";
 
 export const WishlistRow: React.FC<IProps> = ({
   unitPrice,
-  name,
-  sku,
-  thumbnail,
-  quantity,
   onRemove,
   id,
   slug,
@@ -25,32 +21,13 @@ export const WishlistRow: React.FC<IProps> = ({
   const productUrl = generatePath(paths.product, { slug });
 
   return (
-    <S.Wrapper wishlistRowType={type} data-test="cartRow" data-test-id={sku}>
+    <S.Wrapper wishlistRowType={type} data-test="cartRow">
       <S.Photo wishlistRowType={type}>
-        <Link href={productUrl}>
-          <a>
-            <CachedImage data-test="itemImage" {...thumbnail} />
-            {quantity}
-          </a>
-        </Link>
+        <Link href={productUrl}>sss</Link>
       </S.Photo>
-      <S.Description wishlistRowType={type}>
-        <Link href={productUrl}>
-          <a>
-            <S.Name data-test="itemName">{name}</S.Name>
-          </a>
-        </Link>
-        <S.Sku>
-          <S.LightFont>
-            <FormattedMessage {...commonMessages.sku} />:{" "}
-            <span data-test="itemSKU">{sku || "-"}</span>
-          </S.LightFont>
-        </S.Sku>
-      </S.Description>
       <S.Trash>
         <IconButton
           testingContext="removeButton"
-          testingContextId={sku}
           size={22}
           name="trash"
           onClick={onRemove}
