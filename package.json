@@ -59,6 +59,7 @@
     "react-helmet": "^5.2.1",
     "react-hot-loader": "^4.9.0",
     "react-image-magnifiers": "^1.4.0",
+    "react-img-carousel": "^2.2.0",
     "react-intersection-observer": "^8.32.1",
     "react-intl": "^4.6.9",
     "react-media": "^1.8.0",

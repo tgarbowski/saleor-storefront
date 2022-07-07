@@ -1,5 +1,6 @@
 import Link from "next/link";
 import * as React from "react";
+import Carousel from "react-img-carousel";
 import { FormattedMessage, useIntl } from "react-intl";
 import { generatePath } from "react-router";
 
@@ -42,63 +43,103 @@ const Page: React.FC<{
       <script className="structured-data-list" type="application/ld+json">
         {structuredData(shop)}
       </script>
-      <div
-        className="home-page__hero"
-        style={
-          featuredProducts.backgroundImage
-            ? {
-                backgroundImage: `url(${featuredProducts.backgroundImage.url})`,
-              }
-            : {
-                backgroundImage: `url(${DefaultHero})`,
-              }
-        }
+      <Carousel
+        viewportWidth="100%"
+        maxRenderedSlides={3}
+        cellPadding={5}
+        transition="fade"
+        arrows
+        style={{
+          slide: {
+            width: "100%",
+            height: "auto",
+          },
+          selectedSlide: {
+            width: "100%",
+            height: "auto",
+          },
+          viewport: {
+            objectFit: "cover",
+          },
+        }}
       >
-        <div className="home-page__hero-text">
-          <div>
-            <span className="home-page__hero__title">
-              <h1>
-                <FormattedMessage
-                  defaultMessage="{shopname}"
-                  values={{ shopname: shopName }}
-                />
-              </h1>
-            </span>
-          </div>
-          <div>
-            <span className="home-page__hero__subtitle">
-              <h1>
-                <FormattedMessage
-                  values={{ shopname: shopName }}
-                  defaultMessage="{shopname} to sklep z jakościową odzieżą używaną. Różne marki w jednym miejscu. Przekonaj się sam!"
-                />
-              </h1>
-            </span>
-          </div>
-        </div>
-        <div className="home-page__hero-action">
-          {collectionsExist() && (
-            <Link
-              href={generatePath(paths.collection, {
-                slug: collections.edges[0].node.slug,
-              })}
+        {collections?.edges.map(({ node: collection }) => {
+          return (
+            <div
+              key={collection.id}
+              className="home-page__hero"
+              style={
+                collection.backgroundImage
+                  ? {
+                      backgroundImage: `url(${collection.backgroundImage?.url})`,
+                    }
+                  : {
+                      backgroundImage: `url(${DefaultHero})`,
+                    }
+              }
             >
-              <a>
-                <Button testingContext="homepageHeroActionButton">
-                  <FormattedMessage defaultMessage="Sprawdź ofertę" />
-                </Button>
-              </a>
-            </Link>
-          )}
-        </div>
-        <div className="scroll-down">
-          <svg className="arrows">
-            <path className="a1" d="M0 0 L30 32 L60 0" />
-            <path className="a2" d="M0 20 L30 52 L60 20" />
-            <path className="a3" d="M0 40 L30 72 L60 40" />
-          </svg>
-        </div>
-      </div>
+              <div className="home-page__hero-text">
+                <div>
+                  <span className="home-page__hero__title">
+                    {collection.name === "Kolekcja lato" ? (
+                      <h1>
+                        <FormattedMessage defaultMessage="Kolekcja lato 2022" />
+                      </h1>
+                    ) : collection.name === "Najnowsze produkty" ? (
+                      <h1>
+                        <FormattedMessage defaultMessage="Najnowsze produkty" />
+                      </h1>
+                    ) : (
+                      collection.name === "Polecane produkty" && (
+                        <h1>
+                          <FormattedMessage defaultMessage="Fashion4you" />
+                        </h1>
+                      )
+                    )}
+                  </span>
+                </div>
+                <div>
+                  <span className="home-page__hero__subtitle">
+                    {collection.name === "Kolekcja lato" ? (
+                      <h1>
+                        <FormattedMessage defaultMessage="Przygotowaliśmy dla was najnowszą kolekcję na lato 2022 roku. Sprawdź naszą ofertę" />
+                      </h1>
+                    ) : collection.name === "Najnowsze produkty" ? (
+                      <h1>
+                        <FormattedMessage defaultMessage="Wychodząc wam na przeciw, przygotowaliśmy zestawienie najnowszych produktów" />
+                      </h1>
+                    ) : (
+                      collection.name === "Polecane produkty" && (
+                        <h1>
+                          <FormattedMessage
+                            values={{ shopname: shopName }}
+                            defaultMessage="{shopname} to sklep z jakościową odzieżą używaną. Różne marki w jednym miejscu. Przekonaj się sam!"
+                          />
+                        </h1>
+                      )
+                    )}
+                  </span>
+                </div>
+              </div>
+              <div className="home-page__hero-action">
+                {collectionsExist() && (
+                  <Link
+                    href={generatePath(paths.collection, {
+                      slug: collections.edges[0].node.slug,
+                    })}
+                  >
+                    <a>
+                      <Button testingContext="homepageHeroActionButton">
+                        <FormattedMessage defaultMessage="Sprawdź ofertę" />
+                      </Button>
+                    </a>
+                  </Link>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </Carousel>
       {categoriesExist() && (
         <div className="home-page__categories">
           <div className="container home-page__categories_container">
