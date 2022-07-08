@@ -386,58 +386,58 @@
   }
 }
 
-// .scroll-down {
-//   position: relative;
-//   .arrows {
-//     width: 60px;
-//     height: 72px;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     position: absolute;
-//     top: 130px;
-//     left: 50%;
-//     margin-left: auto;
-//     margin-right: auto;
-//     left: 0;
-//     right: 0;
-//     text-align: center;
+.scroll-down {
+  position: relative;
+  .arrows {
+    width: 60px;
+    height: 72px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 130px;
+    left: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
 
-//     @media (max-width: $small-screen) {
-//       position: unset;
-//       width: 60px;
-//       height: 72px;
-//       display: flex;
-//       justify-content: center;
-//       align-items: center;
-//       text-align: center;
-//       margin: 0 auto;
-//       display: flex;
-//       margin-bottom: 12px;
-//     }
+    @media (max-width: $small-screen) {
+      position: unset;
+      width: 60px;
+      height: 72px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      margin: 0 auto;
+      display: flex;
+      margin-bottom: 12px;
+    }
 
-//     path {
-//       stroke: $white;
-//       fill: transparent;
-//       stroke-width: 3px;
-//       animation: arrow 2s infinite;
-//       -webkit-animation: arrow 2s infinite;
+    path {
+      stroke: $white;
+      fill: transparent;
+      stroke-width: 3px;
+      animation: arrow 2s infinite;
+      -webkit-animation: arrow 2s infinite;
 
-//       &.a1 {
-//         animation-delay: -1s;
-//         -webkit-animation-delay: -1s; /* Safari 和 Chrome */
-//       }
-//       &.a2 {
-//         animation-delay: -0.5s;
-//         -webkit-animation-delay: -0.5s; /* Safari 和 Chrome */
-//       }
-//       &.a3 {
-//         animation-delay: 0s;
-//         -webkit-animation-delay: 0s; /* Safari 和 Chrome */
-//       }
-//     }
-//   }
-// }
+      &.a1 {
+        animation-delay: -1s;
+        -webkit-animation-delay: -1s; /* Safari 和 Chrome */
+      }
+      &.a2 {
+        animation-delay: -0.5s;
+        -webkit-animation-delay: -0.5s; /* Safari 和 Chrome */
+      }
+      &.a3 {
+        animation-delay: 0s;
+        -webkit-animation-delay: 0s; /* Safari 和 Chrome */
+      }
+    }
+  }
+}
 
 .carousel {
   text-align: center;
@@ -526,6 +526,7 @@
   display: inline-block;
   opacity: 0.7;
   transition: opacity 0.5s ease-in-out;
+  margin-left: 0 !important;
 }
 
 .carousel .carousel-track .carousel-slide > * {

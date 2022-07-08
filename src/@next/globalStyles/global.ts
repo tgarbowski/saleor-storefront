@@ -5,6 +5,9 @@ import { DefaultTheme, media } from ".";
 export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
   html {
     box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding: 0;
   }
 
   *, *:before, *:after {
