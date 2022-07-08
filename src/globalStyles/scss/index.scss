@@ -4,6 +4,12 @@
 @import "./utils";
 @import "./components";
 
+html {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: $base-font-family;
   font-size: $base-font-size;
