@@ -1,5 +1,5 @@
 import Link from "next/link";
-import * as React from "react";
+import React from "react";
 import Carousel from "react-img-carousel";
 import { FormattedMessage, useIntl } from "react-intl";
 import { generatePath } from "react-router";
@@ -38,6 +38,7 @@ const Page: React.FC<{
     shopName === "FASHION4YOU"
       ? categories.edges.slice(0, -2)
       : categories.edges;
+
   return (
     <>
       <script className="structured-data-list" type="application/ld+json">
@@ -49,6 +50,7 @@ const Page: React.FC<{
           maxRenderedSlides={3}
           cellPadding={5}
           transition="fade"
+          initialSlide={2}
           arrows
           style={{
             slide: {
@@ -103,19 +105,16 @@ const Page: React.FC<{
                     <span className="home-page__hero__subtitle">
                       {collection.name === "Kolekcja lato" ? (
                         <h1>
-                          <FormattedMessage defaultMessage="Przygotowaliśmy dla was najnowszą kolekcję na lato 2022 roku. Sprawdź naszą ofertę" />
+                          <FormattedMessage defaultMessage="Niezależnie od tego czy lubisz klasykę, współczesną modę czy też mieszasz style, w naszej kolekcji znajdziesz stylizacje przewiewne i delikatne, które wyrażają Twój styl." />
                         </h1>
                       ) : collection.name === "Najnowsze produkty" ? (
                         <h1>
-                          <FormattedMessage defaultMessage="Wychodząc wam na przeciw, przygotowaliśmy zestawienie najnowszych produktów" />
+                          <FormattedMessage defaultMessage="Najświeższe oferty rozchodzą się jak ciepłe bułeczki, nie zwlekaj, złap ją przed innymi i bądź ev vouge!" />
                         </h1>
                       ) : (
                         collection.name === "Polecane produkty" && (
                           <h1>
-                            <FormattedMessage
-                              values={{ shopname: shopName }}
-                              defaultMessage="{shopname} to sklep z jakościową odzieżą używaną. Różne marki w jednym miejscu. Przekonaj się sam!"
-                            />
+                            <FormattedMessage defaultMessage="Specjalnie wysublimowane produkty, to tylko przykłady bestsellerowych ofert, których nie możesz przegapić." />
                           </h1>
                         )
                       )}
@@ -202,15 +201,10 @@ const Page: React.FC<{
       )}
       {categoriesExist() && (
         <div
-          className="home-page__categories"
-          style={
+          className={
             collections.edges.length > 1
-              ? {
-                  marginTop: "774px",
-                }
-              : {
-                  marginTop: "0",
-                }
+              ? "home-page__categories"
+              : "home-page__categories-without-slider"
           }
         >
           <div className="container home-page__categories_container">

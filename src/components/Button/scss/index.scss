@@ -10,10 +10,6 @@ button.button {
   font-family: $base-font-family;
   cursor: pointer;
   border-radius: 300px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
 
   @media (max-width: $small-screen) {
     padding: $button-padding-small-screen;
