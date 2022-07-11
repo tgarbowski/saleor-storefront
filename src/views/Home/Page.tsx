@@ -5,7 +5,12 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { generatePath } from "react-router";
 
 import { paths } from "@paths";
-import { DefaultHero } from "@styles/pictures";
+import {
+  DefaultHero,
+  KidCategoryImg,
+  ManCategoryImg,
+  WomanCategoryImg,
+} from "@styles/pictures";
 import { FooterUsp } from "@temp/components/FooterUsp/FooterUsp";
 import { shopName } from "@temp/constants";
 import { FeaturedProducts } from "@utils/ssr";
@@ -239,22 +244,44 @@ const Page: React.FC<{
           }
         >
           <div className="container home-page__categories_container">
-            <h2>
-              <FormattedMessage defaultMessage="WYBIERZ KATEGORIĘ" />
-            </h2>
             <div className="home-page__categories__list">
               {visibleCategory.map(({ node: category }) => {
                 return shopName === "CLOTHES4U" &&
                   category.name === "Detal" ? null : (
                   <div key={category.id} className="home-page__category-item">
-                    <Link
-                      href={generatePath(paths.category, {
-                        slug: category.slug,
-                      })}
-                      key={category.id}
-                    >
-                      {category.name}
-                    </Link>
+                    <div className="home-page__categories__text-image">
+                      {category.name === "Kobieta" ? (
+                        <img
+                          className="home-page__categories__img"
+                          src={WomanCategoryImg}
+                          alt=""
+                        />
+                      ) : category.name === "Mężczyzna" ? (
+                        <img
+                          className="home-page__categories__img"
+                          src={ManCategoryImg}
+                          alt=""
+                        />
+                      ) : (
+                        category.name === "Dziecko" && (
+                          <img
+                            className="home-page__categories__img"
+                            src={KidCategoryImg}
+                            alt=""
+                          />
+                        )
+                      )}
+                      <Link
+                        href={generatePath(paths.category, {
+                          slug: category.slug,
+                        })}
+                        key={category.id}
+                      >
+                        <a className="home-page__categories__text-title">
+                          {category.name}
+                        </a>
+                      </Link>
+                    </div>
                   </div>
                 );
               })}
@@ -262,6 +289,7 @@ const Page: React.FC<{
           </div>
         </div>
       )}
+      <FooterUsp />
       {collectionsExist() && (
         <div className="home-page__collections">
           <div className="home-page__collections_container">
@@ -309,7 +337,6 @@ const Page: React.FC<{
           </div>
         </div>
       )}
-      <FooterUsp />
       <ProductsFeatured
         products={featuredProducts.products}
         title={intl.formatMessage({ defaultMessage: "Featured" })}
