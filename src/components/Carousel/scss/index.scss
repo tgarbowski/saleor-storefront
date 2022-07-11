@@ -1,11 +1,6 @@
 @import "../../../globalStyles/scss/variables.scss";
 
 .carousel {
-  .slider-slide {
-    @media (min-width: $large-screen) {
-      width: auto !important;
-    }
-  }
   &__control {
     padding: $carousel-control-padding;
     background-color: $primary;
