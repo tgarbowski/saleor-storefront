@@ -46,6 +46,7 @@ const Page: React.FC<{
       </script>
       {collections.edges.length > 1 ? (
         <Carousel
+          className="carousel-2"
           viewportWidth="100%"
           maxRenderedSlides={3}
           cellPadding={5}
@@ -122,19 +123,49 @@ const Page: React.FC<{
                   </div>
                 </div>
                 <div className="home-page__hero-action">
-                  {collectionsExist() && (
-                    <Link
-                      href={generatePath(paths.collection, {
-                        slug: collections.edges[0].node.slug,
-                      })}
-                    >
-                      <a>
-                        <Button testingContext="homepageHeroActionButton">
-                          <FormattedMessage defaultMessage="Sprawdź ofertę" />
-                        </Button>
-                      </a>
-                    </Link>
-                  )}
+                  {collectionsExist() &&
+                    (collection.name === "Kolekcja lato" ? (
+                      <Link
+                        key={collection.id}
+                        href={generatePath(paths.collection, {
+                          slug: collection.slug,
+                        })}
+                      >
+                        <a>
+                          <Button testingContext="homepageHeroActionButton">
+                            <FormattedMessage defaultMessage="Sprawdź ofertę" />
+                          </Button>
+                        </a>
+                      </Link>
+                    ) : collection.name === "Najnowsze produkty" ? (
+                      <Link
+                        key={collection.id}
+                        href={generatePath(paths.collection, {
+                          slug: collection.slug,
+                        })}
+                      >
+                        <a>
+                          <Button testingContext="homepageHeroActionButton">
+                            <FormattedMessage defaultMessage="Sprawdź ofertę" />
+                          </Button>
+                        </a>
+                      </Link>
+                    ) : (
+                      collection.name === "Polecane produkty" && (
+                        <Link
+                          key={collection.id}
+                          href={generatePath(paths.collection, {
+                            slug: collection.slug,
+                          })}
+                        >
+                          <a>
+                            <Button testingContext="homepageHeroActionButton">
+                              <FormattedMessage defaultMessage="Sprawdź ofertę" />
+                            </Button>
+                          </a>
+                        </Link>
+                      )
+                    ))}
                 </div>
               </div>
             );
