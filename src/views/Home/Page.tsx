@@ -9,6 +9,7 @@ import {
   DefaultHero,
   KidCategoryImg,
   ManCategoryImg,
+  WholesaleCategoryImg,
   WomanCategoryImg,
 } from "@styles/pictures";
 import { FooterUsp } from "@temp/components/FooterUsp/FooterUsp";
@@ -99,9 +100,13 @@ const Page: React.FC<{
                           <FormattedMessage defaultMessage="Najnowsze produkty" />
                         </h1>
                       ) : (
-                        collection.name === "Polecane produkty" && (
+                        (collection.name === "Polecane produkty" ||
+                          collection.name === "Polecane produkty c4u") && (
                           <h1>
-                            <FormattedMessage defaultMessage="Fashion4you" />
+                            <FormattedMessage
+                              defaultMessage="{shopname}"
+                              values={{ shopname: shopName }}
+                            />
                           </h1>
                         )
                       )}
@@ -118,7 +123,8 @@ const Page: React.FC<{
                           <FormattedMessage defaultMessage="Najświeższe oferty rozchodzą się jak ciepłe bułeczki, nie zwlekaj, złap ją przed innymi i bądź ev vouge!" />
                         </h1>
                       ) : (
-                        collection.name === "Polecane produkty" && (
+                        (collection.name === "Polecane produkty" ||
+                          collection.name === "Polecane produkty c4u") && (
                           <h1>
                             <FormattedMessage defaultMessage="Specjalnie wysublimowane produkty, to tylko przykłady bestsellerowych ofert, których nie możesz przegapić." />
                           </h1>
@@ -156,7 +162,8 @@ const Page: React.FC<{
                         </a>
                       </Link>
                     ) : (
-                      collection.name === "Polecane produkty" && (
+                      (collection.name === "Polecane produkty" ||
+                        collection.name === "Polecane produkty c4u") && (
                         <Link
                           key={collection.id}
                           href={generatePath(paths.collection, {
@@ -270,6 +277,13 @@ const Page: React.FC<{
                             alt=""
                           />
                         )
+                      )}
+                      {category.name === "Hurt" && (
+                        <img
+                          className="home-page__categories__img"
+                          src={WholesaleCategoryImg}
+                          alt=""
+                        />
                       )}
                       <Link
                         href={generatePath(paths.category, {

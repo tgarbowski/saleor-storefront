@@ -20,6 +20,7 @@ import {
 } from "react-share";
 
 import { CustomPopup } from "@components/atoms/CustomPopup/CustomPopup";
+import { OnSaleTag } from "@components/atoms/OnSaleTag";
 import { CreditCardIcon, ShippingIcon } from "@styles/icons";
 import { apiUrl, channelSlug } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
@@ -94,6 +95,8 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
     variantStock,
     quantity
   );
+
+  const isOnSale = productPricing.onSale;
 
   const renderErrorMessage = (message: string, testingContextId: string) => (
     <S.ErrorMessage
@@ -248,6 +251,9 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
           intl.formatMessage(commonMessages.noItemsAvailable),
           "noItemsAvailable"
         )}
+      <S.OnSaleTagWrapper>
+        {isOnSale && <OnSaleTag>Przecena</OnSaleTag>}
+      </S.OnSaleTagWrapper>
       <S.VariantPicker>
         <ProductVariantPicker
           productVariants={productVariants}

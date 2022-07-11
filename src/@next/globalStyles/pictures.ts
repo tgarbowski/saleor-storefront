@@ -17,6 +17,7 @@ import notFoundPageImgF4U from "../../images/not-found-page-img-f4u.png";
 import notFoundProductImgC4U from "../../images/not-found-product-img-c4u.png";
 import notFoundProductImgDefault from "../../images/not-found-product-img-default.png";
 import notFoundProductImgF4U from "../../images/not-found-product-img-f4u.png";
+import WholesaleCategory from "../../images/wholesale-category.jpg";
 import WomanCategory from "../../images/woman-category.jpg";
 
 export const WomanCategoryImg =
@@ -27,6 +28,9 @@ export const KidCategoryImg =
 
 export const ManCategoryImg =
   shopName === "FASHION4YOU" ? ManCategory : ManCategory;
+
+export const WholesaleCategoryImg =
+  shopName === "FASHION4YOU" ? WholesaleCategory : WholesaleCategory;
 
 export const UnderConstructionImage =
   shopName === "FASHION4YOU" ? UnderConstructionImg : null;

@@ -1,5 +1,6 @@
 import React from "react";
 
+import { OnSaleTag } from "@components/atoms/OnSaleTag";
 import { TaxedMoney } from "@components/containers";
 import { Thumbnail } from "@components/molecules";
 
@@ -14,8 +15,11 @@ export const ProductTile: React.FC<IProps> = ({ product }: IProps) => {
       ? product.pricing.priceRange.start
       : undefined;
 
+  const isOnSale = product.pricing?.onSale;
+
   return (
     <S.Wrapper>
+      {isOnSale && <OnSaleTag>Przecena</OnSaleTag>}
       <S.Image data-test="productThumbnail">
         <Thumbnail source={product} />
       </S.Image>

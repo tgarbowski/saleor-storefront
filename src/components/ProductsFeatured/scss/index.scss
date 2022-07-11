@@ -30,9 +30,13 @@
     word-break: break-word;
 
     @media (max-width: $medium-screen) {
-      font-size: 1.6rem;
+      font-size: 38px;
+      line-height: 55px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: $black;
+      padding-bottom: 0.6rem;
       text-align: center;
-      max-width: 100%;
     }
 
     span {

@@ -32,7 +32,7 @@ export const VariantPicker = styled.div`
 
 export const QuantityInput = styled.div`
   margin-top: 20px;
-  padding-top: 20px;
+  padding-top: 70px;
 `;
 
 export const ErrorMessage = styled.p`
@@ -131,4 +131,8 @@ export const SocialSharingWrapper = styled.div`
   display: flex;
   flex-direction: row;
   gap: 10px;
+`;
+
+export const OnSaleTagWrapper = styled.div`
+  position: relative;
 `;
