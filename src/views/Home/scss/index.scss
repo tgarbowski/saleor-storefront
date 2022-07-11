@@ -561,7 +561,7 @@
   }
 }
 
-.carousel {
+.carousel-2 {
   text-align: center;
   position: relative;
   opacity: 0;
@@ -569,18 +569,18 @@
   transition: opacity 0.5s;
 }
 
-.carousel .carousel-container-inner {
+.carousel-2 .carousel-container-inner {
   margin: 0 auto;
   position: relative;
 }
 
-.carousel .carousel-viewport {
+.carousel-2 .carousel-viewport {
   overflow: hidden;
   white-space: nowrap;
   text-align: left;
 }
 
-.carousel .carousel-arrow-default {
+.carousel-2 .carousel-arrow-default {
   border: 3px solid !important;
   border-radius: 50%;
   color: rgba(255, 255, 255, 0.9);
@@ -590,7 +590,7 @@
   background: rgba(0, 0, 0, 0.15);
 }
 
-.carousel .carousel-arrow {
+.carousel-2 .carousel-arrow {
   position: absolute;
   z-index: 1;
   top: 342px;
@@ -603,80 +603,80 @@
   }
 }
 
-.carousel .carousel-arrow:focus {
+.carousel-2 .carousel-arrow:focus {
   outline: none;
 }
 
-.carousel .carousel-arrow:before {
+.carousel-2 .carousel-arrow:before {
   font-size: 19px;
   display: block;
   margin-top: -2px;
 }
 
-.carousel .carousel-arrow:disabled {
+.carousel-2 .carousel-arrow:disabled {
   cursor: not-allowed;
   opacity: 0.5;
 }
 
-.carousel .carousel-left-arrow {
+.carousel-2 .carousel-left-arrow {
   left: 23px;
 }
 
-.carousel .carousel-right-arrow {
+.carousel-2 .carousel-right-arrow {
   right: 38px;
   @media only screen and (max-width: $medium-screen) {
     right: 23px;
   }
 }
 
-.carousel .carousel-left-arrow.carousel-arrow-default:before {
+.carousel-2 .carousel-left-arrow.carousel-arrow-default:before {
   content: "<";
 }
 
-.carousel .carousel-right-arrow.carousel-arrow-default:before {
+.carousel-2 .carousel-right-arrow.carousel-arrow-default:before {
   content: ">";
 }
 
-.carousel .carousel-track {
+.carousel-2 .carousel-track {
   list-style: none;
   padding: 0;
   margin: 0;
   touch-action: pan-y pinch-zoom;
 }
 
-.carousel .carousel-track .carousel-slide {
+.carousel-2 .carousel-track .carousel-slide {
   display: inline-block;
   opacity: 0.7;
   transition: opacity 0.5s ease-in-out;
   margin-left: 0 !important;
 }
 
-.carousel .carousel-track .carousel-slide > * {
+.carousel-2 .carousel-track .carousel-slide > * {
   display: block;
   white-space: normal;
 }
 
-.carousel .carousel-track .carousel-slide.carousel-slide-loading {
+.carousel-2 .carousel-track .carousel-slide.carousel-slide-loading {
   background: rgba(204, 204, 204, 0.7);
 }
 
-.carousel .carousel-track .carousel-slide.carousel-slide-fade {
+.carousel-2 .carousel-track .carousel-slide.carousel-slide-fade {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   opacity: 0;
 }
 
-.carousel .carousel-track .carousel-slide.carousel-slide-selected {
+.carousel-2 .carousel-track .carousel-slide.carousel-slide-selected {
   opacity: 1;
   z-index: 1;
 }
 
-.carousel.loaded {
+.carousel-2.loaded {
   opacity: 1;
 }
 
-.carousel .carousel-dots {
+.carousel-2 .carousel-dots {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -696,11 +696,11 @@
   }
 }
 
-.carousel .carousel-dots li {
+.carousel-2 .carousel-dots li {
   display: inline-block;
 }
 
-.carousel .carousel-dots button {
+.carousel-2 .carousel-dots button {
   border: 0;
   background: transparent;
   font-size: 3em;
@@ -710,34 +710,34 @@
   padding-right: 6px;
 }
 
-.carousel .carousel-dots button.selected {
+.carousel-2 .carousel-dots button.selected {
   color: black;
 }
 
-.carousel .carousel-dots button:focus {
+.carousel-2 .carousel-dots button:focus {
   outline: none;
 }
 
-[dir="rtl"] .carousel .carousel-viewport {
+[dir="rtl"] .carousel-2 .carousel-viewport {
   text-align: right;
 }
 
-[dir="rtl"] .carousel .carousel-left-arrow {
+[dir="rtl"] .carousel-2 .carousel-left-arrow {
   left: unset;
   right: 23px;
 }
 
-[dir="rtl"] .carousel .carousel-right-arrow {
+[dir="rtl"] .carousel-2 .carousel-right-arrow {
   right: unset;
   left: 23px;
 }
 
-[dir="rtl"] .carousel .carousel-left-arrow.carousel-arrow-default:before {
+[dir="rtl"] .carousel-2 .carousel-left-arrow.carousel-arrow-default:before {
   padding-left: 2px;
   padding-right: unset;
 }
 
-[dir="rtl"] .carousel .carousel-right-arrow.carousel-arrow-default:before {
+[dir="rtl"] .carousel-2 .carousel-right-arrow.carousel-arrow-default:before {
   padding-right: 2px;
   padding-left: unset;
 }
