@@ -28,17 +28,17 @@ export const FooterUsp = () => {
       <div className="container footer-usp-section-container">
         <FooterUspItem
           title="SZYBKA WYSYŁKA"
-          text="OFERUJEMY SZYBKĄ I MIĘDZYNARODOWĄ WYSYŁKĘ"
+          text="Oferujemy szybką i międzynarodową wysyłkę"
           image={ShippedIcon}
         />
         <FooterUspItem
           title="BEZPIECZNE PŁATNOŚCI"
-          text="AKCEPTUJEMY PŁATNOŚCI POPULARNYM PAYU"
+          text="Akceptujemy płatności popularnym PayU"
           image={CreditIcon}
         />
         <FooterUspItem
           title="ZWROTY"
-          text="MASZ 14 DNI NA ZMIANĘ ZDANIA"
+          text="Masz 14 dni na zmianę zdania"
           image={ParcelIcon}
         />
       </div>
