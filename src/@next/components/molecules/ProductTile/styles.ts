@@ -20,6 +20,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
+  position: relative;
 
   :hover {
     background-color: ${props => props.theme.colors.hoverLightBackground};

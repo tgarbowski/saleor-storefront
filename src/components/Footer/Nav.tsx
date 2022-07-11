@@ -47,7 +47,7 @@ export const Nav: React.FC<NavProps> = ({ menu }) => {
                       ))
                   : shopName === "CLOTHES4U"
                   ? item.name === "Kategorie"
-                    ? item.children.slice(0, -1).map(subItem => (
+                    ? item.children.map(subItem => (
                         <p key={subItem.id}>
                           <NavLink item={subItem} />
                         </p>

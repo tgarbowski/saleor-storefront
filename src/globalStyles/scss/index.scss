@@ -4,6 +4,12 @@
 @import "./utils";
 @import "./components";
 
+html {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: $base-font-family;
   font-size: $base-font-size;
@@ -66,7 +72,7 @@ body {
 
   .container {
     width: $container-width;
-    max-width: 100vw;
+    max-width: $container-max-width;
     margin: 0 auto;
     padding: 0 $spacer;
 
