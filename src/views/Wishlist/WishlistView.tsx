@@ -36,9 +36,8 @@ export const WishlistView: React.FC = () => {
   return (
     <MetaWrapper
       meta={{
-        description: "TESTdescription",
-        title: "TEST",
-        type: "product.category",
+        title: "Lista życzeń",
+        type: "product.wishlist",
       }}
     >
       <Page

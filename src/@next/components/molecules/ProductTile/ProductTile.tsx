@@ -5,6 +5,7 @@ import { Thumbnail } from "@components/molecules";
 
 import * as S from "./styles";
 import { IProps } from "./types";
+import { HeartIconSmall } from "@styles/CreditCardIcon";
 
 export const ProductTile: React.FC<IProps> = ({ product }: IProps) => {
   const price =
@@ -18,6 +19,10 @@ export const ProductTile: React.FC<IProps> = ({ product }: IProps) => {
     <S.Wrapper>
       <S.Image data-test="productThumbnail">
         <Thumbnail source={product} />
+
+        <S.WishlistIconLink href="google.com">
+          <S.WishlistIcon src={HeartIconSmall} alt="" />
+        </S.WishlistIconLink>
       </S.Image>
       <S.Title data-test="productTile">{product.name}</S.Title>
       <S.Price data-test="productPrice">

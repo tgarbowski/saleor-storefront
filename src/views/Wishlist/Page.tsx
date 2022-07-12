@@ -1,11 +1,15 @@
 import { BaseCategory } from "@saleor/sdk/lib/fragments/gqlTypes/BaseCategory";
 import { CategoryDetails } from "@saleor/sdk/lib/fragments/gqlTypes/CategoryDetails";
 import { ProductList_products_edges_node } from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
+import Link from "next/link";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
+import { Button } from "@components/atoms";
 import { ProductList } from "@components/organisms";
+import { WishlistEmpty } from "@components/templates";
 import { Attribute } from "@graphql/gqlTypes/Attribute";
+import { paths } from "@paths";
 import { FeaturedProducts } from "@utils/ssr";
 
 import "./scss/index.scss";
@@ -33,23 +37,28 @@ export const Page: React.FC<PageProps> = ({
   const hasProducts = products.length > 0;
 
   return (
-    <div className="wishlist">
-      <h1 data-test="wishlistPageTitle">
-        <FormattedMessage defaultMessage="Twoja lista życzeń" />
-      </h1>
-      <div className="container">
-        {!displayLoader && !hasProducts ? (
-          <h3 className="NotFoundProductsTitle">
-            Twoja lista życzeń jest pusta
-          </h3>
-        ) : (
-          <ProductList
-            products={products}
-            canLoadMore={hasNextPage}
-            loading={displayLoader}
-            onLoadMore={onLoadMore}
-          />
-        )}
+    <div className="wishlist-content">
+      <div className="container wishlist-wrapper">
+        <div className="content">
+          {!displayLoader && !hasProducts ? (
+            <WishlistEmpty />
+          ) : (
+            <div className="wishlist-products-wrapper">
+              <h1
+                data-test="wishlistPageTitle"
+                className="wishlist-products-wrapper-title"
+              >
+                <FormattedMessage defaultMessage="Twoja lista życzeń" />
+              </h1>
+              <ProductList
+                products={products}
+                canLoadMore={hasNextPage}
+                loading={displayLoader}
+                onLoadMore={onLoadMore}
+              />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

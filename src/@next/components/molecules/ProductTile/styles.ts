@@ -47,9 +47,26 @@ export const Image = styled.div`
   display: flex;
   flex-grow: 1;
   overflow: hidden;
+  position: relative;
 
   > img {
     flex-grow: 1;
     object-fit: contain;
   }
+  &:hover a {
+    display: block;
+    position: absolute;
+    z-index: 1;
+  }
+`;
+
+export const WishlistIcon = styled.img`
+  margin-right: 20px;
+  width: 30px;
+  height: 30px;
+`;
+
+export const WishlistIconLink = styled.a`
+  display: none;
+  position: relative;
 `;
