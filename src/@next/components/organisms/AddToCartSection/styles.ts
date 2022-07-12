@@ -32,7 +32,7 @@ export const VariantPicker = styled.div`
 
 export const QuantityInput = styled.div`
   margin-top: 20px;
-  padding-top: 70px;
+  padding-top: 20px;
 `;
 
 export const ErrorMessage = styled.p`
