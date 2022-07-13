@@ -34,3 +34,4 @@ export * from "./Redirect/Redirect";
 export * from "./CartCostsSummary";
 export * from "./OfflinePlaceholder";
 export * from "./OnSaleTag";
+export * from "./NewProductTag";
