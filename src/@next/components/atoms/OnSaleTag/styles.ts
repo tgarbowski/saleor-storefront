@@ -1,17 +1,14 @@
 import { styled } from "@styles";
 
 export const Label = styled.section`
-  font-size: 16px;
-  color: #fff;
-  background-color: red;
-  padding: 0.5rem 0.5rem;
-  text-align: center;
-  display: block;
-  width: 124px;
-  margin-top: 42px;
-  position: absolute;
-  right: -20px;
-  top: -30px;
+  color: rgb(255, 255, 255);
+  background-color: #9c0000;
+  display: inline-block;
+  padding-left: 11px;
+  padding-right: 11px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 2.2rem;
 
   @media (max-width: 720px) {
     left: 0;
