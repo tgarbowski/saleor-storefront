@@ -6,6 +6,7 @@ import { Thumbnail } from "@components/molecules";
 import * as S from "./styles";
 import { IProps } from "./types";
 import { HeartIconSmall } from "@styles/CreditCardIcon";
+import { useWishlist } from "@saleor/sdk";
 
 export const ProductTile: React.FC<IProps> = ({ product }: IProps) => {
   const price =
@@ -15,13 +16,20 @@ export const ProductTile: React.FC<IProps> = ({ product }: IProps) => {
       ? product.pricing.priceRange.start
       : undefined;
 
+  const { addItem: addWishlistItem } = useWishlist();
+  const tryAddToWishlist = () => {
+    if (product) {
+      addWishlistItem(product.id);
+    }
+  };
+
   return (
     <S.Wrapper>
       <S.Image data-test="productThumbnail">
         <Thumbnail source={product} />
 
-        <S.WishlistIconLink href="google.com">
-          <S.WishlistIcon src={HeartIconSmall} alt="" />
+        <S.WishlistIconLink onClick={tryAddToWishlist}>
+          <S.WishlistIcon path={HeartIconSmall} />
         </S.WishlistIconLink>
       </S.Image>
       <S.Title data-test="productTile">{product.name}</S.Title>

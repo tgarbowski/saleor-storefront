@@ -1,15 +1,12 @@
 import { BaseCategory } from "@saleor/sdk/lib/fragments/gqlTypes/BaseCategory";
 import { CategoryDetails } from "@saleor/sdk/lib/fragments/gqlTypes/CategoryDetails";
 import { ProductList_products_edges_node } from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
-import Link from "next/link";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { Button } from "@components/atoms";
 import { ProductList } from "@components/organisms";
 import { WishlistEmpty } from "@components/templates";
 import { Attribute } from "@graphql/gqlTypes/Attribute";
-import { paths } from "@paths";
 import { FeaturedProducts } from "@utils/ssr";
 
 import "./scss/index.scss";

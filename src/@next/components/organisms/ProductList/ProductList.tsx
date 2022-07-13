@@ -6,7 +6,6 @@ import { generatePath } from "react-router";
 import { Button, Loader } from "@components/atoms";
 import { ProductTile } from "@components/molecules";
 import { paths } from "@paths";
-import { HeartIconSmall } from "@styles/CreditCardIcon";
 
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -36,13 +35,6 @@ export const ProductList: React.FC<IProps> = ({
                     <ProductTile product={product} />
                   </a>
                 </Link>
-                <S.WishlistButton
-                  className="add-to-wishlist-btn"
-                  onSubmit={() => console.log("hej")}
-                >
-                  <S.WishlistIcon src={HeartIconSmall} alt="" />
-                  Dodaj do ulubionych
-                </S.WishlistButton>
               </div>
             )
           );

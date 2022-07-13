@@ -1,6 +1,7 @@
 import { css } from "styled-components";
 
 import { media, styled } from "@styles";
+import ReactSVG from "react-svg";
 
 const textProps = css`
   font-size: ${props => props.theme.typography.baseFontSize};
@@ -53,20 +54,27 @@ export const Image = styled.div`
     flex-grow: 1;
     object-fit: contain;
   }
-  &:hover a {
-    display: block;
-    position: absolute;
-    z-index: 1;
-  }
 `;
 
-export const WishlistIcon = styled.img`
+export const WishlistIcon = styled(ReactSVG)`
   margin-right: 20px;
   width: 30px;
   height: 30px;
+
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  g {
+    transition: 0.3s all ease-in-out;
+    &:hover {
+      fill: red;
+    }
+  }
 `;
 
-export const WishlistIconLink = styled.a`
-  display: none;
+export const WishlistIconLink = styled.button`
   position: relative;
+  margin-left: auto;
 `;
