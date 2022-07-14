@@ -91,6 +91,7 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
     seoTitle: "Apple Juice",
     isAvailableForPurchase: true,
     availableForPurchase: "2020-08-31",
+    collections: [],
     pricing: {
       __typename: "ProductPricingInfo",
       onSale: true,
@@ -172,6 +173,7 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
     seoTitle: "Apple Juice",
     isAvailableForPurchase: true,
     availableForPurchase: "2020-08-31",
+    collections: [],
     pricing: {
       __typename: "ProductPricingInfo",
       onSale: true,
@@ -253,6 +255,7 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
     seoTitle: "Apple Juice",
     isAvailableForPurchase: true,
     availableForPurchase: "2020-08-31",
+    collections: [],
     pricing: {
       __typename: "ProductPricingInfo",
       onSale: true,
@@ -334,6 +337,7 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
     seoTitle: "Apple Juice",
     isAvailableForPurchase: true,
     availableForPurchase: "2020-08-31",
+    collections: [],
     pricing: {
       __typename: "ProductPricingInfo",
       onSale: true,
@@ -415,6 +419,7 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
     seoTitle: "Apple Juice",
     isAvailableForPurchase: true,
     availableForPurchase: "2020-08-31",
+    collections: [],
     pricing: {
       __typename: "ProductPricingInfo",
       onSale: true,

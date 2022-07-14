@@ -36,7 +36,7 @@ export const ProductTile: React.FC<IProps> = ({
         </OnSaleTag>
       )}
       {product &&
-        product.collections.map((collection: any) => {
+        product?.collections?.map((collection: any) => {
           const isNewProduct = () => {
             if (collection.name === "Najnowsze produkty") {
               return (

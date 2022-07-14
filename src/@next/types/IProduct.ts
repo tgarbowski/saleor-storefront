@@ -6,6 +6,7 @@ export type IProduct = WithOptional<
   ProductList_products_edges_node,
   | "slug"
   | "seoTitle"
+  | "collections"
   | "seoDescription"
   | "availableForPurchase"
   | "isAvailableForPurchase"
