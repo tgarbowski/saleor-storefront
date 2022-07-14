@@ -1,5 +1,4 @@
 import { ProductDetails } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
-import { IPricingModel } from "@saleor/sdk/lib/helpers";
 import classNames from "classnames";
 import React, { useEffect, useState } from "react";
 import Media from "react-media";
@@ -19,7 +18,6 @@ import {
 } from "../../components";
 import { structuredData } from "../../core/SEO/Product/structuredData";
 import GalleryCarousel from "./GalleryCarousel";
-// import OtherProducts from "./Other";
 import { IProps } from "./types";
 
 import { smallScreen } from "../../globalStyles/scss/variables.scss";
@@ -73,14 +71,8 @@ const Page: React.FC<
     overlayContext.show(OverlayType.cart, OverlayTheme.right);
   };
 
-  const handleAddToWishlist = (
-    variantId: string,
-    slug: string,
-    thumbnail: string,
-    thumbnail2x: string,
-    pricing: IPricingModel
-  ) => {
-    addToWishlist(variantId, slug, thumbnail, thumbnail2x, pricing);
+  const handleAddToWishlist = (productId: string) => {
+    addToWishlist(productId);
   };
 
   const [productPricing, setProductPricing] = useState(null);

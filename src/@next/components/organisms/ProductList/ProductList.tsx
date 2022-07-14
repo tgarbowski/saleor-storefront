@@ -1,3 +1,4 @@
+import { useWishlist } from "@saleor/sdk";
 import Link from "next/link";
 import React from "react";
 import { FormattedMessage } from "react-intl";
@@ -6,6 +7,7 @@ import { generatePath } from "react-router";
 import { Button, Loader } from "@components/atoms";
 import { ProductTile } from "@components/molecules";
 import { paths } from "@paths";
+import { HeartIconSmall } from "@styles/CreditCardIcon";
 
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -17,6 +19,21 @@ export const ProductList: React.FC<IProps> = ({
   testingContextId,
   onLoadMore = () => null,
 }) => {
+  const {
+    addItem: addWishlistItem,
+    removeItem: removeWishlistItem,
+    wishlist,
+  } = useWishlist();
+  const tryAddToWishlist = (product: any) => {
+    if (product) {
+      addWishlistItem(product.id);
+    }
+  };
+  const tryRmoveFromWishlist = (product: any) => {
+    if (product) {
+      removeWishlistItem(product.id);
+    }
+  };
   return (
     <>
       <S.List data-test="productList" data-test-id={testingContextId}>
@@ -25,7 +42,20 @@ export const ProductList: React.FC<IProps> = ({
           return (
             slug &&
             name && (
-              <div className="single-product">
+              <div className="single-product" style={{ position: "relative" }}>
+                {!wishlist?.filter((id: string) => id === product?.id)
+                  .length ? (
+                  <S.WishlistIconLink onClick={() => tryAddToWishlist(product)}>
+                    <S.AddToWishlistIcon path={HeartIconSmall} />
+                  </S.WishlistIconLink>
+                ) : (
+                  <S.WishlistIconLink
+                    onClick={() => tryRmoveFromWishlist(product)}
+                  >
+                    <S.RemoveFromWishlistIcon path={HeartIconSmall} />
+                  </S.WishlistIconLink>
+                )}
+
                 <Link
                   href={generatePath(paths.product, { slug })}
                   key={slug}

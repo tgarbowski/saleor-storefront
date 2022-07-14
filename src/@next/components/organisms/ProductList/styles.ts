@@ -1,3 +1,5 @@
+import ReactSVG from "react-svg";
+
 import { media, styled } from "@styles";
 
 export const List = styled.div`
@@ -31,8 +33,47 @@ export const WishlistButton = styled.button`
   font-size: 20px;
 `;
 
-export const WishlistIcon = styled.img`
+export const AddToWishlistIcon = styled(ReactSVG)`
   margin-right: 20px;
   width: 30px;
   height: 30px;
+
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  g {
+    transition: 0.3s all ease-in-out;
+    &:hover {
+      fill: red;
+    }
+  }
+`;
+
+export const RemoveFromWishlistIcon = styled(ReactSVG)`
+  margin-right: 20px;
+  width: 30px;
+  height: 30px;
+
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  g {
+    fill: red;
+    transition: 0.3s all ease-in-out;
+    &:hover {
+      fill: black;
+    }
+  }
+`;
+
+export const WishlistIconLink = styled.button`
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 8px;
+  right: 16px;
 `;

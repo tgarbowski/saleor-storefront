@@ -1,7 +1,7 @@
+import ReactSVG from "react-svg";
 import { css } from "styled-components";
 
 import { media, styled } from "@styles";
-import ReactSVG from "react-svg";
 
 const textProps = css`
   font-size: ${props => props.theme.typography.baseFontSize};

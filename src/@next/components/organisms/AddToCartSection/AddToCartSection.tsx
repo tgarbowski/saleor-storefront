@@ -1,6 +1,6 @@
 import { useWishlist } from "@saleor/sdk";
 import { ProductDetails } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
-import { ICheckoutModelLine, IPricingModel } from "@saleor/sdk/lib/helpers";
+import { ICheckoutModelLine } from "@saleor/sdk/lib/helpers";
 import {
   ProductDetails_product_pricing,
   ProductDetails_product_variants,
@@ -19,6 +19,7 @@ import { IProductVariantsAttributesSelectedValues } from "@types";
 import AddToCartButton from "../../molecules/AddToCartButton";
 import AddToWishlistButton from "../../molecules/AddToWishlistButton";
 import QuantityInput from "../../molecules/QuantityInput";
+import RemoveFromWishlistButton from "../../molecules/RemoveFromWishlistButton";
 import ProductVariantPicker from "../ProductVariantPicker";
 import Accordion from "./Accordion";
 import {
@@ -42,13 +43,7 @@ export interface IAddToCartSection {
   product?: ProductDetails;
   setVariantId(variantId: string): void;
   onAddToCart(variantId: string, quantity?: number): void;
-  onAddToWishlist(
-    variantId: string,
-    slug: string,
-    thumbnail: string,
-    thumbnail2x: string,
-    pricing: IPricingModel
-  ): void;
+  onAddToWishlist(productId: string): void;
   onAttributeChangeHandler(slug: string | null, value: string): void;
 }
 
@@ -72,16 +67,6 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
   const [variantStock, setVariantStock] = useState<number>(0);
   const [variantPricing, setVariantPricing] =
     useState<ProductDetails_product_variants_pricing | null>(null);
-
-  let disableButtonWishlist = false;
-  useEffect(() => {
-    const wishlistData = localStorage.getItem("data_wishlist");
-    if (wishlistData) {
-      disableButtonWishlist = !JSON.parse(wishlistData).lines?.filter(
-        (id: string) => id === product?.id
-      ).length;
-    }
-  }, []);
 
   const availableQuantity = getAvailableQuantity(
     items,
@@ -208,14 +193,28 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
     );
   };
 
-  const { addItem: addWishlistItem, removeItem: removeWishlistItem } =
-    useWishlist();
+  const [disableButtonWishlist, setDisableButtonWishlist] = useState(false);
+
+  const {
+    addItem: addWishlistItem,
+    removeItem: removeWishlistItem,
+    wishlist,
+  } = useWishlist();
 
   const tryAddToWishlist = () => {
     if (product) {
       addWishlistItem(product.id);
+      setDisableButtonWishlist(true);
     }
   };
+
+  useEffect(() => {
+    if (wishlist) {
+      setDisableButtonWishlist(
+        !!wishlist.filter((id: string) => id === product?.id).length
+      );
+    }
+  }, [wishlist]);
 
   return (
     <S.AddToCartSelection>
@@ -275,18 +274,18 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
         />
       </S.QuantityInput>
       <AddToCartButton onSubmit={tryAddToCart} disabled={disableButton} />
-      <AddToWishlistButton
-        onSubmit={tryAddToWishlist}
-        disabled={disableButtonWishlist}
-      />
-      <AddToWishlistButton
-        onSubmit={() => {
-          if (product) {
-            removeWishlistItem(product.id);
-          }
-        }}
-        disabled={!disableButtonWishlist}
-      />
+      {disableButtonWishlist ? (
+        <RemoveFromWishlistButton
+          onSubmit={() => {
+            if (product) {
+              removeWishlistItem(product.id);
+              setDisableButtonWishlist(false);
+            }
+          }}
+        />
+      ) : (
+        <AddToWishlistButton onSubmit={tryAddToWishlist} />
+      )}
 
       {addToCartPopUp && (
         <CustomPopup
