@@ -1,6 +1,7 @@
 import { useAuth, useCart } from "@saleor/sdk";
 import classNames from "classnames";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import Media from "react-media";
@@ -9,6 +10,7 @@ import ReactSVG from "react-svg";
 import { DemoBanner } from "@components/atoms";
 import { ShopMenusQuery } from "@graphql/gqlTypes/ShopMenusQuery";
 import { paths } from "@paths";
+import { HeartIconMenuSmall } from "@styles/CreditCardIcon";
 import Logo from "@styles/Logo";
 import { shopName } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
@@ -47,14 +49,20 @@ export const MainMenu: React.FC<MainMenuProps> = ({
 }) => {
   const overlayContext = useContext(OverlayContext);
   const { user, signOut } = useAuth();
+  const { push } = useRouter();
   const { items } = useCart();
+  const wishlist = JSON.parse(localStorage.getItem("data_wishlist"));
   const [activeDropdown, setActiveDropdown] = useState<string>(undefined);
 
   const menuItems = menu?.items || [];
+
   const cartItemsQuantity =
     (items &&
       items.reduce((prevVal, currVal) => prevVal + currVal.quantity, 0)) ||
     0;
+
+  const wishlistItemsQuantity =
+    wishlist?.lines.length > 0 ? wishlist?.lines.length : 0;
 
   const handleSignOut = () => signOut();
 
@@ -315,6 +323,32 @@ export const MainMenu: React.FC<MainMenuProps> = ({
                     ) : (
                       <span className="main-menu__cart__quantity">
                         {cartItemsQuantity}
+                      </span>
+                    )}
+                  </>
+                )}
+              </li>
+              <li
+                data-test="menuWishlistOverlayLink"
+                className="main-menu__icon main-menu__wishlist"
+                onClick={() => {
+                  push(paths.wishlist);
+                }}
+              >
+                {!loading && (
+                  <>
+                    <img
+                      className="main-menu__wishlist__icon"
+                      src={HeartIconMenuSmall}
+                      alt=""
+                    />
+                    {wishlistItemsQuantity > 0 ? (
+                      <span className="main-menu__wishlist__quantity">
+                        {wishlistItemsQuantity}
+                      </span>
+                    ) : (
+                      <span className="main-menu__wishlist__quantity">
+                        {wishlistItemsQuantity}
                       </span>
                     )}
                   </>

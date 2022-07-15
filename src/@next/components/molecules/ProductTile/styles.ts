@@ -1,3 +1,4 @@
+import ReactSVG from "react-svg";
 import { css } from "styled-components";
 
 import { media, styled } from "@styles";
@@ -65,9 +66,33 @@ export const Image = styled.div`
   display: flex;
   flex-grow: 1;
   overflow: hidden;
+  position: relative;
 
   > img {
     flex-grow: 1;
     object-fit: contain;
   }
+`;
+
+export const WishlistIcon = styled(ReactSVG)`
+  margin-right: 20px;
+  width: 30px;
+  height: 30px;
+
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  g {
+    transition: 0.3s all ease-in-out;
+    &:hover {
+      fill: red;
+    }
+  }
+`;
+
+export const WishlistIconLink = styled.button`
+  position: relative;
+  margin-left: auto;
 `;

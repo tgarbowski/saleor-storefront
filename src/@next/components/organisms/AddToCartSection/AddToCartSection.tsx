@@ -1,3 +1,4 @@
+import { useWishlist } from "@saleor/sdk";
 import { ProductDetails } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
 import { ICheckoutModelLine } from "@saleor/sdk/lib/helpers";
 import {
@@ -29,7 +30,9 @@ import { commonMessages } from "@temp/intl";
 import { IProductVariantsAttributesSelectedValues } from "@types";
 
 import AddToCartButton from "../../molecules/AddToCartButton";
+import AddToWishlistButton from "../../molecules/AddToWishlistButton";
 import QuantityInput from "../../molecules/QuantityInput";
+import RemoveFromWishlistButton from "../../molecules/RemoveFromWishlistButton";
 import ProductVariantPicker from "../ProductVariantPicker";
 import Accordion from "./Accordion";
 import {
@@ -45,14 +48,16 @@ export interface IAddToCartSection {
   name: string;
   productPricing: ProductDetails_product_pricing;
   items: ICheckoutModelLine[];
+  wishlist: string[];
   queryAttributes: Record<string, string>;
   isAvailableForPurchase: boolean | null;
   availableForPurchase: string | null;
   variantId: string;
+  product: ProductDetails;
   setVariantId(variantId: string): void;
   onAddToCart(variantId: string, quantity?: number): void;
+  onAddToWishlist(productId: string): void;
   onAttributeChangeHandler(slug: string | null, value: string): void;
-  product: ProductDetails;
 }
 
 const AddToCartSection: React.FC<IAddToCartSection> = ({
@@ -64,6 +69,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
   productVariants,
   queryAttributes,
   onAddToCart,
+  onAddToWishlist,
   onAttributeChangeHandler,
   setVariantId,
   variantId,
@@ -203,6 +209,28 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
     );
   };
 
+  const [disableButtonWishlist, setDisableButtonWishlist] = useState(false);
+
+  const {
+    addItem: addWishlistItem,
+    removeItem: removeWishlistItem,
+    wishlist,
+  } = useWishlist();
+
+  const tryAddToWishlist = () => {
+    if (product) {
+      addWishlistItem(product.id);
+      setDisableButtonWishlist(true);
+    }
+  };
+
+  useEffect(() => {
+    if (wishlist) {
+      setDisableButtonWishlist(
+        !!wishlist.filter((id: string) => id === product?.id).length
+      );
+    }
+  }, [wishlist]);
   const imageURL = "";
   const productName = product.name;
 
@@ -300,6 +328,19 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
         />
       </S.QuantityInput>
       <AddToCartButton onSubmit={tryAddToCart} disabled={disableButton} />
+      {disableButtonWishlist ? (
+        <RemoveFromWishlistButton
+          onSubmit={() => {
+            if (product) {
+              removeWishlistItem(product.id);
+              setDisableButtonWishlist(false);
+            }
+          }}
+        />
+      ) : (
+        <AddToWishlistButton onSubmit={tryAddToWishlist} />
+      )}
+
       <S.SocialSharingWrapper>
         <FacebookShareButton url={shareUrl}>
           <FacebookIcon size={32} round />

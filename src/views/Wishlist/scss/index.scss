@@ -1,0 +1,21 @@
+@import "../../../globalStyles/scss/variables.scss";
+
+.wishlist-content {
+  &-wrapper {
+    padding-top: 100px !important;
+    @media (max-width: $medium-screen) {
+      margin: 80px 0 80px 0;
+    }
+    &-title {
+      font-size: 4rem;
+    }
+  }
+  .content {
+    .wishlist-products-wrapper {
+      margin-top: 100px 0;
+      &-title {
+        margin: 100px 0 50px 0;
+      }
+    }
+  }
+}

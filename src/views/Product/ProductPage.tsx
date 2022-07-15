@@ -1,4 +1,4 @@
-import { useCart } from "@saleor/sdk";
+import { useCart, useWishlist } from "@saleor/sdk";
 import { ProductDetails } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
@@ -7,6 +7,11 @@ import React, { useEffect, useState } from "react";
 
 import { Loader, OfflinePlaceholder } from "@components/atoms";
 
+// import {
+// IItemsWishlist,
+// IWishlistModelProps,
+// useWishlist,
+// } from "@components/organisms/WishlistSidebar/WishlistSidebar";
 import { MetaWrapper, NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import Page from "./Page";
@@ -99,6 +104,7 @@ export type ProductPageProps = {
 
 export const ProductPage: NextPage<ProductPageProps> = ({ data: product }) => {
   const { addItem, items } = useCart();
+  const { addItem: addWishlistItem, wishlist } = useWishlist();
   const { asPath } = useRouter();
 
   return (
@@ -113,6 +119,8 @@ export const ProductPage: NextPage<ProductPageProps> = ({ data: product }) => {
                 product={product}
                 add={addItem}
                 items={items}
+                addToWishlist={addWishlistItem}
+                wishlist={wishlist}
               />
             </MetaWrapper>
           );
