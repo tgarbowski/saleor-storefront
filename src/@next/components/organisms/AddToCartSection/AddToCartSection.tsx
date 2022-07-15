@@ -19,8 +19,10 @@ import {
   WhatsappShareButton,
 } from "react-share";
 
+import { NewProductTag } from "@components/atoms";
 import { CustomPopup } from "@components/atoms/CustomPopup/CustomPopup";
 import { OnSaleTag } from "@components/atoms/OnSaleTag";
+import { TaxedMoney } from "@components/containers";
 import { CreditCardIcon, ShippingIcon } from "@styles/icons";
 import { apiUrl, channelSlug } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
@@ -204,6 +206,13 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
   const imageURL = "";
   const productName = product.name;
 
+  const undiscountedPrice =
+    product.pricing &&
+    product.pricing.priceRangeUndiscounted &&
+    product.pricing.priceRangeUndiscounted.start
+      ? product.pricing.priceRangeUndiscounted.start
+      : undefined;
+
   return (
     <S.AddToCartSelection>
       <Helmet>
@@ -222,9 +231,12 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
           "outOfStock"
         )
       ) : (
-        <S.ProductPricing>
-          {getProductPrice(productPricing, variantPricing)}
-        </S.ProductPricing>
+        <S.PriceWrapper>
+          <S.UndiscountedPrice data-test="productPrice">
+            {isOnSale && <TaxedMoney taxedMoney={undiscountedPrice} />}
+          </S.UndiscountedPrice>
+          <S.Price>{getProductPrice(productPricing, variantPricing)}</S.Price>
+        </S.PriceWrapper>
       )}
       {noPurchaseAvailable &&
         renderErrorMessage(
@@ -252,7 +264,21 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
           "noItemsAvailable"
         )}
       <S.OnSaleTagWrapper>
-        {isOnSale && <OnSaleTag>Przecena</OnSaleTag>}
+        {isOnSale && (
+          <OnSaleTag>
+            <p>Przecena</p>
+          </OnSaleTag>
+        )}
+      </S.OnSaleTagWrapper>
+      <S.OnSaleTagWrapper>
+        {product?.collections &&
+          product?.collections?.map((collection: any) =>
+            collection.name === "Najnowsze produkty" ? (
+              <NewProductTag>
+                <p>Nowy produkt</p>
+              </NewProductTag>
+            ) : null
+          )}
       </S.OnSaleTagWrapper>
       <S.VariantPicker>
         <ProductVariantPicker
