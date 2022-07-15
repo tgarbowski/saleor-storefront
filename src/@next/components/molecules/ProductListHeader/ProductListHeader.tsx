@@ -1,7 +1,8 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { Chip, DropdownSelect, Icon } from "@components/atoms";
+import { Chip, DropdownSelect } from "@components/atoms";
+import { FilterIcon } from "@styles/icons";
 import { commonMessages } from "@temp/intl";
 
 import * as S from "./styles";
@@ -23,7 +24,7 @@ export const ProductListHeader: React.FC<IProps> = ({
       <S.Bar>
         <S.LeftSide>
           <S.FiltersButton onClick={openFiltersMenu} data-test="filtersButton">
-            <Icon name="filter" size={24} />
+            <img src={FilterIcon} alt="" width="32" height="32" />
             <S.Filters>
               <FormattedMessage {...commonMessages.filterHeader} />{" "}
               {activeFilters > 0 && <span>({activeFilters})</span>}

@@ -104,8 +104,11 @@ const CartSidebar: React.FC<ICartSidebar> = ({
   };
 
   useEffect(() => {
-    // console.log(items);
-  }, []);
+    if (items?.length === 0) {
+      localStorage.removeItem("data_checkout");
+      localStorage.removeItem("data_payment");
+    }
+  }, [items]);
 
   return (
     <Overlay

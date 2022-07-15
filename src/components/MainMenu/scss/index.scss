@@ -15,6 +15,8 @@
   align-items: center;
   position: relative;
   justify-content: center;
+  z-index: 1;
+  width: 100%;
 
   @media (min-width: $small-screen) {
     height: 6rem;
@@ -52,6 +54,12 @@
       align-items: center;
       margin-right: 25px;
 
+      @media only screen and (max-width: $small-screen) {
+        @if $env == "FASHION4YOU" {
+          margin-right: 0;
+        }
+      }
+
       @if $env == "FASHION4YOU" {
         margin-right: 30px;
       }
@@ -73,9 +81,8 @@
         width: 10rem;
 
         @if $env == "FASHION4YOU" {
-          width: 12rem;
+          width: 10rem;
           padding-top: 1rem;
-          padding-bottom: 1rem;
           object-fit: cover;
           height: auto;
         }
@@ -92,13 +99,32 @@
     text-transform: uppercase;
 
     a {
-      text-decoration: none;
-      color: $base-font-color;
+      font-size: $h4-font-size;
       position: relative;
-      transition: 0.3s;
+      text-transform: uppercase;
+      transition: all 0.3s ease-in-out;
+      max-width: 100%;
 
       &:hover {
         color: $primary;
+      }
+
+      &:before {
+        content: "";
+        background: $primary;
+        display: block;
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        transition: all 0.3s ease-in-out;
+      }
+      &:hover {
+        background-position: 0;
+      }
+      &:hover::before {
+        width: 100%;
       }
     }
   }
@@ -281,37 +307,40 @@
   }
 
   &__nav-dropdown {
-    padding: 1.3rem;
+    margin: 0 1.3rem;
 
     &--active {
-      background-color: $turquoise-light;
       transition: 0.3s all ease-in-out;
 
       & > li > a {
-        color: $black;
-        @if $env == "FASHION4YOU" {
-          color: $white;
+        font-size: $base-font-size;
+        position: relative;
+        text-transform: uppercase;
+        margin-bottom: 30px;
+        transition: all 0.3s ease-in-out;
+        max-width: 100%;
+
+        &:hover {
+          color: $primary;
         }
-        @if $env == "CLOTHES4U" {
-          color: $white;
+
+        &:before {
+          content: "";
+          background: $primary;
+          display: block;
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+          width: 0;
+          height: 2px;
+          transition: all 0.3s ease-in-out;
         }
         &:hover {
-          color: $black;
-          @if $env == "FASHION4YOU" {
-            color: $white;
-          }
-          @if $env == "CLOTHES4U" {
-            color: $white;
-          }
+          background-position: 0;
         }
-      }
-      @if $env == "FASHION4YOU" {
-        color: $white;
-        background-color: $primary;
-      }
-      @if $env == "CLOTHES4U" {
-        color: $white;
-        background-color: $primary;
+        &:hover::before {
+          width: 100%;
+        }
       }
     }
 
@@ -326,34 +355,49 @@
       border-top-width: 1px;
       display: none;
       left: 0;
-      padding: 2rem;
+      padding: 1.4rem;
       position: absolute;
       top: 100%;
       width: 100%;
       z-index: 3;
+      border-bottom: 1px solid $gray-light;
 
       &--visible {
-        display: block;
+        display: inline;
+      }
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 100%;
       }
 
       li *,
       ul * {
-        display: block !important;
+        display: flex;
+        flex-direction: row !important;
+        flex-wrap: wrap;
       }
 
       > ul > li {
         align-self: flex-start;
         margin-left: 2rem;
         position: relative;
+        padding: 15px 0;
+        display: flex !important;
+        align-items: center;
 
         // 2nd level name
         > a {
           font-size: $base-font-size;
           position: relative;
           text-transform: uppercase;
-          margin-bottom: 30px;
+          margin-right: 20px;
+          font-weight: bold;
           transition: all 0.3s ease-in-out;
           max-width: 100%;
+          margin-bottom: 15px;
 
           &:hover {
             color: $primary;
@@ -379,57 +423,55 @@
         }
         > ul > li:first-child {
           position: relative;
-          padding-top: 20px;
-          width: 100%;
-
-          &:before {
-            background-color: $turquoise-light;
-            content: "";
-            height: 1px;
-            left: 0;
-            position: absolute;
-            top: -6px;
-            width: 100%;
-            bottom: -5px;
-            transition: all 0.3s ease-in-out;
-          }
         }
 
         ul {
-          // 3rd+ level names
-          a {
-            font-size: $small-font-size;
-            font-weight: normal;
-            padding: 6px 0;
-            text-transform: capitalize;
-            transition: all 0.3s ease-in-out;
-            max-width: 100%;
+          display: flex;
+          flex-direction: row !important;
+          flex-wrap: wrap;
+          li {
+            align-self: flex-start;
+            padding-bottom: 20px;
+            display: flex !important;
+            align-items: center;
+            flex-direction: row;
 
-            &:hover {
-              color: $primary;
-            }
-
-            &:before {
-              content: "";
-              background: $primary;
-              display: block;
-              position: absolute;
-              bottom: -5px;
-              left: 0;
-              width: 0;
-              height: 2px;
+            // 3rd+ level names
+            a {
+              font-size: $small-font-size;
+              font-weight: 400;
+              margin-bottom: -5px;
+              margin-right: 20px;
+              text-transform: capitalize;
               transition: all 0.3s ease-in-out;
-            }
-            &:hover {
-              background-position: 0;
-            }
-            &:hover::before {
-              width: 100%;
-            }
-          }
+              max-width: 100%;
 
-          li > ul {
-            margin-left: 10px;
+              &:hover {
+                color: $primary;
+              }
+
+              &:before {
+                content: "";
+                background: $primary;
+                display: block;
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                width: 0;
+                height: 2px;
+                transition: all 0.3s ease-in-out;
+              }
+              &:hover {
+                background-position: 0;
+              }
+              &:hover::before {
+                width: 100%;
+              }
+            }
+
+            li > ul {
+              margin-left: 10px;
+            }
           }
         }
       }

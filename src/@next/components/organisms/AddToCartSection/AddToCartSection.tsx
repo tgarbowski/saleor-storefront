@@ -7,11 +7,24 @@ import {
   ProductDetails_product_variants_pricing,
 } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
 import React, { useEffect, useState } from "react";
+import Helmet from "react-helmet";
 import { useIntl } from "react-intl";
+import {
+  EmailIcon,
+  EmailShareButton,
+  FacebookIcon,
+  FacebookShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
+} from "react-share";
 
+import { NewProductTag } from "@components/atoms";
 import { CustomPopup } from "@components/atoms/CustomPopup/CustomPopup";
-import CreditCardIcon from "@styles/CreditCardIcon";
-import ShippingIcon from "@styles/ShippingIcon";
+import { OnSaleTag } from "@components/atoms/OnSaleTag";
+import { TaxedMoney } from "@components/containers";
+import { CreditCardIcon, ShippingIcon } from "@styles/icons";
 import { apiUrl, channelSlug } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
 import { IProductVariantsAttributesSelectedValues } from "@types";
@@ -40,7 +53,7 @@ export interface IAddToCartSection {
   isAvailableForPurchase: boolean | null;
   availableForPurchase: string | null;
   variantId: string;
-  product?: ProductDetails;
+  product: ProductDetails;
   setVariantId(variantId: string): void;
   onAddToCart(variantId: string, quantity?: number): void;
   onAddToWishlist(productId: string): void;
@@ -68,6 +81,8 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
   const [variantPricing, setVariantPricing] =
     useState<ProductDetails_product_variants_pricing | null>(null);
 
+  const shareUrl = window?.location.href ?? "";
+
   const availableQuantity = getAvailableQuantity(
     items,
     variantId,
@@ -88,6 +103,8 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
     variantStock,
     quantity
   );
+
+  const isOnSale = productPricing.onSale;
 
   const renderErrorMessage = (message: string, testingContextId: string) => (
     <S.ErrorMessage
@@ -127,7 +144,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
       content: (
         <S.AccordionContent>
           <ul>
-            {/* <S.AccordionListItem>Payu</S.AccordionListItem> */}
+            <S.AccordionListItem>Payu</S.AccordionListItem>
             <S.AccordionListItem>Płatność za pobraniem</S.AccordionListItem>
           </ul>
         </S.AccordionContent>
@@ -147,8 +164,8 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
       content: (
         <S.AccordionContent>
           <ul>
-            {/* <S.AccordionListItem>Paczkomaty Inpost 24/7</S.AccordionListItem> */}
-            {/* <S.AccordionListItem>Kurier DPD</S.AccordionListItem> */}
+            <S.AccordionListItem>Paczkomaty Inpost 24/7</S.AccordionListItem>
+            <S.AccordionListItem>Kurier DPD</S.AccordionListItem>
             <S.AccordionListItem>Kurier GLS, pobranie</S.AccordionListItem>
           </ul>
         </S.AccordionContent>
@@ -185,7 +202,6 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
       data.json().then(data => {
         if (data.data.productVariant.quantityAvailable !== 0) {
           onAddToCart(variantId, quantity);
-          // console.log(variantId);
         } else {
           setAddToCartPopUp(true);
         }
@@ -215,9 +231,27 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
       );
     }
   }, [wishlist]);
+  const imageURL = "";
+  const productName = product.name;
+
+  const undiscountedPrice =
+    product.pricing &&
+    product.pricing.priceRangeUndiscounted &&
+    product.pricing.priceRangeUndiscounted.start
+      ? product.pricing.priceRangeUndiscounted.start
+      : undefined;
 
   return (
     <S.AddToCartSelection>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{productName}</title>
+        <meta property="og:url" content={shareUrl} />
+        <meta
+          property="og:image"
+          content={imageURL !== "" ? `${product.thumbnail}` : ""}
+        />
+      </Helmet>
       <S.ProductNameHeader data-test="productName">{name}</S.ProductNameHeader>
       {isOutOfStock ? (
         renderErrorMessage(
@@ -225,9 +259,12 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
           "outOfStock"
         )
       ) : (
-        <S.ProductPricing>
-          {getProductPrice(productPricing, variantPricing)}
-        </S.ProductPricing>
+        <S.PriceWrapper>
+          <S.UndiscountedPrice data-test="productPrice">
+            {isOnSale && <TaxedMoney taxedMoney={undiscountedPrice} />}
+          </S.UndiscountedPrice>
+          <S.Price>{getProductPrice(productPricing, variantPricing)}</S.Price>
+        </S.PriceWrapper>
       )}
       {noPurchaseAvailable &&
         renderErrorMessage(
@@ -254,6 +291,23 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
           intl.formatMessage(commonMessages.noItemsAvailable),
           "noItemsAvailable"
         )}
+      <S.OnSaleTagWrapper>
+        {isOnSale && (
+          <OnSaleTag>
+            <p>Przecena</p>
+          </OnSaleTag>
+        )}
+      </S.OnSaleTagWrapper>
+      <S.OnSaleTagWrapper>
+        {product?.collections &&
+          product?.collections?.map((collection: any) =>
+            collection.name === "Najnowsze produkty" ? (
+              <NewProductTag>
+                <p>Nowy produkt</p>
+              </NewProductTag>
+            ) : null
+          )}
+      </S.OnSaleTagWrapper>
       <S.VariantPicker>
         <ProductVariantPicker
           productVariants={productVariants}
@@ -287,6 +341,20 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
         <AddToWishlistButton onSubmit={tryAddToWishlist} />
       )}
 
+      <S.SocialSharingWrapper>
+        <FacebookShareButton url={shareUrl}>
+          <FacebookIcon size={32} round />
+        </FacebookShareButton>
+        <EmailShareButton url={shareUrl}>
+          <EmailIcon size={32} round />
+        </EmailShareButton>
+        <TwitterShareButton url={shareUrl}>
+          <TwitterIcon size={32} round />
+        </TwitterShareButton>
+        <WhatsappShareButton url={shareUrl}>
+          <WhatsappIcon size={32} round />
+        </WhatsappShareButton>
+      </S.SocialSharingWrapper>
       {addToCartPopUp && (
         <CustomPopup
           modalText="Nie można dodać produktu do koszyka. Wygląda na to, że produkt

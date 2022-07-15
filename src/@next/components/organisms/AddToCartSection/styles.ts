@@ -1,6 +1,16 @@
+import { css } from "styled-components";
+
 import { styled } from "@styles";
 
 export const AddToCartSelection = styled.div``;
+
+const textProps = css`
+  font-size: 1.3rem;
+  line-height: 1.7rem;
+  margin: 0 0 1rem 0;
+  text-align: left;
+  font-weight: ${props => props.theme.typography.boldFontWeight};
+`;
 
 export const ProductNameHeader = styled.h3`
   text-transform: uppercase;
@@ -11,12 +21,6 @@ export const ProductNameHeader = styled.h3`
 export const ProductPricing = styled.h4`
   font-weight: ${props => props.theme.typography.boldFontWeight};
   margin-bottom: ${props => props.theme.spacing.spacer};
-`;
-
-export const UndiscountedPrice = styled.span`
-  text-decoration: line-through;
-  color: ${props => props.theme.colors.baseFontColorSemiTransparent};
-  font-size: ${props => props.theme.typography.smallFontSize};
 `;
 
 export const VariantPicker = styled.div`
@@ -124,4 +128,34 @@ export const AccordionContent = styled.div`
 
 export const AccordionListItem = styled.li`
   padding: 1rem 0;
+`;
+
+export const SocialSharingWrapper = styled.div`
+  margin-top: 3.2rem;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+`;
+
+export const OnSaleTagWrapper = styled.div`
+  position: relative;
+`;
+
+export const UndiscountedPrice = styled.p`
+  text-decoration: line-through;
+  color: ${props => props.theme.colors.baseFontColorSemiTransparent};
+  font-size: 1.3rem;
+  line-height: 1.7rem;
+  margin: 0 0 1rem 0;
+`;
+
+export const PriceWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+`;
+
+export const Price = styled.p`
+  ${textProps}
 `;

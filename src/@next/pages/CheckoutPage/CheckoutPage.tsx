@@ -19,7 +19,6 @@ import { paths } from "@paths";
 import { paymentGatewayNames } from "@temp/constants";
 import { ICardData, IFormError, IPaymentSubmitResult } from "@types";
 
-import { TypedGeneratePaymentUrl } from "./queries";
 import {
   CheckoutAddressSubpage,
   CheckoutPaymentSubpage,
@@ -64,10 +63,6 @@ const CheckoutPage: React.FC<NextPage> = () => {
   const [submitInProgress, setSubmitInProgress] = useState(false);
   const [paymentConfirmation, setPaymentConfirmation] = useState(false);
 
-  const generatePaymentUrlVariables = {
-    paymentId: payment?.id,
-  };
-
   const [selectedPaymentGateway, setSelectedPaymentGateway] = useState<
     string | undefined
   >(payment?.gateway);
@@ -104,28 +99,6 @@ const CheckoutPage: React.FC<NextPage> = () => {
   const noteRef = useRef(null);
 
   const checkoutSubpage = useMemo(() => {
-    const reviewStep =
-      selectedPaymentGateway === "salingo.payments.cod" ? (
-        <CheckoutReviewSubpage
-          {...pageProps}
-          paymentGatewayFormRef={checkoutGatewayFormRef}
-          selectedPaymentGatewayToken={selectedPaymentGatewayToken}
-          noteRef={noteRef}
-        />
-      ) : (
-        <TypedGeneratePaymentUrl variables={generatePaymentUrlVariables}>
-          {({ ...urlData }) => (
-            <CheckoutReviewSubpage
-              {...pageProps}
-              paymentGatewayFormRef={checkoutGatewayFormRef}
-              selectedPaymentGatewayToken={selectedPaymentGatewayToken}
-              payuUrl={urlData?.data?.generatePaymentUrl?.paymentUrl}
-              noteRef={noteRef}
-            />
-          )}
-        </TypedGeneratePaymentUrl>
-      );
-
     const subpageMapping: Partial<Record<CheckoutStep, JSX.Element>> = {
       [CheckoutStep.Address]: <CheckoutAddressSubpage {...pageProps} />,
       [CheckoutStep.Shipping]: <CheckoutShippingSubpage {...pageProps} />,
@@ -137,7 +110,14 @@ const CheckoutPage: React.FC<NextPage> = () => {
           noteRef={noteRef}
         />
       ),
-      [CheckoutStep.Review]: reviewStep,
+      [CheckoutStep.Review]: (
+        <CheckoutReviewSubpage
+          {...pageProps}
+          paymentGatewayFormRef={checkoutGatewayFormRef}
+          selectedPaymentGatewayToken={selectedPaymentGatewayToken}
+          noteRef={noteRef}
+        />
+      )
     };
     return subpageMapping[activeStep.step];
   }, [activeStep.step]);

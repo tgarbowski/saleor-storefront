@@ -27,7 +27,8 @@ export const ProductLine = styled.div`
 `;
 
 export const CartSummaryProductList = styled.div`
-  margin-bottom: 30px;
+  overflow: auto;
+  max-height: 600px;
 `;
 
 export const CartSummaryProductListWrapper = styled.div`

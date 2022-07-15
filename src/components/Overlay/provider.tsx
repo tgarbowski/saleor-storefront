@@ -42,7 +42,12 @@ class Provider extends React.Component<
     context?: InnerOverlayContextInterface
   ) => {
     this.setState({ type, theme, context });
-    document.body.style.overflow = type !== OverlayType.message ? "hidden" : "";
+    if (type === OverlayType.mainMenuNav) {
+      document.body.style.overflowY = "auto";
+    } else {
+      document.body.style.overflowY =
+        type !== OverlayType.message ? "hidden" : "";
+    }
     if (type === OverlayType.message) {
       setTimeout(this.hide, this.notificationCloseDelay);
     }

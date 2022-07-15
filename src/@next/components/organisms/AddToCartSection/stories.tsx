@@ -48,6 +48,7 @@ const DEFAULT_PROPS: IAddToCartSection = {
   availableForPurchase: null,
   isAvailableForPurchase: null,
   wishlist: [],
+  product: undefined,
 };
 
 storiesOf("@components/organisms/AddToCartSection", module).add(

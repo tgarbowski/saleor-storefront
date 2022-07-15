@@ -4,9 +4,10 @@ import { css } from "styled-components";
 import { media, styled } from "@styles";
 
 const textProps = css`
-  font-size: ${props => props.theme.typography.baseFontSize};
+  font-size: 1.2rem;
   margin: 0 0 0.5rem 0;
   text-align: left;
+  font-weight: bold;
 `;
 
 export const Wrapper = styled.div`
@@ -14,13 +15,14 @@ export const Wrapper = styled.div`
   border-radius: 5px;
   padding: 1rem;
   text-align: center;
-  height: 29rem;
+  height: 31rem;
   display: flex;
   flex-direction: column;
   transition: 0.3s;
   justify-content: center;
   align-items: center;
   text-align: center;
+  position: relative;
 
   :hover {
     background-color: ${props => props.theme.colors.hoverLightBackground};
@@ -42,6 +44,22 @@ export const Title = styled.h4`
 
 export const Price = styled.p`
   ${textProps}
+`;
+
+export const UndiscountedPrice = styled.p`
+  font-size: 1.2rem;
+  margin: 0 0 0.5rem 0;
+  text-align: left;
+  text-decoration: line-through;
+  color: ${props => props.theme.colors.baseFontColorSemiTransparent};
+`;
+
+export const PriceWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
 `;
 
 export const Image = styled.div`

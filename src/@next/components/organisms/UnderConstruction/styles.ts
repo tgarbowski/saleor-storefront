@@ -1,12 +1,17 @@
 import { styled } from "@styles";
-import UnderConstructionImage, { CloudMainImage, CloudMainSmallImageFirst, CloudMainSmallImageSecond } from '@styles/UnderConstructionImage';
+import {
+  CloudMainImage,
+  CloudMainSmallImageFirst,
+  CloudMainSmallImageSecond,
+  UnderConstructionImage,
+} from "@styles/pictures";
 
 export const UnderConstructionWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow-y: hidden;
-  background-image: url('${UnderConstructionImage}');
+  background-image: url("${UnderConstructionImage}");
   background-repeat: no-repeat;
   object-fit: cover;
   background-size: cover;
@@ -44,7 +49,7 @@ export const TopInformationTitle = styled.h1`
   text-align: center;
   position: absolute;
   top: 26px;
-  font-family: 'Bittermilk',sans-serif;
+  font-family: "Bittermilk", sans-serif;
   @media (max-width: 1172px) {
     position: unset;
     display: flex;
@@ -56,7 +61,7 @@ export const TopInformationTitle = styled.h1`
 `;
 
 export const TopInformationShopTitle = styled.span`
-  color: #84D9D8;
+  color: #84d9d8;
 `;
 
 export const TopInformationLogo = styled.img`
@@ -80,7 +85,7 @@ export const TopInformationLogo = styled.img`
 `;
 
 export const CloudMainSmallFirst = styled.div`
-  background-image: url('${CloudMainSmallImageFirst}');
+  background-image: url("${CloudMainSmallImageFirst}");
   background-repeat: no-repeat;
   object-fit: cover;
   background-size: cover;
@@ -106,13 +111,13 @@ export const CloudMainSmallFirstText = styled.div`
   justify-content: center;
   text-align: center;
   transform: rotate(-45deg);
-  max-width: 212px;  
-  font-family: 'Bittermilk', sans-serif;
+  max-width: 212px;
+  font-family: "Bittermilk", sans-serif;
   line-height: 35px;
 `;
 
 export const CloudMainSmallSecond = styled.div`
-  background-image: url('${CloudMainSmallImageSecond}');
+  background-image: url("${CloudMainSmallImageSecond}");
   background-repeat: no-repeat;
   object-fit: cover;
   background-size: cover;
@@ -150,13 +155,12 @@ export const CloudMainSmallSecondText = styled.div`
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
   max-width: 154px;
-  font-family: 'Bittermilk',sans-serif;
+  font-family: "Bittermilk", sans-serif;
   line-height: 35px;
 `;
 
-
 export const CloudInfoMain = styled.main`
-  background-image: url('${CloudMainImage}');
+  background-image: url("${CloudMainImage}");
   background-repeat: no-repeat;
   object-fit: cover;
   background-size: cover;
@@ -184,7 +188,7 @@ export const CloudInfoMain = styled.main`
 export const MainContentTitle = styled.h2`
   color: #fff;
   font-size: 48px;
-  font-family: 'Bittermilk', sans-serif;
+  font-family: "Bittermilk", sans-serif;
   line-height: 35px;
   @media (max-width: 1172px) {
     font-size: 40px;
@@ -196,7 +200,7 @@ export const MainContentSub = styled.p`
   font-size: 27px;
   margin-top: 22px;
   text-align: center;
-  font-family: 'Bittermilk',sans-serif;
+  font-family: "Bittermilk", sans-serif;
   line-height: 50px;
   width: 684px;
   @media (max-width: 1172px) {
@@ -207,7 +211,7 @@ export const MainContentSub = styled.p`
 
 export const MainContentSmallText = styled.span`
   color: #fff;
-  font-family: 'Bittermilk', sans-serif;
+  font-family: "Bittermilk", sans-serif;
   font-size: 27px;
   line-height: 35px;
   margin-top: 16px;
@@ -232,11 +236,11 @@ export const SocialLinksBlock = styled.div`
 `;
 
 export const SocialLinksTitle = styled.div`
-  background: #84D9D8;
+  background: #84d9d8;
   padding: 12px 36px;
   border-radius: 0 45px 45px 0;
-  color: #104F5C;
-  font-family: 'Archivo bold', sans-serif;
+  color: #104f5c;
+  font-family: "Archivo bold", sans-serif;
   font-weight: bold;
   @media (max-width: 1172px) {
     border-radius: 45px;
@@ -245,7 +249,7 @@ export const SocialLinksTitle = styled.div`
 
 export const SocialLinkText = styled.p`
   color: #fff;
-  font-family: 'Archivo regular', sans-serif;
+  font-family: "Archivo regular", sans-serif;
 `;
 
 export const SocialLinkImg = styled.img`

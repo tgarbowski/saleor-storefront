@@ -5,6 +5,9 @@ import { DefaultTheme, media } from ".";
 export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
   html {
     box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding: 0;
   }
 
   *, *:before, *:after {
@@ -18,6 +21,11 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
     font-size: ${props => props.theme.typography.baseFontSize};
     line-height: ${props => props.theme.typography.baseLineHeight};
     color: ${props => props.theme.colors.baseFont};
+    margin-top: 65px;
+
+    @media only screen and (max-width: 479px) {
+      margin-top: 50px;
+    }
   }
 
   input, textarea, button {
