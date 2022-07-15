@@ -10,7 +10,7 @@ import ReactSVG from "react-svg";
 import { DemoBanner } from "@components/atoms";
 import { ShopMenusQuery } from "@graphql/gqlTypes/ShopMenusQuery";
 import { paths } from "@paths";
-import { HeartIconSmall } from "@styles/CreditCardIcon";
+import { HeartIconMenuSmall } from "@styles/CreditCardIcon";
 import Logo from "@styles/Logo";
 import { shopName } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
@@ -337,7 +337,7 @@ export const MainMenu: React.FC<MainMenuProps> = ({
                   <>
                     <img
                       className="main-menu__wishlist__icon"
-                      src={HeartIconSmall}
+                      src={HeartIconMenuSmall}
                       alt=""
                     />
                     {wishlistItemsQuantity > 0 ? (
