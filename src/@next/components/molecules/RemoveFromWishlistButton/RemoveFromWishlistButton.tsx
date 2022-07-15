@@ -1,7 +1,9 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { Button } from "@components/atoms";
+import { HeartIconSmall } from "@styles/CreditCardIcon";
+
+import * as S from "./styles";
 
 export interface IRemoveFromWishlistButton {
   onSubmit: () => void;
@@ -11,14 +13,10 @@ export const RemoveFromWishlistButton: React.FC<IRemoveFromWishlistButton> = ({
   onSubmit,
 }) => {
   return (
-    <Button
-      fullWidth
-      testingContext="RemoveFromWishlistButton"
-      onClick={onSubmit}
-      color="primary"
-    >
+    <S.AddToWishlistBtn onClick={onSubmit}>
+      <S.AddToWishlistIcon path={HeartIconSmall} />
       <FormattedMessage defaultMessage="Usuń z ulubionych" />
-    </Button>
+    </S.AddToWishlistBtn>
   );
 };
 RemoveFromWishlistButton.displayName = "RemoveFromWishlistButton";

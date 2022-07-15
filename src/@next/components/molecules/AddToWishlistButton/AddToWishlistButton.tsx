@@ -1,7 +1,9 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
-import { Button } from "@components/atoms";
+import { HeartIconSmall } from "@styles/CreditCardIcon";
+
+import * as S from "./styles";
 
 export interface IAddToWishlistButton {
   onSubmit: () => void;
@@ -11,14 +13,10 @@ export const AddToWishlistButton: React.FC<IAddToWishlistButton> = ({
   onSubmit,
 }) => {
   return (
-    <Button
-      fullWidth
-      testingContext="addToWishlistButton"
-      onClick={onSubmit}
-      color="primary"
-    >
+    <S.AddToWishlistBtn onClick={onSubmit}>
+      <S.AddToWishlistIcon path={HeartIconSmall} />
       <FormattedMessage defaultMessage="Dodaj do ulubionych" />
-    </Button>
+    </S.AddToWishlistBtn>
   );
 };
 AddToWishlistButton.displayName = "AddToWishlistButton";
