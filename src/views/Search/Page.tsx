@@ -116,9 +116,13 @@ const Page: React.FC<PageProps> = ({
           hide={() => setShowFilters(false)}
           onAttributeFiltersChange={onAttributeFiltersChange}
           attributes={attributes}
-          filters={filters} name="" values={[]} onValueClick={(value: IFilterAttribute): void =>{
+          filters={filters}
+          name=""
+          values={[]}
+          onValueClick={(value: IFilterAttribute): void => {
             throw new Error("Function not implemented.");
-          } }        />
+          }}
+        />
         <ProductListHeader
           activeSortOption={activeSortOption}
           openFiltersMenu={() => setShowFilters(true)}
