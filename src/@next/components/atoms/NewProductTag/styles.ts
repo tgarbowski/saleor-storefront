@@ -12,7 +12,8 @@ export const Label = styled.section`
   margin-top: 20px;
   position: absolute;
   top: 0;
-  left: 20px;
+  left: 0;
+  margin-left: 20px;
 
   @media (max-width: 720px) {
     left: 0;

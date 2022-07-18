@@ -291,23 +291,22 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
           intl.formatMessage(commonMessages.noItemsAvailable),
           "noItemsAvailable"
         )}
-      <S.OnSaleTagWrapper>
-        {isOnSale && (
-          <OnSaleTag>
+      <S.TagWrapper style={{ marginBottom: "40px" }}>
+        {isOnSale ? (
+          <OnSaleTag style={{ marginLeft: 0 }}>
             <p>Przecena</p>
           </OnSaleTag>
-        )}
-      </S.OnSaleTagWrapper>
-      <S.OnSaleTagWrapper>
-        {product?.collections &&
+        ) : (
+          product?.collections &&
           product?.collections?.map((collection: any) =>
             collection.name === "Najnowsze produkty" ? (
-              <NewProductTag>
+              <NewProductTag style={{ marginLeft: 0 }}>
                 <p>Nowy produkt</p>
               </NewProductTag>
             ) : null
-          )}
-      </S.OnSaleTagWrapper>
+          )
+        )}
+      </S.TagWrapper>
       <S.VariantPicker>
         <ProductVariantPicker
           productVariants={productVariants}

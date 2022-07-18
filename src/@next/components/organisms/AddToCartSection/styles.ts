@@ -137,7 +137,7 @@ export const SocialSharingWrapper = styled.div`
   gap: 10px;
 `;
 
-export const OnSaleTagWrapper = styled.div`
+export const TagWrapper = styled.div`
   position: relative;
 `;
 
