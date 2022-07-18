@@ -8,10 +8,7 @@ import { Thumbnail } from "@components/molecules";
 import * as S from "./styles";
 import { IProps } from "./types";
 
-export const ProductTile: React.FC<IProps> = ({
-  product,
-  products,
-}: IProps) => {
+export const ProductTile: React.FC<IProps> = ({ product }: IProps) => {
   const price =
     product.pricing &&
     product.pricing.priceRange &&
@@ -28,8 +25,31 @@ export const ProductTile: React.FC<IProps> = ({
 
   const isOnSale = product.pricing?.onSale;
 
+  const salePercentage = (price: any, undiscountedPrice: any) => {
+    let salePercentageNumber = 0;
+    let discountPercent = 0;
+    if (price && undiscountedPrice) {
+      salePercentageNumber =
+        (100 * price.net.amount) / undiscountedPrice.net.amount;
+      discountPercent = 100 % -salePercentageNumber;
+      return <p>-{Math.round(discountPercent)}%</p>;
+    }
+  };
+
   return (
     <S.Wrapper>
+      {isOnSale ? (
+        <OnSaleTag>{salePercentage(price, undiscountedPrice)}</OnSaleTag>
+      ) : (
+        product?.collections &&
+        product?.collections?.map((collection: any) =>
+          collection.name === "Najnowsze produkty" ? (
+            <NewProductTag>
+              <p>Nowy produkt</p>
+            </NewProductTag>
+          ) : null
+        )
+      )}
       <S.Image data-test="productThumbnail">
         <Thumbnail source={product} />
       </S.Image>
@@ -42,19 +62,6 @@ export const ProductTile: React.FC<IProps> = ({
           <TaxedMoney taxedMoney={price} />
         </S.Price>
       </S.PriceWrapper>
-      {isOnSale && (
-        <OnSaleTag>
-          <p>Przecena</p>
-        </OnSaleTag>
-      )}
-      {product?.collections &&
-        product?.collections?.map((collection: any) =>
-          collection.name === "Najnowsze produkty" ? (
-            <NewProductTag>
-              <p>Nowy produkt</p>
-            </NewProductTag>
-          ) : null
-        )}
     </S.Wrapper>
   );
 };
