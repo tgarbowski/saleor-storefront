@@ -37,7 +37,6 @@ export const AddToWishlistIcon = styled(ReactSVG)`
   margin-right: 20px;
   width: 24px;
   height: 24px;
-  margin-top: 9px;
 
   svg {
     width: 24px;
@@ -56,7 +55,6 @@ export const RemoveFromWishlistIcon = styled(ReactSVG)`
   margin-right: 20px;
   width: 24px;
   height: 24px;
-  margin-top: 9px;
 
   svg {
     width: 24px;
@@ -76,7 +74,7 @@ export const WishlistIconLink = styled.button`
   position: absolute;
   width: 24px;
   height: 24px;
-  top: 8px;
+  top: 20px;
   right: 16px;
   z-index: 1;
 `;
