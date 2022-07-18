@@ -10,6 +10,9 @@ export const Label = styled.section`
   font-weight: 600;
   line-height: 2.2rem;
   margin-top: 20px;
+  position: absolute;
+  top: 0;
+  left: 20px;
 
   @media (max-width: 720px) {
     left: 0;

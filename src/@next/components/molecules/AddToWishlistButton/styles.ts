@@ -19,6 +19,10 @@ export const AddToWishlistBtn = styled.button`
   line-height: 1.25rem;
   margin-top: 2rem;
 
+  @media (max-width: 762px) {
+    padding: 0.9rem 1.7rem;
+  }
+
   &:hover {
     background-color: #000;
     color: #fff;
