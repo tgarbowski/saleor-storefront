@@ -27,12 +27,12 @@ export const ProductTile: React.FC<IProps> = ({ product }: IProps) => {
 
   const salePercentage = (price: any, undiscountedPrice: any) => {
     let salePercentageNumber = 0;
-    let salePercent = 0;
+    let discountPercent = 0;
     if (price && undiscountedPrice) {
       salePercentageNumber =
         (100 * price.net.amount) / undiscountedPrice.net.amount;
-      salePercent = 100 % -salePercentageNumber;
-      return <p>-{Math.round(salePercent)}%</p>;
+      discountPercent = 100 % -salePercentageNumber;
+      return <p>-{Math.round(discountPercent)}%</p>;
     }
   };
 
