@@ -5,7 +5,7 @@ import { styled } from "@styles";
 export const AddToWishlistBtn = styled.button`
   width: 390px;
   border: 2px solid #000;
-  padding: 0.7rem 3.7rem;
+  padding: 0.7rem 1.7rem;
   transition: 0.3s;
   outline: none;
   cursor: pointer;
