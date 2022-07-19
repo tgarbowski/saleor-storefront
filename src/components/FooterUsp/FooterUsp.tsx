@@ -28,7 +28,7 @@ export const FooterUsp = () => {
       <div className="container footer-usp-section-container">
         <FooterUspItem
           title="SZYBKA WYSYŁKA"
-          text="Oferujemy szybką i międzynarodową wysyłkę"
+          text="Oferujemy szybką i sprawną wysyłkę"
           image={ShippedIcon}
         />
         <FooterUspItem
