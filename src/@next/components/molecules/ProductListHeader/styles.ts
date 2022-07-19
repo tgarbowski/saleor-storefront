@@ -36,6 +36,8 @@ export const Bar = styled.div`
     box-shadow: 0 8px 24px rgb(149 157 165 / 20%);
     border-radius: 45px;
     flex-wrap: wrap;
+    flex-direction: column;
+    gap: 40px;
   }
 `;
 

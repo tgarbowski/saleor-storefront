@@ -12,10 +12,10 @@
     }
 
     &--right {
-      margin-right: 0.69rem;
+      margin-right: -2rem;
 
-      @media (max-width: $container-width) {
-        margin-right: 0;
+      @media (max-width: 762px) {
+        margin-right: 1rem;
       }
 
       svg {
@@ -24,10 +24,10 @@
     }
 
     &--left {
-      margin-left: -1.3rem;
+      margin-left: -2rem;
 
-      @media (max-width: $container-width) {
-        margin-left: 0;
+      @media (max-width: 762px) {
+        margin-left: 1rem;
       }
 
       svg {
