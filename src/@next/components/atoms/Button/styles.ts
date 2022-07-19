@@ -25,7 +25,7 @@ export const Primary = styled.button<{
   outline: none;
   cursor: pointer;
   color: ${props => props.theme.button.colors[props.color].color};
-  width: ${props => (props.fullWidth ? "100%" : "auto")};
+  width: ${props => (props.fullWidth ? "390px" : "auto")};
   border-radius: 45px;
 
   &:hover {
@@ -49,7 +49,7 @@ export const Primary = styled.button<{
     }
   }
 
-  ${media.smallScreen`
+  ${media.mediumScreen`
     padding:  0.9rem 1rem;
     width: ${(props: { fullWidth: boolean }) =>
       props.fullWidth ? "100%" : "88%"};

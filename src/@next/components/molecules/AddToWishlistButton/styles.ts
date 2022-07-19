@@ -3,9 +3,9 @@ import ReactSVG from "react-svg";
 import { styled } from "@styles";
 
 export const AddToWishlistBtn = styled.button`
-  width: 100%;
-  border: 3px solid #000;
-  padding: 0.9rem 3.7rem;
+  width: 390px;
+  border: 2px solid #000;
+  padding: 0.7rem 3.7rem;
   transition: 0.3s;
   outline: none;
   cursor: pointer;
@@ -18,9 +18,12 @@ export const AddToWishlistBtn = styled.button`
   font-weight: 600;
   line-height: 1.25rem;
   margin-top: 2rem;
+  display: flex;
+  justify-content: center;
 
   @media (max-width: 762px) {
-    padding: 0.9rem 1.7rem;
+    padding: 0.9rem 0;
+    width: 100%;
   }
 
   &:hover {
