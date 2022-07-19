@@ -1,5 +1,5 @@
 import { Attribute } from "@graphql/gqlTypes/Attribute";
-import { IFilterAttribute, IFilters } from "@types";
+import { IFilters } from "@types";
 
 export interface IProps {
   attributes: Attribute[];
@@ -8,8 +8,4 @@ export interface IProps {
   onAttributeFiltersChange: (attributeSlug: string, values: string) => void;
   show: boolean;
   target?: HTMLElement | null;
-  name: string;
-  values: IFilterAttribute[];
-  onValueClick: (value: IFilterAttribute) => void;
-  title?: React.ReactNode;
 }
