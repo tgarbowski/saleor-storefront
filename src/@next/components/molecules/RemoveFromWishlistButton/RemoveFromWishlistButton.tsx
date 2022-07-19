@@ -13,10 +13,10 @@ export const RemoveFromWishlistButton: React.FC<IRemoveFromWishlistButton> = ({
   onSubmit,
 }) => {
   return (
-    <S.AddToWishlistBtn onClick={onSubmit}>
-      <S.AddToWishlistIcon path={HeartIconSmall} />
+    <S.RemoveFromWishlistBtn onClick={onSubmit}>
+      <S.RemoveFromWishlistIcon path={HeartIconSmall} />
       <FormattedMessage defaultMessage="Usuń z ulubionych" />
-    </S.AddToWishlistBtn>
+    </S.RemoveFromWishlistBtn>
   );
 };
 RemoveFromWishlistButton.displayName = "RemoveFromWishlistButton";
