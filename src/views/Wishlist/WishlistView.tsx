@@ -1,4 +1,3 @@
-import { useWishlist } from "@saleor/sdk";
 import React, { useMemo } from "react";
 
 import { IWishlistFilters } from "@types";
@@ -8,7 +7,9 @@ import { Page } from "./Page";
 import { useWishlistQuery } from "./queries";
 
 export const WishlistView: React.FC = () => {
-  const { wishlist } = useWishlist();
+  const wishlistData = localStorage.getItem("data_wishlist");
+  const wishlist = wishlistData ? JSON.parse(wishlistData)?.lines : null;
+
   const ids = !wishlist?.length ? [""] : wishlist;
   const filters: IWishlistFilters = {
     ids,

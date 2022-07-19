@@ -211,11 +211,10 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
 
   const [disableButtonWishlist, setDisableButtonWishlist] = useState(false);
 
-  const {
-    addItem: addWishlistItem,
-    removeItem: removeWishlistItem,
-    wishlist,
-  } = useWishlist();
+  const { addItem: addWishlistItem, removeItem: removeWishlistItem } =
+    useWishlist();
+  const wishlistData = localStorage.getItem("data_wishlist");
+  const wishlist = wishlistData ? JSON.parse(wishlistData)?.lines : null;
 
   const tryAddToWishlist = () => {
     if (product) {

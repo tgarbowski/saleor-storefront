@@ -19,11 +19,10 @@ export const ProductList: React.FC<IProps> = ({
   testingContextId,
   onLoadMore = () => null,
 }) => {
-  const {
-    addItem: addWishlistItem,
-    removeItem: removeWishlistItem,
-    wishlist,
-  } = useWishlist();
+  const { addItem: addWishlistItem, removeItem: removeWishlistItem } =
+    useWishlist();
+  const wishlistData = localStorage.getItem("data_wishlist");
+  const wishlist = wishlistData ? JSON.parse(wishlistData)?.lines : null;
   const tryAddToWishlist = (product: any) => {
     if (product) {
       addWishlistItem(product.id);
