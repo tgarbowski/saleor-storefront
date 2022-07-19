@@ -104,7 +104,9 @@ export type ProductPageProps = {
 
 export const ProductPage: NextPage<ProductPageProps> = ({ data: product }) => {
   const { addItem, items } = useCart();
-  const { addItem: addWishlistItem, wishlist } = useWishlist();
+  const { addItem: addWishlistItem } = useWishlist();
+  const wishlistData = localStorage.getItem("data_wishlist");
+  const wishlist = wishlistData ? JSON.parse(wishlistData)?.lines : null;
   const { asPath } = useRouter();
 
   return (
