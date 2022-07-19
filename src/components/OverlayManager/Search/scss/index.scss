@@ -27,6 +27,10 @@ $drawer-width: 25rem;
 
     .input__icon-left {
       margin-top: 1.1rem;
+
+      &:hover {
+        cursor: pointer;
+      }
       svg * {
         fill: $base-font-color;
       }
@@ -44,6 +48,10 @@ $drawer-width: 25rem;
       align-items: center;
       height: 93px;
       margin-top: 65px;
+
+      @media (max-width: 762px) {
+        margin-top: 0;
+      }
 
       &:focus {
         box-shadow: none;

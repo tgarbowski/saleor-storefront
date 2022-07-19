@@ -8,14 +8,13 @@ import { ProductListHeader } from "@components/molecules";
 import { FilterSidebar, ProductList } from "@components/organisms";
 import { Attribute } from "@graphql/gqlTypes/Attribute";
 import { commonMessages } from "@temp/intl";
-import { IFilterAttribute } from "@types";
 import { SORT_OPTIONS } from "@utils/collections";
 import { FeaturedProducts } from "@utils/ssr";
 
 import {
-Breadcrumbs,
-extractBreadcrumbs,
-ProductsFeatured,
+  Breadcrumbs,
+  extractBreadcrumbs,
+  ProductsFeatured,
 } from "../../components";
 import { Filters, getActiveFilterAttributes } from "./utils";
 
@@ -70,9 +69,8 @@ export const Page: React.FC<PageProps> = ({
           hide={() => setShowFilters(false)}
           onAttributeFiltersChange={onAttributeFiltersChange}
           attributes={attributes}
-          filters={filters} name="" values={[]} onValueClick={(value: IFilterAttribute): void => {
-            throw new Error("Function not implemented.");
-          } }        />
+          filters={filters}
+        />
         <ProductListHeader
           activeSortOption={activeSortOption}
           openFiltersMenu={() => setShowFilters(true)}
