@@ -18,7 +18,6 @@ import {
 } from "../../components";
 import { structuredData } from "../../core/SEO/Product/structuredData";
 import GalleryCarousel from "./GalleryCarousel";
-// import OtherProducts from "./Other";
 import { IProps } from "./types";
 
 import { smallScreen } from "../../globalStyles/scss/variables.scss";
@@ -39,7 +38,15 @@ const Page: React.FC<
     queryAttributes: Record<string, string>;
     onAttributeChangeHandler: (slug: string | null, value: string) => void;
   }
-> = ({ add, product, items, queryAttributes, onAttributeChangeHandler }) => {
+> = ({
+  add,
+  addToWishlist,
+  product,
+  items,
+  wishlist,
+  queryAttributes,
+  onAttributeChangeHandler,
+}) => {
   const overlayContext = React.useContext(OverlayContext);
 
   const productGallery: React.RefObject<HTMLDivElement> = React.useRef();
@@ -62,6 +69,10 @@ const Page: React.FC<
   const handleAddToCart = (variantId, quantity) => {
     add(variantId, quantity);
     overlayContext.show(OverlayType.cart, OverlayTheme.right);
+  };
+
+  const handleAddToWishlist = (productId: string) => {
+    addToWishlist(productId);
   };
 
   const [productPricing, setProductPricing] = useState(null);
@@ -168,6 +179,7 @@ const Page: React.FC<
   const addToCartSection =
     productVariants && productPricing ? (
       <AddToCartSection
+        wishlist={wishlist}
         items={items}
         productId={product.id}
         name={product.name}
@@ -176,14 +188,16 @@ const Page: React.FC<
         queryAttributes={queryAttributes}
         setVariantId={setVariantId}
         variantId={variantId}
+        product={product}
         onAddToCart={handleAddToCart}
+        onAddToWishlist={handleAddToWishlist}
         onAttributeChangeHandler={onAttributeChangeHandler}
         isAvailableForPurchase={product.isAvailableForPurchase}
         availableForPurchase={product.availableForPurchase}
-        product={product}
       />
     ) : (
       <AddToCartSection
+        wishlist={wishlist}
         items={items}
         productId={product.id}
         name={product.name}
@@ -192,11 +206,12 @@ const Page: React.FC<
         queryAttributes={queryAttributes}
         setVariantId={setVariantId}
         variantId={variantId}
+        product={product}
         onAddToCart={handleAddToCart}
+        onAddToWishlist={handleAddToWishlist}
         onAttributeChangeHandler={onAttributeChangeHandler}
         isAvailableForPurchase={product.isAvailableForPurchase}
         availableForPurchase={product.availableForPurchase}
-        product={product}
       />
     );
 

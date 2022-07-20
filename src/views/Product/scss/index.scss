@@ -13,8 +13,9 @@
     display: flex;
     margin-top: $spacer;
     padding-bottom: $spacer * 5;
+    gap: 34px;
 
-    @media (max-width: $small-screen) {
+    @media (max-width: $medium-screen) {
       display: block;
       margin-bottom: $spacer * 2;
     }
@@ -31,13 +32,8 @@
       position: relative;
       justify-content: center;
       margin: 0 auto;
-      display: flex;
 
-      @media (max-width: $large-screen) {
-        width: 30%;
-      }
-
-      @media (max-width: $small-screen) {
+      @media (max-width: $medium-screen) {
         width: 100%;
       }
 
@@ -64,11 +60,7 @@
       padding: 0 $spacer 0 0;
       box-sizing: border-box;
 
-      @media (max-width: $large-screen) {
-        width: 50%;
-      }
-
-      @media (max-width: $small-screen) {
+      @media (max-width: $medium-screen) {
         width: 100%;
         padding: 0;
         margin-bottom: $spacer * 2;

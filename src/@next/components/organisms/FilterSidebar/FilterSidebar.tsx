@@ -32,10 +32,6 @@ export const FilterSidebar: React.FC<IProps> = ({
   attributes,
   target,
   onAttributeFiltersChange,
-  title,
-  name,
-  values,
-  onValueClick
 }: IProps) => {
   const { setElementRef } = useHandlerWhenClickedOutside(() => {
     hide();
@@ -78,8 +74,8 @@ export const FilterSidebar: React.FC<IProps> = ({
             />
           </S.SearchWrapper>
         </S.Header>
-        { searchFilter === "" ? (
-             attributes.map(({ id, slug, name, choices }) => {
+        {searchFilter === ""
+          ? attributes.map(({ id, slug, name, choices }) => {
               const values = (choices?.edges.map(({ node }) => node) ||
                 []) as IFilterAttribute[];
               return (
@@ -98,37 +94,42 @@ export const FilterSidebar: React.FC<IProps> = ({
                 />
               );
             })
-        ) : (
-          attributes.map(({ id, slug, name, choices }) => {
-            const values = (choices?.edges.map(({ node }) => node) ||
-              []) as IFilterAttribute[];
+          : attributes.map(({ id, slug, name, choices }) => {
+              const values = (choices?.edges.map(({ node }) => node) ||
+                []) as IFilterAttribute[];
 
-            return (
-              <AttributeValuesChecklist
-                key={id}
-                title={name}
-                name={slug!}
-                values={
-                  values
-                  .filter((val) => {
-                    if ( searchFilter === "") {
-                      return val;
-                    } 
-                    if (val.name.toLowerCase().includes(searchFilter.toLowerCase())) return val;
-
-                  })
-                  .map(value => ({
-                  ...value,
-                  selected: checkIfAttributeIsChecked(filters, value, slug!),
-                }))}
-                valuesShowLimit
-                onValueClick={value =>
-                  onAttributeFiltersChange(slug!, value.slug)
-                }
-              />
-            );
-          })
-        )}
+              return (
+                <AttributeValuesChecklist
+                  key={id}
+                  title={name}
+                  name={slug!}
+                  values={values
+                    .filter(val => {
+                      if (searchFilter === "") {
+                        return val;
+                      }
+                      if (
+                        val.name
+                          .toLowerCase()
+                          .includes(searchFilter.toLowerCase())
+                      )
+                        return val;
+                    })
+                    .map(value => ({
+                      ...value,
+                      selected: checkIfAttributeIsChecked(
+                        filters,
+                        value,
+                        slug!
+                      ),
+                    }))}
+                  valuesShowLimit
+                  onValueClick={value =>
+                    onAttributeFiltersChange(slug!, value.slug)
+                  }
+                />
+              );
+            })}
       </S.Wrapper>
     </Overlay>
   );

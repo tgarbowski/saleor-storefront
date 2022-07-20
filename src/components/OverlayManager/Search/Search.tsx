@@ -139,10 +139,15 @@ class Search extends React.Component<SearchProps, SearchState> {
                             <>
                               <ul>
                                 {data.products.edges.map(product => (
-                                  <ProductItem
-                                    {...product}
-                                    key={product.node.id}
-                                  />
+                                  <li
+                                    className="search__products__item"
+                                    onClick={this.props.overlay.hide}
+                                  >
+                                    <ProductItem
+                                      {...product}
+                                      key={product.node.id}
+                                    />
+                                  </li>
                                 ))}
                               </ul>
                               <div className="search__products__footer">
