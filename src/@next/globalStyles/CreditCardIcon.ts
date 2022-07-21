@@ -1,6 +1,6 @@
 import CreditCard from "../../images/credit-card.png";
 import HeartIcon from "../../images/heart.svg";
-import HeartIconMenu from "../../images/heart_menu.png";
+import HeartIconMenu from "../../images/heart_menu.svg";
 
 const CreditCardIcon = CreditCard;
 export const HeartIconSmall = HeartIcon;

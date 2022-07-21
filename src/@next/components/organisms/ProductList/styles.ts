@@ -41,6 +41,10 @@ export const AddToWishlistIcon = styled(ReactSVG)`
   svg {
     width: 24px;
     height: 24px;
+
+    &:hover {
+      filter: invert(0.5) sepia(1);
+    }
   }
 
   g {
@@ -65,7 +69,7 @@ export const RemoveFromWishlistIcon = styled(ReactSVG)`
     fill: red;
     transition: 0.3s all ease-in-out;
     &:hover {
-      fill: black;
+      filter: invert(0.5) sepia(1);
     }
   }
 `;

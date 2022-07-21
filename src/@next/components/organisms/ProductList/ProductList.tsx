@@ -7,7 +7,7 @@ import { generatePath } from "react-router";
 import { Button, Loader } from "@components/atoms";
 import { ProductTile } from "@components/molecules";
 import { paths } from "@paths";
-import { HeartIconSmall } from "@styles/CreditCardIcon";
+import { HeartIconMenuSmall, HeartIconSmall } from "@styles/CreditCardIcon";
 
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -45,7 +45,7 @@ export const ProductList: React.FC<IProps> = ({
                 {!wishlist?.filter((id: string) => id === product?.id)
                   .length ? (
                   <S.WishlistIconLink onClick={() => tryAddToWishlist(product)}>
-                    <S.AddToWishlistIcon path={HeartIconSmall} />
+                    <S.AddToWishlistIcon path={HeartIconMenuSmall} />
                   </S.WishlistIconLink>
                 ) : (
                   <S.WishlistIconLink
