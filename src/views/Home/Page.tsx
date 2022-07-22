@@ -9,7 +9,6 @@ import {
   DefaultHero,
   KidCategoryImg,
   ManCategoryImg,
-  WholesaleCategoryImg,
   WomanCategoryImg,
 } from "@styles/pictures";
 import { FooterUsp } from "@temp/components/FooterUsp/FooterUsp";
@@ -43,7 +42,7 @@ const Page: React.FC<{
   const visibleCategory =
     shopName === "FASHION4YOU"
       ? categories.edges.slice(0, -2)
-      : categories.edges;
+      : categories.edges.slice(0, -2);
 
   return (
     <>
@@ -277,13 +276,6 @@ const Page: React.FC<{
                             alt=""
                           />
                         )
-                      )}
-                      {category.name === "Hurt" && (
-                        <img
-                          className="home-page__categories__img"
-                          src={WholesaleCategoryImg}
-                          alt=""
-                        />
                       )}
                       <Link
                         href={generatePath(paths.category, {
