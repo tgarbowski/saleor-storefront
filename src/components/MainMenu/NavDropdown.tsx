@@ -4,6 +4,7 @@ import classNames from "classnames";
 import * as React from "react";
 
 import { MenuItem } from "@graphql/gqlTypes/MenuItem";
+import { shopName } from "@temp/constants";
 
 import { NavLink, OverlayContextInterface } from "..";
 import NavItem from "./NavItem";
@@ -30,18 +31,20 @@ export const NavDropdown: React.FC<NavDropdownProps> = props => {
       onMouseLeave={onHideDropdown}
     >
       <NavLink item={props} onClick={onHideDropdown} />
-      <div
-        className={classNames({
-          "main-menu__nav-dropdown__body": true,
-          "main-menu__nav-dropdown__body--visible": showDropdown,
-        })}
-      >
-        <ul>
-          {children?.map((subItem, i) => (
-            <NavItem key={i} hideOverlay={onHideDropdown} {...subItem} />
-          ))}
-        </ul>
-      </div>
+      {shopName === "CLOTHES4U" ? null : (
+        <div
+          className={classNames({
+            "main-menu__nav-dropdown__body": true,
+            "main-menu__nav-dropdown__body--visible": showDropdown,
+          })}
+        >
+          <ul>
+            {children?.map((subItem, i) => (
+              <NavItem key={i} hideOverlay={onHideDropdown} {...subItem} />
+            ))}
+          </ul>
+        </div>
+      )}
     </ul>
   );
 };
