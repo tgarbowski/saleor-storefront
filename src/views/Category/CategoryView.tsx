@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { StringParam, useQueryParam } from "use-query-params";
 
 import { OfflinePlaceholder } from "@components/atoms";
@@ -35,17 +35,65 @@ export const CategoryView: NextPage<CategoryViewProps> = ({
     sortBy: sort || null,
   };
 
-  const { data, loadMore, loading } = useProductsQuery(filters, {
-    categoryId: category?.id,
-  });
-  const [products, pageInfo, numberOfProducts] = useMemo(
-    () => [
-      data?.products?.edges.map(e => e.node) || [],
-      data?.products?.pageInfo,
-      data?.products?.totalCount || 0,
-    ],
-    [data]
+  const getLocalStorageProducts = () => {
+    const productsData = localStorage.getItem("product_data");
+    if (productsData) {
+      const productsJson = JSON.parse(productsData);
+      if (productsJson.categoryId === category?.id) {
+        return productsJson.products;
+      }
+    }
+    return null;
+  };
+
+  const [oldProductsData, setOldProductsData] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setOldProductsData(getLocalStorageProducts());
+    setIsLoaded(true);
+  }, []);
+
+  const { data, loadMore, loading } = useProductsQuery(
+    filters,
+    {
+      categoryId: category?.id,
+    },
+    !isLoaded,
+    oldProductsData?.pageInfo?.endCursor
   );
+  const [products, pageInfo, numberOfProducts] =
+    isLoaded &&
+    useMemo(
+      () =>
+        oldProductsData?.categoryId === category.id
+          ? [
+              oldProductsData?.edges
+                ? [
+                    ...oldProductsData?.edges?.map(e => e.node),
+                    ...data?.products?.edges.map(e => e.node),
+                  ]
+                : data?.products?.edges.map(e => e.node) || [],
+              data?.products?.pageInfo,
+              data?.products?.totalCount || 0,
+            ]
+          : [
+              data?.products?.edges.map(e => e.node) || [],
+              data?.products?.pageInfo,
+              data?.products?.totalCount || 0,
+            ],
+      [data]
+    );
+
+  useEffect(() => {
+    if (!loading && data) {
+      const productsData = JSON.stringify({
+        products: data?.products,
+        categoryId: category?.id,
+      });
+      localStorage.setItem("product_data", productsData);
+    }
+  }, [loading, data]);
 
   const handleClearFilters = () => setAttributeFilters({});
 
