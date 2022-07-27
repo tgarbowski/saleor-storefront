@@ -17,9 +17,13 @@ export const filtersChangeHandler =
   (
     filters: IFilters,
     attributeFilters: UknownObject<string[]>,
-    setAttributeFilters: (newValue: UknownObject<string[]>) => void
+    setAttributeFilters: (newValue: UknownObject<string[]>) => void,
+    setOldProductsData?: (any) => void
   ) =>
   (name: string, value: string) => {
+    if (setOldProductsData) {
+      setOldProductsData(null);
+    }
     if (attributeFilters && attributeFilters.hasOwnProperty(name)) {
       if (attributeFilters[name].includes(value)) {
         if (filters.attributes[name].length === 1) {

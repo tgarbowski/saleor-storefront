@@ -24,7 +24,6 @@ export const useProductsQuery = (
   after?: string
 ) => {
   const { categoryId, collectionId } = ids;
-
   const variables: ProductListVariables = {
     filter: {
       price: {

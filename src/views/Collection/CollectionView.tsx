@@ -1,5 +1,6 @@
 import { NextPage } from "next";
 import * as React from "react";
+import { useEffect, useState } from "react";
 import { StringParam, useQueryParam } from "use-query-params";
 
 import { OfflinePlaceholder } from "@components/atoms";
@@ -26,6 +27,9 @@ export const CollectionView: NextPage<CollectionViewProps> = ({
     "filters",
     FilterQuerySet
   );
+  const [oldProductsData, setOldProductsData] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [wasSkipped, setWasSkipped] = useState(true);
   const filters: IFilters = {
     attributes: attributeFilters,
     pageSize: PRODUCTS_PER_PAGE,
@@ -34,9 +38,28 @@ export const CollectionView: NextPage<CollectionViewProps> = ({
     sortBy: sort || null,
   };
 
-  const { data, loadMore, loading } = useProductsQuery(filters, {
-    collectionId: collection?.id,
-  });
+  const getLocalStorageProducts = () => {
+    const productsData = localStorage.getItem("product_data");
+    if (productsData) {
+      const productsJson = JSON.parse(productsData);
+      if (
+        productsJson.categoryId === collection?.id &&
+        productsJson.locationHref === window.location.href
+      ) {
+        return productsJson.products;
+      }
+    }
+    return null;
+  };
+
+  const { data, loadMore, loading } = useProductsQuery(
+    filters,
+    {
+      categoryId: collection?.id,
+    },
+    !!(!isLoaded || wasSkipped),
+    oldProductsData?.pageInfo?.endCursor || null
+  );
   const [products, pageInfo, numberOfProducts] = React.useMemo(
     () => [
       data?.products?.edges.map(e => e.node) || [],
@@ -46,28 +69,75 @@ export const CollectionView: NextPage<CollectionViewProps> = ({
     [data]
   );
 
-  const handleClearFilters = () => setAttributeFilters({});
+  useEffect(() => {
+    setOldProductsData(getLocalStorageProducts());
+    setIsLoaded(true);
+  }, []);
+  useEffect(() => {
+    if (isLoaded && !oldProductsData?.edges?.length) {
+      setWasSkipped(false);
+    }
+  }, [isLoaded, oldProductsData]);
+  useEffect(() => {
+    if (!loading && data) {
+      if (oldProductsData?.edges?.length) {
+        const productsData = JSON.stringify({
+          products: {
+            edges: [...oldProductsData?.edges, ...data?.products.edges],
+            pageInfo: data.products.pageInfo,
+          },
+          categoryId: collection?.id,
+          locationHref: window.location.href,
+        });
+        localStorage.setItem("product_data", productsData);
+      } else {
+        const productsData = JSON.stringify({
+          products: data?.products,
+          categoryId: collection?.id,
+          locationHref: window.location.href,
+        });
+        localStorage.setItem("product_data", productsData);
+      }
+    }
+  }, [loading, data]);
+
+  const handleClearFilters = () => {
+    setAttributeFilters({});
+    setOldProductsData(null);
+  };
 
   const handleFiltersChange = filtersChangeHandler(
     filters,
     attributeFilters,
-    setAttributeFilters
+    setAttributeFilters,
+    setOldProductsData
   );
 
-  const handleOrderChange = (value: { value?: string; label: string }) =>
+  const handleOrderChange = (value: { value?: string; label: string }) => {
     setSort(value.value);
+    setOldProductsData(null);
+  };
 
-  const handleLoadMore = () =>
-    loadMore(
-      (prev, next) => ({
-        products: {
-          ...prev.products,
-          edges: [...prev.products.edges, ...next.products.edges],
-          pageInfo: next.products.pageInfo,
-        },
-      }),
-      pageInfo.endCursor
-    );
+  const handleLoadMore = () => {
+    if (
+      wasSkipped &&
+      oldProductsData?.edges?.length &&
+      !pageInfo?.hasNextPage
+    ) {
+      setWasSkipped(false);
+    } else {
+      loadMore(
+        (prev, next) => ({
+          products: {
+            ...prev.products,
+            edges: [...prev.products.edges, ...next.products.edges],
+            pageInfo: next.products.pageInfo,
+          },
+        }),
+        pageInfo.endCursor
+      );
+    }
+  };
 
   return (
     <NetworkStatus>
@@ -81,21 +151,45 @@ export const CollectionView: NextPage<CollectionViewProps> = ({
                 type: "product.collection",
               }}
             >
-              <Page
-                numberOfProducts={numberOfProducts}
-                clearFilters={handleClearFilters}
-                collection={collection}
-                displayLoader={loading}
-                hasNextPage={!!pageInfo?.hasNextPage}
-                sortOptions={SORT_OPTIONS}
-                activeSortOption={filters.sortBy}
-                filters={filters}
-                products={products}
-                onAttributeFiltersChange={handleFiltersChange}
-                onLoadMore={handleLoadMore}
-                activeFilters={Object.keys(filters?.attributes || {}).length}
-                onOrder={handleOrderChange}
-              />
+              {oldProductsData?.edges?.length ? (
+                <Page
+                  numberOfProducts={numberOfProducts}
+                  clearFilters={handleClearFilters}
+                  collection={collection}
+                  displayLoader={loading}
+                  hasNextPage={
+                    !!pageInfo?.hasNextPage ||
+                    (oldProductsData?.pageInfo?.hasNextPage && wasSkipped)
+                  }
+                  sortOptions={SORT_OPTIONS}
+                  activeSortOption={filters.sortBy}
+                  filters={filters}
+                  products={[
+                    ...oldProductsData.edges.map(e => e.node),
+                    ...products,
+                  ]}
+                  onAttributeFiltersChange={handleFiltersChange}
+                  onLoadMore={handleLoadMore}
+                  activeFilters={Object.keys(filters?.attributes || {}).length}
+                  onOrder={handleOrderChange}
+                />
+              ) : (
+                <Page
+                  numberOfProducts={numberOfProducts}
+                  clearFilters={handleClearFilters}
+                  collection={collection}
+                  displayLoader={loading}
+                  hasNextPage={!!pageInfo?.hasNextPage}
+                  sortOptions={SORT_OPTIONS}
+                  activeSortOption={filters.sortBy}
+                  filters={filters}
+                  products={products}
+                  onAttributeFiltersChange={handleFiltersChange}
+                  onLoadMore={handleLoadMore}
+                  activeFilters={Object.keys(filters?.attributes || {}).length}
+                  onOrder={handleOrderChange}
+                />
+              )}
             </MetaWrapper>
           ) : (
             <NotFound />
