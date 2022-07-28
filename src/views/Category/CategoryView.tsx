@@ -46,7 +46,10 @@ export const CategoryView: NextPage<CategoryViewProps> = ({
         productsJson.categoryId === category?.id &&
         productsJson.locationHref === window.location.href
       ) {
-        return productsJson.products;
+        return {
+          products: productsJson.products,
+          locationHref: productsJson.locationHref,
+        };
       }
     }
     return null;
@@ -58,7 +61,7 @@ export const CategoryView: NextPage<CategoryViewProps> = ({
       categoryId: category?.id,
     },
     !!(!isLoaded || wasSkipped),
-    oldProductsData?.pageInfo?.endCursor || null
+    oldProductsData?.products?.pageInfo?.endCursor || null
   );
   const [products, pageInfo, numberOfProducts] = useMemo(
     () => [
@@ -70,10 +73,12 @@ export const CategoryView: NextPage<CategoryViewProps> = ({
   );
 
   useEffect(() => {
-    if (oldProductsData?.locationHref !== window.location.href) {
-      setOldProductsData(null);
-      setWasSkipped(false);
-      setIsLoaded(true);
+    if (oldProductsData) {
+      if (oldProductsData?.locationHref !== window.location.href) {
+        setOldProductsData(null);
+        setWasSkipped(false);
+        setIsLoaded(true);
+      }
     }
   });
 
@@ -82,16 +87,19 @@ export const CategoryView: NextPage<CategoryViewProps> = ({
     setIsLoaded(true);
   }, []);
   useEffect(() => {
-    if (isLoaded && !oldProductsData?.edges?.length) {
+    if (isLoaded && !oldProductsData?.products?.edges?.length) {
       setWasSkipped(false);
     }
   }, [isLoaded, oldProductsData]);
   useEffect(() => {
     if (!loading && data) {
-      if (oldProductsData?.edges?.length) {
+      if (oldProductsData?.products?.edges?.length) {
         const productsData = JSON.stringify({
           products: {
-            edges: [...oldProductsData?.edges, ...data?.products.edges],
+            edges: [
+              ...oldProductsData?.products?.edges,
+              ...data?.products.edges,
+            ],
             pageInfo: data.products.pageInfo,
           },
           categoryId: category?.id,
@@ -129,7 +137,7 @@ export const CategoryView: NextPage<CategoryViewProps> = ({
   const handleLoadMore = () => {
     if (
       wasSkipped &&
-      oldProductsData?.edges?.length &&
+      oldProductsData?.products?.edges?.length &&
       !pageInfo?.hasNextPage
     ) {
       setWasSkipped(false);
@@ -158,18 +166,19 @@ export const CategoryView: NextPage<CategoryViewProps> = ({
                 type: "product.category",
               }}
             >
-              {oldProductsData?.edges?.length ? (
+              {oldProductsData?.products?.edges?.length ? (
                 <Page
                   clearFilters={handleClearFilters}
                   category={category}
                   products={[
-                    ...oldProductsData.edges.map(e => e.node),
+                    ...oldProductsData.products.edges.map(e => e.node),
                     ...products,
                   ]}
                   displayLoader={loading}
                   hasNextPage={
                     !!pageInfo?.hasNextPage ||
-                    (oldProductsData?.pageInfo?.hasNextPage && wasSkipped)
+                    (oldProductsData?.products?.pageInfo?.hasNextPage &&
+                      wasSkipped)
                   }
                   numberOfProducts={numberOfProducts}
                   activeSortOption={filters.sortBy}
