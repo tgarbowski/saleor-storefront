@@ -46,7 +46,10 @@ export const CollectionView: NextPage<CollectionViewProps> = ({
         productsJson.categoryId === collection?.id &&
         productsJson.locationHref === window.location.href
       ) {
-        return productsJson.products;
+        return {
+          products: productsJson.products,
+          locationHref: productsJson.locationHref,
+        };
       }
     }
     return null;
@@ -58,7 +61,7 @@ export const CollectionView: NextPage<CollectionViewProps> = ({
       categoryId: collection?.id,
     },
     !!(!isLoaded || wasSkipped),
-    oldProductsData?.pageInfo?.endCursor || null
+    oldProductsData?.products?.pageInfo?.endCursor || null
   );
   const [products, pageInfo, numberOfProducts] = React.useMemo(
     () => [
@@ -70,20 +73,33 @@ export const CollectionView: NextPage<CollectionViewProps> = ({
   );
 
   useEffect(() => {
+    if (oldProductsData) {
+      if (oldProductsData?.locationHref !== window.location.href) {
+        setOldProductsData(null);
+        setWasSkipped(false);
+        setIsLoaded(true);
+      }
+    }
+  });
+
+  useEffect(() => {
     setOldProductsData(getLocalStorageProducts());
     setIsLoaded(true);
   }, []);
   useEffect(() => {
-    if (isLoaded && !oldProductsData?.edges?.length) {
+    if (isLoaded && !oldProductsData?.products?.edges?.length) {
       setWasSkipped(false);
     }
   }, [isLoaded, oldProductsData]);
   useEffect(() => {
     if (!loading && data) {
-      if (oldProductsData?.edges?.length) {
+      if (oldProductsData?.products?.edges?.length) {
         const productsData = JSON.stringify({
           products: {
-            edges: [...oldProductsData?.edges, ...data?.products.edges],
+            edges: [
+              ...oldProductsData?.products?.edges,
+              ...data?.products.edges,
+            ],
             pageInfo: data.products.pageInfo,
           },
           categoryId: collection?.id,
@@ -121,7 +137,7 @@ export const CollectionView: NextPage<CollectionViewProps> = ({
   const handleLoadMore = () => {
     if (
       wasSkipped &&
-      oldProductsData?.edges?.length &&
+      oldProductsData?.products?.edges?.length &&
       !pageInfo?.hasNextPage
     ) {
       setWasSkipped(false);
@@ -151,7 +167,7 @@ export const CollectionView: NextPage<CollectionViewProps> = ({
                 type: "product.collection",
               }}
             >
-              {oldProductsData?.edges?.length ? (
+              {oldProductsData?.products?.edges?.length ? (
                 <Page
                   numberOfProducts={numberOfProducts}
                   clearFilters={handleClearFilters}
@@ -159,13 +175,14 @@ export const CollectionView: NextPage<CollectionViewProps> = ({
                   displayLoader={loading}
                   hasNextPage={
                     !!pageInfo?.hasNextPage ||
-                    (oldProductsData?.pageInfo?.hasNextPage && wasSkipped)
+                    (oldProductsData?.products?.pageInfo?.hasNextPage &&
+                      wasSkipped)
                   }
                   sortOptions={SORT_OPTIONS}
                   activeSortOption={filters.sortBy}
                   filters={filters}
                   products={[
-                    ...oldProductsData.edges.map(e => e.node),
+                    ...oldProductsData.products?.edges.map(e => e.node),
                     ...products,
                   ]}
                   onAttributeFiltersChange={handleFiltersChange}
