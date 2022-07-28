@@ -19,10 +19,11 @@ export const useProductsQuery = (
   ids: RequireOnlyOne<{
     categoryId: string | undefined;
     collectionId: string | undefined;
-  }>
+  }>,
+  skip: boolean = false,
+  after?: string
 ) => {
   const { categoryId, collectionId } = ids;
-
   const variables: ProductListVariables = {
     filter: {
       price: {
@@ -38,11 +39,12 @@ export const useProductsQuery = (
     channel: channelSlug,
     first: PRODUCTS_PER_PAGE,
     sortBy: convertSortByFromString(filters.sortBy),
+    after: after || "",
   };
 
   return useTypedQuery<ProductList, ProductListVariables>(productList, {
     variables,
     fetchPolicy: "cache-and-network",
-    skip: !(categoryId || collectionId),
+    skip: !(categoryId || collectionId) || skip,
   });
 };
