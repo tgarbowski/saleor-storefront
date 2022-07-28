@@ -70,6 +70,14 @@ export const CategoryView: NextPage<CategoryViewProps> = ({
   );
 
   useEffect(() => {
+    if (oldProductsData?.locationHref !== window.location.href) {
+      setOldProductsData(null);
+      setWasSkipped(false);
+      setIsLoaded(true);
+    }
+  });
+
+  useEffect(() => {
     setOldProductsData(getLocalStorageProducts());
     setIsLoaded(true);
   }, []);
