@@ -9,7 +9,8 @@ export const Loader: React.FC<IProps> = ({ fullScreen }: IProps) => {
       style={{
         position: "fixed",
         width: "100%",
-        height: "10%",
+        height: "100%",
+        top: 0,
         left: 0,
         right: 0,
         bottom: 0,
