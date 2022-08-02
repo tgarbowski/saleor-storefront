@@ -82,17 +82,33 @@ const App = ({
 }: AppProps) => (
   <>
     <Head>
-      <title>{META_DEFAULTS.title}</title>
+      <html lang="pl" />
+      <title>{META_DEFAULTS.title} - Odzież używana - sklep internetowy</title>
       <link rel="preconnect" href={apiUrl} />
 
-      <link href="https://rsms.me/inter/inter.css"/>
-      <link rel="icon" type="image/png" href={Favicon} />
+      <link href="https://rsms.me/inter/inter.css" />
+      <link rel="icon" type="image/x-icon" href={Favicon} />
       <link rel="manifest" href="/manifest.json" />
-      <link rel="stylesheet" href="https://geowidget.easypack24.net/css/easypack.css"/>
-      <script async src="https://geowidget.easypack24.net/js/sdk-for-javascript.js"/>
+      <link
+        rel="stylesheet"
+        href="https://geowidget.easypack24.net/css/easypack.css"
+      />
+      <script
+        async
+        src="https://geowidget.easypack24.net/js/sdk-for-javascript.js"
+      />
       <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet"
+      />
+      <meta
+        name="description"
+        content="Sklep internetowy z odzieżą używaną damską, męską i dziecięcą. W naszym lumpeksie online posiadamy ubrania używane oraz z outletu."
+      />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta
+        name="google-site-verification"
+        content="ZWTWLzIXik5BY_rk__qDlxUggPI50JI-vq61dARUU9Q"
       />
     </Head>
     <ThemeProvider theme={defaultTheme}>
