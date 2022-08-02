@@ -82,11 +82,12 @@ const App = ({
 }: AppProps) => (
   <>
     <Head>
-      <title>{META_DEFAULTS.title} - Odzież używana</title>
+      <html lang="pl" />
+      <title>{META_DEFAULTS.title} - Odzież używana - sklep internetowy</title>
       <link rel="preconnect" href={apiUrl} />
 
       <link href="https://rsms.me/inter/inter.css" />
-      <link rel="icon" type="image/png" href={Favicon} />
+      <link rel="icon" type="image/x-icon" href={Favicon} />
       <link rel="manifest" href="/manifest.json" />
       <link
         rel="stylesheet"
@@ -105,6 +106,10 @@ const App = ({
         content="Sklep internetowy z odzieżą używaną damską, męską i dziecięcą. W naszym lumpeksie online posiadamy ubrania używane oraz z outletu."
       />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta
+        name="google-site-verification"
+        content="ZWTWLzIXik5BY_rk__qDlxUggPI50JI-vq61dARUU9Q"
+      />
     </Head>
     <ThemeProvider theme={defaultTheme}>
       <AlertProvider
