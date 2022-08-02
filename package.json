@@ -32,7 +32,7 @@
     "cookies-next": "^2.0.4",
     "core-js": "^2.6.12",
     "cross-env": "^5.2.1",
-    "dompurify": "^2.3.3",
+    "dompurify": "^2.3.10",
     "dotenv": "^8.6.0",
     "editorjs-html": "^3.2.1",
     "formik": "^1.5.7",
