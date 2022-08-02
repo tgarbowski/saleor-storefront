@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://fashion4you.com.pl
+
+# Sitemaps
+Sitemap: https://fashion4you.com.pl/sitemap.xml

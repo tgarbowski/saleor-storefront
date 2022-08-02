@@ -82,11 +82,12 @@ const App = ({
 }: AppProps) => (
   <>
     <Head>
-      <title>{META_DEFAULTS.title} - Odzież używana</title>
+      <html lang="pl" />
+      <title>{META_DEFAULTS.title} - Odzież używana - sklep internetowy</title>
       <link rel="preconnect" href={apiUrl} />
 
       <link href="https://rsms.me/inter/inter.css" />
-      <link rel="icon" type="image/png" href={Favicon} />
+      <link rel="icon" type="image/x-icon" href={Favicon} />
       <link rel="manifest" href="/manifest.json" />
       <link
         rel="stylesheet"
