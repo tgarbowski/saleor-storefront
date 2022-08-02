@@ -4,6 +4,9 @@ Allow: /
 
 # Host
 Host: https://fashion4you.com.pl
+Host: https://hurt.clothes4you.pl
+Host: https://test.fashion4you.com.pl
+Host: https://test.clothes4you.pl
 
 # Sitemaps
 Sitemap: https://fashion4you.com.pl/sitemap.xml
