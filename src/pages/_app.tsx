@@ -106,6 +106,10 @@ const App = ({
         content="Sklep internetowy z odzieżą używaną damską, męską i dziecięcą. W naszym lumpeksie online posiadamy ubrania używane oraz z outletu."
       />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta
+        name="google-site-verification"
+        content="ZWTWLzIXik5BY_rk__qDlxUggPI50JI-vq61dARUU9Q"
+      />
     </Head>
     <ThemeProvider theme={defaultTheme}>
       <AlertProvider
