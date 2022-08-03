@@ -82,7 +82,6 @@ const App = ({
 }: AppProps) => (
   <>
     <Head>
-      <html lang="pl" />
       <title>{META_DEFAULTS.title} - Odzież używana - sklep internetowy</title>
       <link rel="preconnect" href={apiUrl} />
 
@@ -103,10 +102,6 @@ const App = ({
       />
       <meta
         name="description"
-        content="Sklep internetowy z odzieżą używaną damską, męską i dziecięcą. W naszym lumpeksie online posiadamy ubrania używane oraz z outletu."
-      />
-      <meta
-        property="og:description"
         content="Sklep internetowy z odzieżą używaną damską, męską i dziecięcą. W naszym lumpeksie online posiadamy ubrania używane oraz z outletu."
       />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
