@@ -10,3 +10,4 @@ Host: https://test.clothes4you.pl
 
 # Sitemaps
 Sitemap: https://fashion4you.com.pl/sitemap.xml
+Sitemap: https://test.fashion4you.com.pl/sitemap.xml
