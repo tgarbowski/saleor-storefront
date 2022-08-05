@@ -14,7 +14,7 @@ import {
 
 const config = {
   ...dotenv.config().parsed,
-  ...dotenv.config({ path: ".env.local" }).parsed,
+  ...dotenv.config({ path: ".env.production" }).parsed,
 };
 
 const fetchItems = async ({ query, perPage = 100 }, callback: any) => {

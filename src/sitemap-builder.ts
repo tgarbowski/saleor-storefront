@@ -9,13 +9,16 @@ import {
   SitemapGenerator,
 } from "./sitemap";
 
-const distDir = path.join(__dirname, "../dist");
+const distDir = path.join(__dirname, "../.next");
 
 const generateSitemap = async (hostname: string) => {
-  const sitemap = new SitemapGenerator({ hostname, destinationDir: distDir });
+  const sitemap = new SitemapGenerator({
+    hostname,
+    destinationDir: distDir,
+    sitemapSize: 1000000,
+  });
 
   sitemap.add({ url: "/" });
-  sitemap.add({ url: "/page/about/" });
 
   await getCategories(({ url }) => {
     sitemap.add({ url });
