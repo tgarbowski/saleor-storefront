@@ -1,4 +1,5 @@
 import { VariantAttributeScope } from "@saleor/sdk";
+import { OrderDirection, ProductOrderField } from "gqlTypes/globalTypes";
 import { GetStaticPaths, GetStaticProps } from "next";
 
 import {
@@ -20,6 +21,10 @@ export const getStaticPaths: GetStaticPaths<ProductPageProps["params"]> =
       api.products.getList({
         first: 50,
         channel: channelSlug,
+        sortBy: {
+          field: ProductOrderField.DATE,
+          direction: OrderDirection.DESC,
+        },
       }),
       staticPathsFetchBatch
     );
