@@ -58,7 +58,7 @@ export const CollectionView: NextPage<CollectionViewProps> = ({
   const { data, loadMore, loading } = useProductsQuery(
     filters,
     {
-      categoryId: collection?.id,
+      collectionId: collection?.id,
     },
     !!(!isLoaded || wasSkipped),
     oldProductsData?.products?.pageInfo?.endCursor || null
