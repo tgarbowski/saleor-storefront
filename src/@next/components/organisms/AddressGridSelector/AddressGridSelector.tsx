@@ -89,6 +89,7 @@ const AddressGridSelector: React.FC<IProps> = ({
                   [addNewTile]
                 )}
               />
+              <div className="spacer" style={{ height: "20px" }} />
               <ErrorMessage errors={errors} />
             </form>
           );

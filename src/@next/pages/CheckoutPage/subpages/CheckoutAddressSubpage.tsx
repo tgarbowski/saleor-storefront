@@ -55,6 +55,10 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
   >([]);
   const [isInvoiceTrue, setIsInvoiceTrue] = useState(false);
 
+  // useEffect(() => {
+  //   console.log(isInvoiceTrue);
+  // }, [isInvoiceTrue]);
+
   const intl = useIntl();
 
   const isShippingRequiredForProducts =
@@ -309,6 +313,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
         setShippingAddress={handleSetShippingAddress}
         setBillingAddress={handleSetBillingAddress}
         setBillingAsShippingAddress={setBillingAsShippingState}
+        isInvoiceTrue={isInvoiceTrue}
         handleInvoiceChange={handleInvoiceChange}
       />
       {notAvailableProducts.length !== 0 && (
