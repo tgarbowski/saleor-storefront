@@ -309,6 +309,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
         setShippingAddress={handleSetShippingAddress}
         setBillingAddress={handleSetBillingAddress}
         setBillingAsShippingAddress={setBillingAsShippingState}
+        isInvoiceTrue={isInvoiceTrue}
         handleInvoiceChange={handleInvoiceChange}
       />
       {notAvailableProducts.length !== 0 && (

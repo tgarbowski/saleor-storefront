@@ -18,6 +18,7 @@ const setBillingAddress = action("setBillingAddress has been called");
 const setBillingAsShippingAddress = action(
   "setBillingAsShippingAddress has been called"
 );
+const handleInvoiceChange = action("handleInvoiceChange has been called");
 
 storiesOf("@components/organisms/CheckoutAddress", module)
   .addParameters({ component: CheckoutAddress })
@@ -29,6 +30,7 @@ storiesOf("@components/organisms/CheckoutAddress", module)
         setShippingAddress={setShippingAddress}
         setBillingAddress={setBillingAddress}
         setBillingAsShippingAddress={setBillingAsShippingAddress}
+        handleInvoiceChange={handleInvoiceChange}
       />
     </IntlProvider>
   ))
@@ -40,6 +42,7 @@ storiesOf("@components/organisms/CheckoutAddress", module)
         setShippingAddress={setShippingAddress}
         setBillingAddress={setBillingAddress}
         setBillingAsShippingAddress={setBillingAsShippingAddress}
+        handleInvoiceChange={handleInvoiceChange}
       />
     </IntlProvider>
   ));

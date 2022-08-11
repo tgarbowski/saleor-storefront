@@ -33,14 +33,14 @@ const CheckoutReview: React.FC<IProps> = ({
             <FormattedMessage {...checkoutMessages.shippingAddress} />
           </S.SubTitle>
           <S.Divider />
-          <AddressSummary address={shippingAddress} email={email} nip={nip} />
+          <AddressSummary address={shippingAddress} email={email} />
         </section>
         <section data-test="billingAddressSection">
           <S.SubTitle>
             <FormattedMessage defaultMessage="Adres rozliczeniowy" />
           </S.SubTitle>
           <S.Divider />
-          <AddressSummary address={billingAddress} email={email} nip={nip} />
+          <AddressSummary address={billingAddress} email={email} />
         </section>
         <section>
           <S.SubTitle>

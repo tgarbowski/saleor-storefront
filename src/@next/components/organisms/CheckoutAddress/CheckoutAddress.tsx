@@ -34,6 +34,7 @@ const CheckoutAddress: React.FC<IProps> = ({
   shippingErrors,
   billingErrors,
   newAddressFormId,
+  isInvoiceTrue,
   handleInvoiceChange,
 }: IProps) => {
   return (
@@ -74,9 +75,16 @@ const CheckoutAddress: React.FC<IProps> = ({
                 }
                 includeEmail
                 errors={shippingErrors}
-                handleInvoiceChange={handleInvoiceChange}
               />
             )}
+            <Checkbox
+              data-test="addInvoiceVatCheckbox"
+              name="invoice-vat-checkbox"
+              checked={isInvoiceTrue}
+              onChange={() => handleInvoiceChange(!isInvoiceTrue)}
+            >
+              <FormattedMessage defaultMessage="Czy chcesz otrzymać fakture VAT?" />
+            </Checkbox>
           </section>
           <S.Divider />
         </>

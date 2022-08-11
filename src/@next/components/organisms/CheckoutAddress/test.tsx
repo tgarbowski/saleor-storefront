@@ -14,6 +14,8 @@ describe("<CheckoutAddress />", () => {
     const setShippingAddress = jest.fn();
     const setBillingAddress = jest.fn();
     const setBillingAsShippingAddress = jest.fn();
+    const handleInvoiceChange = jest.fn();
+
     const wrapper = mount(
       <IntlProvider locale="en">
         <CheckoutAddress
@@ -22,6 +24,7 @@ describe("<CheckoutAddress />", () => {
           setShippingAddress={setShippingAddress}
           setBillingAddress={setBillingAddress}
           setBillingAsShippingAddress={setBillingAsShippingAddress}
+          handleInvoiceChange={handleInvoiceChange}
         />
       </IntlProvider>
     );
@@ -38,6 +41,8 @@ describe("<CheckoutAddress />", () => {
     const setShippingAddress = jest.fn();
     const setBillingAddress = jest.fn();
     const setBillingAsShippingAddress = jest.fn();
+    const handleInvoiceChange = jest.fn();
+
     const wrapper = mount(
       <IntlProvider locale="en">
         <CheckoutAddress
@@ -46,6 +51,7 @@ describe("<CheckoutAddress />", () => {
           setShippingAddress={setShippingAddress}
           setBillingAddress={setBillingAddress}
           setBillingAsShippingAddress={setBillingAsShippingAddress}
+          handleInvoiceChange={handleInvoiceChange}
         />
       </IntlProvider>
     );
