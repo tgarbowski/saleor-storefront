@@ -2,7 +2,6 @@ import { OrderStatus, useCheckout } from "@saleor/sdk";
 import React, {
   forwardRef,
   RefForwardingComponent,
-  useEffect,
   useImperativeHandle,
   useState,
 } from "react";
@@ -18,7 +17,6 @@ import {
   SubpageBaseProps,
   SubpageCompleteHandler,
 } from "../utils";
-
 
 export interface ISubmitCheckoutData {
   id: string;
@@ -40,7 +38,7 @@ const generatePayuUrl = async (variables: any) => {
     method: "POST",
     body: JSON.stringify({
       query: PayuRedirectUrl,
-      variables
+      variables,
     }),
     headers: {
       "content-type": "application/json",
@@ -66,7 +64,6 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
   const { checkout, payment, completeCheckout } = useCheckout();
 
   const [errors, setErrors] = useState<IFormError[]>([]);
-  const [nip, setNip] = useState<string>("");
 
   const checkoutShippingAddress = checkout?.shippingAddress
     ? {
@@ -118,12 +115,10 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
       );
     } else {
       if (payment?.gateway === paymentGatewayNames.payu) {
-        payu_url = await generatePayuUrl(
-          {
-            paymentId: payment?.id,
-            channel: channelSlug
-          }
-        );
+        payu_url = await generatePayuUrl({
+          paymentId: payment?.id,
+          channel: channelSlug,
+        });
       }
       const response = await completeCheckout();
       data = response.data;
@@ -139,7 +134,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
           orderStatus: data?.order?.status,
           orderNumber: data?.order?.number,
           token: data?.order?.token,
-          shippingMethod: data?.order?.shippingMethod?.name
+          shippingMethod: data?.order?.shippingMethod?.name,
         });
         if (payment?.gateway === paymentGatewayNames.payu) {
           setTimeout(() => {
@@ -151,37 +146,6 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
     }
   });
 
-  useEffect(() => {
-    if (checkout?.token === undefined) {
-      setNip("");
-      return;
-    }
-    fetch(apiUrl, {
-      method: "POST",
-      body: JSON.stringify({
-        query: `
-        query CheckoutMetadata($token: UUID!) {
-          checkout(token: $token){
-            shippingAddress{
-              vatId
-            }
-          }
-        }
-        `,
-        variables: {
-          token: checkout?.token,
-        },
-      }),
-      headers: {
-        "content-type": "application/json",
-      },
-    }).then(data =>
-      data.json().then(json => {
-        setNip(json.data.checkout.shippingAddress.vatId);
-      })
-    );
-  }, [nip]);
-
   return (
     <CheckoutReview
       shippingAddress={checkoutShippingAddress}
@@ -191,7 +155,6 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
       email={checkout?.email}
       errors={errors}
       noteRef={noteRef}
-      nip={nip}
     />
   );
 };
