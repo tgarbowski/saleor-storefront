@@ -55,10 +55,6 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<
   >([]);
   const [isInvoiceTrue, setIsInvoiceTrue] = useState(false);
 
-  // useEffect(() => {
-  //   console.log(isInvoiceTrue);
-  // }, [isInvoiceTrue]);
-
   const intl = useIntl();
 
   const isShippingRequiredForProducts =
