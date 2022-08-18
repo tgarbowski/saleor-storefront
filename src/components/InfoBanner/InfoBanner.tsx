@@ -11,7 +11,7 @@ export const InfoBanner = () => {
           <strong className="marketing-bar-content-description-bold">
             DOSTAWA0
           </strong>{" "}
-          ABY OTRZYMAĆ DARMOWĄ DOSTAWĘ DLA ZAMÓWIEŃ POWYŻEJ 200ZŁ.
+          ABY OTRZYMAĆ DARMOWĄ DOSTAWĘ DLA ZAMÓWIEŃ POWYŻEJ 100ZŁ.
         </div>
       </div>
     </section>

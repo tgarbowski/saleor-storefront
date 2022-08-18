@@ -16,12 +16,7 @@ export const ProductTile: React.FC<IProps> = ({ product }: IProps) => {
       ? product.pricing.priceRange.start
       : undefined;
 
-  const undiscountedPrice =
-    product.pricing &&
-    product.pricing.priceRangeUndiscounted &&
-    product.pricing.priceRangeUndiscounted.start
-      ? product.pricing.priceRangeUndiscounted.start
-      : undefined;
+  const undiscountedPrice = product?.pricing?.priceRangeUndiscounted?.start;
 
   const isOnSale = product.pricing?.onSale;
 
