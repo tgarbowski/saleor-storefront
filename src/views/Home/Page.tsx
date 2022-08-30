@@ -221,7 +221,7 @@ const Page: React.FC<{
             {categoriesExist() && (
               <Link
                 href={generatePath(paths.category, {
-                  slug: categories.edges[1].node.slug,
+                  slug: categories.edges[2].node.slug,
                 })}
               >
                 <a>
