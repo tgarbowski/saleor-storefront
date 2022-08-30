@@ -38,6 +38,8 @@
         margin-bottom: $spacer * 3;
         width: 100%;
         margin-top: 42px;
+        position: absolute !important;
+        z-index: 999 !important;
 
         @media (max-width: $small-screen) {
           margin-top: 0;
@@ -639,7 +641,7 @@
   transition: opacity 0.5s ease-in-out;
   margin-left: 0 !important;
   position: absolute !important;
-  z-index: 0 !important;
+  z-index: -1;
 }
 
 .carousel-2 .carousel-track .carousel-slide > * {
@@ -660,7 +662,7 @@
 
 .carousel-2 .carousel-track .carousel-slide.carousel-slide-selected {
   opacity: 1;
-  z-index: 1;
+  z-index: 0;
 }
 
 .carousel-2.loaded {
