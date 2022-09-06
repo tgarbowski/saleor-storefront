@@ -43,7 +43,6 @@ const Page: React.FC<{
     shopName === "FASHION4YOU"
       ? categories.edges.slice(0, -2)
       : categories.edges.slice(0, -2);
-
   return (
     <>
       <script className="structured-data-list" type="application/ld+json">
@@ -91,13 +90,11 @@ const Page: React.FC<{
                   <div>
                     <span className="home-page__hero__title">
                       {collection.name === "Kolekcja lato" ? (
-                        <h1>
-                          <FormattedMessage defaultMessage="Kolekcja lato 2022" />
-                        </h1>
+                        <h1>{collection.name}</h1>
                       ) : collection.name === "Najnowsze produkty" ? (
-                        <h1>
-                          <FormattedMessage defaultMessage="Najnowsze produkty" />
-                        </h1>
+                        <h1>{collection.name}</h1>
+                      ) : collection.name === "Kolekcja jesień" ? (
+                        <h1>{collection.name}</h1>
                       ) : (
                         (collection.name === "Polecane produkty" ||
                           collection.name === "Polecane produkty c4u") && (
@@ -115,17 +112,33 @@ const Page: React.FC<{
                     <span className="home-page__hero__subtitle">
                       {collection.name === "Kolekcja lato" ? (
                         <h1>
-                          <FormattedMessage defaultMessage="Niezależnie od tego czy lubisz klasykę, współczesną modę czy też mieszasz style, w naszej kolekcji znajdziesz stylizacje przewiewne i delikatne, które wyrażają Twój styl." />
+                          {
+                            JSON.parse(collection.description).blocks[0].data
+                              .text
+                          }
                         </h1>
                       ) : collection.name === "Najnowsze produkty" ? (
                         <h1>
-                          <FormattedMessage defaultMessage="Najświeższe oferty rozchodzą się jak ciepłe bułeczki, nie zwlekaj, złap ją przed innymi i bądź ev vouge!" />
+                          {
+                            JSON.parse(collection.description).blocks[0].data
+                              .text
+                          }
+                        </h1>
+                      ) : collection.name === "Kolekcja jesień" ? (
+                        <h1>
+                          {
+                            JSON.parse(collection.description).blocks[0].data
+                              .text
+                          }
                         </h1>
                       ) : (
                         (collection.name === "Polecane produkty" ||
                           collection.name === "Polecane produkty c4u") && (
                           <h1>
-                            <FormattedMessage defaultMessage="Specjalnie wysublimowane produkty, to tylko przykłady bestsellerowych ofert, których nie możesz przegapić." />
+                            {
+                              JSON.parse(collection.description).blocks[0].data
+                                .text
+                            }
                           </h1>
                         )
                       )}
@@ -148,6 +161,19 @@ const Page: React.FC<{
                         </a>
                       </Link>
                     ) : collection.name === "Najnowsze produkty" ? (
+                      <Link
+                        key={collection.id}
+                        href={generatePath(paths.collection, {
+                          slug: collection.slug,
+                        })}
+                      >
+                        <a>
+                          <Button testingContext="homepageHeroActionButton">
+                            <FormattedMessage defaultMessage="Sprawdź ofertę" />
+                          </Button>
+                        </a>
+                      </Link>
+                    ) : collection.name === "Kolekcja jesień" ? (
                       <Link
                         key={collection.id}
                         href={generatePath(paths.collection, {

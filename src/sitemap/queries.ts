@@ -48,6 +48,7 @@ export const getCollectionsQuery = gql`
           id
           name
           slug
+          description
           backgroundImage {
             url
           }
