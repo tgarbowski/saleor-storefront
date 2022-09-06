@@ -62,6 +62,7 @@ export interface HomePageProducts_collections_edges_node {
   id: string;
   name: string;
   slug: string;
+  description: string;
   backgroundImage: HomePageProducts_collections_edges_node_backgroundImage | null;
 }
 
