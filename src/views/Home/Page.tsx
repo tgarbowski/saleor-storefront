@@ -43,7 +43,6 @@ const Page: React.FC<{
     shopName === "FASHION4YOU"
       ? categories.edges.slice(0, -2)
       : categories.edges.slice(0, -2);
-
   return (
     <>
       <script className="structured-data-list" type="application/ld+json">
@@ -112,15 +111,35 @@ const Page: React.FC<{
                   <div>
                     <span className="home-page__hero__subtitle">
                       {collection.name === "Kolekcja lato" ? (
-                        <h1>{collection.description}</h1>
+                        <h1>
+                          {
+                            JSON.parse(collection.description).blocks[0].data
+                              .text
+                          }
+                        </h1>
                       ) : collection.name === "Najnowsze produkty" ? (
-                        <h1>{collection.description}</h1>
+                        <h1>
+                          {
+                            JSON.parse(collection.description).blocks[0].data
+                              .text
+                          }
+                        </h1>
                       ) : collection.name === "Kolekcja jesień" ? (
-                        <h1>{collection.description}</h1>
+                        <h1>
+                          {
+                            JSON.parse(collection.description).blocks[0].data
+                              .text
+                          }
+                        </h1>
                       ) : (
                         (collection.name === "Polecane produkty" ||
                           collection.name === "Polecane produkty c4u") && (
-                          <h1>{collection.description}</h1>
+                          <h1>
+                            {
+                              JSON.parse(collection.description).blocks[0].data
+                                .text
+                            }
+                          </h1>
                         )
                       )}
                     </span>
