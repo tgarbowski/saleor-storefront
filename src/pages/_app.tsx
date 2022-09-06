@@ -37,6 +37,7 @@ import {
   serviceWorkerTimeout,
   ssrMode,
 } from "../constants";
+import { useEffect } from "react";
 
 declare global {
   interface Window {
@@ -70,7 +71,8 @@ const saleorConfig: ConfigInput = { apiUrl, channel: channelSlug };
 
 const notificationConfig = { position: positions.BOTTOM_RIGHT, timeout: 2500 };
 
-type AppProps = NextAppProps & ShopConfig & { messages: LocaleMessages };
+type AppProps = NextAppProps &
+  ShopConfig & { messages: LocaleMessages; locale: Locale };
 
 const App = ({
   Component,
@@ -78,6 +80,7 @@ const App = ({
   footer,
   mainMenu,
   messages,
+  locale,
   shopConfig,
 }: AppProps) => (
   <>
@@ -116,7 +119,10 @@ const App = ({
         {...notificationConfig}
       >
         <ServiceWorkerProvider timeout={serviceWorkerTimeout}>
-          <LocaleProvider messages={messages}>
+          {useEffect(() => {
+            console.log(locale);
+          }, [])}
+          <LocaleProvider messages={messages} locale={locale}>
             <GlobalStyle />
             <NextQueryParamProvider>
               <SaleorProvider config={saleorConfig}>

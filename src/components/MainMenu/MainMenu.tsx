@@ -3,7 +3,7 @@ import classNames from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import Media from "react-media";
 import ReactSVG from "react-svg";
 
@@ -28,6 +28,7 @@ import {
   OverlayTheme,
   OverlayType,
 } from "..";
+import { Locale, LocaleMessages } from "../Locale/utils";
 import { NavDropdown } from "./NavDropdown";
 
 import "./scss/index.scss";
@@ -47,6 +48,7 @@ export const MainMenu: React.FC<MainMenuProps> = ({
   menu,
   loading,
 }) => {
+  const intl = useIntl();
   const overlayContext = useContext(OverlayContext);
   const { user, signOut } = useAuth();
   const { push } = useRouter();
@@ -226,7 +228,6 @@ export const MainMenu: React.FC<MainMenuProps> = ({
             </Online>
           </ul>
         </div>
-
         <div className="main-menu__center">
           <Link href={paths.home}>
             <a>
@@ -234,6 +235,11 @@ export const MainMenu: React.FC<MainMenuProps> = ({
             </a>
           </Link>
         </div>
+
+        {/* <select value={locale} onChange={e => onLocaleChange(e.target.value)}>
+          <option value={Locale.EN}>en</option>
+          <option value={Locale.FR}>fr</option>
+        </select> */}
 
         <div className="main-menu__right">
           <ul>
