@@ -43,6 +43,7 @@ const Page: React.FC<{
     shopName === "FASHION4YOU"
       ? categories.edges.slice(0, -2)
       : categories.edges.slice(0, -2);
+
   return (
     <>
       <script className="structured-data-list" type="application/ld+json">
