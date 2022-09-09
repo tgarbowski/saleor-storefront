@@ -89,7 +89,7 @@ export const MainMenu: React.FC<MainMenuProps> = ({
   const visibleCategoryOnMenu =
     shopName === "FASHION4YOU"
       ? menuItems.slice(0, -2)
-      : menuItems.slice(0, -2);
+      : menuItems.slice(0, -1);
 
   return (
     <header

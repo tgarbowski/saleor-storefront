@@ -43,6 +43,7 @@ const Page: React.FC<{
     shopName === "FASHION4YOU"
       ? categories.edges.slice(0, -2)
       : categories.edges.slice(0, -2);
+
   return (
     <>
       <script className="structured-data-list" type="application/ld+json">
@@ -93,6 +94,8 @@ const Page: React.FC<{
                         <h1>{collection.name}</h1>
                       ) : collection.name === "Najnowsze produkty" ? (
                         <h1>{collection.name}</h1>
+                      ) : collection.name === "Super paki" ? (
+                        <h1>{collection.name}</h1>
                       ) : collection.name === "Kolekcja jesień" ? (
                         <h1>{collection.name}</h1>
                       ) : (
@@ -125,6 +128,13 @@ const Page: React.FC<{
                           }
                         </h1>
                       ) : collection.name === "Kolekcja jesień" ? (
+                        <h1>
+                          {
+                            JSON.parse(collection.description).blocks[0].data
+                              .text
+                          }
+                        </h1>
+                      ) : collection.name === "Super paki" ? (
                         <h1>
                           {
                             JSON.parse(collection.description).blocks[0].data
@@ -174,6 +184,19 @@ const Page: React.FC<{
                         </a>
                       </Link>
                     ) : collection.name === "Kolekcja jesień" ? (
+                      <Link
+                        key={collection.id}
+                        href={generatePath(paths.collection, {
+                          slug: collection.slug,
+                        })}
+                      >
+                        <a>
+                          <Button testingContext="homepageHeroActionButton">
+                            <FormattedMessage defaultMessage="Sprawdź ofertę" />
+                          </Button>
+                        </a>
+                      </Link>
+                    ) : collection.name === "Super paki" ? (
                       <Link
                         key={collection.id}
                         href={generatePath(paths.collection, {
