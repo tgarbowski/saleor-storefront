@@ -43,7 +43,7 @@ const App: React.FC<AppProps> = ({
     <ShopProvider shopConfig={shopConfig}>
       <OverlayProvider pathname={pathname}>
         <MetaConsumer />
-        <InfoBanner />
+        {shopName === "FASHION4YOU" ? <InfoBanner /> : null}
         <MainMenu loading={loading} demoMode={demoMode} menu={mainMenu} />
         {loading ? <Loader fullScreen /> : children}
         <Footer menu={footer} />
