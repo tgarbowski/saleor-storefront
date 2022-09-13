@@ -38,7 +38,7 @@ export const ProductTile: React.FC<IProps> = ({ product }: IProps) => {
       ) : (
         product?.collections &&
         product?.collections?.map((collection: any) =>
-          collection.name === "Najnowsze produkty" ? (
+          collection.name === "Nowości" ? (
             <NewProductTag>
               <p>Nowy produkt</p>
             </NewProductTag>

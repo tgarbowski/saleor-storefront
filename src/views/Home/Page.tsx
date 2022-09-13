@@ -92,7 +92,7 @@ const Page: React.FC<{
                     <span className="home-page__hero__title">
                       {collection.name === "Kolekcja lato" ? (
                         <h1>{collection.name}</h1>
-                      ) : collection.name === "Najnowsze produkty" ? (
+                      ) : collection.name === "Nowości" ? (
                         <h1>{collection.name}</h1>
                       ) : collection.name === "Super paki" ? (
                         <h1>{collection.name}</h1>
@@ -120,7 +120,7 @@ const Page: React.FC<{
                               .text
                           }
                         </h1>
-                      ) : collection.name === "Najnowsze produkty" ? (
+                      ) : collection.name === "Nowości" ? (
                         <h1>
                           {
                             JSON.parse(collection.description).blocks[0].data
@@ -170,7 +170,7 @@ const Page: React.FC<{
                           </Button>
                         </a>
                       </Link>
-                    ) : collection.name === "Najnowsze produkty" ? (
+                    ) : collection.name === "Nowości" ? (
                       <Link
                         key={collection.id}
                         href={generatePath(paths.collection, {
