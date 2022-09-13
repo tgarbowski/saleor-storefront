@@ -46,95 +46,97 @@ export const getStaticProps: GetStaticProps<
     variantSelection: VariantAttributeScope.VARIANT_SELECTION,
   });
 
-  await fetch(apiUrl, {
-    method: "POST",
-    body: JSON.stringify({
-      query: `
-        query ProductDetails($id: ID!, $channel: String) {
-          product(id: $id, channel: $channel) {
-            variants{
-              quantityAvailable
-            }
-            pricing{
-              onSale
-              priceRange{
-                start{
-                  gross{
-                    amount
-                    currency
+  if (data) {
+    await fetch(apiUrl, {
+      method: "POST",
+      body: JSON.stringify({
+        query: `
+          query ProductDetails($id: ID!, $channel: String) {
+            product(id: $id, channel: $channel) {
+              variants{
+                quantityAvailable
+              }
+              pricing{
+                onSale
+                priceRange{
+                  start{
+                    gross{
+                      amount
+                      currency
+                      __typename
+                    }
+                    net{
+                      amount
+                      currency
+                      __typename
+                    }
                     __typename
                   }
-                  net{
-                    amount
-                    currency
+                  stop{
+                    gross{
+                      amount
+                      currency
+                      __typename
+                    }
+                    net{
+                      amount
+                      currency
+                      __typename
+                    }
                     __typename
                   }
                   __typename
                 }
-                stop{
-                  gross{
-                    amount
-                    currency
+                priceRangeUndiscounted{
+                  start{
+                    gross{
+                      amount
+                      currency
+                      __typename
+                    }
+                    net{
+                      amount
+                      currency
+                      __typename
+                    }
                     __typename
                   }
-                  net{
-                    amount
-                    currency
+                  stop{
+                    gross{
+                      amount
+                      currency
+                      __typename
+                    }
+                    net{
+                      amount
+                      currency
+                      __typename
+                    }
                     __typename
                   }
                   __typename
                 }
                 __typename
               }
-              priceRangeUndiscounted{
-                start{
-                  gross{
-                    amount
-                    currency
-                    __typename
-                  }
-                  net{
-                    amount
-                    currency
-                    __typename
-                  }
-                  __typename
-                }
-                stop{
-                  gross{
-                    amount
-                    currency
-                    __typename
-                  }
-                  net{
-                    amount
-                    currency
-                    __typename
-                  }
-                  __typename
-                }
-                __typename
-              }
-              __typename
             }
           }
-        }
-        `,
-      variables: {
-        id: data.id,
-        channel: channelSlug,
+          `,
+        variables: {
+          id: data.id,
+          channel: channelSlug,
+        },
+      }),
+      headers: {
+        "content-type": "application/json",
       },
-    }),
-    headers: {
-      "content-type": "application/json",
-    },
-  }).then(result =>
-    result.json().then(result => {
-      data.pricing = result.data.product.pricing;
-      data.variants[0].quantityAvailable =
-        result.data.product.variants[0].quantityAvailable;
-    })
-  );
+    }).then(result =>
+      result.json().then(result => {
+        data.pricing = result.data.product.pricing;
+        data.variants[0].quantityAvailable =
+          result.data.product.variants[0].quantityAvailable;
+      })
+    );
+  }
   return {
     revalidate: 259200,
     props: { data: data || null, params },

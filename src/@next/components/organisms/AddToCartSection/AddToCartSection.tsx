@@ -298,7 +298,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
         ) : (
           product?.collections &&
           product?.collections?.map((collection: any) =>
-            collection.name === "Najnowsze produkty" ? (
+            collection.name === "Nowości" ? (
               <NewProductTag style={{ marginLeft: 0 }}>
                 <p>Nowy produkt</p>
               </NewProductTag>

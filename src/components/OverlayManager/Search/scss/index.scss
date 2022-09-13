@@ -47,6 +47,11 @@ $drawer-width: 25rem;
       flex-direction: row;
       align-items: center;
       height: 93px;
+
+      @if $env == "CLOTHES4U" {
+        margin-top: 0 !important;
+      }
+
       margin-top: 65px;
 
       @media (max-width: 762px) {
