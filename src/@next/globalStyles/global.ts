@@ -23,6 +23,10 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
     color: ${props => props.theme.colors.baseFont};
     margin-top: 65px;
 
+    @if $env == "CLOTHES4U" {
+      margin-top: 0;
+    }
+
     @media only screen and (max-width: 479px) {
       margin-top: 50px;
     }
