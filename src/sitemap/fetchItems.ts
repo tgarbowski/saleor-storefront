@@ -10,6 +10,7 @@ import {
   getCategoriesQuery,
   getCollectionsQuery,
   getProductsQuery,
+  getSalesQuery,
 } from "./queries";
 
 const config = {
@@ -50,6 +51,12 @@ export const getCategories = async callback => {
 export const getCollections = async callback => {
   await fetchItems({ query: getCollectionsQuery }, ({ slug }) => {
     callback({ url: generatePath(paths.collection, { slug }) });
+  });
+};
+
+export const getSales = async callback => {
+  await fetchItems({ query: getSalesQuery }, ({ name }) => {
+    callback({ url: generatePath(paths.sale, { name }) });
   });
 };
 

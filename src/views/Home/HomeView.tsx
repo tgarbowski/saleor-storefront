@@ -7,6 +7,7 @@ import { MetaWrapper } from "../../components";
 import {
   HomePageProducts,
   HomePageProducts_collections,
+  HomePageProducts_sales,
 } from "./gqlTypes/HomePageProducts";
 import Page from "./Page";
 
@@ -15,10 +16,11 @@ import "./scss/index.scss";
 export interface HomeViewProps {
   data: HomePageProducts & { featuredProducts: FeaturedProducts } & {
     collections: HomePageProducts_collections;
+    sales: HomePageProducts_sales;
   };
 }
 export const HomeView: NextPage<HomeViewProps> = ({
-  data: { shop, featuredProducts, categories, collections },
+  data: { shop, featuredProducts, categories, collections, sales },
 }) => (
   <div className="home-page">
     <MetaWrapper
@@ -32,6 +34,7 @@ export const HomeView: NextPage<HomeViewProps> = ({
         categories={categories}
         shop={shop}
         collections={collections}
+        sales={sales}
       />
     </MetaWrapper>
   </div>

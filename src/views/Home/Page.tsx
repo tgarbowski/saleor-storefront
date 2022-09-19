@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import Carousel from "react-img-carousel";
 import { FormattedMessage, useIntl } from "react-intl";
 import { generatePath } from "react-router";
@@ -20,6 +20,7 @@ import { structuredData } from "../../core/SEO/Homepage/structuredData";
 import {
   HomePageProducts_categories,
   HomePageProducts_collections,
+  HomePageProducts_sales,
   HomePageProducts_shop,
 } from "./gqlTypes/HomePageProducts";
 
@@ -28,14 +29,18 @@ import "./scss/index.scss";
 const Page: React.FC<{
   categories: HomePageProducts_categories;
   collections: HomePageProducts_collections;
+  sales: HomePageProducts_sales;
   featuredProducts: FeaturedProducts;
   shop: HomePageProducts_shop;
-}> = ({ categories, featuredProducts, shop, collections }) => {
+}> = ({ categories, featuredProducts, shop, collections, sales }) => {
   const categoriesExist = () => {
     return categories && categories.edges && categories.edges.length > 0;
   };
   const collectionsExist = () => {
     return collections && collections.edges && collections.edges.length > 0;
+  };
+  const salesExist = () => {
+    return sales && sales.edges && sales.edges.length > 0;
   };
   const intl = useIntl();
 
@@ -43,6 +48,11 @@ const Page: React.FC<{
     shopName === "FASHION4YOU"
       ? categories.edges.slice(0, -2)
       : categories.edges.slice(0, -2);
+
+  useEffect(() => {
+    console.log(collections);
+    console.log(sales);
+  }, []);
 
   return (
     <>
@@ -389,6 +399,19 @@ const Page: React.FC<{
                 );
               })}
             </div>
+          </div>
+        </div>
+      )}
+      {salesExist() && (
+        <div>
+          <div>
+            {sales?.edges.map(({ node: sale }) => {
+              return (
+                <div key={sale.id} className="home-page__collection-item">
+                  <h4 className="home-page__collection-text">{sale.name}</h4>
+                </div>
+              );
+            })}
           </div>
         </div>
       )}
