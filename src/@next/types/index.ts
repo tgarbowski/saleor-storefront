@@ -13,3 +13,4 @@ export * from "./IFormError";
 export * from "./ICheckoutStep";
 export * from "./IProduct";
 export * from "./IWishlistFilters";
+export * from "./ISaleFilters";

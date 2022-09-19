@@ -15,7 +15,7 @@ import { filtersChangeHandler } from "../Category/utils";
 import { Page, SaleData } from "./Page";
 
 export type SaleViewProps = {
-  params: { name: string } | undefined;
+  params: { name: any } | undefined;
   data: ({ id: string } & SaleData) | undefined | null;
 };
 
@@ -165,14 +165,43 @@ export const SaleView: NextPage<SaleViewProps> = ({ data: sale }) => {
             >
               {oldProductsData?.products?.edges?.length ? (
                 <Page
+                  numberOfProducts={numberOfProducts}
+                  clearFilters={handleClearFilters}
                   sale={sale}
+                  displayLoader={loading}
+                  hasNextPage={
+                    !!pageInfo?.hasNextPage ||
+                    (oldProductsData?.products?.pageInfo?.hasNextPage &&
+                      wasSkipped)
+                  }
+                  sortOptions={SORT_OPTIONS}
+                  activeSortOption={filters.sortBy}
+                  filters={filters}
                   products={[
                     ...oldProductsData.products?.edges.map(e => e.node),
                     ...products,
                   ]}
+                  onAttributeFiltersChange={handleFiltersChange}
+                  onLoadMore={handleLoadMore}
+                  activeFilters={Object.keys(filters?.attributes || {}).length}
+                  onOrder={handleOrderChange}
                 />
               ) : (
-                <Page sale={sale} products={products} />
+                <Page
+                  numberOfProducts={numberOfProducts}
+                  clearFilters={handleClearFilters}
+                  sale={sale}
+                  displayLoader={loading}
+                  hasNextPage={!!pageInfo?.hasNextPage}
+                  sortOptions={SORT_OPTIONS}
+                  activeSortOption={filters.sortBy}
+                  filters={filters}
+                  products={products}
+                  onAttributeFiltersChange={handleFiltersChange}
+                  onLoadMore={handleLoadMore}
+                  activeFilters={Object.keys(filters?.attributes || {}).length}
+                  onOrder={handleOrderChange}
+                />
               )}
             </MetaWrapper>
           ) : (

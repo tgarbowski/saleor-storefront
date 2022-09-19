@@ -5,7 +5,7 @@ import {
   incrementalStaticRegenerationRevalidate,
 } from "@temp/constants";
 import { getCollectionsQuery, getSalesQuery } from "@temp/sitemap/queries";
-import { getFeaturedProducts, getSaleorApi } from "@utils/ssr";
+import { getFeaturedProducts, getSaleorApi, getSaleProducts } from "@utils/ssr";
 
 import { homePageProductsQuery, HomeView, HomeViewProps } from "../views/Home";
 import { HomePageProducts } from "../views/Home/gqlTypes/HomePageProducts";
@@ -40,6 +40,7 @@ export const getStaticProps: GetStaticProps<HomeViewProps> = async () => {
         variables: { channel: channelSlug, perPage: 5 },
       })
       .then(({ data }) => data),
+    getSaleProducts(),
   ]);
 
   return {

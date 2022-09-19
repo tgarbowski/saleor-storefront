@@ -12,7 +12,7 @@ import {
   WomanCategoryImg,
 } from "@styles/pictures";
 import { FooterUsp } from "@temp/components/FooterUsp/FooterUsp";
-import { shopName } from "@temp/constants";
+import { apiUrl, shopName } from "@temp/constants";
 import { FeaturedProducts } from "@utils/ssr";
 
 import { Button, ProductsFeatured } from "../../components";
@@ -49,9 +49,39 @@ const Page: React.FC<{
       ? categories.edges.slice(0, -2)
       : categories.edges.slice(0, -2);
 
+  // useEffect(() => {
+  //   console.log(sales);
+  // }, [sales]);
+
   useEffect(() => {
-    console.log(collections);
-    console.log(sales);
+    fetch(apiUrl, {
+      method: "POST",
+      body: JSON.stringify({
+        query: `
+        query{
+          sale(id: "U2FsZToxNw==") {
+            id
+            name
+            products(first: 20) {
+              edges {
+                node {
+                  id
+                  name
+                }
+              }
+            }
+          }
+        }
+        `,
+      }),
+      headers: {
+        "content-type": "application/json",
+      },
+    }).then(data =>
+      data.json().then(data => {
+        console.log(data);
+      })
+    );
   }, []);
 
   return (
