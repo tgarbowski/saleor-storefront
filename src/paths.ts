@@ -1,5 +1,6 @@
 const baseUrl = "/";
 const slugUrl = ":slug";
+const nameUrl = ":name";
 const accountBaseUrl = `${baseUrl}account/`;
 const checkoutBaseUrl = `${baseUrl}checkout/`;
 
@@ -9,7 +10,7 @@ export const paths = {
   cart: `${baseUrl}cart`,
   category: `${baseUrl}category/${slugUrl}`,
   collection: `${baseUrl}collection/${slugUrl}`,
-  sale: `${baseUrl}sale/${slugUrl}`,
+  sale: `${baseUrl}sale/${nameUrl}`,
   guestOrderDetail: `${baseUrl}order-history/:token`,
   home: baseUrl,
   login: `${baseUrl}login`,

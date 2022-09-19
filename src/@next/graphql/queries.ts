@@ -47,7 +47,7 @@ export const featuredProductsQuery = gql`
 
 export const saleProductsQuery = gql`
   ${saleProductsFragment}
-  query SaleProductsQuery($channel: String) {
+  query SaleProductsQuery($name: String, $channel: String) {
     ...SaleProducts
   }
 `;

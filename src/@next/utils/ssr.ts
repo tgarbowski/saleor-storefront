@@ -168,6 +168,7 @@ export const getSaleProducts = async (): Promise<any> => {
   const { data } = await apolloClient.query<any, any>({
     query: saleProductsQuery,
     variables: {
+      name,
       channel: channelSlug,
     },
   });
