@@ -15,7 +15,7 @@ import { filtersChangeHandler } from "../Category/utils";
 import { Page, SaleData } from "./Page";
 
 export type SaleViewProps = {
-  params: { name: any } | undefined;
+  params: { id: string } | undefined;
   data: ({ id: string } & SaleData) | undefined | null;
 };
 

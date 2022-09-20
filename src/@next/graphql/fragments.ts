@@ -98,10 +98,6 @@ export const saleProductFragment = gql`
   fragment SaleProduct on Product {
     ...BasicProductFields
     ...ProductPricingField
-    category {
-      id
-      name
-    }
   }
 `;
 
@@ -110,10 +106,6 @@ export const saleProductsFragment = gql`
   fragment SaleProducts on Query {
     sale(id: $id, channel: $channel) {
       id
-      name
-      backgroundImage {
-        url
-      }
       products(first: 20) {
         edges {
           node {

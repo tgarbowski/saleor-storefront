@@ -55,8 +55,8 @@ export const getCollections = async callback => {
 };
 
 export const getSales = async callback => {
-  await fetchItems({ query: getSalesQuery }, ({ name }) => {
-    callback({ url: generatePath(paths.sale, { name }) });
+  await fetchItems({ query: getSalesQuery }, ({ id }) => {
+    callback({ url: generatePath(paths.sale, { id }) });
   });
 };
 

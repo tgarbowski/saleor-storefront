@@ -162,19 +162,3 @@ export const getShopConfig = async (): Promise<any> => {
 
   return { footer, mainMenu, shopConfig };
 };
-
-export const getSaleProducts = async (): Promise<any> => {
-  const { apolloClient } = await getSaleorApi();
-  const { data } = await apolloClient.query<any, any>({
-    query: saleProductsQuery,
-    variables: {
-      name,
-      channel: channelSlug,
-    },
-  });
-
-  return {
-    ...data.sale,
-    products: data.sale?.products?.edges.map(e => e.node) || [],
-  };
-};

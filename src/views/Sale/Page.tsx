@@ -1,6 +1,6 @@
 import { SaleDetails } from "@saleor/sdk/lib/fragments/gqlTypes/SaleDetails";
 import { ProductList_products_edges_node } from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useIntl } from "react-intl";
 
 import { FilterSidebar, ProductList } from "@components/organisms";
@@ -19,11 +19,11 @@ import {
 import { getActiveFilterAttributes } from "../Category/utils";
 
 import "../Category/scss/index.scss";
+import { apiUrl } from "@temp/constants";
 
 export interface SaleData {
   details: SaleDetails;
   attributes: Attribute[];
-  featuredProducts: FeaturedProducts;
 }
 
 interface PageProps {
@@ -45,7 +45,7 @@ interface PageProps {
 export const Page: React.FC<PageProps> = ({
   activeFilters,
   activeSortOption,
-  sale: { details, attributes, featuredProducts },
+  sale: { details, attributes },
   displayLoader,
   hasNextPage,
   clearFilters,
@@ -61,31 +61,87 @@ export const Page: React.FC<PageProps> = ({
   const [showFilters, setShowFilters] = useState(false);
   const intl = useIntl();
 
+  // useEffect(() => {
+  //   fetch(apiUrl, {
+  //     method: "POST",
+  //     body: JSON.stringify({
+  //       query: `
+  //       query{
+  //         sales(first:20){
+  //           edges{
+  //             node{
+  //               id
+  //               name
+  //               startDate
+  //               endDate
+  //               discountValue
+  //               products(first:10){
+  //                 edges{
+  //                   node{
+  //                     id
+  //                     name
+  //                     sku
+  //                   }
+  //                 }
+  //               }
+  //             }
+  //           }
+  //         }
+  //       }
+  //       `,
+  //     }),
+  //     headers: {
+  //       "content-type": "application/json",
+  //     },
+  //   }).then(data =>
+  //     data.json().then(data => {
+  //       console.log(data);
+  //     })
+  //   );
+  // }, []);
+
+  // useEffect(() => {
+  //   fetch(apiUrl, {
+  //     method: "POST",
+  //     body: JSON.stringify({
+  //       query: `
+  //       query{
+  //         sales(first:20){
+  //           edges{
+  //             node{
+  //               id
+  //               name
+  //               startDate
+  //               endDate
+  //               discountValue
+  //               products(first:10){
+  //                 edges{
+  //                   node{
+  //                     id
+  //                     name
+  //                     sku
+  //                   }
+  //                 }
+  //               }
+  //             }
+  //           }
+  //         }
+  //       }
+  //       `,
+  //     }),
+  //     headers: {
+  //       "content-type": "application/json",
+  //     },
+  //   }).then(data =>
+  //     data.json().then(data => {
+  //       console.log(data);
+  //     })
+  //   );
+  // }, []);
+
   return (
     <div className="sale">
       <div className="container">
-        <FilterSidebar
-          show={showFilters}
-          hide={() => setShowFilters(false)}
-          onAttributeFiltersChange={onAttributeFiltersChange}
-          attributes={attributes}
-          filters={filters}
-        />
-        <ProductListHeader
-          activeSortOption={activeSortOption}
-          openFiltersMenu={() => setShowFilters(true)}
-          numberOfProducts={numberOfProducts}
-          activeFilters={activeFilters}
-          activeFiltersAttributes={getActiveFilterAttributes(
-            filters?.attributes,
-            attributes
-          )}
-          clearFilters={clearFilters}
-          sortOptions={sortOptions}
-          onChange={onOrder}
-          onCloseFilterAttribute={onAttributeFiltersChange}
-        />
-
         <ProductList
           products={products}
           canLoadMore={hasNextPage}
@@ -93,13 +149,6 @@ export const Page: React.FC<PageProps> = ({
           onLoadMore={onLoadMore}
         />
       </div>
-
-      {!displayLoader && !hasProducts && (
-        <ProductsFeatured
-          products={featuredProducts.products}
-          title={intl.formatMessage(commonMessages.youMightLike)}
-        />
-      )}
     </div>
   );
 };

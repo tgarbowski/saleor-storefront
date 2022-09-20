@@ -49,41 +49,6 @@ const Page: React.FC<{
       ? categories.edges.slice(0, -2)
       : categories.edges.slice(0, -2);
 
-  // useEffect(() => {
-  //   console.log(sales);
-  // }, [sales]);
-
-  useEffect(() => {
-    fetch(apiUrl, {
-      method: "POST",
-      body: JSON.stringify({
-        query: `
-        query{
-          sale(id: "U2FsZToxNw==") {
-            id
-            name
-            products(first: 20) {
-              edges {
-                node {
-                  id
-                  name
-                }
-              }
-            }
-          }
-        }
-        `,
-      }),
-      headers: {
-        "content-type": "application/json",
-      },
-    }).then(data =>
-      data.json().then(data => {
-        console.log(data);
-      })
-    );
-  }, []);
-
   return (
     <>
       <script className="structured-data-list" type="application/ld+json">
@@ -330,6 +295,19 @@ const Page: React.FC<{
           </div>
         </div>
       )}
+      {salesExist() && (
+        <div className="home-page__sale-wrapper">
+          <div className="home-page__sale-wrapper-content container">
+            {sales?.edges.map(({ node: sale }) => {
+              return (
+                <a className="home-page__sale-wrapper-content-item">
+                  <span>Promocja</span> -{sale.name}%!
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      )}
       {categoriesExist() && (
         <div
           className={
@@ -384,7 +362,6 @@ const Page: React.FC<{
           </div>
         </div>
       )}
-      <FooterUsp />
       {collectionsExist() && (
         <div className="home-page__collections">
           <div className="home-page__collections_container">
@@ -432,23 +409,11 @@ const Page: React.FC<{
           </div>
         </div>
       )}
-      {salesExist() && (
-        <div>
-          <div>
-            {sales?.edges.map(({ node: sale }) => {
-              return (
-                <div key={sale.id} className="home-page__collection-item">
-                  <h4 className="home-page__collection-text">{sale.name}</h4>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
       <ProductsFeatured
         products={featuredProducts.products}
         title={intl.formatMessage({ defaultMessage: "Featured" })}
       />
+      <FooterUsp />
     </>
   );
 };

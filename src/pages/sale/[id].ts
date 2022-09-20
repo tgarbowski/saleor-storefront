@@ -20,8 +20,8 @@ export const getStaticPaths: GetStaticPaths<SaleViewProps["params"]> =
       staticPathsFetchBatch
     );
 
-    const paths = data.map(({ name }) => ({
-      params: { name },
+    const paths = data.map(({ id }) => ({
+      params: { id },
     }));
 
     return { paths, fallback: staticPathsFallback };
@@ -30,10 +30,10 @@ export const getStaticPaths: GetStaticPaths<SaleViewProps["params"]> =
 export const getStaticProps: GetStaticProps<
   SaleViewProps,
   SaleViewProps["params"]
-> = async ({ params: { name } }) => {
+> = async ({ params: { id } }) => {
   let data = null;
   const { api } = await getSaleorApi();
-  const { data: details } = await api.sales.getDetails({ name });
+  const { data: details } = await api.sales.getDetails({ id });
 
   if (details) {
     const { id } = details;
@@ -47,7 +47,7 @@ export const getStaticProps: GetStaticProps<
     revalidate: incrementalStaticRegenerationRevalidate,
     props: {
       data,
-      params: { name },
+      params: { id },
     },
   };
 };
