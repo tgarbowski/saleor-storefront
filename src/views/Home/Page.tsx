@@ -77,7 +77,7 @@ const Page: React.FC<{
               ({ node }) =>
                 node.name === "Polecane produkty" ||
                 node.name === "Nowości" ||
-                node.name === "Kolekcja lato"
+                node.name === "Kolekcja jesień"
             )
             .map(({ node: collection }) => {
               return (
