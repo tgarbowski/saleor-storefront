@@ -300,9 +300,31 @@ const Page: React.FC<{
           <div className="home-page__sale-wrapper-content container">
             {sales?.edges.map(({ node: sale }) => {
               return (
-                <a className="home-page__sale-wrapper-content-item">
-                  <span>Promocja</span> -{sale.name}%!
-                </a>
+                <>
+                  {sale.name === "15" ||
+                  sale.name === "30" ||
+                  sale.name === "40" ? (
+                    <Link
+                      href={generatePath(paths.sale, {
+                        id: sale.id,
+                      })}
+                    >
+                      <a className="home-page__sale-wrapper-content-item">
+                        <span>Promocja</span> -{sale.name}%!
+                      </a>
+                    </Link>
+                  ) : (
+                    <Link
+                      href={generatePath(paths.sale, {
+                        id: sale.id,
+                      })}
+                    >
+                      <a className="home-page__sale-wrapper-content-item--second">
+                        <span>{sale.name}</span>
+                      </a>
+                    </Link>
+                  )}
+                </>
               );
             })}
           </div>
