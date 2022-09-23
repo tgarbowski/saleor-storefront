@@ -72,146 +72,99 @@ const Page: React.FC<{
             },
           }}
         >
-          {collections?.edges.map(({ node: collection }) => {
-            return (
-              <div
-                key={collection.id}
-                className="home-page__hero"
-                style={
-                  collection.backgroundImage
-                    ? {
-                        backgroundImage: `url(${collection.backgroundImage?.url})`,
-                      }
-                    : {
-                        backgroundImage: `url(${DefaultHero})`,
-                      }
-                }
-              >
-                <div className="home-page__hero-text">
-                  <div>
-                    <span className="home-page__hero__title">
-                      {collection.name === "Kolekcja lato" ? (
-                        <h1>{collection.name}</h1>
-                      ) : collection.name === "Nowości" ? (
-                        <h1>{collection.name}</h1>
-                      ) : collection.name === "Super paki" ? (
-                        <h1>{collection.name}</h1>
-                      ) : collection.name === "Kolekcja jesień" ? (
-                        <h1>{collection.name}</h1>
-                      ) : (
-                        (collection.name === "Polecane produkty" ||
-                          collection.name === "Polecane produkty c4u") && (
-                          <h1>
-                            <FormattedMessage
-                              defaultMessage="{shopname}"
-                              values={{ shopname: shopName }}
-                            />
-                          </h1>
-                        )
-                      )}
-                    </span>
-                  </div>
-                  <div>
-                    <span className="home-page__hero__subtitle">
-                      {collection.name === "Kolekcja lato" ? (
-                        <h1>
-                          {
-                            JSON.parse(collection.description).blocks[0].data
-                              .text
-                          }
-                        </h1>
-                      ) : collection.name === "Nowości" ? (
-                        <h1>
-                          {
-                            JSON.parse(collection.description).blocks[0].data
-                              .text
-                          }
-                        </h1>
-                      ) : collection.name === "Kolekcja jesień" ? (
-                        <h1>
-                          {
-                            JSON.parse(collection.description).blocks[0].data
-                              .text
-                          }
-                        </h1>
-                      ) : collection.name === "Super paki" ? (
-                        <h1>
-                          {
-                            JSON.parse(collection.description).blocks[0].data
-                              .text
-                          }
-                        </h1>
-                      ) : (
-                        (collection.name === "Polecane produkty" ||
-                          collection.name === "Polecane produkty c4u") && (
+          {collections?.edges
+            .filter(
+              ({ node }) =>
+                node.name === "Polecane produkty" ||
+                node.name === "Nowości" ||
+                node.name === "Kolekcja jesień"
+            )
+            .map(({ node: collection }) => {
+              return (
+                <div
+                  key={collection.id}
+                  className="home-page__hero"
+                  style={
+                    collection.backgroundImage
+                      ? {
+                          backgroundImage: `url(${collection.backgroundImage?.url})`,
+                        }
+                      : {
+                          backgroundImage: `url(${DefaultHero})`,
+                        }
+                  }
+                >
+                  <div className="home-page__hero-text">
+                    <div>
+                      <span className="home-page__hero__title">
+                        {collection.name === "Kolekcja lato" ? (
+                          <h1>{collection.name}</h1>
+                        ) : collection.name === "Nowości" ? (
+                          <h1>{collection.name}</h1>
+                        ) : collection.name === "Super paki" ? (
+                          <h1>{collection.name}</h1>
+                        ) : collection.name === "Kolekcja jesień" ? (
+                          <h1>{collection.name}</h1>
+                        ) : (
+                          (collection.name === "Polecane produkty" ||
+                            collection.name === "Polecane produkty c4u") && (
+                            <h1>
+                              <FormattedMessage
+                                defaultMessage="{shopname}"
+                                values={{ shopname: shopName }}
+                              />
+                            </h1>
+                          )
+                        )}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="home-page__hero__subtitle">
+                        {collection.name === "Kolekcja lato" ? (
                           <h1>
                             {
                               JSON.parse(collection.description).blocks[0].data
                                 .text
                             }
                           </h1>
-                        )
-                      )}
-                    </span>
+                        ) : collection.name === "Nowości" ? (
+                          <h1>
+                            {
+                              JSON.parse(collection.description).blocks[0].data
+                                .text
+                            }
+                          </h1>
+                        ) : collection.name === "Kolekcja jesień" ? (
+                          <h1>
+                            {
+                              JSON.parse(collection.description).blocks[0].data
+                                .text
+                            }
+                          </h1>
+                        ) : collection.name === "Super paki" ? (
+                          <h1>
+                            {
+                              JSON.parse(collection.description).blocks[0].data
+                                .text
+                            }
+                          </h1>
+                        ) : (
+                          (collection.name === "Polecane produkty" ||
+                            collection.name === "Polecane produkty c4u") && (
+                            <h1>
+                              {
+                                JSON.parse(collection.description).blocks[0]
+                                  .data.text
+                              }
+                            </h1>
+                          )
+                        )}
+                      </span>
+                    </div>
                   </div>
-                </div>
-                <div className="home-page__hero-action">
-                  {collectionsExist() &&
-                    (collection.name === "Kolekcja lato" ? (
-                      <Link
-                        key={collection.id}
-                        href={generatePath(paths.collection, {
-                          slug: collection.slug,
-                        })}
-                      >
-                        <a>
-                          <Button testingContext="homepageHeroActionButton">
-                            <FormattedMessage defaultMessage="Sprawdź ofertę" />
-                          </Button>
-                        </a>
-                      </Link>
-                    ) : collection.name === "Nowości" ? (
-                      <Link
-                        key={collection.id}
-                        href={generatePath(paths.collection, {
-                          slug: collection.slug,
-                        })}
-                      >
-                        <a>
-                          <Button testingContext="homepageHeroActionButton">
-                            <FormattedMessage defaultMessage="Sprawdź ofertę" />
-                          </Button>
-                        </a>
-                      </Link>
-                    ) : collection.name === "Kolekcja jesień" ? (
-                      <Link
-                        key={collection.id}
-                        href={generatePath(paths.collection, {
-                          slug: collection.slug,
-                        })}
-                      >
-                        <a>
-                          <Button testingContext="homepageHeroActionButton">
-                            <FormattedMessage defaultMessage="Sprawdź ofertę" />
-                          </Button>
-                        </a>
-                      </Link>
-                    ) : collection.name === "Super paki" ? (
-                      <Link
-                        key={collection.id}
-                        href={generatePath(paths.collection, {
-                          slug: collection.slug,
-                        })}
-                      >
-                        <a>
-                          <Button testingContext="homepageHeroActionButton">
-                            <FormattedMessage defaultMessage="Sprawdź ofertę" />
-                          </Button>
-                        </a>
-                      </Link>
-                    ) : (
-                      (collection.name === "Polecane produkty" ||
-                        collection.name === "Polecane produkty c4u") && (
+                  <div className="home-page__hero-action">
+                    {collectionsExist() &&
+                      (collection.name === "Kolekcja lato" ? (
                         <Link
                           key={collection.id}
                           href={generatePath(paths.collection, {
@@ -224,12 +177,66 @@ const Page: React.FC<{
                             </Button>
                           </a>
                         </Link>
-                      )
-                    ))}
+                      ) : collection.name === "Nowości" ? (
+                        <Link
+                          key={collection.id}
+                          href={generatePath(paths.collection, {
+                            slug: collection.slug,
+                          })}
+                        >
+                          <a>
+                            <Button testingContext="homepageHeroActionButton">
+                              <FormattedMessage defaultMessage="Sprawdź ofertę" />
+                            </Button>
+                          </a>
+                        </Link>
+                      ) : collection.name === "Kolekcja jesień" ? (
+                        <Link
+                          key={collection.id}
+                          href={generatePath(paths.collection, {
+                            slug: collection.slug,
+                          })}
+                        >
+                          <a>
+                            <Button testingContext="homepageHeroActionButton">
+                              <FormattedMessage defaultMessage="Sprawdź ofertę" />
+                            </Button>
+                          </a>
+                        </Link>
+                      ) : collection.name === "Super paki" ? (
+                        <Link
+                          key={collection.id}
+                          href={generatePath(paths.collection, {
+                            slug: collection.slug,
+                          })}
+                        >
+                          <a>
+                            <Button testingContext="homepageHeroActionButton">
+                              <FormattedMessage defaultMessage="Sprawdź ofertę" />
+                            </Button>
+                          </a>
+                        </Link>
+                      ) : (
+                        (collection.name === "Polecane produkty" ||
+                          collection.name === "Polecane produkty c4u") && (
+                          <Link
+                            key={collection.id}
+                            href={generatePath(paths.collection, {
+                              slug: collection.slug,
+                            })}
+                          >
+                            <a>
+                              <Button testingContext="homepageHeroActionButton">
+                                <FormattedMessage defaultMessage="Sprawdź ofertę" />
+                              </Button>
+                            </a>
+                          </Link>
+                        )
+                      ))}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </Carousel>
       ) : (
         <div
@@ -344,7 +351,6 @@ const Page: React.FC<{
           </div>
         </div>
       )}
-      <FooterUsp />
       {collectionsExist() && (
         <div className="home-page__collections">
           <div className="home-page__collections_container">
@@ -396,6 +402,7 @@ const Page: React.FC<{
         products={featuredProducts.products}
         title={intl.formatMessage({ defaultMessage: "Featured" })}
       />
+      <FooterUsp />
     </>
   );
 };
