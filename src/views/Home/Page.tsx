@@ -90,7 +90,7 @@ const Page: React.FC<{
                 <div className="home-page__hero-text">
                   <div>
                     <span className="home-page__hero__title">
-                      {collection.name}
+                      <h1>{collection.name}</h1>
                     </span>
                   </div>
                   <div>
