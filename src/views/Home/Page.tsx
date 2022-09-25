@@ -56,6 +56,8 @@ const Page: React.FC<{
           maxRenderedSlides={3}
           cellPadding={5}
           transition="fade"
+          autoplay
+          autoplaySpeed={1000}
           initialSlide={2}
           arrows
           style={{
