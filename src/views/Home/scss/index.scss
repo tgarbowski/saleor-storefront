@@ -257,8 +257,8 @@
     padding: 2rem 0 4rem;
     margin-top: 83px;
 
-    @media (max-width: $medium-screen) {
-      margin-top: 542px;
+    @media (max-width: $small-screen) {
+      margin-top: 55px;
     }
 
     .home-page__categories_container {
@@ -475,11 +475,24 @@
     align-items: center;
     margin-top: 886px;
 
+    @media (max-width: $small-screen) {
+      margin-top: 555px;
+    }
+
+    @media only screen and (min-width: 542px) and (max-width: $medium-screen) {
+      margin-top: 597px;
+    }
+
     &-content {
       display: flex;
       justify-content: center;
       gap: 2rem;
       flex-wrap: wrap;
+
+      @media (max-width: $small-screen) {
+        display: flex;
+        flex-direction: column;
+      }
 
       &-item {
         font-size: 45px;
@@ -491,21 +504,49 @@
         color: $white;
         padding: 1rem 2rem;
         transition: 0.32s all ease-in-out;
-        border: 3px solid $primary;
-        background: $primary;
+        border: 3px solid red;
+        background: red;
         flex-direction: column;
         width: 28%;
         align-items: center;
         justify-content: center;
 
-        &:hover {
-          box-shadow: inset 0 -3.25em 0 0 $white;
-          border: 3px solid $primary;
-          color: $primary;
+        @media (max-width: $small-screen) {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
         }
 
-        span {
-          font-size: 22px;
+        &:hover {
+          box-shadow: inset 0 -3.25em 0 0 $white;
+          border: 3px solid red;
+          color: red;
+        }
+
+        .sale-with-percent {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          span {
+            font-size: 20px;
+          }
+          h3 {
+            font-size: 30px;
+          }
+        }
+
+        .sale-without-percent {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          span {
+            font-size: 20px;
+          }
+          h3 {
+            font-size: 30px;
+          }
         }
 
         @media (max-width: $large-screen) {

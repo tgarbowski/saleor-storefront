@@ -47,6 +47,9 @@ export const getSalesQuery = gql`
         node {
           id
           name
+          products {
+            totalCount
+          }
         }
       }
     }
