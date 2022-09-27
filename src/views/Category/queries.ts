@@ -19,11 +19,12 @@ export const useProductsQuery = (
   ids: RequireOnlyOne<{
     categoryId: string | undefined;
     collectionId: string | undefined;
+    saleId: string | undefined;
   }>,
   skip: boolean = false,
   after?: string
 ) => {
-  const { categoryId, collectionId } = ids;
+  const { categoryId, collectionId, saleId } = ids;
   const variables: ProductListVariables = {
     filter: {
       price: {
@@ -32,6 +33,7 @@ export const useProductsQuery = (
       },
       collections: collectionId ? [collectionId] : [],
       categories: categoryId ? [categoryId] : [],
+      sales: saleId ? [saleId] : [],
       attributes: filters.attributes
         ? convertToAttributeScalar(filters.attributes)
         : [],
@@ -45,6 +47,6 @@ export const useProductsQuery = (
   return useTypedQuery<ProductList, ProductListVariables>(productList, {
     variables,
     fetchPolicy: "cache-and-network",
-    skip: !(categoryId || collectionId) || skip,
+    skip: !(categoryId || collectionId || saleId) || skip,
   });
 };

@@ -20,6 +20,7 @@ import { structuredData } from "../../core/SEO/Homepage/structuredData";
 import {
   HomePageProducts_categories,
   HomePageProducts_collections,
+  HomePageProducts_sales,
   HomePageProducts_shop,
 } from "./gqlTypes/HomePageProducts";
 
@@ -28,14 +29,18 @@ import "./scss/index.scss";
 const Page: React.FC<{
   categories: HomePageProducts_categories;
   collections: HomePageProducts_collections;
+  sales: HomePageProducts_sales;
   featuredProducts: FeaturedProducts;
   shop: HomePageProducts_shop;
-}> = ({ categories, featuredProducts, shop, collections }) => {
+}> = ({ categories, featuredProducts, shop, collections, sales }) => {
   const categoriesExist = () => {
     return categories && categories.edges && categories.edges.length > 0;
   };
   const collectionsExist = () => {
     return collections && collections.edges && collections.edges.length > 0;
+  };
+  const salesExist = () => {
+    return sales && sales.edges && sales.edges.length > 0;
   };
   const intl = useIntl();
 
@@ -179,6 +184,41 @@ const Page: React.FC<{
               <path className="a2" d="M0 20 L30 52 L60 20" />
               <path className="a3" d="M0 40 L30 72 L60 40" />
             </svg>
+          </div>
+        </div>
+      )}
+      {salesExist() && (
+        <div className="home-page__sale-wrapper">
+          <div className="home-page__sale-wrapper-content container">
+            {sales?.edges.map(({ node: sale }) => {
+              return (
+                <>
+                  {sale.name === "15" ||
+                  sale.name === "30" ||
+                  sale.name === "40" ? (
+                    <Link
+                      href={generatePath(paths.sale, {
+                        id: sale.id,
+                      })}
+                    >
+                      <a className="home-page__sale-wrapper-content-item">
+                        <span>Promocja</span> -{sale.name}%!
+                      </a>
+                    </Link>
+                  ) : (
+                    <Link
+                      href={generatePath(paths.sale, {
+                        id: sale.id,
+                      })}
+                    >
+                      <a className="home-page__sale-wrapper-content-item--second">
+                        <span>{sale.name}</span>
+                      </a>
+                    </Link>
+                  )}
+                </>
+              );
+            })}
           </div>
         </div>
       )}

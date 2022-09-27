@@ -7,6 +7,7 @@ import {
   attributeFragment,
   featuredProductsFragment,
   menuItemFragment,
+  saleProductsFragment,
 } from "./fragments";
 
 type LoadMore<TData> = (
@@ -41,6 +42,13 @@ export const featuredProductsQuery = gql`
   ${featuredProductsFragment}
   query FeaturedProductsQuery($slug: String!, $channel: String!) {
     ...FeaturedProducts
+  }
+`;
+
+export const saleProductsQuery = gql`
+  ${saleProductsFragment}
+  query SaleProductsQuery($id: String!, $channel: String) {
+    ...SaleProducts
   }
 `;
 

@@ -6,6 +6,7 @@ import {
   getCategories,
   getCollections,
   getProducts,
+  getSales,
   SitemapGenerator,
 } from "./sitemap";
 
@@ -27,6 +28,9 @@ const generateSitemap = async (hostname: string) => {
     sitemap.add({ url });
   });
   await getProducts(({ url }) => {
+    sitemap.add({ url });
+  });
+  await getSales(({ url }) => {
     sitemap.add({ url });
   });
 
