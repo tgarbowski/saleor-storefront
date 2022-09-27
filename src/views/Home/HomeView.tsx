@@ -1,3 +1,4 @@
+import { ProductList_products } from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
 import { NextPage } from "next";
 import * as React from "react";
 
@@ -17,10 +18,11 @@ export interface HomeViewProps {
   data: HomePageProducts & { featuredProducts: FeaturedProducts } & {
     collections: HomePageProducts_collections;
     sales: HomePageProducts_sales;
+    products: ProductList_products;
   };
 }
 export const HomeView: NextPage<HomeViewProps> = ({
-  data: { shop, featuredProducts, categories, collections, sales },
+  data: { shop, featuredProducts, categories, collections, sales, products },
 }) => (
   <div className="home-page">
     <MetaWrapper
@@ -35,6 +37,7 @@ export const HomeView: NextPage<HomeViewProps> = ({
         shop={shop}
         collections={collections}
         sales={sales}
+        products={products}
       />
     </MetaWrapper>
   </div>

@@ -81,12 +81,15 @@ export interface HomePageProducts_sales_edges_node_backgroundImage {
   url: string;
 }
 
+import { ProductList_products } from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
+
 export interface HomePageProducts_sales_edges_node {
   __typename: "Sale";
   id: string;
   name: string;
   description: string;
   backgroundImage: HomePageProducts_sales_edges_node_backgroundImage | null;
+  products?: ProductList_products | null;
 }
 
 export interface HomePageProducts_sales_edges {

@@ -37,7 +37,7 @@ export const getStaticProps: GetStaticProps<HomeViewProps> = async () => {
     apolloClient
       .query<any>({
         query: getSalesQuery,
-        variables: { channel: channelSlug, perPage: 5 },
+        variables: { channel: channelSlug, perPage: 10 },
       })
       .then(({ data }) => data),
   ]);
