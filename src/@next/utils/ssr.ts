@@ -5,7 +5,6 @@ import { getShop } from "@saleor/sdk/lib/queries/shop";
 
 import {
   featuredProductsQuery,
-  saleProductsQuery,
   shopAttributesQuery,
   shopMenusQuery,
 } from "@graphql";
@@ -26,8 +25,6 @@ import {
 } from "@graphql/gqlTypes/ShopMenusQuery";
 import { apiUrl, channelSlug, shopName } from "@temp/constants";
 import { RequireOnlyOne } from "@utils/tsUtils";
-import { slugify } from "./core";
-import { SaleView, SaleViewProps } from "@temp/views/Sale";
 
 let CONNECTION: ConnectResult | null = null;
 
@@ -103,9 +100,11 @@ export const getFeaturedProducts = async (): Promise<FeaturedProducts> => {
 export const getShopAttributes = async ({
   categoryId = null,
   collectionId = null,
+  saleId = null,
 }: RequireOnlyOne<{
   categoryId: string | null;
   collectionId: string | null;
+  saleId: string | null;
 }>): Promise<Attribute[]> => {
   const { apolloClient } = await getSaleorApi();
   const { data } = await apolloClient.query<

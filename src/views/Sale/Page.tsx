@@ -1,25 +1,16 @@
 import { SaleDetails } from "@saleor/sdk/lib/fragments/gqlTypes/SaleDetails";
 import { ProductList_products_edges_node } from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
-import React, { useState, useEffect } from "react";
-import { useIntl } from "react-intl";
+import React, { useState } from "react";
 
 import { FilterSidebar, ProductList } from "@components/organisms";
 import { Attribute } from "@graphql/gqlTypes/Attribute";
-import { commonMessages } from "@temp/intl";
 import { IFilters } from "@types";
 import { SortOptions } from "@utils/collections";
-import { FeaturedProducts } from "@utils/ssr";
 
 import { ProductListHeader } from "../../@next/components/molecules";
-import {
-  Breadcrumbs,
-  extractBreadcrumbs,
-  ProductsFeatured,
-} from "../../components";
 import { getActiveFilterAttributes } from "../Category/utils";
 
 import "../Category/scss/index.scss";
-import { apiUrl } from "@temp/constants";
 
 export interface SaleData {
   details: SaleDetails;
@@ -57,91 +48,31 @@ export const Page: React.FC<PageProps> = ({
   sortOptions,
   onAttributeFiltersChange,
 }) => {
-  const hasProducts = products.length > 0;
   const [showFilters, setShowFilters] = useState(false);
-  const intl = useIntl();
-
-  // useEffect(() => {
-  //   fetch(apiUrl, {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       query: `
-  //       query{
-  //         sales(first:20){
-  //           edges{
-  //             node{
-  //               id
-  //               name
-  //               startDate
-  //               endDate
-  //               discountValue
-  //               products(first:10){
-  //                 edges{
-  //                   node{
-  //                     id
-  //                     name
-  //                     sku
-  //                   }
-  //                 }
-  //               }
-  //             }
-  //           }
-  //         }
-  //       }
-  //       `,
-  //     }),
-  //     headers: {
-  //       "content-type": "application/json",
-  //     },
-  //   }).then(data =>
-  //     data.json().then(data => {
-  //       console.log(data);
-  //     })
-  //   );
-  // }, []);
-
-  // useEffect(() => {
-  //   fetch(apiUrl, {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       query: `
-  //       query{
-  //         sales(first:20){
-  //           edges{
-  //             node{
-  //               id
-  //               name
-  //               startDate
-  //               endDate
-  //               discountValue
-  //               products(first:10){
-  //                 edges{
-  //                   node{
-  //                     id
-  //                     name
-  //                     sku
-  //                   }
-  //                 }
-  //               }
-  //             }
-  //           }
-  //         }
-  //       }
-  //       `,
-  //     }),
-  //     headers: {
-  //       "content-type": "application/json",
-  //     },
-  //   }).then(data =>
-  //     data.json().then(data => {
-  //       console.log(data);
-  //     })
-  //   );
-  // }, []);
-
   return (
     <div className="sale">
       <div className="container">
+        <FilterSidebar
+          show={showFilters}
+          hide={() => setShowFilters(false)}
+          onAttributeFiltersChange={onAttributeFiltersChange}
+          attributes={attributes}
+          filters={filters}
+        />
+        <ProductListHeader
+          activeSortOption={activeSortOption}
+          openFiltersMenu={() => setShowFilters(true)}
+          numberOfProducts={numberOfProducts}
+          activeFilters={activeFilters}
+          activeFiltersAttributes={getActiveFilterAttributes(
+            filters?.attributes,
+            attributes
+          )}
+          clearFilters={clearFilters}
+          sortOptions={sortOptions}
+          onChange={onOrder}
+          onCloseFilterAttribute={onAttributeFiltersChange}
+        />
         <ProductList
           products={products}
           canLoadMore={hasNextPage}

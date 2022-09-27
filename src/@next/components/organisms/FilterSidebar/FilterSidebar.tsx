@@ -75,7 +75,7 @@ export const FilterSidebar: React.FC<IProps> = ({
           </S.SearchWrapper>
         </S.Header>
         {searchFilter === ""
-          ? attributes.map(({ id, slug, name, choices }) => {
+          ? attributes?.map(({ id, slug, name, choices }) => {
               const values = (choices?.edges.map(({ node }) => node) ||
                 []) as IFilterAttribute[];
               return (

@@ -6,7 +6,7 @@ import {
   staticPathsFetchBatch,
 } from "@temp/constants";
 import { SaleView, SaleViewProps } from "@temp/views/Sale";
-import { exhaustList, getSaleorApi } from "@utils/ssr";
+import { exhaustList, getSaleorApi, getShopAttributes } from "@utils/ssr";
 
 export default SaleView;
 
@@ -37,8 +37,11 @@ export const getStaticProps: GetStaticProps<
 
   if (details) {
     const { id } = details;
+    const [attributes] = await Promise.all([getShopAttributes({ saleId: id })]);
+
     data = {
       details,
+      attributes,
       id,
     };
   }

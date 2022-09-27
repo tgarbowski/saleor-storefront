@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React from "react";
 import Carousel from "react-img-carousel";
 import { FormattedMessage, useIntl } from "react-intl";
 import { generatePath } from "react-router";
@@ -12,7 +12,7 @@ import {
   WomanCategoryImg,
 } from "@styles/pictures";
 import { FooterUsp } from "@temp/components/FooterUsp/FooterUsp";
-import { apiUrl, shopName } from "@temp/constants";
+import { shopName } from "@temp/constants";
 import { FeaturedProducts } from "@utils/ssr";
 
 import { Button, ProductsFeatured } from "../../components";
