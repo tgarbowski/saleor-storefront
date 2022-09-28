@@ -76,7 +76,35 @@ export interface HomePageProducts_collections {
   edges: HomePageProducts_collections_edges[];
 }
 
+export interface HomePageProducts_sales_edges_node_backgroundImage {
+  __typename: "Image";
+  url: string;
+}
 
+import { ProductList_products } from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
+
+export interface HomePageProducts_sales_edges_node {
+  __typename: "Sale";
+  id: string;
+  name: string;
+  description: string;
+  backgroundImage: HomePageProducts_sales_edges_node_backgroundImage | null;
+  products?: ProductList_products | null;
+}
+
+export interface HomePageProducts_sales_edges {
+  __typename: "SaleCountableEdge";
+  node: HomePageProducts_sales_edges_node;
+}
+
+export interface HomePageProducts_sales {
+  __typename: "SaleCountableConnection";
+  edges: HomePageProducts_sales_edges[];
+}
+
+export interface HomePageSales {
+  sales: HomePageProducts_sales | null;
+}
 export interface HomePageCollections {
   collections: HomePageProducts_collections | null;
 }
@@ -84,5 +112,3 @@ export interface HomePageProducts {
   shop: HomePageProducts_shop;
   categories: HomePageProducts_categories | null;
 }
-
-

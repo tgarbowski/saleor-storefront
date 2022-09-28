@@ -92,6 +92,31 @@ export const featuredProductsFragment = gql`
   }
 `;
 
+export const saleProductFragment = gql`
+  ${basicProductFragment}
+  ${productPricingFragment}
+  fragment SaleProduct on Product {
+    ...BasicProductFields
+    ...ProductPricingField
+  }
+`;
+
+export const saleProductsFragment = gql`
+  ${saleProductFragment}
+  fragment SaleProducts on Query {
+    sale(id: $id, channel: $channel) {
+      id
+      products(first: 20) {
+        edges {
+          node {
+            ...SaleProduct
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const attributeFragment = gql`
   fragment Attribute on Attribute {
     id

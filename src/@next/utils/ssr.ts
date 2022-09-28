@@ -100,9 +100,11 @@ export const getFeaturedProducts = async (): Promise<FeaturedProducts> => {
 export const getShopAttributes = async ({
   categoryId = null,
   collectionId = null,
+  saleId = null,
 }: RequireOnlyOne<{
   categoryId: string | null;
   collectionId: string | null;
+  saleId: string | null;
 }>): Promise<Attribute[]> => {
   const { apolloClient } = await getSaleorApi();
   const { data } = await apolloClient.query<

@@ -1,3 +1,4 @@
+import { ProductList_products } from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
 import Link from "next/link";
 import React from "react";
 import Carousel from "react-img-carousel";
@@ -20,6 +21,7 @@ import { structuredData } from "../../core/SEO/Homepage/structuredData";
 import {
   HomePageProducts_categories,
   HomePageProducts_collections,
+  HomePageProducts_sales,
   HomePageProducts_shop,
 } from "./gqlTypes/HomePageProducts";
 
@@ -28,15 +30,21 @@ import "./scss/index.scss";
 const Page: React.FC<{
   categories: HomePageProducts_categories;
   collections: HomePageProducts_collections;
+  sales: HomePageProducts_sales;
+  products: ProductList_products;
   featuredProducts: FeaturedProducts;
   shop: HomePageProducts_shop;
-}> = ({ categories, featuredProducts, shop, collections }) => {
+}> = ({ categories, featuredProducts, shop, collections, sales, products }) => {
   const categoriesExist = () => {
     return categories && categories.edges && categories.edges.length > 0;
   };
   const collectionsExist = () => {
     return collections && collections.edges && collections.edges.length > 0;
   };
+  const salesExist = () => {
+    return sales?.edges?.length > 0;
+  };
+
   const intl = useIntl();
 
   const visibleCategory =
@@ -56,6 +64,8 @@ const Page: React.FC<{
           maxRenderedSlides={3}
           cellPadding={5}
           transition="fade"
+          autoplay
+          autoplaySpeed={1480}
           initialSlide={2}
           arrows
           style={{
@@ -177,6 +187,38 @@ const Page: React.FC<{
               <path className="a2" d="M0 20 L30 52 L60 20" />
               <path className="a3" d="M0 40 L30 72 L60 40" />
             </svg>
+          </div>
+        </div>
+      )}
+      {salesExist() && (
+        <div className="home-page__sale-wrapper">
+          <div className="home-page__sale-wrapper-content container">
+            {sales?.edges.map(({ node: sale }) => {
+              // sale?.products?.totalCount.length > 1 ?
+              if (sale?.products?.totalCount > 0) {
+                return (
+                  <Link
+                    href={generatePath(paths.sale, {
+                      id: sale.id,
+                    })}
+                  >
+                    <a className="home-page__sale-wrapper-content-item">
+                      {sale.name.match(/\d/) ? (
+                        <h2 className="sale-with-percent">
+                          <span>Promocja!</span>
+                          <h3>-{sale.name}%</h3>
+                        </h2>
+                      ) : (
+                        <span className="sale-without-percent">
+                          <span>Promocja!</span>
+                          <h3>{sale.name}</h3>
+                        </span>
+                      )}
+                    </a>
+                  </Link>
+                );
+              }
+            })}
           </div>
         </div>
       )}

@@ -67,6 +67,36 @@ export interface ProductsList_categories {
   edges: ProductsList_categories_edges[];
 }
 
+export interface ProductsList_sale_edges_node_backgroundImage {
+  __typename: "Image";
+  /**
+   * The URL of the image.
+   */
+  url: string;
+}
+
+export interface ProductsList_sale_edges_node {
+  __typename: "Sale";
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string;
+  backgroundImage: ProductsList_sale_edges_node_backgroundImage | null;
+}
+
+export interface ProductsList_sale_edges {
+  __typename: "SaleCountableEdge";
+  /**
+   * The item at the end of the edge.
+   */
+  node: ProductsList_sale_edges_node;
+}
+
+export interface ProductsList_sale {
+  __typename: "SaleCountableConnection";
+  edges: ProductsList_sale_edges[];
+}
 export interface ProductsList {
   /**
    * Return information about the shop.
@@ -76,6 +106,7 @@ export interface ProductsList {
    * Look up a collection by ID.
    */
   collection: ProductsList_collection | null;
+  sale: ProductsList_sale | null;
   /**
    * List of the shop's categories.
    */

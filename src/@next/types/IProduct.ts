@@ -7,6 +7,7 @@ export type IProduct = WithOptional<
   | "slug"
   | "seoTitle"
   | "collections"
+  | "sales"
   | "seoDescription"
   | "availableForPurchase"
   | "isAvailableForPurchase"
