@@ -5,6 +5,7 @@ import * as React from "react";
 import { FeaturedProducts } from "@utils/ssr";
 
 import { MetaWrapper } from "../../components";
+import { HomePagePages_news } from "./gqlTypes/HomePagePages";
 import {
   HomePageProducts,
   HomePageProducts_collections,
@@ -19,10 +20,19 @@ export interface HomeViewProps {
     collections: HomePageProducts_collections;
     sales: HomePageProducts_sales;
     products: ProductList_products;
+    news: HomePagePages_news;
   };
 }
 export const HomeView: NextPage<HomeViewProps> = ({
-  data: { shop, featuredProducts, categories, collections, sales, products },
+  data: {
+    shop,
+    featuredProducts,
+    categories,
+    collections,
+    sales,
+    products,
+    news,
+  },
 }) => (
   <div className="home-page">
     <MetaWrapper
@@ -38,6 +48,7 @@ export const HomeView: NextPage<HomeViewProps> = ({
         collections={collections}
         sales={sales}
         products={products}
+        news={news}
       />
     </MetaWrapper>
   </div>

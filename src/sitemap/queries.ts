@@ -77,3 +77,43 @@ export const getCollectionsQuery = gql`
     }
   }
 `;
+
+export const getNewsIdQuery = gql`
+  query GetNewsId {
+    pageTypes(first: 10, filter: { search: "news" }) {
+      edges {
+        node {
+          id
+          slug
+        }
+      }
+    }
+  }
+`;
+
+export const getNewsQuery = gql`
+  query Pages($id: ID, $channelSlug: String) {
+    pages(
+      first: 50
+      filter: {
+        pageTypes: [$id]
+        metadata: { key: "channel", value: $channelSlug }
+      }
+    ) {
+      edges {
+        node {
+          slug
+          title
+          attributes {
+            values {
+              file {
+                url
+                contentType
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;

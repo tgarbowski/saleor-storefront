@@ -18,6 +18,7 @@ import { FeaturedProducts } from "@utils/ssr";
 
 import { Button, ProductsFeatured } from "../../components";
 import { structuredData } from "../../core/SEO/Homepage/structuredData";
+import { HomePagePages_news } from "./gqlTypes/HomePagePages";
 import {
   HomePageProducts_categories,
   HomePageProducts_collections,
@@ -34,7 +35,16 @@ const Page: React.FC<{
   products: ProductList_products;
   featuredProducts: FeaturedProducts;
   shop: HomePageProducts_shop;
-}> = ({ categories, featuredProducts, shop, collections, sales, products }) => {
+  news: HomePagePages_news;
+}> = ({
+  categories,
+  featuredProducts,
+  shop,
+  collections,
+  sales,
+  products,
+  news,
+}) => {
   const categoriesExist = () => {
     return categories && categories.edges && categories.edges.length > 0;
   };
@@ -106,7 +116,10 @@ const Page: React.FC<{
                   <div>
                     <span className="home-page__hero__subtitle">
                       <h1>
-                        {JSON.parse(collection.description).blocks[0].data.text}
+                        {
+                          JSON.parse(collection.description)?.blocks[0]?.data
+                            .text
+                        }
                       </h1>
                     </span>
                   </div>
@@ -322,6 +335,23 @@ const Page: React.FC<{
           </div>
         </div>
       )}
+      {news?.edges.map(({ node: newsElem }) => {
+        const url = newsElem?.attributes[0]?.values[0]?.file?.url.split("/");
+        const correctedUrl = `https://saleor-sandbox-media.s3.eu-central-1.amazonaws.com/${
+          url[url.length - 2]
+        }/${url[url.length - 1]}`;
+        const { slug } = newsElem;
+        const newsUrl = generatePath(paths.page, { slug });
+
+        return (
+          <div>
+            {newsElem?.title}
+            <img src={correctedUrl} alt="ALT" />
+            <Link href={newsUrl}>TESTOWY LINK</Link>
+          </div>
+        );
+      })}
+
       <ProductsFeatured
         products={featuredProducts.products}
         title={intl.formatMessage({ defaultMessage: "Featured" })}
