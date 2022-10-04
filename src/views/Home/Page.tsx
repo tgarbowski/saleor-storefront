@@ -42,7 +42,7 @@ const Page: React.FC<{
     return collections && collections.edges && collections.edges.length > 0;
   };
   const salesExist = () => {
-    return sales?.edges?.length > 0;
+    return sales && sales.edges && sales.edges.length > 0;
   };
 
   const intl = useIntl();
@@ -194,7 +194,6 @@ const Page: React.FC<{
         <div className="home-page__sale-wrapper">
           <div className="home-page__sale-wrapper-content container">
             {sales?.edges.map(({ node: sale }) => {
-              // sale?.products?.totalCount.length > 1 ?
               if (sale?.products?.totalCount > 0) {
                 return (
                   <Link

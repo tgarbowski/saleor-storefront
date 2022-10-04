@@ -1,8 +1,11 @@
 import gql from "graphql-tag";
 
 export const pagesQuery = gql`
-  query Pages {
-    pages(first: 50) {
+  query Pages($channelSlug: String) {
+    pages(
+      first: 50
+      filter: { metadata: { key: "channel", value: $channelSlug } }
+    ) {
       edges {
         node {
           id
