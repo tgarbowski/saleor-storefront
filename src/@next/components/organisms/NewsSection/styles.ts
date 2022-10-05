@@ -55,6 +55,7 @@ export const NewsItem = styled.div`
 export const NewsItemLeft = styled.div`
   width: 100%;
 `;
+
 export const NewsItemRight = styled.div`
   display: flex;
   flex-direction: column;

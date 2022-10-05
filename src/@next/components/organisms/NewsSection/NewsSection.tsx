@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { generatePath } from "react-router";
 
 import { paths } from "@paths";
@@ -10,10 +10,6 @@ import { HomePagePages_news } from "./types";
 const NewsSection: React.FC<{
   news: HomePagePages_news;
 }> = ({ news }) => {
-  useEffect(() => {
-    console.log(news?.edges[0].node.content);
-  }, []);
-
   return (
     <>
       <S.NewsSection>

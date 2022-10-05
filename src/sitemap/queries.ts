@@ -107,6 +107,7 @@ export const getNewsQuery = gql`
           content
           seoDescription
           seoTitle
+          created
           attributes {
             values {
               file {
