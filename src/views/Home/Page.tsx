@@ -66,6 +66,7 @@ const Page: React.FC<{
           transition="fade"
           autoplay
           autoplaySpeed={5000}
+          transitionDuration={1000}
           initialSlide={2}
           arrows
           style={{
