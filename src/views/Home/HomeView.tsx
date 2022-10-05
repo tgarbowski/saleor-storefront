@@ -2,10 +2,10 @@ import { ProductList_products } from "@saleor/sdk/lib/queries/gqlTypes/ProductLi
 import { NextPage } from "next";
 import * as React from "react";
 
+import { HomePagePages_news } from "@components/organisms/NewsSection/types";
 import { FeaturedProducts } from "@utils/ssr";
 
 import { MetaWrapper } from "../../components";
-import { HomePagePages_news } from "./gqlTypes/HomePagePages";
 import {
   HomePageProducts,
   HomePageProducts_collections,

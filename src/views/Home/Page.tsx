@@ -5,6 +5,8 @@ import Carousel from "react-img-carousel";
 import { FormattedMessage, useIntl } from "react-intl";
 import { generatePath } from "react-router";
 
+import NewsSection from "@components/organisms/NewsSection/NewsSection";
+import { HomePagePages_news } from "@components/organisms/NewsSection/types";
 import { paths } from "@paths";
 import {
   DefaultHero,
@@ -18,7 +20,6 @@ import { FeaturedProducts } from "@utils/ssr";
 
 import { Button, ProductsFeatured } from "../../components";
 import { structuredData } from "../../core/SEO/Homepage/structuredData";
-import { HomePagePages_news } from "./gqlTypes/HomePagePages";
 import {
   HomePageProducts_categories,
   HomePageProducts_collections,
@@ -36,15 +37,7 @@ const Page: React.FC<{
   featuredProducts: FeaturedProducts;
   shop: HomePageProducts_shop;
   news: HomePagePages_news;
-}> = ({
-  categories,
-  featuredProducts,
-  shop,
-  collections,
-  sales,
-  products,
-  news,
-}) => {
+}> = ({ categories, featuredProducts, shop, collections, sales, news }) => {
   const categoriesExist = () => {
     return categories && categories.edges && categories.edges.length > 0;
   };
@@ -335,22 +328,7 @@ const Page: React.FC<{
           </div>
         </div>
       )}
-      {news?.edges.map(({ node: newsElem }) => {
-        const url = newsElem?.attributes[0]?.values[0]?.file?.url.split("/");
-        const correctedUrl = `https://saleor-sandbox-media.s3.eu-central-1.amazonaws.com/${
-          url[url.length - 2]
-        }/${url[url.length - 1]}`;
-        const { slug } = newsElem;
-        const newsUrl = generatePath(paths.page, { slug });
-
-        return (
-          <div>
-            {newsElem?.title}
-            <img src={correctedUrl} alt="ALT" />
-            <Link href={newsUrl}>TESTOWY LINK</Link>
-          </div>
-        );
-      })}
+      <NewsSection news={news} />
 
       <ProductsFeatured
         products={featuredProducts.products}

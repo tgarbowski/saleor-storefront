@@ -104,6 +104,9 @@ export const getNewsQuery = gql`
         node {
           slug
           title
+          content
+          seoDescription
+          seoTitle
           attributes {
             values {
               file {
