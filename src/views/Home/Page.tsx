@@ -5,7 +5,7 @@ import Carousel from "react-img-carousel";
 import { FormattedMessage, useIntl } from "react-intl";
 import { generatePath } from "react-router";
 
-import NewsSection from "@components/organisms/NewsSection/NewsSection";
+import { NewsSection } from "@components/organisms/NewsSection/NewsSection";
 import { HomePagePages_news } from "@components/organisms/NewsSection/types";
 import { paths } from "@paths";
 import {

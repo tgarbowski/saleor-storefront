@@ -94,6 +94,7 @@ export const getNewsIdQuery = gql`
 export const getNewsQuery = gql`
   query Pages($id: ID, $channelSlug: String) {
     pages(
+      sortBy: { field: CREATION_DATE, direction: DESC }
       first: 50
       filter: {
         pageTypes: [$id]
