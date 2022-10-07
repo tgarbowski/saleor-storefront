@@ -22,7 +22,7 @@ export const NewsSectionContentRight = styled.div`
   width: 50%;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 800px;
 `;
 
 export const LeftSectionItem = styled.div`
@@ -68,7 +68,7 @@ export const NewsItemImg = styled.img`
 
 export const LeftSectionItemLeftImg = styled.img`
   width: 100%;
-  height: 100vh;
+  height: 800px;
   object-fit: cover;
 `;
 
