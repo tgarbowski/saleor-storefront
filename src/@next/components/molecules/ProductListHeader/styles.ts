@@ -46,7 +46,7 @@ export const LeftSide = styled.div`
   align-items: center;
 
   @media (max-width: 520px) {
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
   }
 `;
 
