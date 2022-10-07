@@ -4,7 +4,6 @@ import { useMemo } from "react";
 import { generatePath } from "react-router";
 
 import { paths } from "@paths";
-import { shopName } from "@temp/constants";
 import { FeaturedProducts } from "@utils/ssr";
 
 import { MetaWrapper, NotFound } from "../../components";
