@@ -5,6 +5,8 @@ import Carousel from "react-img-carousel";
 import { FormattedMessage, useIntl } from "react-intl";
 import { generatePath } from "react-router";
 
+import { NewsSection } from "@components/organisms/NewsSection/NewsSection";
+import { HomePagePages_news } from "@components/organisms/NewsSection/types";
 import { paths } from "@paths";
 import {
   DefaultHero,
@@ -34,7 +36,8 @@ const Page: React.FC<{
   products: ProductList_products;
   featuredProducts: FeaturedProducts;
   shop: HomePageProducts_shop;
-}> = ({ categories, featuredProducts, shop, collections, sales, products }) => {
+  news: HomePagePages_news;
+}> = ({ categories, featuredProducts, shop, collections, sales, news }) => {
   const categoriesExist = () => {
     return categories && categories.edges && categories.edges.length > 0;
   };
@@ -42,7 +45,7 @@ const Page: React.FC<{
     return collections && collections.edges && collections.edges.length > 0;
   };
   const salesExist = () => {
-    return sales?.edges?.length > 0;
+    return sales && sales.edges && sales.edges.length > 0;
   };
 
   const intl = useIntl();
@@ -107,7 +110,10 @@ const Page: React.FC<{
                   <div>
                     <span className="home-page__hero__subtitle">
                       <h1>
-                        {JSON.parse(collection.description).blocks[0].data.text}
+                        {
+                          JSON.parse(collection.description)?.blocks[0]?.data
+                            .text
+                        }
                       </h1>
                     </span>
                   </div>
@@ -195,7 +201,6 @@ const Page: React.FC<{
         <div className="home-page__sale-wrapper">
           <div className="home-page__sale-wrapper-content container">
             {sales?.edges.map(({ node: sale }) => {
-              // sale?.products?.totalCount.length > 1 ?
               if (sale?.products?.totalCount > 0) {
                 return (
                   <Link
@@ -324,6 +329,8 @@ const Page: React.FC<{
           </div>
         </div>
       )}
+      <NewsSection news={news} />
+
       <ProductsFeatured
         products={featuredProducts.products}
         title={intl.formatMessage({ defaultMessage: "Featured" })}
