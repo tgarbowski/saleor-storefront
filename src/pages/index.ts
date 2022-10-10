@@ -4,7 +4,12 @@ import {
   channelSlug,
   incrementalStaticRegenerationRevalidate,
 } from "@temp/constants";
-import { getCollectionsQuery, getSalesQuery } from "@temp/sitemap/queries";
+import {
+  getCollectionsQuery,
+  getNewsIdQuery,
+  getNewsQuery,
+  getSalesQuery,
+} from "@temp/sitemap/queries";
 import { getFeaturedProducts, getSaleorApi } from "@utils/ssr";
 
 import { homePageProductsQuery, HomeView, HomeViewProps } from "../views/Home";
@@ -42,10 +47,36 @@ export const getStaticProps: GetStaticProps<HomeViewProps> = async () => {
       .then(({ data }) => data),
   ]);
 
+  const [newsIdData] = await Promise.all([
+    apolloClient
+      .query<any>({
+        query: getNewsIdQuery,
+      })
+      .then(({ data }) => data),
+  ]);
+
+  const [newsData] = await Promise.all([
+    apolloClient
+      .query<any>({
+        query: getNewsQuery,
+        variables: {
+          id: newsIdData.pageTypes.edges[0].node.id,
+          channelSlug,
+        },
+      })
+      .then(({ data }) => data),
+  ]);
+
   return {
     revalidate: incrementalStaticRegenerationRevalidate,
     props: {
-      data: { ...data, featuredProducts, ...collectionsData, ...salesData },
+      data: {
+        ...data,
+        featuredProducts,
+        ...collectionsData,
+        ...salesData,
+        news: newsData.pages,
+      },
     },
   };
 };

@@ -44,6 +44,10 @@ export const Bar = styled.div`
 export const LeftSide = styled.div`
   display: flex;
   align-items: center;
+
+  @media (max-width: 520px) {
+    margin-bottom: 1.2rem;
+  }
 `;
 
 export const RightSide = styled.div`
