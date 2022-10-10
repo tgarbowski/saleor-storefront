@@ -55,7 +55,7 @@ export const NewsHeading = styled.h2`
 `;
 
 export const NewsItemText = styled.p`
-  font-size: 18px;
+  font-size: 16px;
   color: gray;
   word-break: break-word;
 `;
@@ -75,10 +75,10 @@ export const LeftSectionItemLeftImg = styled.img`
 export const NewsItem = styled.div`
   width: 100%;
   display: flex;
-  gap: 3rem;
+  gap: 1.5rem;
   height: 100%;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 export const NewsItemLeft = styled.div`
@@ -105,12 +105,18 @@ export const NewsHeadingPrimary = styled.a`
 `;
 
 export const NewsHeadingSecondary = styled.a`
-  font-size: 24px;
+  font-size: 22px;
   word-break: break-word;
   width: 100%;
   max-width: 325px;
   font-weight: 700;
-  line-height: 2rem;
+  line-height: 1.7rem;
+  margin-bottom: 1rem;
+
+  &:hover {
+    transition: 0.4s all ease-in-out;
+    color: ${props => props.theme.colors.primary};
+  }
 `;
 
 export const NewsHeadingThird = styled.h2`
@@ -120,6 +126,7 @@ export const NewsHeadingThird = styled.h2`
   max-width: 524px;
   font-weight: 700;
   line-height: 2rem;
+  margin-bottom: 2rem;
 `;
 
 export const NewsSectionSmallContent = styled.div`
