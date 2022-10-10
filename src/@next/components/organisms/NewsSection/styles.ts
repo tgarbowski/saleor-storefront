@@ -11,7 +11,7 @@ export const NewsSectionContent = styled.div`
   align-items: flex-start;
   justify-content: center;
   gap: 2.5rem;
-  height: 60vh;
+  height: 900px;
 `;
 
 export const NewsSectionContentLeft = styled.div`
