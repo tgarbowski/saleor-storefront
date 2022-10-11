@@ -38,14 +38,14 @@ export const NewsSection: React.FC<{
                       <S.LeftSectionItemLeft>
                         <S.LeftSectionItemLeftImg src={correctedUrl} alt="" />
                       </S.LeftSectionItemLeft>
-                      <S.LeftSectionItemRightLink href={newsUrl}>
+                      <S.LeftSectionItemRight>
                         <S.NewsSmallHeadingSecondary href={newsUrl}>
                           {newsElem?.title}
                         </S.NewsSmallHeadingSecondary>
                         <S.NewsItemText>
                           {contentStringify} [...]
                         </S.NewsItemText>
-                      </S.LeftSectionItemRightLink>
+                      </S.LeftSectionItemRight>
                     </S.LeftSectionItem>
                   );
                 })}

@@ -66,7 +66,7 @@ export const LeftSectionItemLeft = styled.div`
   }
 `;
 
-export const LeftSectionItemRightLink = styled.a`
+export const LeftSectionItemRight = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -75,6 +75,7 @@ export const LeftSectionItemRightLink = styled.a`
   background-color: white;
   padding: 3rem;
   gap: 1.5rem;
+  width: 75%;
 
   @media (max-width: 920px) {
     position: unset;
