@@ -41,7 +41,7 @@ export const SaleView: NextPage<SaleViewProps> = ({ data: sale }) => {
     if (productsData) {
       const productsJson = JSON.parse(productsData);
       if (
-        productsJson.categoryId === sale?.id &&
+        productsJson.saleId === sale?.id &&
         productsJson.locationHref === window.location.href
       ) {
         return {
@@ -100,14 +100,14 @@ export const SaleView: NextPage<SaleViewProps> = ({ data: sale }) => {
             ],
             pageInfo: data.products.pageInfo,
           },
-          categoryId: sale?.id,
+          saleId: sale?.id,
           locationHref: window.location.href,
         });
         localStorage.setItem("product_data", productsData);
       } else {
         const productsData = JSON.stringify({
           products: data?.products,
-          categoryId: sale?.id,
+          saleId: sale?.id,
           locationHref: window.location.href,
         });
         localStorage.setItem("product_data", productsData);

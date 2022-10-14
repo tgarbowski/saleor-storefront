@@ -88,7 +88,7 @@ export const Page: React.FC<PageProps> = ({
 
         {!displayLoader && !hasProducts ? (
           <h3 className="NotFoundProductsTitle">
-            Przepraszamy, ale nie znaleziono produktów
+            Przepraszamy, ale nie znaleziono dostepnych produktów
           </h3>
         ) : (
           <ProductList
