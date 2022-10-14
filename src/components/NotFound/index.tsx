@@ -40,6 +40,15 @@ const NotFound: NextPage<NotFoundProps> = () => {
                 Być może błędnie wpisałeś adres kategorii lub ona nie istnieje.
               </p>
             </>
+          ) : currentPath[1] === "sale" ? (
+            <>
+              <h2 className="not-found-page-container-text-second">
+                Ta wyprzedaż nie istnieje lub została przeniesiona
+              </h2>
+              <p className="not-found-page-container-paragraph">
+                Być może błędnie wpisałeś adres wyprzedaży lub ona nie istnieje.
+              </p>
+            </>
           ) : (
             <>
               <h2 className="not-found-page-container-text-second">
@@ -69,6 +78,12 @@ const NotFound: NextPage<NotFoundProps> = () => {
               className="not-found-product-img"
             />
           ) : currentPath[1] === "category" ? (
+            <img
+              src={NotFoundProductImage}
+              alt=""
+              className="not-found-product-img"
+            />
+          ) : currentPath[1] === "sale" ? (
             <img
               src={NotFoundProductImage}
               alt=""
