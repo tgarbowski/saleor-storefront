@@ -1,24 +1,21 @@
 import { CollectionDetails } from "@saleor/sdk/lib/fragments/gqlTypes/CollectionDetails";
 import { ProductList_products_edges_node } from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
+import Link from "next/link";
 import React, { useState } from "react";
-import { useIntl } from "react-intl";
+import { FormattedMessage } from "react-intl";
 
 import { FilterSidebar, ProductList } from "@components/organisms";
 import { Attribute } from "@graphql/gqlTypes/Attribute";
-import { commonMessages } from "@temp/intl";
+import { paths } from "@paths";
 import { IFilters } from "@types";
 import { SortOptions } from "@utils/collections";
 import { FeaturedProducts } from "@utils/ssr";
 
 import { ProductListHeader } from "../../@next/components/molecules";
-import {
-  Breadcrumbs,
-  extractBreadcrumbs,
-  ProductsFeatured,
-} from "../../components";
+import { Breadcrumbs, Button, extractBreadcrumbs } from "../../components";
 import { getActiveFilterAttributes } from "../Category/utils";
 
-import "../Category/scss/index.scss";
+import "./scss/index.scss";
 
 export interface CollectionData {
   details: CollectionDetails;
@@ -57,9 +54,9 @@ export const Page: React.FC<PageProps> = ({
   sortOptions,
   onAttributeFiltersChange,
 }) => {
-  const hasProducts = products.length > 0;
   const [showFilters, setShowFilters] = useState(false);
-  const intl = useIntl();
+
+  const hasProducts = products.length < 1;
 
   return (
     <div className="collection">
@@ -87,20 +84,28 @@ export const Page: React.FC<PageProps> = ({
           onCloseFilterAttribute={onAttributeFiltersChange}
         />
 
-        <ProductList
-          products={products}
-          canLoadMore={hasNextPage}
-          loading={displayLoader}
-          onLoadMore={onLoadMore}
-        />
+        {!displayLoader && hasProducts ? (
+          <div className="notfound-products">
+            <h3 className="NotFoundProductsTitle">
+              Przepraszamy, ale nie znalezliśmy produktów w tej kolekcji.
+            </h3>
+            <Link href={paths.home}>
+              <a>
+                <Button testingContext="promoButton">
+                  <FormattedMessage defaultMessage="Sprawdź inne kolekcje" />
+                </Button>
+              </a>
+            </Link>
+          </div>
+        ) : (
+          <ProductList
+            products={products}
+            canLoadMore={hasNextPage}
+            loading={displayLoader}
+            onLoadMore={onLoadMore}
+          />
+        )}
       </div>
-
-      {!displayLoader && !hasProducts && (
-        <ProductsFeatured
-          products={featuredProducts.products}
-          title={intl.formatMessage(commonMessages.youMightLike)}
-        />
-      )}
     </div>
   );
 };

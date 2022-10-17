@@ -29,19 +29,23 @@ export const NewsSection: React.FC<{
                   const { slug } = newsElem;
                   const newsUrl = generatePath(paths.page, { slug });
 
+                  const contentStringify = JSON.parse(
+                    newsElem?.content
+                  ).blocks[0].data.text.replace(/^(.{128}[^\s]*).*/, "$1");
+
                   return (
                     <S.LeftSectionItem key={newsElem?.id}>
                       <S.LeftSectionItemLeft>
                         <S.LeftSectionItemLeftImg src={correctedUrl} alt="" />
                       </S.LeftSectionItemLeft>
-                      <S.LeftSectionItemRightLink href={newsUrl}>
-                        <S.NewsHeadingPrimary href={newsUrl}>
+                      <S.LeftSectionItemRight>
+                        <S.NewsSmallHeadingSecondary href={newsUrl}>
                           {newsElem?.title}
-                        </S.NewsHeadingPrimary>
-                        <S.NewsHeadingPrimary href={newsUrl}>
-                          Czytaj więcej
-                        </S.NewsHeadingPrimary>
-                      </S.LeftSectionItemRightLink>
+                        </S.NewsSmallHeadingSecondary>
+                        <S.NewsItemText>
+                          {contentStringify} [...]
+                        </S.NewsItemText>
+                      </S.LeftSectionItemRight>
                     </S.LeftSectionItem>
                   );
                 })}
@@ -70,7 +74,9 @@ export const NewsSection: React.FC<{
                         <S.NewsHeadingSecondary href={newsUrl}>
                           {newsElem?.title}
                         </S.NewsHeadingSecondary>
-                        <S.NewsItemText>{contentStringify}</S.NewsItemText>
+                        <S.NewsItemText>
+                          {contentStringify} [...]
+                        </S.NewsItemText>
                       </S.NewsItemRight>
                     </S.NewsItem>
                   );

@@ -11,11 +11,22 @@ export const NewsSectionContent = styled.div`
   align-items: flex-start;
   justify-content: center;
   gap: 2.5rem;
-  height: 60vh;
+  height: 900px;
+
+  @media (max-width: 920px) {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin-top: 8rem;
+  }
 `;
 
 export const NewsSectionContentLeft = styled.div`
   width: 50%;
+
+  @media (max-width: 920px) {
+    width: 100%;
+  }
 `;
 
 export const NewsSectionContentRight = styled.div`
@@ -23,6 +34,13 @@ export const NewsSectionContentRight = styled.div`
   display: flex;
   flex-direction: column;
   height: 800px;
+
+  @media (max-width: 920px) {
+    width: 100%;
+    height: 100%;
+    gap: 3rem;
+    position: relative;
+  }
 `;
 
 export const LeftSectionItem = styled.div`
@@ -31,13 +49,24 @@ export const LeftSectionItem = styled.div`
   flex-direction: row;
   align-items: flex-start;
   position: relative;
+
+  @media (max-width: 920px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const LeftSectionItemLeft = styled.div`
   width: 100%;
+
+  @media (max-width: 920px) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
-export const LeftSectionItemRightLink = styled.a`
+export const LeftSectionItemRight = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -46,6 +75,12 @@ export const LeftSectionItemRightLink = styled.a`
   background-color: white;
   padding: 3rem;
   gap: 1.5rem;
+  width: 75%;
+
+  @media (max-width: 920px) {
+    position: unset;
+    padding: 3rem 0 0 0;
+  }
 `;
 
 export const NewsHeading = styled.h2`
@@ -70,6 +105,10 @@ export const LeftSectionItemLeftImg = styled.img`
   width: 100%;
   height: 800px;
   object-fit: cover;
+
+  @media (max-width: 920px) {
+    height: unset;
+  }
 `;
 
 export const NewsItem = styled.div`
@@ -79,6 +118,11 @@ export const NewsItem = styled.div`
   height: 100%;
   flex-direction: row;
   align-items: flex-start;
+
+  @media (max-width: 920px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const NewsItemLeft = styled.div`
@@ -88,20 +132,15 @@ export const NewsItemLeft = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   object-fit: cover;
+
+  @media (max-width: 920px) {
+    width: 100%;
+  }
 `;
 
 export const NewsItemRight = styled.div`
   display: flex;
   flex-direction: column;
-`;
-
-export const NewsHeadingPrimary = styled.a`
-  font-size: 28px;
-  word-break: break-word;
-  width: 100%;
-  max-width: 524px;
-  font-weight: 700;
-  line-height: 2rem;
 `;
 
 export const NewsHeadingSecondary = styled.a`
@@ -127,6 +166,31 @@ export const NewsHeadingThird = styled.h2`
   font-weight: 700;
   line-height: 2rem;
   margin-bottom: 2rem;
+
+  @media (max-width: 440px) {
+    position: absolute;
+    top: -36rem;
+  }
+  @media only screen and (min-width: 441px) and (max-width: 520px) {
+    position: absolute;
+    top: -38rem;
+  }
+  @media only screen and (min-width: 521px) and (max-width: 620px) {
+    position: absolute;
+    top: -41rem;
+  }
+  @media only screen and (min-width: 621px) and (max-width: 720px) {
+    position: absolute;
+    top: -45rem;
+  }
+  @media only screen and (min-width: 721px) and (max-width: 820px) {
+    position: absolute;
+    top: -47rem;
+  }
+  @media only screen and (min-width: 821px) and (max-width: 920px) {
+    position: absolute;
+    top: -49.5rem;
+  }
 `;
 
 export const NewsSectionSmallContent = styled.div`
@@ -145,7 +209,7 @@ export const NewsSectionSmallContent = styled.div`
     gap: 3rem;
     justify-content: center;
   }
-  @media (min-width: 782px) {
+  @media (min-width: 920px) {
     flex-wrap: nowrap;
   }
 `;

@@ -4,7 +4,6 @@ import { useMemo } from "react";
 import { generatePath } from "react-router";
 
 import { paths } from "@paths";
-import { shopName } from "@temp/constants";
 import { FeaturedProducts } from "@utils/ssr";
 
 import { MetaWrapper, NotFound } from "../../components";
@@ -38,20 +37,7 @@ export const ArticleView: NextPage<ArticleViewProps> = ({ data }) => {
         title: data.article.seoTitle,
       }}
     >
-      { shopName === "FASHION4YOU" && (
-        !data.article.slug.includes("-c4u") ? ( 
-          <Page breadcrumbs={getBreadcrumbs(data.article)} page={data.article} />
-        ) : (
-          <NotFound />
-        )
-      )}
-      { shopName === "CLOTHES4U" && (
-        data.article.slug.includes("-c4u") ? ( 
-          <Page breadcrumbs={getBreadcrumbs(data.article)} page={data.article} />
-        ) : (
-          <NotFound />
-        )
-      )}
+      <Page breadcrumbs={getBreadcrumbs(data.article)} page={data.article} />
     </MetaWrapper>
   ) : (
     <NotFound />

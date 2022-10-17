@@ -1,20 +1,28 @@
 import { SaleDetails } from "@saleor/sdk/lib/fragments/gqlTypes/SaleDetails";
-import { ProductList_products_edges_node } from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
+import {
+  ProductList_products_edges,
+  ProductList_products_edges_node,
+} from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
+import Link from "next/link";
 import React, { useState } from "react";
+import { FormattedMessage } from "react-intl";
 
+import { Button } from "@components/atoms";
 import { FilterSidebar, ProductList } from "@components/organisms";
 import { Attribute } from "@graphql/gqlTypes/Attribute";
+import { paths } from "@paths";
 import { IFilters } from "@types";
 import { SortOptions } from "@utils/collections";
 
 import { ProductListHeader } from "../../@next/components/molecules";
 import { getActiveFilterAttributes } from "../Category/utils";
 
-import "../Category/scss/index.scss";
+import "./scss/index.scss";
 
 export interface SaleData {
   details: SaleDetails;
   attributes: Attribute[];
+  products: ProductList_products_edges[];
 }
 
 interface PageProps {
@@ -36,7 +44,7 @@ interface PageProps {
 export const Page: React.FC<PageProps> = ({
   activeFilters,
   activeSortOption,
-  sale: { details, attributes },
+  sale,
   displayLoader,
   hasNextPage,
   clearFilters,
@@ -49,6 +57,9 @@ export const Page: React.FC<PageProps> = ({
   onAttributeFiltersChange,
 }) => {
   const [showFilters, setShowFilters] = useState(false);
+
+  const hasProducts = products.length < 1;
+
   return (
     <div className="sale">
       <div className="container">
@@ -56,7 +67,7 @@ export const Page: React.FC<PageProps> = ({
           show={showFilters}
           hide={() => setShowFilters(false)}
           onAttributeFiltersChange={onAttributeFiltersChange}
-          attributes={attributes}
+          attributes={sale?.attributes}
           filters={filters}
         />
         <ProductListHeader
@@ -66,19 +77,35 @@ export const Page: React.FC<PageProps> = ({
           activeFilters={activeFilters}
           activeFiltersAttributes={getActiveFilterAttributes(
             filters?.attributes,
-            attributes
+            sale?.attributes
           )}
           clearFilters={clearFilters}
           sortOptions={sortOptions}
           onChange={onOrder}
           onCloseFilterAttribute={onAttributeFiltersChange}
         />
-        <ProductList
-          products={products}
-          canLoadMore={hasNextPage}
-          loading={displayLoader}
-          onLoadMore={onLoadMore}
-        />
+
+        {!displayLoader && hasProducts ? (
+          <div className="notfound-products">
+            <h3 className="NotFoundProductsTitle">
+              Przepraszamy, ale nie znalezliśmy produktów w tej wyprzedaży.
+            </h3>
+            <Link href={paths.home}>
+              <a>
+                <Button testingContext="promoButton">
+                  <FormattedMessage defaultMessage="Sprawdź inne wyprzedaże" />
+                </Button>
+              </a>
+            </Link>
+          </div>
+        ) : (
+          <ProductList
+            products={products}
+            canLoadMore={hasNextPage}
+            loading={displayLoader}
+            onLoadMore={onLoadMore}
+          />
+        )}
       </div>
     </div>
   );
