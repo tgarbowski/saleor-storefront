@@ -58,6 +58,8 @@ export const Page: React.FC<PageProps> = ({
 }) => {
   const [showFilters, setShowFilters] = useState(false);
 
+  const hasProducts = products.length < 1;
+
   return (
     <div className="sale">
       <div className="container">
@@ -83,7 +85,7 @@ export const Page: React.FC<PageProps> = ({
           onCloseFilterAttribute={onAttributeFiltersChange}
         />
 
-        {products?.length < 1 ? (
+        {!displayLoader && hasProducts ? (
           <div className="notfound-products">
             <h3 className="NotFoundProductsTitle">
               Przepraszamy, ale nie znalezliśmy produktów w tej wyprzedaży.
