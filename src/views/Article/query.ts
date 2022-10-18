@@ -25,6 +25,25 @@ export const articleQuery = gql`
       seoTitle
       slug
       title
+      attributes {
+        attribute {
+          slug
+          id
+          name
+          inputType
+        }
+        values {
+          id
+          name
+          slug
+          value
+          reference
+          file {
+            url
+            contentType
+          }
+        }
+      }
     }
   }
 `;

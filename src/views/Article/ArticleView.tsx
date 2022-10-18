@@ -38,20 +38,26 @@ export const ArticleView: NextPage<ArticleViewProps> = ({ data }) => {
         title: data.article.seoTitle,
       }}
     >
-      { shopName === "FASHION4YOU" && (
-        !data.article.slug.includes("-c4u") ? ( 
-          <Page breadcrumbs={getBreadcrumbs(data.article)} page={data.article} />
+      {shopName === "FASHION4YOU" &&
+        (!data.article.slug.includes("-c4u") ? (
+          <Page
+            breadcrumbs={getBreadcrumbs(data.article)}
+            page={data.article}
+            attributes={data.article.attributes}
+          />
         ) : (
           <NotFound />
-        )
-      )}
-      { shopName === "CLOTHES4U" && (
-        data.article.slug.includes("-c4u") ? ( 
-          <Page breadcrumbs={getBreadcrumbs(data.article)} page={data.article} />
+        ))}
+      {shopName === "CLOTHES4U" &&
+        (data.article.slug.includes("-c4u") ? (
+          <Page
+            breadcrumbs={getBreadcrumbs(data.article)}
+            page={data.article}
+            attributes={data.article.attributes}
+          />
         ) : (
           <NotFound />
-        )
-      )}
+        ))}
     </MetaWrapper>
   ) : (
     <NotFound />
