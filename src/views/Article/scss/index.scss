@@ -14,7 +14,7 @@
 
     &__title {
       display: inline-block;
-      padding: 1.5vw 0 3vw 0;
+      padding: 1.5vw 0;
 
       h1 {
         display: inline-block;
@@ -49,6 +49,7 @@
   &__content {
     grid-column-end: span 2;
     word-break: break-word;
+    margin-bottom: 4rem;
 
     h1 {
       font-size: 2rem;
@@ -60,6 +61,9 @@
     }
     p {
       margin: 20px 0 30px;
+      font-size: 20px;
+      word-break: break-word;
+      line-height: 2rem;
     }
     h1,
     h2,
