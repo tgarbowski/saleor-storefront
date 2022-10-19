@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import { awsMediaBucket } from "@temp/constants";
+
 import { RichTextEditorContent } from "../../@next/components/atoms";
 import { Breadcrumb, Breadcrumbs } from "../../components";
 
@@ -37,7 +39,7 @@ export const Page: React.FC<PageProps> = ({
               <div key={attribute.id} data-test-id={attributeIndex}>
                 {values.map(value => {
                   const url = value?.file?.url.split("/");
-                  const correctedUrl = `https://saleor-sandbox-media.s3.eu-central-1.amazonaws.com/${
+                  const correctedUrl = `${awsMediaBucket}/${
                     url[url.length - 2]
                   }/${url[url.length - 1]}`;
                   return <img src={correctedUrl} alt="ss" key={value.id} />;
@@ -61,7 +63,7 @@ export const Page: React.FC<PageProps> = ({
                 <div key={attribute.id} data-test-id={attributeIndex}>
                   {values.map(value => {
                     const url = value?.file?.url.split("/");
-                    const correctedUrl = `https://saleor-sandbox-media.s3.eu-central-1.amazonaws.com/${
+                    const correctedUrl = `${awsMediaBucket}/${
                       url[url.length - 2]
                     }/${url[url.length - 1]}`;
                     return <img src={correctedUrl} alt="ss" key={value.id} />;
