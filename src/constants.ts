@@ -17,7 +17,7 @@ export const exportMode = process.env.NEXT_EXPORT === "true";
 
 export const shopName = process.env.NEXT_PUBLIC_WEBSITE_NAME;
 
-export const awsMediaBucket = process.env.NEXT_AWS_MEDIA_BUCKET_NAME!;
+export const awsMediaBucket = process.env.NEXT_PUBLIC_AWS_MEDIA_BUCKET_NAME!;
 
 export const ssrMode = typeof window === "undefined";
 
