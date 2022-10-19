@@ -33,7 +33,7 @@ export const NewsSectionContentRight = styled.div`
   width: 50%;
   display: flex;
   flex-direction: column;
-  height: 800px;
+  height: 863px;
 
   @media (max-width: 920px) {
     width: 100%;
