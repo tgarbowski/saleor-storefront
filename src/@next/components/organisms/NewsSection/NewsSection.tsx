@@ -92,7 +92,7 @@ export const NewsSection: React.FC<{
               {news?.edges.slice(0, 3).map(({ node: newsElem }) => {
                 const url =
                   newsElem?.attributes[0]?.values[0]?.file?.url.split("/");
-                const correctedUrl = `https://saleor-sandbox-media.s3.eu-central-1.amazonaws.com/${
+                const correctedUrl = `${awsMediaBucket}/${
                   url[url.length - 2]
                 }/${url[url.length - 1]}`;
                 const { slug } = newsElem;
