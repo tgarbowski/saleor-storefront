@@ -18,6 +18,10 @@ export interface Article_page {
   seoTitle: string | null;
   slug: string;
   title: string;
+  attributes?: Array<{
+    attribute: { id: string; name: string; slug: string};
+    values: Array<{ name: string, id: string, slug: string, value: string, reference: string, file: {url: string, contentType: string} }>;
+  }>;
 }
 
 export interface Article {
