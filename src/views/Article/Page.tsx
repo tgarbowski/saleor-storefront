@@ -36,11 +36,7 @@ export const Page: React.FC<PageProps> = ({
             .map(({ attribute, values }, attributeIndex) => (
               <div key={attribute.id} data-test-id={attributeIndex}>
                 {values.map(value => {
-                  const url = value?.file?.url.split("/");
-                  const correctedUrl = `https://saleor-sandbox-media.s3.eu-central-1.amazonaws.com/${
-                    url[url.length - 2]
-                  }/${url[url.length - 1]}`;
-                  return <img src={correctedUrl} alt="ss" key={value.id} />;
+                  return <img src={value?.file?.url} alt="ss" key={value.id} />;
                 })}
               </div>
             ))}
@@ -60,11 +56,9 @@ export const Page: React.FC<PageProps> = ({
               .map(({ attribute, values }, attributeIndex) => (
                 <div key={attribute.id} data-test-id={attributeIndex}>
                   {values.map(value => {
-                    const url = value?.file?.url.split("/");
-                    const correctedUrl = `https://saleor-sandbox-media.s3.eu-central-1.amazonaws.com/${
-                      url[url.length - 2]
-                    }/${url[url.length - 1]}`;
-                    return <img src={correctedUrl} alt="ss" key={value.id} />;
+                    return (
+                      <img src={value?.file?.url} alt="ss" key={value.id} />
+                    );
                   })}
                 </div>
               ))}
