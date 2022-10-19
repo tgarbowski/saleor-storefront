@@ -2,6 +2,7 @@ import React from "react";
 import { generatePath } from "react-router";
 
 import { paths } from "@paths";
+import { awsMediaBucket } from "@temp/constants";
 
 import * as S from "./styles";
 import { HomePagePages_news } from "./types";
@@ -23,7 +24,7 @@ export const NewsSection: React.FC<{
                 {news?.edges.slice(0, 1).map(({ node: newsElem }) => {
                   const url =
                     newsElem?.attributes[0]?.values[0]?.file?.url.split("/");
-                  const correctedUrl = `https://saleor-sandbox-media.s3.eu-central-1.amazonaws.com/${
+                  const correctedUrl = `${awsMediaBucket}/${
                     url[url.length - 2]
                   }/${url[url.length - 1]}`;
                   const { slug } = newsElem;
@@ -55,7 +56,7 @@ export const NewsSection: React.FC<{
                 {news?.edges.slice(1, 4).map(({ node: newsElem }) => {
                   const url =
                     newsElem?.attributes[0]?.values[0]?.file?.url.split("/");
-                  const correctedUrl = `https://saleor-sandbox-media.s3.eu-central-1.amazonaws.com/${
+                  const correctedUrl = `${awsMediaBucket}/${
                     url[url.length - 2]
                   }/${url[url.length - 1]}`;
                   const { slug } = newsElem;
