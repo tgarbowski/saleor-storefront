@@ -23,6 +23,7 @@
         color: $black;
         font-size: 34px;
         font-weight: 900;
+        line-height: 2.5rem;
 
         @media (min-width: $small-screen) {
           font-size: 54px;
@@ -70,6 +71,7 @@
     h2,
     h3 {
       font-weight: 600;
+      margin: 20px 0px;
     }
 
     h2 {
