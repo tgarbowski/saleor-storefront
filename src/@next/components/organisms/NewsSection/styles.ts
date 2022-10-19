@@ -96,8 +96,8 @@ export const NewsItemText = styled.p`
 `;
 
 export const NewsItemImg = styled.img`
-  width: 100%;
-  height: 100%;
+  width: 300px;
+  height: 200px;
   object-fit: cover;
 `;
 
@@ -126,7 +126,7 @@ export const NewsItem = styled.div`
 `;
 
 export const NewsItemLeft = styled.div`
-  width: 100vh;
+  width: 50%;
   vertical-align: middle;
   transition: 0.5s all ease-in-out;
   background-size: cover;
