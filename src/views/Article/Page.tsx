@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import { awsMediaBucket } from "@temp/constants";
+
 import { RichTextEditorContent } from "../../@next/components/atoms";
 import { Breadcrumb, Breadcrumbs } from "../../components";
 
@@ -36,7 +38,11 @@ export const Page: React.FC<PageProps> = ({
             .map(({ attribute, values }, attributeIndex) => (
               <div key={attribute.id} data-test-id={attributeIndex}>
                 {values.map(value => {
-                  return <img src={value?.file?.url} alt="ss" key={value.id} />;
+                  const url = value?.file?.url.split("/");
+                  const correctedUrl = `${awsMediaBucket}/${
+                    url[url.length - 2]
+                  }/${url[url.length - 1]}`;
+                  return <img src={correctedUrl} alt="ss" key={value.id} />;
                 })}
               </div>
             ))}
@@ -56,9 +62,11 @@ export const Page: React.FC<PageProps> = ({
               .map(({ attribute, values }, attributeIndex) => (
                 <div key={attribute.id} data-test-id={attributeIndex}>
                   {values.map(value => {
-                    return (
-                      <img src={value?.file?.url} alt="ss" key={value.id} />
-                    );
+                    const url = value?.file?.url.split("/");
+                    const correctedUrl = `${awsMediaBucket}/${
+                      url[url.length - 2]
+                    }/${url[url.length - 1]}`;
+                    return <img src={correctedUrl} alt="ss" key={value.id} />;
                   })}
                 </div>
               ))}
