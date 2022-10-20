@@ -97,6 +97,7 @@
     font-weight: $bold-font-weight;
     height: 100%;
     text-transform: uppercase;
+    margin: 0 1.3rem;
 
     a {
       font-size: $h4-font-size;
@@ -307,12 +308,40 @@
   }
 
   &__nav-dropdown {
-    margin: 0 1.3rem;
-
     &--active {
       transition: 0.3s all ease-in-out;
 
       & > li > a {
+        font-size: $base-font-size;
+        position: relative;
+        text-transform: uppercase;
+        margin-bottom: 30px;
+        transition: all 0.3s ease-in-out;
+        max-width: 100%;
+
+        &:hover {
+          color: $primary;
+        }
+
+        &:before {
+          content: "";
+          background: $primary;
+          display: block;
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+          width: 0;
+          height: 2px;
+          transition: all 0.3s ease-in-out;
+        }
+        &:hover {
+          background-position: 0;
+        }
+        &:hover::before {
+          width: 100%;
+        }
+      }
+      & > span {
         font-size: $base-font-size;
         position: relative;
         text-transform: uppercase;
