@@ -131,7 +131,40 @@ export const MainMenu: React.FC<MainMenuProps> = ({
               render={() =>
                 visibleCategoryOnMenu.map(item => {
                   const hasSubNavigation = !!item?.children?.length;
-                  return (
+                  if (item.name === "Aktualności" || item.name === "News") {
+                    item.url = paths.homeNewsSection;
+                  }
+                  return item.name === "Aktualności" || item.name === "News" ? (
+                    hasSubNavigation ? (
+                      <li
+                        data-test="mainMenuItem"
+                        className="main-menu__item"
+                        key={item.id}
+                      >
+                        <NavDropdown
+                          overlay={overlayContext}
+                          showDropdown={
+                            activeDropdown === item.id && hasSubNavigation
+                          }
+                          onShowDropdown={() =>
+                            showDropdownHandler(item.id, hasSubNavigation)
+                          }
+                          onHideDropdown={hideDropdownHandler}
+                          {...item}
+                        />
+                      </li>
+                    ) : (
+                      <li
+                        data-test="mainMenuItem"
+                        className="main-menu__item"
+                        key={item.id}
+                      >
+                        <Link href={paths.homeNewsSection}>
+                          <a>{item.name}</a>
+                        </Link>
+                      </li>
+                    )
+                  ) : (
                     <li
                       data-test="mainMenuItem"
                       className="main-menu__item"

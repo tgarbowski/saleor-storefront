@@ -15,7 +15,7 @@ export const NewsSection: React.FC<{
   };
 
   return (
-    <>
+    <div id="news">
       {newsExist() ? (
         news?.edges.length >= 4 ? (
           <S.NewsSection className="container">
@@ -121,6 +121,6 @@ export const NewsSection: React.FC<{
       ) : (
         <></>
       )}
-    </>
+    </div>
   );
 };

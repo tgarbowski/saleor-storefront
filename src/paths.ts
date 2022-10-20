@@ -13,6 +13,7 @@ export const paths = {
   sale: `${baseUrl}sale/${idUrl}`,
   guestOrderDetail: `${baseUrl}order-history/:token`,
   home: baseUrl,
+  homeNewsSection: `${baseUrl}#news`,
   login: `${baseUrl}login`,
   orderFinalized: `${baseUrl}order-finalized`,
   page: `${baseUrl}page/:slug`,
