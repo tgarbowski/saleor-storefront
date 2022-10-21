@@ -19,12 +19,12 @@
       margin-bottom: 2.2rem;
     }
 
-    @media (max-width: $medium-screen) {
+    @media (max-width: $large-screen) {
       background-color: $black-overlay-mobile;
       align-items: center;
       display: flex;
       flex-direction: column;
-      height: 33vh;
+      height: 100vh;
       justify-content: space-between;
       padding: $spacer;
       text-align: center;
@@ -474,14 +474,14 @@
     max-width: 100%;
     display: flex;
     align-items: center;
-    margin-top: 886px;
+    margin-top: 824px;
 
     @media (max-width: $small-screen) {
-      margin-top: 555px;
+      margin-top: 710px;
     }
 
-    @media only screen and (min-width: 542px) and (max-width: $medium-screen) {
-      margin-top: 597px;
+    @media (min-width: $small-screen) and (max-width: $large-screen) {
+      margin-top: 855px;
     }
 
     &-content {
@@ -803,14 +803,13 @@
   text-align: center;
 
   @media (max-width: $small-screen) {
-    top: 439px;
+    top: 584px;
   }
-  @media only screen and (min-width: $small-screen) and (max-width: $medium-screen) {
-    top: 466px;
+  @media (min-width: $small-screen) and (max-width: $medium-screen) {
+    top: 661px;
   }
-
-  @media only screen and (min-width: $medium-screen) and (max-width: $x-large-screen) {
-    top: 752px;
+  @media only screen and (min-width: $medium-screen) and (max-width: $large-screen) {
+    top: 670px;
   }
 }
 
@@ -829,7 +828,7 @@
 }
 
 .carousel-2 .carousel-dots button.selected {
-  color: black;
+  color: $primary;
 }
 
 .carousel-2 .carousel-dots button:focus {
