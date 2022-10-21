@@ -9,6 +9,7 @@
     background-repeat: no-repeat;
     object-fit: cover;
     padding: 15rem 10rem;
+    height: 700px;
 
     @media only screen and (min-width: $medium-screen) and (max-width: $large-screen) {
       padding: 15rem 6rem;
@@ -481,7 +482,7 @@
     }
 
     @media (min-width: $small-screen) and (max-width: $large-screen) {
-      margin-top: 855px;
+      margin-top: 759px;
     }
 
     &-content {
