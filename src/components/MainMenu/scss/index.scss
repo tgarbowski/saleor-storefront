@@ -277,6 +277,10 @@
     line-height: 24px;
     transition: 0.3s;
 
+    @media (max-width: $medium-screen) {
+      padding: 0;
+    }
+
     @media (min-width: $large-screen) {
       border-left: 1px solid $gray-light;
     }
