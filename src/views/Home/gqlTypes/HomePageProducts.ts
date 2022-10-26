@@ -35,6 +35,8 @@ export interface HomePageProducts_categories_edges_node {
   id: string;
   name: string;
   slug: string;
+  description: string;
+  descriptionJson: string;
   backgroundImage: HomePageProducts_categories_edges_node_backgroundImage | null;
 }
 
