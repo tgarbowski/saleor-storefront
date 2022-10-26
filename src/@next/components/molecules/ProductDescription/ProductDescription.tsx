@@ -14,9 +14,9 @@ enum TABS {
 export const ProductDescription: React.FC<IProps> = ({
   description,
   attributes,
+  variants,
 }: IProps) => {
   const [activeTab, setActiveTab] = React.useState<TABS>(TABS.DESCRIPTION);
-
   return (
     <S.Wrapper>
       <S.Tabs>
@@ -59,6 +59,14 @@ export const ProductDescription: React.FC<IProps> = ({
                 {attribute.values.map(value => value.name).join(", ")}
               </li>
             ))}
+          {variants?.map(variant => {
+            return (
+              <li key={variant?.id}>
+                <S.AttributeName>SKU: </S.AttributeName>
+                {variant?.sku}
+              </li>
+            );
+          })}
         </S.AttributeList>
       </div>
     </S.Wrapper>

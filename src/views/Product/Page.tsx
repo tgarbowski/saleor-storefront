@@ -87,6 +87,7 @@ const Page: React.FC<
           product(id: $id, channel: $channel) {
             variants{
               quantityAvailable
+              sku
             }
             pricing{
               onSale
@@ -262,6 +263,7 @@ const Page: React.FC<
           <ProductDescription
             description={product.description}
             attributes={product.attributes}
+            variants={product.variants}
           />
         </div>
       </div>
