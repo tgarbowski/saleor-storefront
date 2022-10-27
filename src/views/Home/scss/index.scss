@@ -1,6 +1,7 @@
 @import "../../../globalStyles/scss/variables.scss";
 
 .home-page {
+  font-family: "Poppins", sans-serif;
   &__hero {
     background-color: $black-overlay;
     background-blend-mode: multiply;
