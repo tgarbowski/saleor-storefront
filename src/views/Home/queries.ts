@@ -12,6 +12,7 @@ export const homePageProductsQuery = gql`
           id
           name
           slug
+          description
           backgroundImage {
             url
           }
