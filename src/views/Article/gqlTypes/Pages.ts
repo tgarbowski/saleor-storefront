@@ -14,6 +14,7 @@ export interface Pages_pages_edges_node {
    */
   id: string;
   slug: string;
+  title: string;
 }
 
 export interface Pages_pages_edges {

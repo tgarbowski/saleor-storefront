@@ -10,6 +10,7 @@ export const pagesQuery = gql`
         node {
           id
           slug
+          title
         }
       }
     }

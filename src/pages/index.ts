@@ -8,6 +8,7 @@ import {
   getCollectionsQuery,
   getNewsIdQuery,
   getNewsQuery,
+  getPagesQuery,
   getSalesQuery,
 } from "@temp/sitemap/queries";
 import { getFeaturedProducts, getSaleorApi } from "@utils/ssr";
@@ -34,6 +35,15 @@ export const getStaticProps: GetStaticProps<HomeViewProps> = async () => {
       .query<any>({
         query: getCollectionsQuery,
         variables: { channel: channelSlug, perPage: 5 },
+      })
+      .then(({ data }) => data),
+  ]);
+
+  const [pagesData] = await Promise.all([
+    apolloClient
+      .query<any>({
+        query: getPagesQuery,
+        variables: { channel: channelSlug, perPage: 50 },
       })
       .then(({ data }) => data),
   ]);
@@ -75,6 +85,7 @@ export const getStaticProps: GetStaticProps<HomeViewProps> = async () => {
         featuredProducts,
         ...collectionsData,
         ...salesData,
+        ...pagesData,
         news: newsData.pages,
       },
     },

@@ -56,6 +56,20 @@ export const getSalesQuery = gql`
   }
 `;
 
+export const getPagesQuery = gql`
+  query GetPages($cursor: String, $perPage: Int) {
+    pages(after: $cursor, first: $perPage) {
+      edges {
+        node {
+          id
+          slug
+          title
+        }
+      }
+    }
+  }
+`;
+
 export const getCollectionsQuery = gql`
   query GetCollections($cursor: String, $perPage: Int, $channel: String) {
     collections(after: $cursor, first: $perPage, channel: $channel) {
