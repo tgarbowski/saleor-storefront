@@ -20,6 +20,7 @@ import { FeaturedProducts } from "@utils/ssr";
 
 import { Button, ProductsFeatured } from "../../components";
 import { structuredData } from "../../core/SEO/Homepage/structuredData";
+import { Pages_pages } from "../Article/gqlTypes/Pages";
 import {
   HomePageProducts_categories,
   HomePageProducts_collections,
@@ -36,8 +37,17 @@ const Page: React.FC<{
   products: ProductList_products;
   featuredProducts: FeaturedProducts;
   shop: HomePageProducts_shop;
+  pages: Pages_pages;
   news: HomePagePages_news;
-}> = ({ categories, featuredProducts, shop, collections, sales, news }) => {
+}> = ({
+  categories,
+  featuredProducts,
+  shop,
+  collections,
+  sales,
+  news,
+  pages,
+}) => {
   const categoriesExist = () => {
     return categories && categories.edges && categories.edges.length > 0;
   };
@@ -54,7 +64,6 @@ const Page: React.FC<{
     shopName === "FASHION4YOU"
       ? categories.edges.slice(0, -2)
       : categories.edges.slice(0, -2);
-
   return (
     <>
       <script className="structured-data-list" type="application/ld+json">
@@ -119,20 +128,39 @@ const Page: React.FC<{
                   </div>
                 </div>
                 <div className="home-page__hero-action">
-                  {collectionsExist() && (
-                    <Link
-                      key={collection.id}
-                      href={generatePath(paths.collection, {
-                        slug: collection.slug,
-                      })}
-                    >
-                      <a>
-                        <Button testingContext="homepageHeroActionButton">
-                          <FormattedMessage defaultMessage="Sprawdź ofertę" />
-                        </Button>
-                      </a>
-                    </Link>
-                  )}
+                  {collection.name === "O nas"
+                    ? pages?.edges?.map(({ node: page }) => {
+                        return (
+                          page.slug === "o-nas" && (
+                            <Link
+                              key={page.id}
+                              href={generatePath(paths.page, {
+                                slug: page.slug,
+                              })}
+                            >
+                              <a>
+                                <Button testingContext="homepageHeroActionButton">
+                                  <FormattedMessage defaultMessage="Przeczytaj więcej" />
+                                </Button>
+                              </a>
+                            </Link>
+                          )
+                        );
+                      })
+                    : collectionsExist() && (
+                        <Link
+                          key={collection.id}
+                          href={generatePath(paths.collection, {
+                            slug: collection.slug,
+                          })}
+                        >
+                          <a>
+                            <Button testingContext="homepageHeroActionButton">
+                              <FormattedMessage defaultMessage="Sprawdź ofertę" />
+                            </Button>
+                          </a>
+                        </Link>
+                      )}
                 </div>
               </div>
             );

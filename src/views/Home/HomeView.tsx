@@ -6,6 +6,7 @@ import { HomePagePages_news } from "@components/organisms/NewsSection/types";
 import { FeaturedProducts } from "@utils/ssr";
 
 import { MetaWrapper } from "../../components";
+import { Pages_pages } from "../Article/gqlTypes/Pages";
 import {
   HomePageProducts,
   HomePageProducts_collections,
@@ -21,6 +22,7 @@ export interface HomeViewProps {
     sales: HomePageProducts_sales;
     products: ProductList_products;
     news: HomePagePages_news;
+    pages: Pages_pages;
   };
 }
 export const HomeView: NextPage<HomeViewProps> = ({
@@ -32,6 +34,7 @@ export const HomeView: NextPage<HomeViewProps> = ({
     sales,
     products,
     news,
+    pages,
   },
 }) => (
   <div className="home-page">
@@ -49,6 +52,7 @@ export const HomeView: NextPage<HomeViewProps> = ({
         sales={sales}
         products={products}
         news={news}
+        pages={pages}
       />
     </MetaWrapper>
   </div>
