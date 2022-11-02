@@ -79,7 +79,7 @@ const Page: React.FC<{
           autoplay
           autoplaySpeed={5000}
           transitionDuration={1000}
-          initialSlide={2}
+          initialSlide={3}
           arrows
           style={{
             slide: {
@@ -323,7 +323,9 @@ const Page: React.FC<{
             </p>
             <div className="home-page__collections__list">
               {collections?.edges.map(({ node: collection }) => {
-                return (
+                return collection.name === "O nas" ? (
+                  <></>
+                ) : (
                   <div
                     key={collection.id}
                     className="home-page__collection-item"
