@@ -1,37 +1,19 @@
-import { ProductDetails } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
 import classNames from "classnames";
 import React, { useEffect, useState } from "react";
+import { FormattedMessage } from "react-intl";
 import Media from "react-media";
-import { generatePath } from "react-router";
 
 import { ProductDescription } from "@components/molecules";
 import { ProductGallery } from "@components/organisms";
 import AddToCartSection from "@components/organisms/AddToCartSection";
-import { paths } from "@paths";
 import { apiUrl, channelSlug } from "@temp/constants";
 
-import {
-  Breadcrumbs,
-  OverlayContext,
-  OverlayTheme,
-  OverlayType,
-} from "../../components";
+import { OverlayContext, OverlayTheme, OverlayType } from "../../components";
 import { structuredData } from "../../core/SEO/Product/structuredData";
 import GalleryCarousel from "./GalleryCarousel";
 import { IProps } from "./types";
 
 import { smallScreen } from "../../globalStyles/scss/variables.scss";
-
-const populateBreadcrumbs = (product: ProductDetails) => [
-  {
-    link: generatePath(paths.category, { slug: product.category.slug }),
-    value: product.category.name,
-  },
-  {
-    link: generatePath(paths.product, { slug: product.slug }),
-    value: product.name,
-  },
-];
 
 const Page: React.FC<
   IProps & {
@@ -219,9 +201,9 @@ const Page: React.FC<
   return (
     <div className="product-page">
       <div className="container">
-        <Breadcrumbs breadcrumbs={populateBreadcrumbs(product)} />
-      </div>
-      <div className="container">
+        <button onClick={() => history.back()} className="back-btn">
+          <FormattedMessage defaultMessage="Powrót" />
+        </button>
         <div className="product-page__product">
           <script className="structured-data-list" type="application/ld+json">
             {structuredData(product)}
