@@ -31,7 +31,7 @@ const ThankYou: React.FC<IProps> = ({
   orderNumber,
   continueShoppingUrl,
   orderDetailsUrl,
-  shippingMethod
+  shippingMethod,
 }: IProps) => {
   return (
     <Container data-test="thankYouView">
@@ -68,6 +68,7 @@ const ThankYou: React.FC<IProps> = ({
           <Link href={continueShoppingUrl}>
             <Button
               testingContext="continueShoppingButton"
+              aria-label="continueShoppingButton"
               color="secondary"
               fullWidth
             >
@@ -75,7 +76,11 @@ const ThankYou: React.FC<IProps> = ({
             </Button>
           </Link>
           <Link href={orderDetailsUrl}>
-            <Button testingContext="gotoOrderDetailsButton" fullWidth>
+            <Button
+              testingContext="gotoOrderDetailsButton"
+              fullWidth
+              aria-label="gotoOrderDetailsButton"
+            >
               <FormattedMessage defaultMessage="SZCZEGÓŁY ZAMÓWIENIA" />
             </Button>
           </Link>

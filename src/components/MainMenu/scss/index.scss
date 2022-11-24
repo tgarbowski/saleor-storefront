@@ -1,5 +1,9 @@
 @import "../../../globalStyles/scss/variables.scss";
 
+.header {
+  font-family: "Poppins", sans-serif;
+}
+
 .header-with-dropdown {
   z-index: 3;
 }

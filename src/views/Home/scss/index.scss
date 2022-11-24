@@ -129,61 +129,47 @@
       display: inline-block;
       margin-bottom: $spacer / 2;
       font-family: "Poppins", sans-serif !important;
+      font-weight: $bold-font-weight;
+      color: $white;
+      font-size: $h1-font-size;
+      font-weight: 600;
 
       @media (max-width: $small-screen) {
+        font-size: 30px;
+        transform: none;
+        width: 100%;
         transform: none;
         padding-bottom: 1rem;
       }
 
-      h1 {
-        display: inline-block;
-        font-weight: $bold-font-weight;
-        color: $white;
-        font-size: $h1-font-size;
-        font-weight: 600;
-
-        @media (max-width: $small-screen) {
-          font-size: 30px;
-          transform: none;
-          width: 100%;
-        }
-
-        @media (min-width: $small-screen) and (max-width: $large-screen) {
-          font-size: 48px;
-        }
+      @media (min-width: $small-screen) and (max-width: $large-screen) {
+        font-size: 48px;
       }
     }
     &__subtitle {
       display: inline-block;
       margin-bottom: $spacer / 2;
       font-family: "Poppins", sans-serif !important;
+      font-weight: 600;
+      color: $white;
+      font-size: 21px;
+      font-weight: 500;
+      word-break: break-word;
+      width: 100%;
+      max-width: 991px;
+      line-height: 130%;
+      margin-top: 10px;
 
       @media (max-width: $small-screen) {
+        font-size: 18px;
+        transform: none;
+        margin-top: -1rem;
         padding: 0.6rem 0;
         transform: none;
       }
 
-      h1 {
-        display: inline-block;
-        font-weight: 600;
-        color: $white;
-        font-size: 21px;
-        font-weight: 500;
-        word-break: break-word;
-        width: 100%;
-        max-width: 991px;
-        line-height: 130%;
-        margin-top: 10px;
-
-        @media (max-width: $small-screen) {
-          font-size: 18px;
-          transform: none;
-          margin-top: -1rem;
-        }
-
-        @media (min-width: $small-screen) and (max-width: $large-screen) {
-          font-size: 28px;
-        }
+      @media (min-width: $small-screen) and (max-width: $large-screen) {
+        font-size: 28px;
       }
     }
   }
@@ -438,7 +424,7 @@
       }
       &-text {
         padding-bottom: 2.2rem;
-        color: #777f85;
+        color: #4e595a;
         display: flex;
         justify-content: center;
         text-align: center;
@@ -549,7 +535,7 @@
         letter-spacing: -0.01em;
         text-align: center;
         display: flex;
-        color: $white;
+        color: $black;
         padding: 1rem 2rem;
         transition: 0.32s all ease-in-out;
         border: 3px solid red;

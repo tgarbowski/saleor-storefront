@@ -151,6 +151,7 @@ const CartSidebar: React.FC<ICartSidebar> = ({
                 />
               </S.EmptyCartDescription>
               <Button
+                aria-label="continueShopping"
                 name="continueShopping"
                 testingContext="emptyCartHideOverlayButton"
                 color="secondary"
@@ -174,6 +175,7 @@ const CartSidebar: React.FC<ICartSidebar> = ({
               discountPrice={promoTaxedPrice}
             />
             <Button
+              aria-label="gotoCartView"
               name="gotoCartView"
               testingContext="gotoCartViewButton"
               color="secondary"
@@ -186,6 +188,7 @@ const CartSidebar: React.FC<ICartSidebar> = ({
               />
             </Button>
             <Button
+              aria-label="gotoCheckout"
               name="gotoCheckout"
               testingContext="gotoCheckoutButton"
               color="primary"

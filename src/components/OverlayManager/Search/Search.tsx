@@ -156,6 +156,7 @@ class Search extends React.Component<SearchProps, SearchState> {
                                 ) : (
                                   <Button
                                     testingContext="searchProductsButton"
+                                    aria-label="searchProductsButton"
                                     btnRef={this.submitBtnRef}
                                     type="submit"
                                   >

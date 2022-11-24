@@ -27,7 +27,7 @@ const CookiesBar = () => {
       buttonStyle={{
         padding: "7px 14px",
         background: "#65c947",
-        color: "#fff",
+        color: "#000",
         marginTop: "2rem",
       }}
       sameSite="strict"

@@ -18,7 +18,10 @@ const CheckoutAsGuest: React.FC<{
     </p>
     <Link href={checkoutUrl}>
       <a>
-        <Button testingContext="continueAsGuestButton">
+        <Button
+          testingContext="continueAsGuestButton"
+          aria-label="continueAsGuestButton"
+        >
           <FormattedMessage defaultMessage="Kontynuuj jako gość" />
         </Button>
       </a>

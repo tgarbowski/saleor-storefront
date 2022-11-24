@@ -22,7 +22,10 @@ const title = (
 
 const getShoppingButton = () => (
   <Link href={paths.home}>
-    <Button testingContext="cartPageContinueShoppingButton">
+    <Button
+      testingContext="cartPageContinueShoppingButton"
+      aria-label="cartPageContinueShoppingButton"
+    >
       <FormattedMessage {...checkoutMessages.continueShopping} />
     </Button>
   </Link>
@@ -30,7 +33,10 @@ const getShoppingButton = () => (
 
 const getCheckoutButton = (user?: UserDetails_me | null) => (
   <Link href={user ? paths.checkout : paths.login}>
-    <Button testingContext="proceedToCheckoutButton">
+    <Button
+      testingContext="proceedToCheckoutButton"
+      aria-label="proceedToCheckoutButton"
+    >
       <FormattedMessage defaultMessage="Do kasy" />
     </Button>
   </Link>

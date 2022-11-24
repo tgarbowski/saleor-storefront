@@ -91,7 +91,7 @@ export const NewsHeading = styled.h2`
 
 export const NewsItemText = styled.p`
   font-size: 16px;
-  color: gray;
+  color: #4e595a;
   word-break: break-word;
 `;
 
