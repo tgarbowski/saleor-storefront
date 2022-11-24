@@ -22,7 +22,9 @@ const PasswordResetRequestForm: React.FC = () => {
       return intl.formatMessage(commonMessages.loading);
     }
     if (data?.requestPasswordReset.errors.length === 0) {
-      return intl.formatMessage({ defaultMessage: "Sprawdź swoją skrzynkę odbiorczą" });
+      return intl.formatMessage({
+        defaultMessage: "Sprawdź swoją skrzynkę odbiorczą",
+      });
     }
     return intl.formatMessage({ defaultMessage: "Zresetuj hasło" });
   };
@@ -58,6 +60,7 @@ const PasswordResetRequestForm: React.FC = () => {
               <div className="password-reset-form__button">
                 <Button
                   testingContext="submit"
+                  aria-label="submit"
                   type="submit"
                   {...(disableSubmit(loading, data) && { disabled: true })}
                 >

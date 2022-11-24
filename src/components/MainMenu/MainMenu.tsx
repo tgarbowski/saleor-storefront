@@ -373,7 +373,7 @@ export const MainMenu: React.FC<MainMenuProps> = ({
                     <img
                       className="main-menu__wishlist__icon"
                       src={HeartIconMenuSmall}
-                      alt=""
+                      alt="wishlist"
                     />
                     {wishlistItemsQuantity > 0 ? (
                       <span className="main-menu__wishlist__quantity">

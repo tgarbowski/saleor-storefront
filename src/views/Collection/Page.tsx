@@ -91,7 +91,7 @@ export const Page: React.FC<PageProps> = ({
             </h3>
             <Link href={paths.home}>
               <a>
-                <Button testingContext="promoButton">
+                <Button testingContext="promoButton" aria-label="promoButton">
                   <FormattedMessage defaultMessage="Sprawdź inne kolekcje" />
                 </Button>
               </a>

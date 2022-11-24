@@ -137,6 +137,7 @@ export const PasswordChangeForm: React.FC<{
                   <FormattedMessage {...commonMessages.cancel} />
                 </ButtonLink>
                 <Button
+                  aria-label="submit"
                   testingContext="submit"
                   type="submit"
                   disabled={isSubmitting || !isValid}

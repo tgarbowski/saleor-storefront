@@ -42,7 +42,9 @@ export const Page: React.FC<PageProps> = ({
                   const correctedUrl = `${awsMediaBucket}/${
                     url[url.length - 2]
                   }/${url[url.length - 1]}`;
-                  return <img src={correctedUrl} alt="ss" key={value.id} />;
+                  return (
+                    <img src={correctedUrl} alt="attributes" key={value.id} />
+                  );
                 })}
               </div>
             ))}
@@ -66,7 +68,9 @@ export const Page: React.FC<PageProps> = ({
                     const correctedUrl = `${awsMediaBucket}/${
                       url[url.length - 2]
                     }/${url[url.length - 1]}`;
-                    return <img src={correctedUrl} alt="ss" key={value.id} />;
+                    return (
+                      <img src={correctedUrl} alt="attributes" key={value.id} />
+                    );
                   })}
                 </div>
               ))}

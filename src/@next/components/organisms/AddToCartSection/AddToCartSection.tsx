@@ -137,7 +137,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
             <p>Sposoby płatności</p>
           </div>
           <div>
-            <img src={CreditCardIcon} alt="" />
+            <img src={CreditCardIcon} alt="credit card icon" />
           </div>
         </S.AccordionItemBox>
       ),
@@ -157,7 +157,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
             <p>Sposoby dostawy</p>
           </div>
           <div>
-            <img src={ShippingIcon} alt="" />
+            <img src={ShippingIcon} alt="shipping icon" />
           </div>
         </S.AccordionItemBox>
       ),

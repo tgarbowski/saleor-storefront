@@ -14,6 +14,7 @@ export const AddToCartButton: React.FC<IAddToCartButton> = ({
 }) => {
   return (
     <Button
+      aria-label="addProductToCartButton"
       fullWidth
       testingContext="addProductToCartButton"
       onClick={onSubmit}

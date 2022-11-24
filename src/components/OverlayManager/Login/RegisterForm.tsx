@@ -80,6 +80,7 @@ const RegisterForm: React.FC<{ hide: () => void }> = ({ hide }) => {
             <div className="login__content__button">
               <Button
                 testingContext="submitRegisterFormButton"
+                aria-label="submitRegisterFormButton"
                 type="submit"
                 {...(loading && { disabled: true })}
               >
