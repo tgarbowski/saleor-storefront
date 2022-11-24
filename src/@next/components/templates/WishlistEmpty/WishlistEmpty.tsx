@@ -27,7 +27,7 @@ const WishlistEmpty = () => {
         </S.Subtitle>
         <Link href={paths.home}>
           <a>
-            <Button testingContext="wishlistbutton">
+            <Button testingContext="wishlistbutton" aria-label="wishlistbutton">
               <FormattedMessage defaultMessage="Wróć na stronę główną" />
             </Button>
           </a>

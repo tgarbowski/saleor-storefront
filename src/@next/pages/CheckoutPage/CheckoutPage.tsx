@@ -117,7 +117,7 @@ const CheckoutPage: React.FC<NextPage> = () => {
           selectedPaymentGatewayToken={selectedPaymentGatewayToken}
           noteRef={noteRef}
         />
-      )
+      ),
     };
     return subpageMapping[activeStep.step];
   }, [activeStep.step]);
@@ -166,7 +166,7 @@ const CheckoutPage: React.FC<NextPage> = () => {
       orderStatus: order?.status,
       orderNumber: order?.number,
       token: order?.token,
-      shippingMethod: order?.shippingMethod?.id
+      shippingMethod: order?.shippingMethod?.id,
     });
   };
 
@@ -243,7 +243,7 @@ const CheckoutPage: React.FC<NextPage> = () => {
           orderStatus: data?.order?.status,
           orderNumber: data?.order?.number,
           token: data?.order?.token,
-          shippingMethod: data?.order?.shippingMethod?.id
+          shippingMethod: data?.order?.shippingMethod?.id,
         });
       }
     } else {
@@ -316,6 +316,7 @@ const CheckoutPage: React.FC<NextPage> = () => {
         cartLoaded &&
         buttonText && (
           <Button
+            aria-label="checkoutPageNextStepButton"
             testingContext="checkoutPageNextStepButton"
             onClick={() => pageCompleteRef.current?.()}
             type="submit"

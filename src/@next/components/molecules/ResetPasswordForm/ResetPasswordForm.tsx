@@ -72,7 +72,12 @@ export const ResetPasswordForm: React.FC<IProps> = ({
           />
         </S.InputFields>
 
-        <Button testingContext="submit" type="submit" fullWidth>
+        <Button
+          testingContext="submit"
+          type="submit"
+          fullWidth
+          aria-label="submit"
+        >
           <FormattedMessage defaultMessage="USTAW NOWE HASŁO" />
         </Button>
       </form>

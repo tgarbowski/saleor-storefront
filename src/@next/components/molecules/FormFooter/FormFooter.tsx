@@ -16,6 +16,7 @@ const renderCancelBtn = (cancelBtn?: IButtonProps) =>
       {...getBtnAction(cancelBtn)}
       testingContext="cancelButton"
       type="button"
+      aria-label="cancelButton"
       color="secondary"
     >
       {cancelBtn.text}

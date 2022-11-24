@@ -102,7 +102,8 @@ const App = ({
       />
       <meta
         name="description"
-        content="Sklep internetowy z odzieżą używaną damską, męską i dziecięcą. W naszym lumpeksie online posiadamy ubrania używane oraz z outletu."
+        content="Sklep internetowy z tanią odzieżą używaną damską, męską i dziecięcą.
+        W naszym lumpeksie online posiadamy ubrania używane oraz z outletu. Setki marek i mnóstwo niepowtarzalnego stylu. "
       />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta

@@ -78,6 +78,7 @@ export const ProductList: React.FC<IProps> = ({
               testingContext="loadMoreProductsButton"
               color="secondary"
               onClick={onLoadMore}
+              aria-label="loadMoreProductsButton"
             >
               <FormattedMessage defaultMessage="Załaduj więcej" />
             </Button>

@@ -112,18 +112,18 @@ const Page: React.FC<{
               >
                 <div className="home-page__hero-text">
                   <div>
-                    <span className="home-page__hero__title">
-                      <h1>{collection.name}</h1>
-                    </span>
+                    <h1 className="home-page__hero__title">
+                      {collection.name}
+                    </h1>
                   </div>
                   <div>
                     <span className="home-page__hero__subtitle">
-                      <h1>
+                      <h2>
                         {
                           JSON.parse(collection.description)?.blocks[0]?.data
                             .text
                         }
-                      </h1>
+                      </h2>
                     </span>
                   </div>
                 </div>
@@ -139,7 +139,10 @@ const Page: React.FC<{
                               })}
                             >
                               <a>
-                                <Button testingContext="homepageHeroActionButton">
+                                <Button
+                                  testingContext="homepageHeroActionButton"
+                                  aria-label="homepageHeroActionButton"
+                                >
                                   <FormattedMessage defaultMessage="Przeczytaj więcej" />
                                 </Button>
                               </a>
@@ -155,7 +158,10 @@ const Page: React.FC<{
                           })}
                         >
                           <a>
-                            <Button testingContext="homepageHeroActionButton">
+                            <Button
+                              testingContext="homepageHeroActionButton"
+                              aria-label="homepageHeroActionButton"
+                            >
                               <FormattedMessage defaultMessage="Sprawdź ofertę" />
                             </Button>
                           </a>
@@ -181,23 +187,21 @@ const Page: React.FC<{
         >
           <div className="home-page__hero-text">
             <div>
-              <span className="home-page__hero__title">
-                <h1>
-                  <FormattedMessage
-                    defaultMessage="{shopname}"
-                    values={{ shopname: shopName }}
-                  />
-                </h1>
-              </span>
+              <h1 className="home-page__hero__title">
+                <FormattedMessage
+                  defaultMessage="{shopname}"
+                  values={{ shopname: shopName }}
+                />
+              </h1>
             </div>
             <div>
               <span className="home-page__hero__subtitle">
-                <h1>
+                <h2>
                   <FormattedMessage
                     values={{ shopname: shopName }}
                     defaultMessage="{shopname} to sklep z jakościową odzieżą używaną. Różne marki w jednym miejscu. Przekonaj się sam!"
                   />
-                </h1>
+                </h2>
               </span>
             </div>
           </div>
@@ -209,7 +213,10 @@ const Page: React.FC<{
                 })}
               >
                 <a>
-                  <Button testingContext="homepageHeroActionButton">
+                  <Button
+                    testingContext="homepageHeroActionButton"
+                    aria-label="homepageHeroActionButton"
+                  >
                     <FormattedMessage defaultMessage="Sprawdź ofertę" />
                   </Button>
                 </a>
@@ -272,20 +279,20 @@ const Page: React.FC<{
                         <img
                           className="home-page__categories__img"
                           src={WomanCategoryImg}
-                          alt=""
+                          alt="Woman category"
                         />
                       ) : category.name === "Mężczyzna" ? (
                         <img
                           className="home-page__categories__img"
                           src={ManCategoryImg}
-                          alt=""
+                          alt="Man category"
                         />
                       ) : (
                         category.name === "Dziecko" && (
                           <img
                             className="home-page__categories__img"
                             src={KidCategoryImg}
-                            alt=""
+                            alt="kid category"
                           />
                         )
                       )}

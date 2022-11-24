@@ -28,6 +28,7 @@ export const OrdersHistory: React.FC = () => {
       {data?.pageInfo.hasNextPage && (
         <S.Wrapper>
           <Button
+            aria-label="loadMoreOrdersButton"
             testingContext="loadMoreOrdersButton"
             onClick={() => {
               loadMore({

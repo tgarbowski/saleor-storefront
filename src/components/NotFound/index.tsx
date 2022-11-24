@@ -63,7 +63,11 @@ const NotFound: NextPage<NotFoundProps> = () => {
           <div className="not-found-page-container-button">
             <Link href={paths.home}>
               <a>
-                <Button testingContext="404pageGotoHomeButton" third>
+                <Button
+                  testingContext="404pageGotoHomeButton"
+                  third
+                  aria-label="404pageGotoHomeButton"
+                >
                   <FormattedMessage defaultMessage="Wróć na stronę główną" />
                 </Button>
               </a>

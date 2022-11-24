@@ -79,6 +79,7 @@ export const DiscountForm: React.FC<IProps> = ({
                 <S.ButtonWrapper>
                   <Button
                     type="button"
+                    aria-label="loadMoreProductsButton"
                     testingContext="applyPromoCodeButton"
                     onClick={() => handleApplyBtnClick(values.inputCode)}
                   >

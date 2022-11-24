@@ -65,7 +65,11 @@ export const SelectSidebar: React.FC<IProps> = ({
         </S.Content>
         {footerTitle && (
           <S.Footer onClick={onClickFooter}>
-            <ButtonLink testingContext="footerActionButton" color="secondary">
+            <ButtonLink
+              testingContext="footerActionButton"
+              color="secondary"
+              aria-label="footerActionButton"
+            >
               {footerTitle}
             </ButtonLink>
           </S.Footer>

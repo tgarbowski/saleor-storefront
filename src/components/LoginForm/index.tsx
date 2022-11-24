@@ -60,6 +60,7 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
         <div className="login-form__button">
           <Button
             testingContext="submit"
+            aria-label="submit"
             type="submit"
             {...(loading && { disabled: true })}
           >
