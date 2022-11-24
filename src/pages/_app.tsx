@@ -88,17 +88,46 @@ const App = ({
       <link href="https://rsms.me/inter/inter.css" />
       <link rel="icon" type="image/png" href={Favicon} />
       <link rel="manifest" href="/manifest.json" />
-      <link
+      {/* <link
         rel="stylesheet"
         href="https://geowidget.easypack24.net/css/easypack.css"
+      /> */}
+
+      <link
+        rel="preload"
+        href="https://geowidget.easypack24.net/css/easypack.css"
+        as="style"
+        // // Next.js doesn't like this but it allows us to load CSS asynchronously
+        // @ts-ignore
+        onLoad="this.onload=null;this.rel='stylesheet'"
       />
+      <noscript>
+        <link
+          rel="stylesheet"
+          href="https://geowidget.easypack24.net/css/easypack.css"
+        />
+      </noscript>
+
       <script
         async
         src="https://geowidget.easypack24.net/js/sdk-for-javascript.js"
       />
+      {/* <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+      /> */}
+      <link
+        rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        as="style"
+      />
       <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet"
+        media="print"
+        // // Next.js doesn't like this but it allows us to load CSS asynchronously
+        // @ts-ignore
+        onLoad="this.media='all'"
       />
       <meta
         name="description"
