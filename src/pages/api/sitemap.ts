@@ -12,8 +12,8 @@ async function generateSitemap() {
   } = await fetch(apiUrl, {
     method: "POST",
     body: JSON.stringify({
-      query: `query SitemapSlugs($channel: String, 
-        $productsAmount: Int, $categoriesAmount: Int, $pagesAmount: Int){
+      query: `query SitemapSlugs($channel: String!, 
+        $productsAmount: Int!, $categoriesAmount: Int!, $pagesAmount: Int!){
           sitemapSlugs(channel:$channel, productsAmount: $productsAmount, 
             categoriesAmount: $categoriesAmount, pagesAmount: $pagesAmount){
               productSlugs
