@@ -66,13 +66,20 @@ ${sitemapSlugs.productSlugs
 </urlset>`;
 
   writeFileSync("public/sitemap.xml", sitemap);
+  return true;
 }
 
 export default function handler(req, res) {
   const headerKey = req.headers["x-api-key"];
 
   if (xApiKey && headerKey === xApiKey) {
-    generateSitemap().then(res.status(200).send("Success"));
+    generateSitemap().then(sitemap => {
+      if (sitemap) {
+        res.status(200).send("Success");
+      } else {
+        res.send("Failed");
+      }
+    });
   } else {
     return res.status(403).send("Forbidden");
   }
