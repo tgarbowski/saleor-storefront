@@ -74,8 +74,10 @@ ${sitemapSlugs.productSlugs
   writeFileSync("public/sitemap.xml", sitemap);
 }
 
-export default function handler(req: IncomingMessage, res) {
-  const ipAddress = req.socket.remoteAddress;
+export default function handler(req, res) {
+  const ipAddress =
+    (req.headers["x-forwarded-for"] || "").split(",").pop().trim() ||
+    req.socket.remoteAddress;
   const allowedIps = allowedIpAddresses.split(";");
 
   if (allowedIps.find(address => address === ipAddress)) {
