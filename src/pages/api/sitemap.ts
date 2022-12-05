@@ -80,14 +80,8 @@ export default function handler(req, res) {
   const allowedIps = allowedIpAddresses.split(";");
 
   if (allowedIps.find(address => address === ipAddress)) {
-    generateSitemap().then(
-      res.status(200).json({ status: "Success", allowedIps, ipAddress })
-
-      // res.status(200).send("Success", allowedIps, ipAddress)
-    );
+    generateSitemap().then(res.status(200).send("Success"));
   } else {
-    return res.status(403).json({ status: "Forbidden", allowedIps, ipAddress });
-
-    // return res.status(403).send("Forbidden", allowedIps, ipAddress);
+    return res.status(403).send("Forbidden");
   }
 }
