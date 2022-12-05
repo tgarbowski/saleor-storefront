@@ -38,7 +38,7 @@ export const staticPathsFallback = (
 
 export const hostUrl = process.env.NEXT_PUBLIC_HOST_URL;
 
-export const allowedIpAddresses = process.env.NEXT_PUBLIC_ALLOWED_IP_ADDRESSES;
+export const xApiKey = process.env.NEXT_PUBLIC_X_API_KEY;
 
 export const paymentGatewayNames = {
   dummy: "mirumee.payments.dummy",

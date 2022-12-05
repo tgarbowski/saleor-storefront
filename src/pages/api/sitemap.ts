@@ -1,11 +1,6 @@
 import { writeFileSync } from "fs";
 
-import {
-  allowedIpAddresses,
-  apiUrl,
-  channelSlug,
-  hostUrl,
-} from "@temp/constants";
+import { apiUrl, channelSlug, hostUrl, xApiKey } from "@temp/constants";
 
 const DEFAULT_PRODUCTS_SLUGS = 45000;
 const DEFAULT_CATEGORIES_SLUGS = 1000;
@@ -74,12 +69,9 @@ ${sitemapSlugs.productSlugs
 }
 
 export default function handler(req, res) {
-  const ipAddress =
-    (req.headers["x-forwarded-for"] || "").split(",").pop().trim() ||
-    req.socket.remoteAddress;
-  const allowedIps = allowedIpAddresses.split(";");
+  const headerKey = req.headers["x-api-key"];
 
-  if (allowedIps.find(address => address === ipAddress)) {
+  if (xApiKey && headerKey === xApiKey) {
     generateSitemap().then(res.status(200).send("Success"));
   } else {
     return res.status(403).send("Forbidden");
