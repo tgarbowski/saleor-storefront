@@ -1,5 +1,4 @@
 import { writeFileSync } from "fs";
-import { IncomingMessage } from "http";
 
 import {
   allowedIpAddresses,
