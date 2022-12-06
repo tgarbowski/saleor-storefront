@@ -3,7 +3,7 @@ import React from "react";
 
 import { apiUrl, channelSlug, hostUrl } from "@temp/constants";
 
-const DEFAULT_PRODUCTS_SLUGS = 1000;
+const DEFAULT_PRODUCTS_SLUGS = 45000;
 const DEFAULT_CATEGORIES_SLUGS = 1000;
 const DEFAULT_PAGES_SLUGS = 1000;
 
@@ -11,7 +11,6 @@ const Sitemap: React.FC = () => null;
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const generateSitemap = async () => {
-    console.log("Starting sitemap generation");
     const {
       data: { sitemapSlugs },
     } = await fetch(apiUrl, {
@@ -69,7 +68,6 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     })
     .join("")}
   </urlset>`;
-    console.log("Sitemap generated");
 
     return sitemap;
   };
@@ -79,7 +77,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     res.setHeader("Content-Type", "text/xml");
     res.setHeader(
       "Cache-control",
-      "stale-while-revalidate=2500, s-maxage=3600"
+      "stale-while-revalidate=64800, s-maxage=21600"
     );
 
     res.end(await generateSitemap());

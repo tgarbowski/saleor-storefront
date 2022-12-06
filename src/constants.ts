@@ -38,10 +38,6 @@ export const staticPathsFallback = (
 
 export const hostUrl = process.env.NEXT_PUBLIC_HOST_URL;
 
-export const xApiKey = process.env.NEXT_PUBLIC_X_API_KEY;
-
-export const sitemapPath = process.env.NEXT_PUBLIC_SITEMAP_PATH;
-
 export const paymentGatewayNames = {
   dummy: "mirumee.payments.dummy",
   adyen: "mirumee.payments.adyen",
