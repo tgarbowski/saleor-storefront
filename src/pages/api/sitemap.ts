@@ -1,4 +1,4 @@
-import { writeFileSync } from "fs";
+import { writeFile } from "fs";
 
 import {
   apiUrl,
@@ -72,8 +72,12 @@ ${sitemapSlugs.productSlugs
   .join("")}
 </urlset>`;
   console.log("Sitemap generated");
-  writeFileSync(sitemapPath, sitemap);
-  console.log("Sitemap saved");
+  writeFile(sitemapPath, sitemap, error => {
+    if (error) {
+      throw error;
+    }
+    console.log("Sitemap saved");
+  });
   return true;
 }
 
