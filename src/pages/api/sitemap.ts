@@ -1,12 +1,19 @@
 import { writeFileSync } from "fs";
 
-import { apiUrl, channelSlug, hostUrl, xApiKey } from "@temp/constants";
+import {
+  apiUrl,
+  channelSlug,
+  hostUrl,
+  sitemapPath,
+  xApiKey,
+} from "@temp/constants";
 
 const DEFAULT_PRODUCTS_SLUGS = 45000;
 const DEFAULT_CATEGORIES_SLUGS = 1000;
 const DEFAULT_PAGES_SLUGS = 1000;
 
 async function generateSitemap() {
+  console.log("Starting sitemap generation");
   const {
     data: { sitemapSlugs },
   } = await fetch(apiUrl, {
@@ -64,8 +71,9 @@ ${sitemapSlugs.productSlugs
   })
   .join("")}
 </urlset>`;
-
-  writeFileSync("public/sitemap.xml", sitemap);
+  console.log("Sitemap generated");
+  writeFileSync(sitemapPath, sitemap);
+  console.log("Sitemap saved");
   return true;
 }
 
