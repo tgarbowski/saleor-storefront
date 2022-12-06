@@ -4,7 +4,7 @@ import {
   apiUrl,
   channelSlug,
   hostUrl,
-  sitemapPath,
+  // sitemapPath,
   xApiKey,
 } from "@temp/constants";
 
@@ -72,7 +72,7 @@ ${sitemapSlugs.productSlugs
   .join("")}
 </urlset>`;
   console.log("Sitemap generated");
-  writeFile(sitemapPath, sitemap, error => {
+  writeFile("/tmp/sitemap.xml", sitemap, error => {
     if (error) {
       throw error;
     }
