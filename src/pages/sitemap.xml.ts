@@ -3,7 +3,7 @@ import React from "react";
 
 import { apiUrl, channelSlug, hostUrl } from "@temp/constants";
 
-const DEFAULT_PRODUCTS_SLUGS = 45000;
+const DEFAULT_PRODUCTS_SLUGS = 30000;
 const DEFAULT_CATEGORIES_SLUGS = 1000;
 const DEFAULT_PAGES_SLUGS = 1000;
 
