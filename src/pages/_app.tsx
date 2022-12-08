@@ -109,7 +109,7 @@ const App = ({
       </noscript>
 
       <script
-        async
+        defer
         src="https://geowidget.easypack24.net/js/sdk-for-javascript.js"
       />
       {/* <link

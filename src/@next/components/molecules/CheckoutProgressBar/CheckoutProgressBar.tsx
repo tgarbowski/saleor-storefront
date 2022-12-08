@@ -78,12 +78,19 @@ const generateSteps = (
     }
     return (
       <S.Step key={step.index}>
-        <Link href={step.link}>
-          <a>
+        {index === currentActive || index < currentActive ? (
+          <Link href={step.link}>
+            <a>
+              {generateDot(index, currentActive)}
+              {generateLabel(index, name, steps.length)}
+            </a>
+          </Link>
+        ) : (
+          <>
             {generateDot(index, currentActive)}
             {generateLabel(index, name, steps.length)}
-          </a>
-        </Link>
+          </>
+        )}
         {generateProgressBar(index, currentActive, steps.length)}
       </S.Step>
     );
