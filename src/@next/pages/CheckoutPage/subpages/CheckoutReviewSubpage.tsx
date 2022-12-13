@@ -138,9 +138,9 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
         });
         if (payment?.gateway === paymentGatewayNames.payu) {
           setTimeout(() => {
-            window.open(payu_url, "_blank", "noopener,noreferrer");
+            window.location.href = payu_url;
             // @ts-ignore
-          }, 2000);
+          }, 1500);
         }
       }
     }
