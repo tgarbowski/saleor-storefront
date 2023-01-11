@@ -1,4 +1,3 @@
-import { useCart } from "@saleor/sdk";
 import { IItems } from "@saleor/sdk/lib/api/Cart/types";
 import React, { useEffect } from "react";
 import { FormattedMessage } from "react-intl";
@@ -81,6 +80,7 @@ export interface ICartSidebar {
 
 const CartSidebar: React.FC<ICartSidebar> = ({
   items,
+  removeItem,
   updateItem,
   totalPrice,
   shippingTaxedPrice,
@@ -94,7 +94,6 @@ const CartSidebar: React.FC<ICartSidebar> = ({
   proceedToCheckout,
 }: ICartSidebar) => {
   const { online } = useNetworkStatus();
-  const { removeItem } = useCart();
 
   const { setElementRef } = useHandlerWhenClickedOutside(() => {
     hide();
@@ -105,6 +104,10 @@ const CartSidebar: React.FC<ICartSidebar> = ({
   };
 
   useEffect(() => {
+    if (items?.length === 1) {
+      localStorage.removeItem("data_checkout");
+      localStorage.removeItem("data_payment");
+    }
     if (items?.length === 0) {
       localStorage.removeItem("data_checkout");
       localStorage.removeItem("data_payment");
@@ -135,9 +138,7 @@ const CartSidebar: React.FC<ICartSidebar> = ({
             missingVariants() ? (
               <Loader />
             ) : (
-              <S.Cart>
-                {items && generateCart(items, removeItem, updateItem)}
-              </S.Cart>
+              <S.Cart>{generateCart(items, removeItem, updateItem)}</S.Cart>
             )
           ) : (
             <S.EmptyCart>
