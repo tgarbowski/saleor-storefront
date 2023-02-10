@@ -9,6 +9,7 @@ import React, {
 
 import { CustomPopup } from "@components/atoms/CustomPopup/CustomPopup";
 import { CheckoutShipping } from "@components/organisms";
+import { shopInfoQuery, useTypedQuery } from "@graphql/queries";
 import { IFormError } from "@types";
 
 import {
@@ -31,6 +32,7 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
     checkout,
     availableShippingMethods,
     setShippingMethod,
+    setShippingAddress,
     setShippingLockerId,
   } = useCheckout();
 
@@ -42,11 +44,23 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
     );
   });
 
+  // const { data } = useTypedQuery(shopInfoQuery);
+
+  // console.log(data);
+  // console.log(checkout?.shippingAddress);
+
+  const {
+    data: {
+      shop: { companyAddress },
+    },
+  } = useTypedQuery(shopInfoQuery);
+
   const handleSetShippingMethod = async (shippingMethodId: string) => {
     changeSubmitProgress(true);
     const { dataError } = await setShippingMethod(shippingMethodId);
     const errors = dataError?.error;
     changeSubmitProgress(false);
+
     if (errors) {
       setErrors(errors);
     } else {
@@ -56,20 +70,33 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
         setErrors(errors);
       } else {
         setErrors([]);
+        if (checkout?.shippingMethod?.name === "Odbiór osobisty") {
+          await setShippingAddress(
+            {
+              id: companyAddress.id,
+              companyName: companyAddress.companyName,
+              streetAddress1: companyAddress.streetAddress1,
+              city: companyAddress.city,
+              postalCode: companyAddress.postalCode,
+              phone: companyAddress.phone,
+              country: companyAddress.country,
+            },
+            ""
+          );
+        }
 
         if (shippingMethodId === "U2hpcHBpbmdNZXRob2Q6NjQ=") {
           if (lockerId === null || lockerId === "") {
-            <CustomPopup
-              modalText="Musisz wybrać paczkomat"
-              title="Informacja"
-              buttonText="Zamknij okno"
-            />;
-          } else {
-            onSubmitSuccess(CheckoutStep.Shipping);
+            return (
+              <CustomPopup
+                modalText="Musisz wybrać paczkomat"
+                title="Informacja"
+                buttonText="Zamknij okno"
+              />
+            );
           }
-        } else {
-          onSubmitSuccess(CheckoutStep.Shipping);
         }
+        onSubmitSuccess(CheckoutStep.Shipping);
       }
     }
   };
