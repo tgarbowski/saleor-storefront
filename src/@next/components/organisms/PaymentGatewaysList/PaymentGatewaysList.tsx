@@ -31,8 +31,10 @@ const PaymentGatewaysList: React.FC<IProps> = ({
   const { checkout } = useCheckout();
 
   useEffect(() => {
-
-    if (checkout?.shippingMethod?.name === "Kurier pobranie, GLS") {
+    if (
+      checkout?.shippingMethod?.name === "Kurier pobranie, GLS" ||
+      checkout?.shippingMethod?.name === "Odbiór osobisty"
+    ) {
       selectPaymentGateway("salingo.payments.cod");
       selectedPaymentGateway = "salingo.payments.cod";
     } else {
@@ -46,7 +48,10 @@ const PaymentGatewaysList: React.FC<IProps> = ({
       {paymentGateways.map(({ id, name, config }, index) => {
         const checked = selectedPaymentGateway === id;
 
-        if (checkout?.shippingMethod?.name === "Kurier pobranie, GLS") {
+        if (
+          checkout?.shippingMethod?.name === "Kurier pobranie, GLS" ||
+          checkout?.shippingMethod?.name === "Odbiór osobisty"
+        ) {
           switch (name) {
             case PROVIDERS.COD.label:
               return (

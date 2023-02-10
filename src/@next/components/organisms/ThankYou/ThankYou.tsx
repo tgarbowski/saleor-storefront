@@ -43,7 +43,8 @@ const ThankYou: React.FC<IProps> = ({
             <FormattedMessage defaultMessage="za twoje zamówienie!" />
           </span>
           <br />
-          {shippingMethod === "Kurier pobranie, GLS" ? (
+          {shippingMethod === "Kurier pobranie, GLS" ||
+          shippingMethod === "Odbiór osobisty" ? (
             <S.Paragraph>
               <FormattedMessage defaultMessage="Zamówienie zostało pomyślnie przekazane do realizacji" />
             </S.Paragraph>

@@ -106,3 +106,22 @@ export const shopMenusQuery = gql`
     }
   }
 `;
+
+export const shopInfoQuery = gql`
+  query ShopInfoQuery {
+    shop {
+      companyAddress {
+        id
+        country {
+          country
+          code
+        }
+        phone
+        streetAddress1
+        companyName
+        postalCode
+        city
+      }
+    }
+  }
+`;
