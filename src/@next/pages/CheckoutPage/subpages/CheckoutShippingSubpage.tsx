@@ -44,16 +44,11 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
     );
   });
 
-  // const { data } = useTypedQuery(shopInfoQuery);
-
-  // console.log(data);
-  // console.log(checkout?.shippingAddress);
-
   const {
-    data: {
-      shop: { companyAddress },
-    },
+    data: { shop },
   } = useTypedQuery(shopInfoQuery);
+
+  const companyAddress = shop ? shop.companyAddress : null;
 
   const handleSetShippingMethod = async (shippingMethodId: string) => {
     changeSubmitProgress(true);
