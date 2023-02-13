@@ -28,6 +28,9 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
   const [errors, setErrors] = useState<IFormError[]>([]);
   const [lockerId, setLockerId] = useState<string>("");
 
+  const { data } = useTypedQuery(shopInfoQuery);
+  const companyAddress = data?.shop?.companyAddress || null;
+
   const {
     checkout,
     availableShippingMethods,
@@ -43,12 +46,6 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
       new Event("submit", { cancelable: true })
     );
   });
-
-  const {
-    data: { shop },
-  } = useTypedQuery(shopInfoQuery);
-
-  const companyAddress = shop ? shop.companyAddress : null;
 
   const handleSetShippingMethod = async (shippingMethodId: string) => {
     changeSubmitProgress(true);
