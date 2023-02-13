@@ -50,6 +50,7 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
   const handleSetShippingMethod = async (shippingMethodId: string) => {
     changeSubmitProgress(true);
     const { dataError } = await setShippingMethod(shippingMethodId);
+
     const errors = dataError?.error;
     changeSubmitProgress(false);
 
@@ -63,8 +64,11 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
       } else {
         setErrors([]);
         if (checkout?.shippingMethod?.name === "Odbiór osobisty") {
-          await setShippingAddress(
+          setShippingAddress(
             {
+              firstName: "",
+              lastName: "",
+              streetAddress2: "",
               id: companyAddress.id,
               companyName: companyAddress.companyName,
               streetAddress1: companyAddress.streetAddress1,

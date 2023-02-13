@@ -33,7 +33,11 @@ const CheckoutReview: React.FC<IProps> = ({
             <FormattedMessage {...checkoutMessages.shippingAddress} />
           </S.SubTitle>
           <S.Divider />
-          <AddressSummary address={shippingAddress} email={email} />
+          {shippingMethodName === "Odbiór osobisty" ? (
+            <AddressSummary address={shippingAddress} />
+          ) : (
+            <AddressSummary address={shippingAddress} email={email} />
+          )}
         </section>
         <section data-test="billingAddressSection">
           <S.SubTitle>
