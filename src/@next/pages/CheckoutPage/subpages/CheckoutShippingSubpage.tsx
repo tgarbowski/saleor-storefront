@@ -63,10 +63,7 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
         setErrors(errors);
       } else {
         setErrors([]);
-        if (
-          shippingMethodId ===
-          /* "U2hpcHBpbmdNZXRob2Q6NjY=" */ "U2hpcHBpbmdNZXRob2Q6Njc="
-        ) {
+        if (checkout?.shippingMethod?.name === "Odbiór osobisty") {
           await setShippingAddress(
             {
               firstName: "",
