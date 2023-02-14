@@ -28,9 +28,6 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
   const [errors, setErrors] = useState<IFormError[]>([]);
   const [lockerId, setLockerId] = useState<string>("");
 
-  const { data } = useTypedQuery(shopInfoQuery);
-  const companyAddress = data?.shop?.companyAddress || null;
-
   const {
     checkout,
     availableShippingMethods,
@@ -38,6 +35,9 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
     setShippingAddress,
     setShippingLockerId,
   } = useCheckout();
+
+  const { data } = useTypedQuery(shopInfoQuery);
+  const companyAddress = data?.shop?.companyAddress || null;
 
   const shippingMethods = availableShippingMethods || [];
 
@@ -63,7 +63,10 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
         setErrors(errors);
       } else {
         setErrors([]);
-        if (checkout?.shippingMethod?.name === "Odbiór osobisty") {
+        if (
+          shippingMethodId ===
+          /* "U2hpcHBpbmdNZXRob2Q6NjY=" */ "U2hpcHBpbmdNZXRob2Q6Njc="
+        ) {
           await setShippingAddress(
             {
               firstName: "",

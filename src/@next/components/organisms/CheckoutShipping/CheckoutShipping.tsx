@@ -1,9 +1,11 @@
+import { useCheckout } from "@saleor/sdk";
 import { Formik } from "formik";
 import React, { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 
 import { ErrorMessage, Radio } from "@components/atoms";
 import { Money } from "@components/containers";
+import { shopInfoQuery, useTypedQuery } from "@graphql/queries";
 import { checkoutMessages } from "@temp/intl";
 
 import * as S from "./styles";
@@ -49,6 +51,9 @@ const CheckoutShipping: React.FC<IProps> = ({
   const styleHidden = { height: "500px", position: "absolute", left: "-999px" };
   const styleShown = { height: "500px" };
 
+  const { data } = useTypedQuery(shopInfoQuery);
+  const companyAddress = data?.shop?.companyAddress || null;
+
   const getLocation = () => {
     window.easyPackAsyncInit = () => {
       window.easyPack.init({
@@ -78,6 +83,8 @@ const CheckoutShipping: React.FC<IProps> = ({
     }, 1500);
   }, []);
 
+  const { setShippingAddress } = useCheckout();
+
   return (
     <section>
       <S.Title data-test="checkoutPageSubtitle">
@@ -91,6 +98,26 @@ const CheckoutShipping: React.FC<IProps> = ({
         onSubmit={(values, { setSubmitting }) => {
           if (selectShippingMethod && values.shippingMethod) {
             selectShippingMethod(values.shippingMethod);
+          }
+          if (
+            selectedShippingMethodId ===
+            /* "U2hpcHBpbmdNZXRob2Q6NjY=" */ "U2hpcHBpbmdNZXRob2Q6Njc="
+          ) {
+            setShippingAddress(
+              {
+                firstName: "",
+                lastName: "",
+                streetAddress2: "",
+                id: companyAddress.id,
+                companyName: companyAddress.companyName,
+                streetAddress1: companyAddress.streetAddress1,
+                city: companyAddress.city,
+                postalCode: companyAddress.postalCode,
+                phone: companyAddress.phone,
+                country: companyAddress.country,
+              },
+              ""
+            );
           }
           setSubmitting(false);
         }}
