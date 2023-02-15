@@ -34,7 +34,12 @@ const CheckoutReview: React.FC<IProps> = ({
           </S.SubTitle>
           <S.Divider />
           {shippingMethodName === "Odbiór osobisty" ? (
-            <AddressSummary address={shippingAddress} />
+            <>
+              <p>
+                Po odbiór osobisty zapraszamy pod adres: Okulickiego 7
+                <AddressSummary address={shippingAddress} />
+              </p>
+            </>
           ) : (
             <AddressSummary address={shippingAddress} email={email} />
           )}
