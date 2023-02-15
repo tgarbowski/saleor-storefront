@@ -1,9 +1,11 @@
+import { useCheckout } from "@saleor/sdk";
 import { Formik } from "formik";
 import React, { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 
 import { ErrorMessage, Radio } from "@components/atoms";
 import { Money } from "@components/containers";
+import { shopInfoQuery, useTypedQuery } from "@graphql/queries";
 import { checkoutMessages } from "@temp/intl";
 
 import * as S from "./styles";
@@ -24,14 +26,12 @@ type Point = {
     longitude: number;
   };
 };
-
 declare global {
   interface Window {
     easyPackAsyncInit: () => void;
     easyPack: any;
   }
 }
-
 /**
  * Shipping method selector used in checkout.
  */
@@ -48,6 +48,9 @@ const CheckoutShipping: React.FC<IProps> = ({
   const [isShowMap, setShowMap] = useState<boolean>(false);
   const styleHidden = { height: "500px", position: "absolute", left: "-999px" };
   const styleShown = { height: "500px" };
+
+  const { data } = useTypedQuery(shopInfoQuery);
+  const companyAddress = data?.shop?.companyAddress || null;
 
   const getLocation = () => {
     window.easyPackAsyncInit = () => {
@@ -71,12 +74,13 @@ const CheckoutShipping: React.FC<IProps> = ({
       });
     };
   };
-
   useEffect(() => {
     setTimeout(() => {
       getLocation();
     }, 1500);
   }, []);
+
+  const { setShippingAddress } = useCheckout();
 
   return (
     <section>
@@ -91,6 +95,26 @@ const CheckoutShipping: React.FC<IProps> = ({
         onSubmit={(values, { setSubmitting }) => {
           if (selectShippingMethod && values.shippingMethod) {
             selectShippingMethod(values.shippingMethod);
+          }
+          if (
+            selectedShippingMethodId ===
+            /* "U2hpcHBpbmdNZXRob2Q6NjY=" */ "U2hpcHBpbmdNZXRob2Q6Njc="
+          ) {
+            setShippingAddress(
+              {
+                firstName: "",
+                lastName: "",
+                streetAddress2: "",
+                id: companyAddress.id,
+                companyName: companyAddress.companyName,
+                streetAddress1: companyAddress.streetAddress1,
+                city: companyAddress.city,
+                postalCode: companyAddress.postalCode,
+                phone: companyAddress.phone,
+                country: companyAddress.country,
+              },
+              ""
+            );
           }
           setSubmitting(false);
         }}
@@ -113,13 +137,11 @@ const CheckoutShipping: React.FC<IProps> = ({
                 {shippingMethods.map(({ id, name, price }, index) => {
                   const checked =
                     !!values.shippingMethod && values.shippingMethod === id;
-
                   const isParcel = () => {
                     if (name === "Inpost paczkomaty") {
                       setShowMap(!isShowMap);
                     } else setShowMap(false);
                   };
-
                   return (
                     <>
                       <S.Tile
@@ -171,5 +193,4 @@ const CheckoutShipping: React.FC<IProps> = ({
     </section>
   );
 };
-
 export { CheckoutShipping };
