@@ -3,11 +3,11 @@ import { FormattedMessage } from "react-intl";
 
 import { ErrorMessage } from "@components/atoms";
 import { AddressSummary } from "@components/molecules";
+import { shopInfoQuery, useTypedQuery } from "@graphql/queries";
 import { checkoutMessages } from "@temp/intl";
 
 import * as S from "./styles";
 import { IProps } from "./types";
-
 /**
  * Review order view showed in checkout.
  */
@@ -22,6 +22,8 @@ const CheckoutReview: React.FC<IProps> = ({
   noteRef,
   nip,
 }) => {
+  const { data } = useTypedQuery(shopInfoQuery);
+  const companyAddress = data?.shop?.companyAddress || null;
   return (
     <S.Wrapper data-test="sectionTitle">
       <S.Title data-test="checkoutPageSubtitle">
@@ -35,10 +37,18 @@ const CheckoutReview: React.FC<IProps> = ({
           <S.Divider />
           {shippingMethodName === "Odbiór osobisty" ? (
             <>
-              <p>
-                Po odbiór osobisty zapraszamy pod adres: Okulickiego 7
-                <AddressSummary address={shippingAddress} />
-              </p>
+              <S.Wrapper data-test="addressTile">
+                <p style={{ color: "red" }}>
+                  *Po odbiór osobisty, prosimy zgłosić się na podany adres:
+                </p>
+                <br />
+                <p>Nazwa firmy: {companyAddress.companyName}</p>
+                <p>{companyAddress.streetAddress1}</p>
+                <p>{companyAddress.city}</p>
+                <p>{companyAddress.postalCode}</p>
+                <p>{companyAddress.phone}</p>
+              </S.Wrapper>
+              <AddressSummary address={shippingAddress} />
             </>
           ) : (
             <AddressSummary address={shippingAddress} email={email} />

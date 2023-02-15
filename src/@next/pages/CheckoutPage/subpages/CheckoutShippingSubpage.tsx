@@ -24,7 +24,6 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
 > = ({ changeSubmitProgress, onSubmitSuccess }, ref) => {
   const checkoutShippingFormId = "shipping-form";
   const checkoutShippingFormRef = useRef<HTMLFormElement>(null);
-
   const [errors, setErrors] = useState<IFormError[]>([]);
   const [lockerId, setLockerId] = useState<string>("");
 
@@ -46,14 +45,11 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
       new Event("submit", { cancelable: true })
     );
   });
-
   const handleSetShippingMethod = async (shippingMethodId: string) => {
     changeSubmitProgress(true);
     const { dataError } = await setShippingMethod(shippingMethodId);
-
     const errors = dataError?.error;
     changeSubmitProgress(false);
-
     if (errors) {
       setErrors(errors);
     } else {
@@ -63,8 +59,11 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
         setErrors(errors);
       } else {
         setErrors([]);
-        if (checkout?.shippingMethod?.name === "Odbiór osobisty") {
-          setShippingAddress(
+        if (
+          shippingMethodId ===
+          /* "U2hpcHBpbmdNZXRob2Q6NjY=" */ "U2hpcHBpbmdNZXRob2Q6Njc="
+        ) {
+          await setShippingAddress(
             {
               firstName: "",
               lastName: "",
@@ -80,7 +79,6 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
             ""
           );
         }
-
         if (shippingMethodId === "U2hpcHBpbmdNZXRob2Q6NjQ=") {
           if (lockerId === null || lockerId === "") {
             return (
@@ -96,7 +94,6 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
       }
     }
   };
-
   return (
     <CheckoutShipping
       shippingMethods={shippingMethods}
@@ -109,7 +106,5 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
     />
   );
 };
-
 const CheckoutShippingSubpage = forwardRef(CheckoutShippingSubpageWithRef);
-
 export { CheckoutShippingSubpage };
