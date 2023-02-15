@@ -48,7 +48,6 @@ const CheckoutReview: React.FC<IProps> = ({
                 <p>{companyAddress.postalCode}</p>
                 <p>{companyAddress.phone}</p>
               </S.Wrapper>
-              <AddressSummary address={shippingAddress} />
             </>
           ) : (
             <AddressSummary address={shippingAddress} email={email} />
