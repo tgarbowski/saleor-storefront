@@ -1,3 +1,4 @@
+import { useCheckout } from "@saleor/sdk";
 import Link from "next/link";
 import React from "react";
 import { IntlShape, useIntl } from "react-intl";
@@ -76,9 +77,30 @@ const generateSteps = (
         name = intl.formatMessage(checkoutMessages.stepNameReview);
         break;
     }
+
+    const isClickableLocalPickup =
+      index !== 1 && index !== 2 && index <= currentActive;
+    const isClickable = index === currentActive || index < currentActive;
+
+    const { checkout } = useCheckout();
+
     return (
       <S.Step key={step.index}>
-        {index === currentActive || index < currentActive ? (
+        {checkout?.shippingMethod?.name === "Odbiór osobisty" ? (
+          isClickableLocalPickup ? (
+            <Link href={step.link}>
+              <a>
+                {generateDot(index, currentActive)}
+                {generateLabel(index, name, steps.length)}
+              </a>
+            </Link>
+          ) : (
+            <>
+              {generateDot(index, currentActive)}
+              {generateLabel(index, name, steps.length)}
+            </>
+          )
+        ) : isClickable ? (
           <Link href={step.link}>
             <a>
               {generateDot(index, currentActive)}
