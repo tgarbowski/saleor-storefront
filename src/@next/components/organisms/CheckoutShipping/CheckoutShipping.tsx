@@ -80,8 +80,6 @@ const CheckoutShipping: React.FC<IProps> = ({
     }, 1500);
   }, []);
 
-  const { setShippingAddress } = useCheckout();
-
   return (
     <section>
       <S.Title data-test="checkoutPageSubtitle">
@@ -94,32 +92,15 @@ const CheckoutShipping: React.FC<IProps> = ({
         enableReinitialize
         onSubmit={(values, { setSubmitting }) => {
           if (selectShippingMethod && values.shippingMethod) {
-            selectShippingMethod(values.shippingMethod);
-          }
-
-          const isLocalPickup = ({ name }: { name: string }) =>
-            name === "Odbiór osobisty";
-
-          const selectedShippingMethodLocalPickup = shippingMethods.find(
-            shippingMethod => isLocalPickup(shippingMethod)
-          );
-
-          if (selectedShippingMethodLocalPickup) {
-            setShippingAddress(
-              {
-                firstName: "",
-                lastName: "",
-                streetAddress2: "",
-                id: companyAddress.id,
-                companyName: companyAddress.companyName,
-                streetAddress1: companyAddress.streetAddress1,
-                city: companyAddress.city,
-                postalCode: companyAddress.postalCode,
-                phone: companyAddress.phone,
-                country: companyAddress.country,
-              },
-              ""
+            const selectedShippingMethod = shippingMethods.find(
+              method => method.id === values.shippingMethod
             );
+            if (selectedShippingMethod) {
+              selectShippingMethod({
+                name: selectedShippingMethod.name,
+                id: selectedShippingMethod.id,
+              });
+            }
           }
           setSubmitting(false);
         }}
