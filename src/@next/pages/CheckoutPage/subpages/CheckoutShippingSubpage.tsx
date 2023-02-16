@@ -59,10 +59,15 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
         setErrors(errors);
       } else {
         setErrors([]);
-        if (
-          shippingMethodId ===
-          /* "U2hpcHBpbmdNZXRob2Q6NjY=" */ "U2hpcHBpbmdNZXRob2Q6Njc="
-        ) {
+
+        const isLocalPickup = ({ name }: { name: string }) =>
+          name === "Odbiór osobisty";
+
+        const selectedShippingMethodLocalPickup = shippingMethods.find(
+          shippingMethod => isLocalPickup(shippingMethod)
+        );
+
+        if (selectedShippingMethodLocalPickup) {
           await setShippingAddress(
             {
               firstName: "",

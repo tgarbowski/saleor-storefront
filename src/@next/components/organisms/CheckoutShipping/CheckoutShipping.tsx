@@ -96,10 +96,15 @@ const CheckoutShipping: React.FC<IProps> = ({
           if (selectShippingMethod && values.shippingMethod) {
             selectShippingMethod(values.shippingMethod);
           }
-          if (
-            selectedShippingMethodId ===
-            /* "U2hpcHBpbmdNZXRob2Q6NjY=" */ "U2hpcHBpbmdNZXRob2Q6Njc="
-          ) {
+
+          const isLocalPickup = ({ name }: { name: string }) =>
+            name === "Odbiór osobisty";
+
+          const selectedShippingMethodLocalPickup = shippingMethods.find(
+            shippingMethod => isLocalPickup(shippingMethod)
+          );
+
+          if (selectedShippingMethodLocalPickup) {
             setShippingAddress(
               {
                 firstName: "",
@@ -137,6 +142,7 @@ const CheckoutShipping: React.FC<IProps> = ({
                 {shippingMethods.map(({ id, name, price }, index) => {
                   const checked =
                     !!values.shippingMethod && values.shippingMethod === id;
+
                   const isParcel = () => {
                     if (name === "Inpost paczkomaty") {
                       setShowMap(!isShowMap);
