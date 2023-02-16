@@ -39,7 +39,7 @@ const CheckoutReview: React.FC<IProps> = ({
             <>
               <S.Wrapper data-test="addressTile">
                 <p style={{ color: "red" }}>
-                  *Po odbiór osobisty, prosimy zgłosić się na podany adres:
+                  *Po odbiór osobisty, prosimy zgłosić się pod podany adres:
                 </p>
                 <br />
                 <p>Nazwa firmy: {companyAddress.companyName}</p>

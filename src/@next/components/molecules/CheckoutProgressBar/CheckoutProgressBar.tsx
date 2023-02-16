@@ -76,9 +76,11 @@ const generateSteps = (
         name = intl.formatMessage(checkoutMessages.stepNameReview);
         break;
     }
+
+    const isClickable = index !== 1 && index !== 2 && index <= currentActive;
     return (
       <S.Step key={step.index}>
-        {index === currentActive || index < currentActive ? (
+        {isClickable ? (
           <Link href={step.link}>
             <a>
               {generateDot(index, currentActive)}
