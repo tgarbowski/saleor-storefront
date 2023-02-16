@@ -17,13 +17,13 @@ export interface IShippingMethod {
    */
   id: string;
   name: string;
-  price: IShippingMethodPrice | null;
+  price?: IShippingMethodPrice | null;
 }
 
 export interface IProps {
   shippingMethods: IShippingMethod[];
   selectedShippingMethodId?: string;
-  selectShippingMethod?: (shippingMethodId: string) => void;
+  selectShippingMethod?: (shippingMethod: IShippingMethod) => void;
   errors?: IFormError[];
   formId?: string;
   formRef?: React.RefObject<HTMLFormElement>;

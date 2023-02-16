@@ -45,9 +45,12 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
       new Event("submit", { cancelable: true })
     );
   });
-  const handleSetShippingMethod = async (shippingMethodId: string) => {
+  const handleSetShippingMethod = async (shippingMethod: {
+    id: string;
+    name: string;
+  }) => {
     changeSubmitProgress(true);
-    const { dataError } = await setShippingMethod(shippingMethodId);
+    const { dataError } = await setShippingMethod(shippingMethod?.id);
     const errors = dataError?.error;
     changeSubmitProgress(false);
     if (errors) {
@@ -60,14 +63,7 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
       } else {
         setErrors([]);
 
-        const isLocalPickup = ({ name }: { name: string }) =>
-          name === "Odbiór osobisty";
-
-        const selectedShippingMethodLocalPickup = shippingMethods.find(
-          shippingMethod => isLocalPickup(shippingMethod)
-        );
-
-        if (selectedShippingMethodLocalPickup) {
+        if (shippingMethod?.name === "Odbiór osobisty") {
           await setShippingAddress(
             {
               firstName: "",
@@ -84,7 +80,7 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
             ""
           );
         }
-        if (shippingMethodId === "U2hpcHBpbmdNZXRob2Q6NjQ=") {
+        if (shippingMethod?.id === "U2hpcHBpbmdNZXRob2Q6NjQ=") {
           if (lockerId === null || lockerId === "") {
             return (
               <CustomPopup
