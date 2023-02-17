@@ -1,11 +1,27 @@
 import { styled } from "@styles";
 
-export const Dot = styled.div<{ done?: boolean }>`
+const inactiveDotColor = "#c2c2c2";
+const doneDotColor = "#06847B";
+const clickableLocalPickupDotColor = "#c2c2c2";
+
+export const Dot = styled.div<{
+  done?: boolean;
+  clickableLocalPickup?: boolean;
+}>`
   position: relative;
   border-radius: 50%;
   width: 12px;
   height: 12px;
-  border: 6px solid ${props => (props.done ? "#06847B" : "#c2c2c2")};
+  border: 6px solid
+    ${({ done, clickableLocalPickup }) => {
+      if (done && clickableLocalPickup) {
+        return clickableLocalPickupDotColor;
+      }
+      if (done) {
+        return doneDotColor;
+      }
+      return inactiveDotColor;
+    }};
 `;
 
 export const ActiveDot = styled.div`
