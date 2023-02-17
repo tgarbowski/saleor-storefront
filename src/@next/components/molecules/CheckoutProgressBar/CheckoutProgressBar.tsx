@@ -15,13 +15,15 @@ const activeDot = (
   </S.ActiveDot>
 );
 
-const doneDot = <S.Dot done />;
-
 const inactiveDot = <S.Dot />;
 
-const generateDot = (stepIndex: number, currentActiveStep: number) => {
+const generateDot = (
+  stepIndex: number,
+  currentActiveStep: number,
+  isClickableLocalPickup: boolean
+) => {
   if (stepIndex < currentActiveStep) {
-    return doneDot;
+    return <S.Dot done clickableLocalPickup={isClickableLocalPickup} />;
   }
   if (stepIndex === currentActiveStep) {
     return activeDot;
@@ -90,26 +92,26 @@ const generateSteps = (
           isClickableLocalPickup ? (
             <Link href={step.link}>
               <a>
-                {generateDot(index, currentActive)}
+                {generateDot(index, currentActive, false)}
                 {generateLabel(index, name, steps.length)}
               </a>
             </Link>
           ) : (
             <>
-              {generateDot(index, currentActive)}
+              {generateDot(index, currentActive, true)}
               {generateLabel(index, name, steps.length)}
             </>
           )
         ) : isClickable ? (
           <Link href={step.link}>
             <a>
-              {generateDot(index, currentActive)}
+              {generateDot(index, currentActive, false)}
               {generateLabel(index, name, steps.length)}
             </a>
           </Link>
         ) : (
           <>
-            {generateDot(index, currentActive)}
+            {generateDot(index, currentActive, false)}
             {generateLabel(index, name, steps.length)}
           </>
         )}
