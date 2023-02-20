@@ -9,6 +9,7 @@ import React, {
 
 import { CustomPopup } from "@components/atoms/CustomPopup/CustomPopup";
 import { CheckoutShipping } from "@components/organisms";
+import { shopInfoQuery, useTypedQuery } from "@graphql/queries";
 import { IFormError } from "@types";
 
 import {
@@ -23,7 +24,6 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
 > = ({ changeSubmitProgress, onSubmitSuccess }, ref) => {
   const checkoutShippingFormId = "shipping-form";
   const checkoutShippingFormRef = useRef<HTMLFormElement>(null);
-
   const [errors, setErrors] = useState<IFormError[]>([]);
   const [lockerId, setLockerId] = useState<string>("");
 
@@ -31,8 +31,12 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
     checkout,
     availableShippingMethods,
     setShippingMethod,
+    setShippingAddress,
     setShippingLockerId,
   } = useCheckout();
+
+  const { data } = useTypedQuery(shopInfoQuery);
+  const companyAddress = data?.shop?.companyAddress || null;
 
   const shippingMethods = availableShippingMethods || [];
 
@@ -41,10 +45,12 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
       new Event("submit", { cancelable: true })
     );
   });
-
-  const handleSetShippingMethod = async (shippingMethodId: string) => {
+  const handleSetShippingMethod = async (shippingMethod: {
+    id: string;
+    name: string;
+  }) => {
     changeSubmitProgress(true);
-    const { dataError } = await setShippingMethod(shippingMethodId);
+    const { dataError } = await setShippingMethod(shippingMethod?.id);
     const errors = dataError?.error;
     changeSubmitProgress(false);
     if (errors) {
@@ -57,23 +63,38 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
       } else {
         setErrors([]);
 
-        if (shippingMethodId === "U2hpcHBpbmdNZXRob2Q6NjQ=") {
-          if (lockerId === null || lockerId === "") {
-            <CustomPopup
-              modalText="Musisz wybrać paczkomat"
-              title="Informacja"
-              buttonText="Zamknij okno"
-            />;
-          } else {
-            onSubmitSuccess(CheckoutStep.Shipping);
-          }
-        } else {
-          onSubmitSuccess(CheckoutStep.Shipping);
+        if (shippingMethod?.name === "Odbiór osobisty") {
+          await setShippingAddress(
+            {
+              firstName: "",
+              lastName: "",
+              streetAddress2: "",
+              id: companyAddress.id,
+              companyName: companyAddress.companyName,
+              streetAddress1: companyAddress.streetAddress1,
+              city: companyAddress.city,
+              postalCode: companyAddress.postalCode,
+              phone: companyAddress.phone,
+              country: companyAddress.country,
+            },
+            ""
+          );
         }
+        if (shippingMethod?.id === "U2hpcHBpbmdNZXRob2Q6NjQ=") {
+          if (lockerId === null || lockerId === "") {
+            return (
+              <CustomPopup
+                modalText="Musisz wybrać paczkomat"
+                title="Informacja"
+                buttonText="Zamknij okno"
+              />
+            );
+          }
+        }
+        onSubmitSuccess(CheckoutStep.Shipping);
       }
     }
   };
-
   return (
     <CheckoutShipping
       shippingMethods={shippingMethods}
@@ -86,7 +107,5 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
     />
   );
 };
-
 const CheckoutShippingSubpage = forwardRef(CheckoutShippingSubpageWithRef);
-
 export { CheckoutShippingSubpage };

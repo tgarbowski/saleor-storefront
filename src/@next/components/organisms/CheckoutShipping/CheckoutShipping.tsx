@@ -24,14 +24,12 @@ type Point = {
     longitude: number;
   };
 };
-
 declare global {
   interface Window {
     easyPackAsyncInit: () => void;
     easyPack: any;
   }
 }
-
 /**
  * Shipping method selector used in checkout.
  */
@@ -71,7 +69,6 @@ const CheckoutShipping: React.FC<IProps> = ({
       });
     };
   };
-
   useEffect(() => {
     setTimeout(() => {
       getLocation();
@@ -90,7 +87,15 @@ const CheckoutShipping: React.FC<IProps> = ({
         enableReinitialize
         onSubmit={(values, { setSubmitting }) => {
           if (selectShippingMethod && values.shippingMethod) {
-            selectShippingMethod(values.shippingMethod);
+            const selectedShippingMethod = shippingMethods.find(
+              method => method.id === values.shippingMethod
+            );
+            if (selectedShippingMethod) {
+              selectShippingMethod({
+                name: selectedShippingMethod.name,
+                id: selectedShippingMethod.id,
+              });
+            }
           }
           setSubmitting(false);
         }}
@@ -119,7 +124,6 @@ const CheckoutShipping: React.FC<IProps> = ({
                       setShowMap(!isShowMap);
                     } else setShowMap(false);
                   };
-
                   return (
                     <>
                       <S.Tile
@@ -171,5 +175,4 @@ const CheckoutShipping: React.FC<IProps> = ({
     </section>
   );
 };
-
 export { CheckoutShipping };
