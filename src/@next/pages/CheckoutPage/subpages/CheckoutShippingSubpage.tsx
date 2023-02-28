@@ -7,7 +7,6 @@ import React, {
   useState,
 } from "react";
 
-import { CustomPopup } from "@components/atoms/CustomPopup/CustomPopup";
 import { CheckoutShipping } from "@components/organisms";
 import { shopInfoQuery, useTypedQuery } from "@graphql/queries";
 import { IFormError } from "@types";
@@ -80,16 +79,11 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
             ""
           );
         }
-        if (shippingMethod?.id === "U2hpcHBpbmdNZXRob2Q6NjQ=") {
-          if (lockerId === null || lockerId === "") {
-            return (
-              <CustomPopup
-                modalText="Musisz wybrać paczkomat"
-                title="Informacja"
-                buttonText="Zamknij okno"
-              />
-            );
-          }
+        if (
+          shippingMethod?.name === "Inpost paczkomaty" &&
+          (lockerId === null || lockerId === "")
+        ) {
+          return <p>Musisz wybrać paczkomat.</p>;
         }
         onSubmitSuccess(CheckoutStep.Shipping);
       }

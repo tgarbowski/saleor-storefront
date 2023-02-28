@@ -6,9 +6,8 @@ import React from "react";
 import Media from "react-responsive";
 
 import { Icon, NavLink } from "@components/atoms";
+import { logo, logoSmall } from "@styles/BrandingConstants";
 import { largeScreen, smallScreen } from "@styles/constants";
-import Logo from "@styles/Logo";
-import LogoSmall from "@styles/LogoSmall";
 import { maybe } from "@utils/misc";
 
 import { Dropdown } from "./Dropdown";
@@ -111,10 +110,10 @@ export const TopNavbar: React.FC<IProps> = ({ items }: IProps) => {
         </S.Navigation>
         <S.Center>
           <Media maxWidth={smallScreen}>
-            <S.LogoWrapper path={LogoSmall} />
+            <S.LogoWrapper path={logoSmall} />
           </Media>
           <Media minWidth={smallScreen}>
-            <S.LogoWrapper path={Logo} />
+            <S.LogoWrapper path={logo} />
           </Media>
         </S.Center>
         <S.Actions>

@@ -10,8 +10,8 @@ import ReactSVG from "react-svg";
 import { DemoBanner } from "@components/atoms";
 import { ShopMenusQuery } from "@graphql/gqlTypes/ShopMenusQuery";
 import { paths } from "@paths";
+import { logo } from "@styles/BrandingConstants";
 import { HeartIconMenuSmall } from "@styles/CreditCardIcon";
-import Logo from "@styles/Logo";
 import { shopName } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
 
@@ -263,7 +263,7 @@ export const MainMenu: React.FC<MainMenuProps> = ({
         <div className="main-menu__center">
           <Link href={paths.home}>
             <a>
-              <ReactSVG path={Logo} />
+              <ReactSVG path={logo} />
             </a>
           </Link>
         </div>

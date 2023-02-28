@@ -5,13 +5,12 @@ import { Transition } from "react-transition-group";
 
 import { Icon } from "@components/atoms";
 import { paths } from "@paths";
+import { logoSmall } from "@styles/BrandingConstants";
 import { largeScreen } from "@styles/constants";
 
 import { Overlay } from "..";
 import * as S from "./styles";
 import { IProps, IState } from "./types";
-
-import LogoSmall from "images/logo-small.svg";
 
 const TopBar: React.FC<{ onHide: () => void }> = ({ children, onHide }) => (
   <S.Bar>
@@ -85,7 +84,7 @@ export const SideNavbar: React.FC<IProps> = ({
       <S.Wrapper>
         <S.Menu>
           <TopBar onHide={handleHide}>
-            <S.LogoWrapper path={LogoSmall} />
+            <S.LogoWrapper path={logoSmall} />
           </TopBar>
           <Link href={paths.home}>
             <S.Link>Home</S.Link>

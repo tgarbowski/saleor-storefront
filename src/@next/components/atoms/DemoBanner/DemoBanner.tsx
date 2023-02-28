@@ -2,9 +2,9 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 import Media from "react-responsive";
 
+import { logoSmall } from "@styles/BrandingConstants";
 import { mediumScreen } from "@styles/constants";
 
-import LogoSmall from "../../../../images/logo-small.svg";
 import * as S from "./styles";
 
 export const DemoBanner: React.FC = () => {
@@ -13,7 +13,7 @@ export const DemoBanner: React.FC = () => {
       <S.BorderedWrapper>
         {/* eslint-disable-next-line react/jsx-no-target-blank */}
         <a target="_blank" href="https://saleor.io/">
-          <S.LogoWrapper path={LogoSmall} />
+          <S.LogoWrapper path={logoSmall} />
         </a>
         <S.LinkList>
           <Media maxWidth={mediumScreen}>

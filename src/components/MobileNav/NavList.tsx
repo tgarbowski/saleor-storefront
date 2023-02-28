@@ -5,7 +5,7 @@ import ReactSVG from "react-svg";
 
 import { IconButton } from "@components/atoms";
 import { paths } from "@paths";
-import Logo from "@styles/Logo";
+import { logo } from "@styles/BrandingConstants";
 import { commonMessages } from "@temp/intl";
 
 import backImg from "../../images/arrow-back.svg";
@@ -79,7 +79,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
             <li className="side-nav__menu-item side-nav__menu-item--parent">
               <Link href={paths.home}>
                 <a className="side-nav__menu-item-logo">
-                  <ReactSVG path={Logo} onClick={hideOverlay} />
+                  <ReactSVG path={logo} onClick={hideOverlay} />
                 </a>
               </Link>
               {defaultCloseIcon && (
