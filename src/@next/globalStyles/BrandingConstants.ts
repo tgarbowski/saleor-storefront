@@ -89,7 +89,7 @@ const brandingData: BrandingData = {
     metaDefaults: {
       custom: [],
       description:
-        "Open-source PWA storefront built with Saleor's e-commerce GraphQL API. Written with React and TypeScript.",
+        "Sklep internetowy z tanią odzieżą używaną damską, męską i dziecięcą. W naszym lumpeksie online posiadamy ubrania używane oraz z outletu. Setki marek i mnóstwo niepowtarzalnego stylu.",
       image: `${!ssrMode ? window.location.origin : ""}${DefaultLogo}`,
       title: "Sklep Clothes4u - Odzież używana",
       type: "Clothes4u",
@@ -116,7 +116,7 @@ const brandingData: BrandingData = {
     metaDefaults: {
       custom: [],
       description:
-        "Open-source PWA storefront built with Saleor's e-commerce GraphQL API. Written with React and TypeScript.",
+        "Sklep internetowy z tanią odzieżą używaną damską, męską i dziecięcą. W naszym lumpeksie online posiadamy ubrania używane oraz z outletu. Setki marek i mnóstwo niepowtarzalnego stylu.",
       image: `${!ssrMode ? window.location.origin : ""}${DefaultLogo}`,
       title: "Sklep Fashion4You - Odzież używana",
       type: "Fashion4You",

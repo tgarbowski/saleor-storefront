@@ -128,11 +128,7 @@ const App = ({
         // @ts-ignore
         onLoad="this.media='all'"
       />
-      <meta
-        name="description"
-        content="Sklep internetowy z tanią odzieżą używaną damską, męską i dziecięcą.
-        W naszym lumpeksie online posiadamy ubrania używane oraz z outletu. Setki marek i mnóstwo niepowtarzalnego stylu. "
-      />
+      <meta name="description" content={metaDefaults.description} />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta
         name="google-site-verification"
