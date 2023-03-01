@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { META_DEFAULTS } from "../../core/config";
+import { metaDefaults } from "@styles/BrandingConstants";
 
 type MetaProps = JSX.IntrinsicElements["meta"];
 
@@ -13,6 +13,5 @@ export interface MetaContextInterface {
   custom?: MetaProps[];
 }
 
-export const { Provider, Consumer } = React.createContext<MetaContextInterface>(
-  META_DEFAULTS
-);
+export const { Provider, Consumer } =
+  React.createContext<MetaContextInterface>(metaDefaults);

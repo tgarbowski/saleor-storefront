@@ -4,9 +4,8 @@ import ReactSVG from "react-svg";
 
 import { ShopMenusQuery } from "@graphql/gqlTypes/ShopMenusQuery";
 import { paths } from "@paths";
-import LogoFooter from "@styles/LogoFooter";
+import { logoFooter, socialMedia } from "@styles/BrandingConstants";
 import { shopName } from "@temp/constants";
-import { SOCIAL_MEDIA } from "@temp/core/config";
 
 import { NavLink, SocialMediaIcon } from "..";
 
@@ -77,11 +76,11 @@ export const Nav: React.FC<NavProps> = ({ menu }) => {
         <div className="footer-nav-container-right">
           <Link href={paths.home}>
             <a>
-              <ReactSVG path={LogoFooter} />
+              <ReactSVG path={logoFooter} />
             </a>
           </Link>
           <div className="footer-nav-container-right-icons">
-            {SOCIAL_MEDIA.map(medium => (
+            {socialMedia.map(medium => (
               <SocialMediaIcon medium={medium} key={medium.ariaLabel} />
             ))}
           </div>
