@@ -404,10 +404,11 @@
     }
   }
   &__collections {
+    margin-top: 2%;
+    margin-bottom: 8%;
     &_container {
       margin: 4.5rem 0;
       width: 100%;
-      max-width: 100vw;
       padding: 0 $spacer;
       &-heading {
         font-size: 38px;
@@ -433,12 +434,18 @@
       }
     }
     &__list {
-      display: flex;
-      flex-direction: row;
+      display: grid;
+      grid-template-columns: 50% auto;
       gap: 3rem;
       flex-wrap: wrap;
       padding: 0 2rem;
       justify-content: center;
+
+      @media (max-width: $large-screen) {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+      }
 
       @media (max-width: $small-screen) {
         padding: 0;

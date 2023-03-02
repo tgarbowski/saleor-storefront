@@ -46,10 +46,6 @@
 
     @media (min-width: $small-screen) {
       flex-basis: calc(50% - 4rem);
-
-      @if $env == "FASHION4YOU" {
-        flex-basis: calc(50% - 2rem);
-      }
     }
 
     ul {
@@ -57,12 +53,6 @@
       justify-content: flex-end;
       align-items: center;
       margin-right: 25px;
-
-      @media only screen and (max-width: $small-screen) {
-        @if $env == "FASHION4YOU" {
-          margin-right: 0;
-        }
-      }
 
       @if $env == "FASHION4YOU" {
         margin-right: 30px;
