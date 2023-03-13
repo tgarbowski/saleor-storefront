@@ -78,10 +78,11 @@ body {
     width: $container-width;
     max-width: $container-max-width;
     margin: 0 auto;
-    padding: 0 $spacer;
+    padding: 0 6.4rem;
 
     @media (max-width: $large-screen) {
       width: 100%;
+      padding: 0 1rem;
     }
   }
 

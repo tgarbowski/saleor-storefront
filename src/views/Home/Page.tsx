@@ -128,13 +128,16 @@ const Page: React.FC<{
       </div>
       <AdvantagesBlock />
       {categoriesExist() && (
-        <div className="home-page__categories">
+        <section className="home-page__categories">
+          <div className="container home-page__categories-wrapper">
+            <div className="circle" />
+            <h2 className="home-page__categories-wrapper-title">
+              Sprawdź nasze kategorie
+            </h2>
+          </div>
           <div className="container home-page__categories_container">
             <div className="home-page__categories__list">
               {visibleCategory.map(({ node: category }) => {
-                const contentStringify = JSON.parse(
-                  category.description
-                )?.blocks[0].data.text.replace(/^(.{128}[^\s]*).*/, "$1");
                 return shopName === "CLOTHES4U" &&
                   category.name === "Detal" ? null : (
                   <div key={category.id} className="home-page__category-item">
@@ -171,9 +174,6 @@ const Page: React.FC<{
                             {category.name}
                           </a>
                         </Link>
-                        <p className="home-page__categories__text-subtitle">
-                          {contentStringify}
-                        </p>
                       </div>
                     </div>
                   </div>
@@ -181,7 +181,7 @@ const Page: React.FC<{
               })}
             </div>
           </div>
-        </div>
+        </section>
       )}
       <ProductsFeatured
         products={featuredProducts.products}
