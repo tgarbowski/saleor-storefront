@@ -21,11 +21,11 @@ export const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({
 }) =>
   products?.length ? (
     <div className="products-featured">
+      <div className="container products-featured-wrapper">
+        <div className="circle" />
+        <h2 className="products-featured-wrapper-title">Polecane produkty</h2>
+      </div>
       <div className="container products-featured-container">
-        <h2>
-          <FormattedMessage defaultMessage="POLECANE PRODUKTY" />
-          <span />
-        </h2>
         <Carousel>
           {products.map(product => (
             <Link

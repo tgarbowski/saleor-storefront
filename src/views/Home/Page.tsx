@@ -188,8 +188,14 @@ const Page: React.FC<{
         title={intl.formatMessage({ defaultMessage: "Featured" })}
       />
       {salesExist() && (
-        <div className="home-page__sale-wrapper">
-          <div className="home-page__sale-wrapper-content container">
+        <div className="home-page__sale">
+          <div className="container home-page__sale-wrapper">
+            <div className="circle" />
+            <h2 className="home-page__categories-wrapper-title">
+              Sprawdź nasze promocje
+            </h2>
+          </div>
+          <div className="home-page__sale-content container">
             {sales?.edges.map(({ node: sale }) => {
               if (sale?.products?.totalCount > 0) {
                 return (
@@ -198,15 +204,13 @@ const Page: React.FC<{
                       id: sale.id,
                     })}
                   >
-                    <a className="home-page__sale-wrapper-content-item">
+                    <a className="home-page__sale-content-item">
                       {sale.name.match(/\d/) ? (
                         <h2 className="sale-with-percent">
-                          <span>Promocja!</span>
                           <h3>-{sale.name}%</h3>
                         </h2>
                       ) : (
                         <span className="sale-without-percent">
-                          <span>Promocja!</span>
                           <h3>{sale.name}</h3>
                         </span>
                       )}
@@ -221,12 +225,12 @@ const Page: React.FC<{
       {collectionsExist() && (
         <div className="home-page__collections">
           <div className="home-page__collections_container container">
-            <h2 className="home-page__collections_container-heading">
-              <FormattedMessage defaultMessage="Kolekcje" />
-            </h2>
-            <p className="home-page__collections_container-text">
-              <FormattedMessage defaultMessage="Poznaj nasze popularne kolekcje i wybierz coś dla siebie!" />
-            </p>
+            <div className="home-page__collections_container-wrapper">
+              <div className="circle" />
+              <h2 className="home-page__collections_container-wrapper-title">
+                Nasze najlepsze kolekcje
+              </h2>
+            </div>
             <div className="home-page__collections__list">
               {collections?.edges.map(({ node: collection }) => {
                 return collection.name === "O nas" ? (

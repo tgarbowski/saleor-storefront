@@ -1,60 +1,38 @@
 @import "../../../globalStyles/scss/variables.scss";
 
 .products-featured {
-  padding: 2rem 0 9rem;
-
+  margin-top: 8rem;
   @media (max-width: $medium-screen) {
     padding: 1rem 0 4rem;
+  }
+
+  &-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 3.2rem !important;
+
+    .circle {
+      width: 14px;
+      height: 14px;
+      background-color: $primary;
+      border-radius: 100%;
+    }
+
+    &-title {
+      max-width: 893px;
+      font-size: 38px;
+      line-height: 55px;
+      font-weight: 700;
+      color: #000;
+    }
   }
 
   .products-featured-container {
     width: 100%;
     max-width: 1280px;
     margin: 0 auto;
-    padding: 0 1rem;
-  }
-
-  h2 {
-    font-size: 38px;
-    line-height: 55px;
-    font-weight: 600;
-    margin-bottom: 16px;
-    letter-spacing: -0.01em;
-    color: #000;
-    margin-top: 20px;
-    margin-bottom: 2.5rem;
-    text-transform: lowercase;
-    width: 100%;
-    text-align: left;
-    word-break: break-word;
-
-    @media (max-width: $medium-screen) {
-      font-size: 38px;
-      line-height: 55px;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      color: $black;
-      padding-bottom: 0.6rem;
-      text-align: center;
-    }
-
-    span {
-      display: block;
-      width: 150px;
-      border-bottom: 2px dashed $primary;
-
-      @media (max-width: $medium-screen) {
-        margin: 0 auto;
-      }
-    }
-
-    &::first-letter {
-      text-transform: uppercase;
-    }
-
-    @media (max-width: $small-screen) {
-      font-size: 1.6rem;
-    }
   }
 
   a {
