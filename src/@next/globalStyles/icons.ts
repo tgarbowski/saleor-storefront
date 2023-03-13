@@ -10,6 +10,5 @@ export const ShippingIcon = DeliveryIcon;
 export const ParcelIcon = ParcelSmallIcon;
 export const CreditIcon = CreditSmallIcon;
 export const ShippedIcon = ShippingSmallIcon;
-export const DashedRectangleImg = DashedRectangle;
 export const CreditCardIcon = CreditCard;
 export const FilterIcon = FilterIconImg;

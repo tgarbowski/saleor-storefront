@@ -2,35 +2,35 @@
 
 .home-page {
   font-family: "Poppins", sans-serif;
+
   &__hero {
     background-color: $black-overlay;
     background-blend-mode: multiply;
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-    object-fit: cover;
-    padding: 15rem 10rem;
-    height: 700px;
+    height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 64px;
+    margin-right: 64px;
+    border-radius: 15px;
 
-    @media only screen and (min-width: $medium-screen) and (max-width: $large-screen) {
-      padding: 15rem 6rem;
+    @media screen and (min-width: 1024px) {
+      max-height: 85vh;
     }
 
     &-text {
       overflow: hidden;
       margin-bottom: 2.2rem;
+      text-align: center;
     }
 
     @media (max-width: $medium-screen) {
-      background-color: $black-overlay-mobile;
-      align-items: center;
-      display: flex;
-      flex-direction: column;
-      max-height: 100%;
-      justify-content: space-between;
-      padding: 1rem;
-      text-align: center;
-      height: 662px;
+      margin-left: 0;
+      margin-right: 0;
+      border-radius: 0;
 
       &-text {
         margin-top: $spacer * 5;
@@ -147,18 +147,18 @@
       }
     }
     &__subtitle {
-      display: inline-block;
-      margin-bottom: $spacer / 2;
-      font-family: "Poppins", sans-serif !important;
-      font-weight: 600;
-      color: $white;
-      font-size: 21px;
-      font-weight: 500;
-      word-break: break-word;
-      width: 100%;
-      max-width: 991px;
-      line-height: 130%;
-      margin-top: 10px;
+      p {
+        overflow: hidden;
+        margin-bottom: 2.2rem;
+        max-height: 46px;
+        max-width: 100%;
+        line-height: 28px;
+        font-size: 20px;
+        padding: 0;
+        margin: auto;
+        color: $white;
+        text-align: center;
+      }
 
       @media (max-width: $small-screen) {
         font-size: 18px;

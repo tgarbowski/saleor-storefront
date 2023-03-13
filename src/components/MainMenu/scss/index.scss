@@ -12,7 +12,6 @@
   align-items: center;
   align-items: stretch;
   background-color: $white;
-  border-bottom: 1px solid $gray-light;
   display: flex;
   flex-direction: row;
   height: 4rem;
@@ -20,24 +19,41 @@
   position: relative;
   justify-content: center;
   z-index: 1;
-  width: 100%;
+  margin-left: 64px;
+  margin-right: 64px;
 
   @media (min-width: $small-screen) {
-    height: 6rem;
+    height: 7rem;
+  }
+
+  @media (max-width: $large-screen) {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   &__left {
     flex-basis: calc(50% - 2rem);
 
     @media (min-width: $small-screen) {
-      flex-basis: calc(50% - 4rem);
-      height: 100%;
+      height: auto;
+      width: 100%;
     }
 
-    ul {
-      display: flex;
-      align-items: center;
-      height: 100%;
+    align-self: center;
+
+    svg {
+      width: 6rem;
+      object-fit: cover;
+      height: auto;
+
+      @media (min-width: $small-screen) {
+        width: 10rem;
+
+        @if $env == "CLOTHES4U" {
+          width: 4rem;
+        }
+      }
     }
   }
 
@@ -61,20 +77,10 @@
   }
 
   &__center {
-    align-self: center;
-
-    svg {
-      width: 6rem;
-      object-fit: cover;
-      height: auto;
-
-      @media (min-width: $small-screen) {
-        width: 10rem;
-
-        @if $env == "CLOTHES4U" {
-          width: 4rem;
-        }
-      }
+    ul {
+      display: flex;
+      align-items: center;
+      height: 100%;
     }
   }
 
@@ -85,11 +91,12 @@
     margin: 0 1.3rem;
 
     a {
-      font-size: $h4-font-size;
+      font-size: 20px;
       position: relative;
-      text-transform: uppercase;
       transition: all 0.3s ease-in-out;
       max-width: 100%;
+      font-weight: 500;
+      text-transform: capitalize;
 
       &:hover {
         color: $primary;
@@ -266,10 +273,6 @@
       padding: 0;
     }
 
-    @media (min-width: $large-screen) {
-      border-left: 1px solid $gray-light;
-    }
-
     svg * {
       transition: 0.3s;
     }
@@ -282,7 +285,7 @@
     }
 
     span {
-      text-transform: uppercase;
+      text-transform: capitalize;
       font-weight: $bold-font-weight;
       margin-right: $spacer;
     }
