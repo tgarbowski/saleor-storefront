@@ -195,7 +195,7 @@ const Page: React.FC<{
         <div className="home-page__sale">
           <div className="container home-page__sale-wrapper">
             <div className="circle" />
-            <h2 className="home-page__categories-wrapper-title">
+            <h2 className="home-page__sale-wrapper-title">
               Sprawdź nasze promocje
             </h2>
           </div>

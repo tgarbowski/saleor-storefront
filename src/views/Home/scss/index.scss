@@ -511,14 +511,24 @@
         height: 14px;
         background-color: $primary;
         border-radius: 100%;
+
+        @media (max-width: $large-screen) {
+          display: none;
+        }
       }
 
       &-title {
         max-width: 893px;
         font-size: 38px;
-        line-height: 55px;
+        line-height: 40px;
         font-weight: 700;
         color: #000;
+
+        @media (max-width: $large-screen) {
+          max-width: unset;
+          text-align: center;
+          font-size: 34px;
+        }
       }
     }
 
@@ -534,7 +544,7 @@
       grid-template-columns: 23% 23% 23% 23%;
       text-align: center;
 
-      @media (max-width: $medium-screen) {
+      @media (max-width: $large-screen) {
         display: flex;
         flex-direction: column;
       }
@@ -554,10 +564,11 @@
         justify-content: center;
         border-radius: 15px;
 
-        @media (max-width: $small-screen) {
+        @media (max-width: $large-screen) {
           display: flex;
           flex-direction: column;
-          width: 100%;
+          width: 50%;
+          margin: 0 auto;
         }
 
         &:hover {
