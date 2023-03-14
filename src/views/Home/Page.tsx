@@ -83,47 +83,51 @@ const Page: React.FC<{
         <div className="home-page__hero-text">
           <div>
             <h1 className="home-page__hero__title">
-              <FormattedMessage
-                defaultMessage="{shopname}"
-                values={{ shopname: shopName }}
-              />
+              Discover the Best Second Hand Clothing Deals Online!
             </h1>
           </div>
           <div>
-            <span className="home-page__hero__subtitle">
-              <p>
-                <FormattedMessage
-                  values={{ shopname: shopName }}
-                  defaultMessage="{shopname} to sklep z jakościową odzieżą używaną. Różne marki w jednym miejscu. Przekonaj się sam!"
-                />
-              </p>
-            </span>
+            <p className="home-page__hero__subtitle">
+              Scalable software for warehouses and high volume ecommerce
+              merchants looking to unlock efficiency, manage costs, automate
+              processes, and ship smarter.
+            </p>
           </div>
         </div>
         <div className="home-page__hero-action">
           {categoriesExist() && (
-            <Link
-              href={generatePath(paths.category, {
-                slug: categories.edges[2].node.slug,
-              })}
-            >
-              <a>
-                <Button
-                  testingContext="homepageHeroActionButton"
-                  aria-label="homepageHeroActionButton"
-                >
-                  <FormattedMessage defaultMessage="Sprawdź ofertę" />
-                </Button>
-              </a>
-            </Link>
+            <>
+              <Link
+                href={generatePath(paths.category, {
+                  slug: categories.edges[2].node.slug,
+                })}
+              >
+                <a>
+                  <Button
+                    testingContext="homepageHeroActionButton"
+                    aria-label="homepageHeroActionButton"
+                    className="button fourth"
+                  >
+                    <FormattedMessage defaultMessage="Kategorie" />
+                  </Button>
+                </a>
+              </Link>
+              <Link
+                href={generatePath(paths.category, {
+                  slug: categories.edges[1].node.slug,
+                })}
+              >
+                <a>
+                  <Button
+                    testingContext="homepageHeroActionButton"
+                    aria-label="homepageHeroActionButton"
+                  >
+                    <FormattedMessage defaultMessage="Promocje" />
+                  </Button>
+                </a>
+              </Link>
+            </>
           )}
-        </div>
-        <div className="scroll-down">
-          <svg className="arrows">
-            <path className="a1" d="M0 0 L30 32 L60 0" />
-            <path className="a2" d="M0 20 L30 52 L60 20" />
-            <path className="a3" d="M0 40 L30 72 L60 40" />
-          </svg>
         </div>
       </div>
       <AdvantagesBlock />
