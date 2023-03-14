@@ -68,7 +68,6 @@
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      margin-right: 30px;
 
       @if $env == "CLOTHES4U" {
         margin-right: 0;
@@ -270,7 +269,7 @@
     transition: 0.3s;
 
     @media (max-width: $medium-screen) {
-      padding: 0;
+      padding: 0 1rem;
     }
 
     svg * {

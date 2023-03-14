@@ -99,13 +99,18 @@ export const MainMenu: React.FC<MainMenuProps> = ({
     >
       {demoMode && <DemoBanner />}
       <nav className="main-menu" id="header">
-        <div className="main-menu__left">
-          <Link href={paths.home}>
-            <a>
-              <ReactSVG path={logo} />
-            </a>
-          </Link>
-        </div>
+        <Media
+          query={{ minWidth: smallScreen }}
+          render={() => (
+            <div className="main-menu__left">
+              <Link href={paths.home}>
+                <a>
+                  <ReactSVG path={logo} />
+                </a>
+              </Link>
+            </div>
+          )}
+        />
 
         <div className="main-menu__center">
           <ul>
@@ -418,7 +423,7 @@ export const MainMenu: React.FC<MainMenuProps> = ({
               }
             >
               <Media
-                query={{ minWidth: "992px" }}
+                query={{ minWidth: "124px" }}
                 render={() => <ReactSVG path={searchImg} />}
               />
             </li>
