@@ -194,10 +194,15 @@ const Page: React.FC<{
       {salesExist() && (
         <div className="home-page__sale">
           <div className="container home-page__sale-wrapper">
-            <div className="circle" />
             <h2 className="home-page__sale-wrapper-title">
-              Sprawdź nasze promocje
+              Zakupy w dobrej cenie - sprawdź nasze <span>promocje</span> już
+              teraz!
             </h2>
+            <p className="home-page__sale-wrapper-subtitle">
+              Znudziły Ci się standardowe zakupy? Szukasz czegoś wyjątkowego, co
+              jednocześnie pozwoli Ci oszczędzić pieniądze? Nasza oferta
+              promocyjna jest idealnym rozwiązaniem!
+            </p>
           </div>
           <div className="home-page__sale-content container">
             {sales?.edges.map(({ node: sale }) => {
