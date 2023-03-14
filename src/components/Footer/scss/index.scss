@@ -202,14 +202,15 @@
     justify-content: space-between;
     padding: $spacer * 3 0 $spacer * 2;
 
-    @media (max-width: $medium-screen) {
+    @media (max-width: $large-screen) {
       flex-direction: column;
+      align-items: center;
     }
 
     &-left {
       width: 37%;
 
-      @media (max-width: $medium-screen) {
+      @media (max-width: $large-screen) {
         width: 100%;
         display: flex;
         justify-content: center;
@@ -221,7 +222,7 @@
         div {
           div {
             svg {
-              @media (max-width: $medium-screen) {
+              @media (max-width: $large-screen) {
                 width: 150px;
                 height: 100%;
               }
