@@ -134,10 +134,15 @@ const Page: React.FC<{
       {categoriesExist() && (
         <section className="home-page__categories">
           <div className="container home-page__categories-wrapper">
-            <div className="circle" />
             <h2 className="home-page__categories-wrapper-title">
-              Sprawdź nasze kategorie
+              Szukasz konkretnych <span>produktów?</span> Nasze kategorie
+              ułatwią Ci zadanie!
             </h2>
+            <p className="home-page__categories-wrapper-subtitle">
+              Nie wiesz, gdzie szukać swoich ulubionych produktów? Skorzystaj z
+              naszych przejrzystych kategorii i z łatwością znajdź to, czego
+              szukasz.
+            </p>
           </div>
           <div className="container home-page__categories_container">
             <div className="home-page__categories__list">
@@ -235,10 +240,14 @@ const Page: React.FC<{
         <div className="home-page__collections">
           <div className="home-page__collections_container container">
             <div className="home-page__collections_container-wrapper">
-              <div className="circle" />
               <h2 className="home-page__collections_container-wrapper-title">
-                Nasze najlepsze kolekcje
+                Nasze najnowsze <span>trendy</span> - zobacz popularne kolekcje
               </h2>
+              <p className="home-page__collections_container-wrapper-subtitle">
+                Zobacz nasze bestsellery i podążaj za trendami! Nasze najnowsze
+                trendy z pewnością Cię zainspirują i pomogą znaleźć swój
+                wyjątkowy styl.
+              </p>
             </div>
             <div className="home-page__collections__list">
               {collections?.edges.map(({ node: collection }) => {

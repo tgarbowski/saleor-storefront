@@ -269,29 +269,43 @@
   &__categories {
     margin-top: 8rem;
 
-    @media (max-width: $small-screen) {
-      margin-top: 55px;
-    }
-
     &-wrapper {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       align-items: center;
-      gap: 0.8rem;
-
-      .circle {
-        width: 14px;
-        height: 14px;
-        background-color: $primary;
-        border-radius: 100%;
-      }
+      margin: 0 auto;
+      padding-bottom: 1.6rem !important;
 
       &-title {
         max-width: 893px;
         font-size: 38px;
-        line-height: 55px;
+        line-height: 42px;
         font-weight: 700;
         color: #000;
+        text-align: center;
+        margin-bottom: 0.8rem;
+
+        @media (max-width: $large-screen) {
+          max-width: unset;
+          text-align: center;
+          font-size: 34px;
+        }
+
+        span {
+          color: $primary;
+          font-size: 38px;
+          line-height: 42px;
+          font-weight: 700;
+
+          @media (max-width: $large-screen) {
+            font-size: 34px;
+          }
+        }
+      }
+      &-subtitle {
+        max-width: 705px;
+        color: #4e595a;
+        text-align: center;
       }
     }
     &__list {
@@ -395,24 +409,41 @@
     &_container {
       &-wrapper {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         align-items: center;
-        gap: 0.8rem;
-        justify-content: center;
-
-        .circle {
-          width: 14px;
-          height: 14px;
-          background-color: $primary;
-          border-radius: 100%;
-        }
+        margin: 0 auto;
+        padding-bottom: 1.6rem !important;
 
         &-title {
-          max-width: 893px;
+          max-width: 672px;
           font-size: 38px;
-          line-height: 55px;
+          line-height: 42px;
           font-weight: 700;
           color: #000;
+          text-align: center;
+          margin-bottom: 0.8rem;
+
+          @media (max-width: $large-screen) {
+            max-width: unset;
+            text-align: center;
+            font-size: 34px;
+          }
+
+          span {
+            color: $primary;
+            font-size: 38px;
+            line-height: 42px;
+            font-weight: 700;
+
+            @media (max-width: $large-screen) {
+              font-size: 34px;
+            }
+          }
+        }
+        &-subtitle {
+          max-width: 705px;
+          color: #4e595a;
+          text-align: center;
         }
       }
     }
@@ -495,10 +526,6 @@
   &__sale {
     margin-top: 8rem;
 
-    @media (max-width: $small-screen) {
-      margin-top: 710px;
-    }
-
     &-wrapper {
       display: flex;
       flex-direction: column;
@@ -507,7 +534,7 @@
       padding-bottom: 1.6rem !important;
 
       &-title {
-        max-width: 893px;
+        max-width: 741px;
         font-size: 38px;
         line-height: 42px;
         font-weight: 700;

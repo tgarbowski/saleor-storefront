@@ -18,7 +18,15 @@ export const NewsSection: React.FC<{
     <S.News>
       {newsExist() && (
         <S.NewsSection className="container">
-          <S.NewsHeading>Aktualności</S.NewsHeading>
+          <S.NewsSectionWrapper>
+            <S.NewsHeading>
+              Co nowego u nas? Zobacz najnowsze aktualności
+            </S.NewsHeading>
+            <S.NewsSubtitle>
+              Dzięki naszym wpisom dowiesz się pierwszy o nowościach, promocjach
+              i wydarzeniach, które przygotowaliśmy dla Ciebie.
+            </S.NewsSubtitle>
+          </S.NewsSectionWrapper>
           <S.NewsSectionContent>
             {news?.edges.map(({ node: newsElem }) => {
               const url =
