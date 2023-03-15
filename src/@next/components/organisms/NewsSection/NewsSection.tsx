@@ -15,7 +15,7 @@ export const NewsSection: React.FC<{
   };
 
   return (
-    <S.News>
+    <S.News id="news">
       {newsExist() && (
         <S.NewsSection className="container">
           <S.NewsSectionWrapper>

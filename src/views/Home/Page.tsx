@@ -91,18 +91,14 @@ const Page: React.FC<{
         <div className="home-page__hero-action">
           {categoriesExist() && (
             <>
-              <Link
-                href={generatePath(paths.category, {
-                  slug: categories.edges[2].node.slug,
-                })}
-              >
+              <Link href={paths.homeNewsSection}>
                 <a>
                   <Button
                     testingContext="homepageHeroActionButton"
                     aria-label="homepageHeroActionButton"
                     className="button fourth"
                   >
-                    <FormattedMessage defaultMessage="Kategorie" />
+                    <FormattedMessage defaultMessage="Aktualności" />
                   </Button>
                 </a>
               </Link>
