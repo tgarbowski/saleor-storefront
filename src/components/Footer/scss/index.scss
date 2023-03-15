@@ -36,108 +36,43 @@
   }
 }
 
-.footer {
-  &__favicons {
-    border-top: 1px solid $gray-light;
-    display: flex;
-    justify-content: center;
+.footer-nav {
+  background-color: #f6f6f6;
+  padding: 5rem 0 2rem;
+
+  @media (max-width: $medium-screen) {
+    padding: 2rem 0 2rem;
   }
 
-  &__menu {
-    background-color: $gray-light;
+  &-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     padding: $spacer * 3 0 $spacer * 2;
 
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-
-      div {
-        &:not(:last-of-type) {
-          padding-right: $spacer * 3;
-        }
-      }
+    @media (max-width: $large-screen) {
+      flex-direction: column;
+      align-items: center;
     }
 
-    &-section {
-      &-header {
-        font-weight: $bold-font-weight;
-        margin-bottom: $spacer;
-      }
+    &-left {
+      width: 37%;
 
-      &-content {
-        p {
-          font-weight: $bold-font-weight;
-          margin-bottom: $spacer;
-          font-size: $small-font-size;
-          color: $gray;
-
-          a {
-            text-decoration: none;
-            color: $gray;
-          }
-        }
-      }
-    }
-  }
-
-  &-nav {
-    background-color: $gray-light;
-    padding: $spacer * 5 0 $spacer * 2;
-
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-
-      @media (max-width: $medium-screen) {
-        flex-direction: column;
-      }
-
-      .footer-nav-container-left {
-        width: 60%;
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(143px, 1fr));
-        grid-gap: 2rem;
-        padding-left: 1rem;
-
-        @media (max-width: $medium-screen) {
-          width: 100%;
-          grid-template-columns: repeat(auto-fill, minmax(121px, 1fr));
-          grid-gap: 1rem;
-          padding-left: 1rem;
-        }
-      }
-      .footer-nav-container-right {
-        width: 40%;
+      @media (max-width: $large-screen) {
+        width: 100%;
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        padding-bottom: 2.4rem;
+      }
 
-        @media (max-width: $medium-screen) {
-          width: 100%;
-          margin-top: 42px;
-        }
-
-        &-icons {
-          display: flex;
-          flex-direction: row;
-          margin-top: 22px;
-        }
-
-        a {
+      a {
+        div {
           div {
-            div {
-              svg {
-                #small-circle {
-                  left: 315px;
-                  position: absolute;
-                  top: 143px;
-                  transform: rotate(45deg) translateX(20px) rotate(-45deg);
-                  -webkit-animation: orbit2 4s linear infinite; /* Chrome, Safari 5 */
-                  -moz-animation: orbit2 4s linear infinite; /* Firefox 5-15 */
-                  -o-animation: orbit2 4s linear infinite; /* Opera 12+ */
-                  animation: orbit2 4s linear infinite; /* Chrome, Firefox 16+, 
-                                                     IE 10+, Safari 5 */
-                }
+            svg {
+              @media (max-width: $large-screen) {
+                width: 150px;
+                height: 100%;
               }
             }
           }
@@ -145,44 +80,84 @@
       }
     }
 
-    &__section {
-      &-header {
-        font-weight: $bold-font-weight;
-        margin-bottom: $spacer;
-        text-transform: uppercase;
+    &-right {
+      align-items: baseline;
+      justify-content: center;
+      display: grid;
+      grid-template-columns: 25% 25% 25% 25%;
+      gap: 2rem 4rem;
+      width: 63%;
+
+      @media (max-width: $medium-screen) {
+        width: 100%;
+        grid-template-columns: repeat(auto-fill, minmax(121px, 1fr));
+        grid-gap: 1rem;
+        padding-left: 1rem;
+        margin-bottom: 3.2rem;
       }
 
-      &-content {
-        p {
-          margin-bottom: $spacer;
-          font-size: $small-font-size;
-          color: $base-font-color;
+      .footer-nav__section {
+        &-header {
+          font-size: 24px;
+          margin-bottom: 1.6rem;
+          color: $black;
+          font-weight: 600;
+        }
 
-          a {
-            text-decoration: none;
+        &-content {
+          p {
+            margin-bottom: $spacer;
+            font-size: 18px;
             color: $base-font-color;
-            transition: all 0.3s ease-in-out;
-            position: relative;
 
-            &:before {
-              content: "";
-              background: $primary;
-              display: block;
-              position: absolute;
-              bottom: -5px;
-              left: 0;
-              width: 0;
-              height: 2px;
+            a {
+              text-decoration: none;
+              color: $base-font-color;
               transition: all 0.3s ease-in-out;
-            }
-            &:hover {
-              background-position: 0;
-            }
-            &:hover::before {
-              width: 100%;
+              position: relative;
+
+              &:before {
+                content: "";
+                background: $primary;
+                display: block;
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                width: 0;
+                height: 2px;
+                transition: all 0.3s ease-in-out;
+              }
+              &:hover {
+                background-position: 0;
+              }
+              &:hover::before {
+                width: 100%;
+              }
             }
           }
         }
+      }
+    }
+  }
+  .copyright {
+    &-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      @media (max-width: $medium-screen) {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+        flex-direction: column;
+      }
+
+      &-right {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
       }
     }
   }

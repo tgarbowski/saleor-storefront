@@ -16,8 +16,15 @@ export type NavProps = { menu: ShopMenusQuery["footer"] };
 export const Nav: React.FC<NavProps> = ({ menu }) => {
   return (
     <footer className="footer-nav">
-      <div className="container">
+      <div className="footer-nav-container container">
         <div className="footer-nav-container-left">
+          <Link href={paths.home}>
+            <a>
+              <ReactSVG path={logoFooter} />
+            </a>
+          </Link>
+        </div>
+        <div className="footer-nav-container-right">
           {menu?.items.map(item => (
             <div className="footer-nav__section" key={item.id}>
               <h4 className="footer-nav__section-header">
@@ -73,13 +80,13 @@ export const Nav: React.FC<NavProps> = ({ menu }) => {
             </div>
           ))}
         </div>
-        <div className="footer-nav-container-right">
-          <Link href={paths.home}>
-            <a>
-              <ReactSVG path={logoFooter} />
-            </a>
-          </Link>
-          <div className="footer-nav-container-right-icons">
+      </div>
+      <div className="copyright container">
+        <div className="copyright-container">
+          <div className="copyright-container-left">
+            <p>2023 © {shopName} All rights reserved</p>
+          </div>
+          <div className="copyright-container-right">
             {socialMedia.map(medium => (
               <SocialMediaIcon medium={medium} key={medium.ariaLabel} />
             ))}
