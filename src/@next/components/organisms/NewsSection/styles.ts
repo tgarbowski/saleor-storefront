@@ -16,12 +16,12 @@ export const NewsSectionContent = styled.div`
   justify-content: center;
   gap: 2.5rem;
   margin-bottom: 6.4rem;
+  margin-top: 3.2rem;
 
   @media (max-width: 920px) {
     display: flex;
     flex-direction: column;
     height: 100%;
-    margin-top: 3.2rem;
   }
 `;
 
@@ -30,7 +30,6 @@ export const NewsSectionWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
-  padding-bottom: 3.2rem !important;
 `;
 
 export const NewsHeading = styled.h2`

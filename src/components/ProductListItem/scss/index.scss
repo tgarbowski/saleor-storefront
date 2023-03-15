@@ -6,11 +6,15 @@
   &__title {
     margin-top: 0.8rem;
     text-align: left;
-    font-size: 24px;
     font-weight: 600;
-    text-transform: capitalize;
+    text-transform: lowercase;
     margin-bottom: 0.8rem;
     margin-top: 1.6rem;
+    color: $black;
+
+    &:first-letter {
+      text-transform: uppercase;
+    }
   }
 
   &__undiscounted_price {
@@ -39,12 +43,10 @@
   &__image {
     display: flex;
     height: 350px;
-    justify-content: center;
 
     img {
       object-fit: contain;
       max-width: 100%;
-      border-radius: 15px;
     }
 
     @media (max-width: $small-screen) {

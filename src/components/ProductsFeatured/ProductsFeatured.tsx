@@ -1,6 +1,5 @@
 import Link from "next/link";
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
 import { generatePath } from "react-router";
 
 import { FeaturedProduct } from "@graphql/gqlTypes/FeaturedProduct";

@@ -82,16 +82,10 @@ const Page: React.FC<{
       >
         <div className="home-page__hero-text">
           <div>
-            <h1 className="home-page__hero__title">
-              Discover the Best Second Hand Clothing Deals Online!
-            </h1>
+            <h1 className="home-page__hero__title">{shop.name}</h1>
           </div>
           <div>
-            <p className="home-page__hero__subtitle">
-              Scalable software for warehouses and high volume ecommerce
-              merchants looking to unlock efficiency, manage costs, automate
-              processes, and ship smarter.
-            </p>
+            <p className="home-page__hero__subtitle">{shop?.description}</p>
           </div>
         </div>
         <div className="home-page__hero-action">
@@ -112,11 +106,7 @@ const Page: React.FC<{
                   </Button>
                 </a>
               </Link>
-              <Link
-                href={generatePath(paths.category, {
-                  slug: categories.edges[1].node.slug,
-                })}
-              >
+              <Link href={paths.homeSalesSection}>
                 <a>
                   <Button
                     testingContext="homepageHeroActionButton"
@@ -197,7 +187,7 @@ const Page: React.FC<{
         title={intl.formatMessage({ defaultMessage: "Featured" })}
       />
       {salesExist() && (
-        <div className="home-page__sale">
+        <div id="sales" className="home-page__sale">
           <div className="container home-page__sale-wrapper">
             <h2 className="home-page__sale-wrapper-title">
               Zakupy w dobrej cenie - sprawdź nasze <span>promocje</span> już

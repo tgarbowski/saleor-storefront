@@ -1,6 +1,5 @@
 import CreditSmallIcon from "../../images/credit.png";
 import CreditCard from "../../images/credit-card.png";
-import DashedRectangle from "../../images/dashed-rectangle.svg";
 import DeliveryIcon from "../../images/delivery.png";
 import FilterIconImg from "../../images/filter.png";
 import ParcelSmallIcon from "../../images/parcel.png";
