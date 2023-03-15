@@ -449,7 +449,7 @@
     }
     &__list {
       display: grid;
-      grid-template-columns: 50% auto;
+      grid-template-columns: 50% 50%;
       gap: 3rem;
       flex-wrap: wrap;
       padding: 0 2rem;
