@@ -28,7 +28,7 @@ export const NewsSection: React.FC<{
             </S.NewsSubtitle>
           </S.NewsSectionWrapper>
           <S.NewsSectionContent>
-            {news?.edges.map(({ node: newsElem }) => {
+            {news?.edges.slice(0, 3).map(({ node: newsElem }) => {
               const url =
                 newsElem?.attributes[0]?.values[0]?.file?.url.split("/");
               const correctedUrl = `${awsMediaBucket}/${url[url.length - 2]}/${
