@@ -82,7 +82,7 @@ const Page: React.FC<{
       >
         <div className="home-page__hero-text">
           <div>
-            <h1 className="home-page__hero__title">{shop.name}</h1>
+            <h1 className="home-page__hero__title">Sklep {shopName}</h1>
           </div>
           <div>
             <p className="home-page__hero__subtitle">{shop?.description}</p>
