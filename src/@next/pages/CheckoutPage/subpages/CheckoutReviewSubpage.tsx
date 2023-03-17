@@ -31,6 +31,7 @@ interface CheckoutReviewSubpageProps extends SubpageBaseProps {
   paymentGatewayFormRef: React.RefObject<HTMLFormElement>;
   payuUrl?: string;
   noteRef?: any;
+  pages?: any;
 }
 
 const generatePayuUrl = async (variables: any) => {
@@ -58,12 +59,18 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
     changeSubmitProgress,
     onSubmitSuccess,
     noteRef,
+    pages,
   },
   ref
 ) => {
   const { checkout, payment, completeCheckout } = useCheckout();
+  const [isTermsAccepted, setIsTermsAccepted] = useState(false);
 
   const [errors, setErrors] = useState<IFormError[]>([]);
+
+  const handleTermsChange = (terms: boolean) => {
+    setIsTermsAccepted(terms);
+  };
 
   const checkoutShippingAddress = checkout?.shippingAddress
     ? {
@@ -100,49 +107,53 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
   };
 
   useImperativeHandle(ref, () => async () => {
-    changeSubmitProgress(true);
-    let data;
-    let dataError;
-    let payu_url: any;
+    if (isTermsAccepted) {
+      changeSubmitProgress(true);
+      let data;
+      let dataError;
+      let payu_url: any;
 
-    if (payment?.gateway === paymentGatewayNames.adyen) {
-      paymentGatewayFormRef.current?.dispatchEvent(
-        new Event("submitComplete", { cancelable: true })
-      );
-    } else if (payment?.gateway === paymentGatewayNames.stripe) {
-      paymentGatewayFormRef.current?.dispatchEvent(
-        new Event("submitComplete", { cancelable: true })
-      );
-    } else {
-      if (payment?.gateway === paymentGatewayNames.payu) {
-        payu_url = await generatePayuUrl({
-          paymentId: payment?.id,
-          channel: channelSlug,
-        });
-      }
-      const response = await completeCheckout();
-      data = response.data;
-      dataError = response.dataError;
-      changeSubmitProgress(false);
-      const errors = dataError?.error;
-      if (errors) {
-        setErrors(errors);
+      if (payment?.gateway === paymentGatewayNames.adyen) {
+        paymentGatewayFormRef.current?.dispatchEvent(
+          new Event("submitComplete", { cancelable: true })
+        );
+      } else if (payment?.gateway === paymentGatewayNames.stripe) {
+        paymentGatewayFormRef.current?.dispatchEvent(
+          new Event("submitComplete", { cancelable: true })
+        );
       } else {
-        setErrors([]);
-        onSubmitSuccess(CheckoutStep.Review, {
-          id: data?.order?.id,
-          orderStatus: data?.order?.status,
-          orderNumber: data?.order?.number,
-          token: data?.order?.token,
-          shippingMethod: data?.order?.shippingMethod?.name,
-        });
         if (payment?.gateway === paymentGatewayNames.payu) {
-          setTimeout(() => {
-            window.location.href = payu_url;
-            // @ts-ignore
-          }, 1500);
+          payu_url = await generatePayuUrl({
+            paymentId: payment?.id,
+            channel: channelSlug,
+          });
+        }
+        const response = await completeCheckout();
+        data = response.data;
+        dataError = response.dataError;
+        changeSubmitProgress(false);
+        const errors = dataError?.error;
+        if (errors) {
+          setErrors(errors);
+        } else {
+          setErrors([]);
+          onSubmitSuccess(CheckoutStep.Review, {
+            id: data?.order?.id,
+            orderStatus: data?.order?.status,
+            orderNumber: data?.order?.number,
+            token: data?.order?.token,
+            shippingMethod: data?.order?.shippingMethod?.name,
+          });
+          if (payment?.gateway === paymentGatewayNames.payu) {
+            setTimeout(() => {
+              window.location.href = payu_url;
+              // @ts-ignore
+            }, 1500);
+          }
         }
       }
+    } else {
+      setErrors([{ field: "", message: "Musisz zaakceptować regulamin." }]);
     }
   });
 
@@ -155,6 +166,9 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
       email={checkout?.email}
       errors={errors}
       noteRef={noteRef}
+      isTermsAccepted={isTermsAccepted}
+      handleTermsChange={handleTermsChange}
+      pages={pages}
     />
   );
 };

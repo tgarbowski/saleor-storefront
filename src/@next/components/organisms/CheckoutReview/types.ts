@@ -10,4 +10,7 @@ export interface IProps {
   errors?: IFormError[];
   noteRef?: any;
   nip?: string;
+  isTermsAccepted?: boolean;
+  handleTermsChange: (terms: boolean) => void;
+  pages: any;
 }
