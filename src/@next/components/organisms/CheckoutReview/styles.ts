@@ -43,3 +43,51 @@ export const ErrorMessages = styled.div`
 export const CustomerNoteContainer = styled.section`
   grid-column: 1 / -1;
 `;
+
+export const TermsSection = styled.div`
+  margin-top: 2rem;
+`;
+
+export const CheckboxInput = styled.input.attrs(props => ({
+  type: "checkbox",
+  "data-test": "acceptTermsCheckbox",
+  name: "accept-terms-checkbox",
+  checked: props.checked,
+}))`
+  /* Styles for the checkbox */
+  appearance: none;
+  width: 24px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  outline: none;
+  margin-right: 8px;
+  position: relative;
+
+  /* Styles for the checked state */
+  &:checked {
+    background-color: #007bff;
+    border-color: #007bff;
+
+    /* Styles for the checkmark */
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #fff;
+    }
+  }
+`;
+
+export const TermsSectionInput = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+`;

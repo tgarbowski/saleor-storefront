@@ -1,13 +1,18 @@
+import Link from "next/link";
 import React from "react";
 import { FormattedMessage } from "react-intl";
+import { generatePath } from "react-router";
 
 import { ErrorMessage } from "@components/atoms";
 import { AddressSummary } from "@components/molecules";
 import { shopInfoQuery, useTypedQuery } from "@graphql/queries";
+import { paths } from "@paths";
+import { shopName } from "@temp/constants";
 import { checkoutMessages } from "@temp/intl";
 
 import * as S from "./styles";
 import { IProps } from "./types";
+
 /**
  * Review order view showed in checkout.
  */
@@ -21,9 +26,19 @@ const CheckoutReview: React.FC<IProps> = ({
   errors,
   noteRef,
   nip,
+  isTermsAccepted,
+  handleTermsChange,
 }) => {
   const { data } = useTypedQuery(shopInfoQuery);
   const companyAddress = data?.shop?.companyAddress || null;
+
+  const pageSlugF4U = `regulamin`;
+  const pageSlugC4U = `regulamin-c4u`;
+
+  const pageLink = generatePath(paths.page, {
+    slug: shopName === "FASHION4YOU" ? pageSlugF4U : pageSlugC4U,
+  });
+
   return (
     <S.Wrapper data-test="sectionTitle">
       <S.Title data-test="checkoutPageSubtitle">
@@ -88,9 +103,35 @@ const CheckoutReview: React.FC<IProps> = ({
           </S.TextSummary>
         </S.CustomerNoteContainer>
       </S.Grid>
-      <S.ErrorMessages>
-        <ErrorMessage errors={errors} />
-      </S.ErrorMessages>
+      <S.TermsSection>
+        <S.TermsSectionInput>
+          <S.CheckboxInput
+            checked={isTermsAccepted}
+            onChange={() => handleTermsChange(!isTermsAccepted)}
+          />
+          <p>
+            Potwierdzam, że zapoznałem/am się z treścią
+            <Link href={pageLink} key="regulamin">
+              <a
+                href={pageLink}
+                target="_blank"
+                rel="noreferrer"
+                style={{
+                  marginLeft: "0.3rem",
+                  marginRight: "0.3rem",
+                  textDecoration: "underline",
+                }}
+              >
+                regulaminu
+              </a>
+            </Link>
+            sklepu oraz akceptuję jego postanowienia.
+          </p>
+        </S.TermsSectionInput>
+        <S.ErrorMessages>
+          <ErrorMessage errors={errors} />
+        </S.ErrorMessages>
+      </S.TermsSection>
     </S.Wrapper>
   );
 };
