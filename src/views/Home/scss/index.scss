@@ -19,7 +19,6 @@
       max-height: 87vh;
       margin-left: 64px;
       margin-right: 64px;
-      border-radius: 15px;
     }
 
     @media (max-width: $medium-screen) {
@@ -591,8 +590,8 @@
         color: $white;
         padding: 1rem 2rem;
         transition: 0.32s all ease-in-out;
-        border: 3px solid $black;
-        background: $black;
+        border: 3px solid $primary;
+        background: $primary;
         flex-direction: column;
         width: 100%;
         align-items: center;
@@ -609,8 +608,8 @@
 
         &:hover {
           background: transparent;
-          border: 3px solid $black;
-          color: $black;
+          border: 3px solid $primary;
+          color: $primary;
         }
 
         .sale-with-percent {
