@@ -522,12 +522,12 @@
     padding: 1.5rem 0;
   }
   svg {
-    width: 18rem;
+    width: 24rem;
     object-fit: cover;
     height: auto;
 
     @media (min-width: $small-screen) {
-      width: 10rem;
+      width: 11rem;
 
       @if $env == "CLOTHES4U" {
         width: 4rem;
@@ -819,6 +819,7 @@
       z-index: 3;
       border-bottom: 1px solid #f7f7f7;
       padding: 2rem;
+      height: 550px;
 
       &--visible {
         display: inline;
@@ -826,7 +827,7 @@
 
       ul {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         flex-wrap: wrap;
         width: 100%;
       }
@@ -834,17 +835,17 @@
       li *,
       ul * {
         display: flex;
-        flex-direction: column !important;
+        flex-direction: row !important;
         flex-wrap: wrap;
       }
 
       > ul > li {
         align-self: flex-start;
+        margin-left: 2rem;
         position: relative;
-        padding: 15px 0;
+        padding: 10px 0;
         display: flex !important;
         align-items: center;
-        margin-right: 2rem;
 
         // 2nd level name
         > a {
@@ -855,7 +856,7 @@
           text-transform: capitalize;
           display: block;
           text-decoration: none;
-          padding: 1rem 0;
+          padding: 0.5rem 0;
           &:hover {
             color: $primary;
           }
@@ -866,14 +867,14 @@
 
         ul {
           display: flex;
-          flex-direction: column !important;
+          flex-direction: row !important;
           flex-wrap: wrap;
           li {
             align-self: flex-start;
-            padding-bottom: 20px;
+            padding-bottom: 5px;
             display: flex !important;
             align-items: center;
-            flex-direction: column;
+            flex-direction: row;
 
             // 3rd+ level names
             a {
