@@ -1,6 +1,5 @@
 import Link from "next/link";
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
 import { generatePath } from "react-router";
 
 import { FeaturedProduct } from "@graphql/gqlTypes/FeaturedProduct";
@@ -21,11 +20,17 @@ export const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({
 }) =>
   products?.length ? (
     <div className="products-featured">
-      <div className="container products-featured-container">
-        <h2>
-          <FormattedMessage defaultMessage="POLECANE PRODUKTY" />
-          <span />
+      <div className="container products-featured-wrapper">
+        <h2 className="products-featured-wrapper-title">
+          Nie wiesz, co wybrać? Oto nasze <span>polecane produkty!</span>
         </h2>
+        <p className="products-featured-wrapper-subtitle">
+          Nie masz czasu na przeglądanie setek produktów? Szukasz najlepszych
+          propozycji, które pozwolą Ci zaoszczędzić czas i pieniądze? Nasze
+          polecane produkty to gwarancja sukcesu!
+        </p>
+      </div>
+      <div className="container products-featured-container">
         <Carousel>
           {products.map(product => (
             <Link

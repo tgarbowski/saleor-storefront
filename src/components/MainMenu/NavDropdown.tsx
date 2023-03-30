@@ -30,7 +30,11 @@ export const NavDropdown: React.FC<NavDropdownProps> = props => {
       onMouseOver={onShowDropdown}
       onMouseLeave={onHideDropdown}
     >
-      <NavLink item={props} onClick={onHideDropdown} />
+      <NavLink
+        item={props}
+        onClick={onHideDropdown}
+        className="main-menu_item_link"
+      />
       {shopName === "CLOTHES4U" ? null : (
         <div
           className={classNames({

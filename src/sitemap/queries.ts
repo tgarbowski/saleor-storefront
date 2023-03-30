@@ -94,7 +94,7 @@ export const getCollectionsQuery = gql`
 
 export const getNewsIdQuery = gql`
   query GetNewsId {
-    pageTypes(first: 10, filter: { search: "news" }) {
+    pageTypes(first: 5, filter: { search: "news" }) {
       edges {
         node {
           id

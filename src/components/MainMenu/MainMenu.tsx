@@ -10,16 +10,16 @@ import ReactSVG from "react-svg";
 import { DemoBanner } from "@components/atoms";
 import { ShopMenusQuery } from "@graphql/gqlTypes/ShopMenusQuery";
 import { paths } from "@paths";
+import { logo } from "@styles/BrandingConstants";
 import { HeartIconMenuSmall } from "@styles/CreditCardIcon";
-import Logo from "@styles/Logo";
 import { shopName } from "@temp/constants";
 import { commonMessages } from "@temp/intl";
 
-import cartImg from "../../images/cart.svg";
+import cartImg from "../../images/cart.png";
 import hamburgerImg from "../../images/hamburger.svg";
 import hamburgerHoverImg from "../../images/hamburger-hover.svg";
 import searchImg from "../../images/search.svg";
-import userImg from "../../images/user.svg";
+import userImg from "../../images/user.png";
 import {
   MenuDropdown,
   Offline,
@@ -92,17 +92,369 @@ export const MainMenu: React.FC<MainMenuProps> = ({
       : menuItems.slice(0, -1);
 
   return (
+    // <header
+    //   className={classNames({
+    //     "header-with-dropdown": !!activeDropdown,
+    //   })}
+    // >
+    //   {demoMode && <DemoBanner />}
+    //   <nav className="main-menu" id="header">
+    //     <Media
+    //       query={{ minWidth: smallScreen }}
+    //       render={() => (
+    //         <div className="main-menu__left">
+    //           <Link href={paths.home}>
+    //             <a>
+    //               <ReactSVG path={logo} />
+    //             </a>
+    //           </Link>
+    //         </div>
+    //       )}
+    //     />
+
+    //     <div className="main-menu__center">
+    //       <ul>
+    //         <Media
+    //           query={{ maxWidth: "992px" }}
+    //           render={() => (
+    //             <li
+    //               data-test="toggleSideMenuLink"
+    //               className="main-menu__hamburger"
+    //               onClick={() =>
+    //                 overlayContext.show(
+    //                   OverlayType.sideNav,
+    //                   OverlayTheme.left,
+    //                   { data: menuItems }
+    //                 )
+    //               }
+    //             >
+    //               <ReactSVG
+    //                 path={hamburgerImg}
+    //                 className="main-menu__hamburger--icon"
+    //               />
+    //               <ReactSVG
+    //                 path={hamburgerHoverImg}
+    //                 className="main-menu__hamburger--hover"
+    //               />
+    //             </li>
+    //           )}
+    //         />
+    //         <Media
+    //           query={{ minWidth: "992px" }}
+    //           render={() =>
+    //             visibleCategoryOnMenu.map(item => {
+    //               const hasSubNavigation = !!item?.children?.length;
+    //               if (item.name === "Aktualności" || item.name === "News") {
+    //                 item.url = paths.homeNewsSection;
+    //               }
+    //               return item.name === "Aktualności" || item.name === "News" ? (
+    //                 hasSubNavigation ? (
+    //                   <li
+    //                     data-test="mainMenuItem"
+    //                     className="main-menu__item"
+    //                     key={item.id}
+    //                   >
+    //                     <NavDropdown
+    //                       overlay={overlayContext}
+    //                       showDropdown={
+    //                         activeDropdown === item.id && hasSubNavigation
+    //                       }
+    //                       onShowDropdown={() =>
+    //                         showDropdownHandler(item.id, hasSubNavigation)
+    //                       }
+    //                       onHideDropdown={hideDropdownHandler}
+    //                       {...item}
+    //                     />
+    //                   </li>
+    //                 ) : (
+    //                   <li
+    //                     data-test="mainMenuItem"
+    //                     className="main-menu__item"
+    //                     key={item.id}
+    //                   >
+    //                     <Link href={paths.homeNewsSection}>
+    //                       <a>{item.name}</a>
+    //                     </Link>
+    //                   </li>
+    //                 )
+    //               ) : (
+    //                 <li
+    //                   data-test="mainMenuItem"
+    //                   className="main-menu__item"
+    //                   key={item.id}
+    //                 >
+    //                   <NavDropdown
+    //                     overlay={overlayContext}
+    //                     showDropdown={
+    //                       activeDropdown === item.id && hasSubNavigation
+    //                     }
+    //                     onShowDropdown={() =>
+    //                       showDropdownHandler(item.id, hasSubNavigation)
+    //                     }
+    //                     onHideDropdown={hideDropdownHandler}
+    //                     {...item}
+    //                   />
+    //                 </li>
+    //               );
+    //             })
+    //           }
+    //         />
+    //         <Online>
+    //           <Media
+    //             query={{ maxWidth: smallScreen }}
+    //             render={() =>
+    //               !loading && (
+    //                 <>
+    //                   {user ? (
+    //                     <MenuDropdown
+    //                       suffixClass="__rightdown"
+    //                       head={
+    //                         <li className="main-menu__icon main-menu__user--active">
+    //                           <img
+    //                             src={userImg}
+    //                             alt=""
+    //                             width="26"
+    //                             height="26"
+    //                           />
+    //                         </li>
+    //                       }
+    //                       content={
+    //                         <ul className="main-menu__icon">
+    //                           <li data-test="mobileMenuMyAccountLink">
+    //                             <Link href={paths.account}>
+    //                               <a>
+    //                                 <FormattedMessage
+    //                                   {...commonMessages.myAccount}
+    //                                 />
+    //                               </a>
+    //                             </Link>
+    //                           </li>
+    //                           <li data-test="mobileMenuOrderHistoryLink">
+    //                             <Link href={paths.accountOrderHistory}>
+    //                               <a>
+    //                                 <FormattedMessage
+    //                                   {...commonMessages.orderHistory}
+    //                                 />
+    //                               </a>
+    //                             </Link>
+    //                           </li>
+    //                           <li data-test="mobileMenuAddressBookLink">
+    //                             <Link href={paths.accountAddressBook}>
+    //                               <a>
+    //                                 <FormattedMessage
+    //                                   {...commonMessages.addressBook}
+    //                                 />
+    //                               </a>
+    //                             </Link>
+    //                           </li>
+    //                           <li
+    //                             onClick={handleSignOut}
+    //                             data-test="mobileMenuLogoutLink"
+    //                           >
+    //                             <FormattedMessage {...commonMessages.logOut} />
+    //                           </li>
+    //                         </ul>
+    //                       }
+    //                     />
+    //                   ) : (
+    //                     <li
+    //                       data-test="mobileMenuLoginLink"
+    //                       className="main-menu__icon"
+    //                       onClick={() =>
+    //                         overlayContext.show(
+    //                           OverlayType.login,
+    //                           OverlayTheme.left
+    //                         )
+    //                       }
+    //                     >
+    //                       <img src={userImg} alt="" width="26" height="26" />
+    //                     </li>
+    //                   )}
+    //                 </>
+    //               )
+    //             }
+    //           />
+    //         </Online>
+    //       </ul>
+    //     </div>
+
+    //     <div className="main-menu__right">
+    //       <ul>
+    //         <Online>
+    //           <li
+    //             data-test="menuCartOverlayLink"
+    //             className="main-menu__icon main-menu__cart"
+    //             onClick={() => {
+    //               overlayContext.show(OverlayType.cart, OverlayTheme.right);
+    //             }}
+    //           >
+    //             {!loading && (
+    //               <>
+    //                 <img src={cartImg} alt="" width="26" height="26" />
+    //                 {cartItemsQuantity > 0 ? (
+    //                   <span className="main-menu__cart__quantity">
+    //                     {cartItemsQuantity}
+    //                   </span>
+    //                 ) : (
+    //                   <span className="main-menu__cart__quantity">
+    //                     {cartItemsQuantity}
+    //                   </span>
+    //                 )}
+    //               </>
+    //             )}
+    //           </li>
+    //           <li
+    //             data-test="menuWishlistOverlayLink"
+    //             className="main-menu__icon main-menu__wishlist"
+    //             onClick={() => {
+    //               push(paths.wishlist);
+    //             }}
+    //           >
+    //             {!loading && (
+    //               <>
+    //                 <img
+    //                   className="main-menu__wishlist__icon"
+    //                   src={HeartIconMenuSmall}
+    //                   alt="wishlist"
+    //                 />
+    //                 {wishlistItemsQuantity > 0 ? (
+    //                   <span className="main-menu__wishlist__quantity">
+    //                     {wishlistItemsQuantity}
+    //                   </span>
+    //                 ) : (
+    //                   <span className="main-menu__wishlist__quantity">
+    //                     {wishlistItemsQuantity}
+    //                   </span>
+    //                 )}
+    //               </>
+    //             )}
+    //           </li>
+    //           <Media
+    //             query={{ minWidth: smallScreen }}
+    //             render={() =>
+    //               !loading && (
+    //                 <>
+    //                   {user ? (
+    //                     <MenuDropdown
+    //                       head={
+    //                         <li className="main-menu__icon main-menu__user--active">
+    //                           <img
+    //                             src={userImg}
+    //                             alt=""
+    //                             width="26"
+    //                             height="26"
+    //                           />
+    //                         </li>
+    //                       }
+    //                       content={
+    //                         <ul className="main-menu__dropdown">
+    //                           <li data-test="desktopMenuMyAccountLink">
+    //                             <Link href={paths.account}>
+    //                               <a>
+    //                                 <FormattedMessage
+    //                                   {...commonMessages.myAccount}
+    //                                 />
+    //                               </a>
+    //                             </Link>
+    //                           </li>
+    //                           <li data-test="desktopMenuOrderHistoryLink">
+    //                             <Link href={paths.accountOrderHistory}>
+    //                               <a>
+    //                                 <FormattedMessage
+    //                                   {...commonMessages.orderHistory}
+    //                                 />
+    //                               </a>
+    //                             </Link>
+    //                           </li>
+    //                           <li data-test="desktopMenuAddressBookLink">
+    //                             <Link href={paths.accountAddressBook}>
+    //                               <a>
+    //                                 <FormattedMessage
+    //                                   {...commonMessages.addressBook}
+    //                                 />
+    //                               </a>
+    //                             </Link>
+    //                           </li>
+    //                           <li
+    //                             onClick={handleSignOut}
+    //                             data-test="desktopMenuLogoutLink"
+    //                           >
+    //                             <FormattedMessage {...commonMessages.logOut} />
+    //                           </li>
+    //                         </ul>
+    //                       }
+    //                     />
+    //                   ) : (
+    //                     <li
+    //                       data-test="desktopMenuLoginOverlayLink"
+    //                       className="main-menu__icon"
+    //                       onClick={() =>
+    //                         overlayContext.show(
+    //                           OverlayType.login,
+    //                           OverlayTheme.right
+    //                         )
+    //                       }
+    //                     >
+    //                       <img src={userImg} alt="" width="26" height="26" />
+    //                     </li>
+    //                   )}
+    //                 </>
+    //               )
+    //             }
+    //           />
+    //         </Online>
+    //         <Offline>
+    //           <li className="main-menu__offline">
+    //             <Media
+    //               query={{ minWidth: mediumScreen }}
+    //               render={() => (
+    //                 <span>
+    //                   <FormattedMessage defaultMessage="Offline" />
+    //                 </span>
+    //               )}
+    //             />
+    //           </li>
+    //         </Offline>
+    //         <li
+    //           data-test="menuSearchOverlayLink"
+    //           className="main-menu__search"
+    //           onClick={() =>
+    //             overlayContext.show(OverlayType.search, OverlayTheme.right)
+    //           }
+    //         >
+    //           <Media
+    //             query={{ minWidth: "124px" }}
+    //             render={() => <ReactSVG path={searchImg} />}
+    //           />
+    //         </li>
+    //       </ul>
+    //     </div>
+    //   </nav>
+    // </header>
+
     <header
       className={classNames({
         "header-with-dropdown": !!activeDropdown,
       })}
     >
+      <Media
+        query={{ minWidth: smallScreen }}
+        render={() => (
+          <div className="logo">
+            <Link href={paths.home}>
+              <a>
+                <ReactSVG path={logo} />
+              </a>
+            </Link>
+          </div>
+        )}
+      />
       {demoMode && <DemoBanner />}
       <nav className="main-menu" id="header">
         <div className="main-menu__left">
           <ul>
             <Media
-              query={{ maxWidth: mediumScreen }}
+              query={{ maxWidth: "992px" }}
               render={() => (
                 <li
                   data-test="toggleSideMenuLink"
@@ -127,7 +479,7 @@ export const MainMenu: React.FC<MainMenuProps> = ({
               )}
             />
             <Media
-              query={{ minWidth: mediumScreen }}
+              query={{ minWidth: "992px" }}
               render={() =>
                 visibleCategoryOnMenu.map(item => {
                   const hasSubNavigation = !!item?.children?.length;
@@ -160,7 +512,7 @@ export const MainMenu: React.FC<MainMenuProps> = ({
                         key={item.id}
                       >
                         <Link href={paths.homeNewsSection}>
-                          <a>{item.name}</a>
+                          <a className="main-menu_item_link">{item.name}</a>
                         </Link>
                       </li>
                     )
@@ -197,7 +549,12 @@ export const MainMenu: React.FC<MainMenuProps> = ({
                           suffixClass="__rightdown"
                           head={
                             <li className="main-menu__icon main-menu__user--active">
-                              <ReactSVG path={userImg} />
+                              <img
+                                src={userImg}
+                                alt=""
+                                width="26"
+                                height="26"
+                              />
                             </li>
                           }
                           content={
@@ -249,7 +606,7 @@ export const MainMenu: React.FC<MainMenuProps> = ({
                             )
                           }
                         >
-                          <ReactSVG path={userImg} />
+                          <img src={userImg} alt="" width="26" height="26" />
                         </li>
                       )}
                     </>
@@ -260,17 +617,57 @@ export const MainMenu: React.FC<MainMenuProps> = ({
           </ul>
         </div>
 
-        <div className="main-menu__center">
-          <Link href={paths.home}>
-            <a>
-              <ReactSVG path={Logo} />
-            </a>
-          </Link>
-        </div>
-
         <div className="main-menu__right">
           <ul>
             <Online>
+              <li
+                data-test="menuCartOverlayLink"
+                className="main-menu__icon main-menu__cart"
+                onClick={() => {
+                  overlayContext.show(OverlayType.cart, OverlayTheme.right);
+                }}
+              >
+                {!loading && (
+                  <>
+                    <img src={cartImg} alt="" width="26" height="26" />
+                    {cartItemsQuantity > 0 ? (
+                      <span className="main-menu__cart__quantity">
+                        {cartItemsQuantity}
+                      </span>
+                    ) : (
+                      <span className="main-menu__cart__quantity">
+                        {cartItemsQuantity}
+                      </span>
+                    )}
+                  </>
+                )}
+              </li>
+              <li
+                data-test="menuWishlistOverlayLink"
+                className="main-menu__icon main-menu__wishlist"
+                onClick={() => {
+                  push(paths.wishlist);
+                }}
+              >
+                {!loading && (
+                  <>
+                    <img
+                      className="main-menu__wishlist__icon"
+                      src={HeartIconMenuSmall}
+                      alt="wishlist"
+                    />
+                    {wishlistItemsQuantity > 0 ? (
+                      <span className="main-menu__wishlist__quantity">
+                        {wishlistItemsQuantity}
+                      </span>
+                    ) : (
+                      <span className="main-menu__wishlist__quantity">
+                        {wishlistItemsQuantity}
+                      </span>
+                    )}
+                  </>
+                )}
+              </li>
               <Media
                 query={{ minWidth: smallScreen }}
                 render={() =>
@@ -280,7 +677,12 @@ export const MainMenu: React.FC<MainMenuProps> = ({
                         <MenuDropdown
                           head={
                             <li className="main-menu__icon main-menu__user--active">
-                              <ReactSVG path={userImg} />
+                              <img
+                                src={userImg}
+                                alt=""
+                                width="26"
+                                height="26"
+                              />
                             </li>
                           }
                           content={
@@ -332,61 +734,13 @@ export const MainMenu: React.FC<MainMenuProps> = ({
                             )
                           }
                         >
-                          <ReactSVG path={userImg} />
+                          <img src={userImg} alt="" width="26" height="26" />
                         </li>
                       )}
                     </>
                   )
                 }
               />
-              <li
-                data-test="menuCartOverlayLink"
-                className="main-menu__icon main-menu__cart"
-                onClick={() => {
-                  overlayContext.show(OverlayType.cart, OverlayTheme.right);
-                }}
-              >
-                {!loading && (
-                  <>
-                    <ReactSVG path={cartImg} />
-                    {cartItemsQuantity > 0 ? (
-                      <span className="main-menu__cart__quantity">
-                        {cartItemsQuantity}
-                      </span>
-                    ) : (
-                      <span className="main-menu__cart__quantity">
-                        {cartItemsQuantity}
-                      </span>
-                    )}
-                  </>
-                )}
-              </li>
-              <li
-                data-test="menuWishlistOverlayLink"
-                className="main-menu__icon main-menu__wishlist"
-                onClick={() => {
-                  push(paths.wishlist);
-                }}
-              >
-                {!loading && (
-                  <>
-                    <img
-                      className="main-menu__wishlist__icon"
-                      src={HeartIconMenuSmall}
-                      alt="wishlist"
-                    />
-                    {wishlistItemsQuantity > 0 ? (
-                      <span className="main-menu__wishlist__quantity">
-                        {wishlistItemsQuantity}
-                      </span>
-                    ) : (
-                      <span className="main-menu__wishlist__quantity">
-                        {wishlistItemsQuantity}
-                      </span>
-                    )}
-                  </>
-                )}
-              </li>
             </Online>
             <Offline>
               <li className="main-menu__offline">
@@ -408,14 +762,9 @@ export const MainMenu: React.FC<MainMenuProps> = ({
               }
             >
               <Media
-                query={{ minWidth: mediumScreen }}
-                render={() => (
-                  <span>
-                    <FormattedMessage {...commonMessages.search} />
-                  </span>
-                )}
+                query={{ minWidth: "124px" }}
+                render={() => <ReactSVG path={searchImg} />}
               />
-              <ReactSVG path={searchImg} />
             </li>
           </ul>
         </div>

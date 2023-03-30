@@ -1,6 +1,7 @@
 import * as React from "react";
 
-import { META_DEFAULTS } from "../../core/config";
+import { metaDefaults } from "@styles/BrandingConstants";
+
 import MetaConsumer from "./consumer";
 import { MetaContextInterface, Provider as MetaProvider } from "./context";
 
@@ -20,7 +21,7 @@ interface MetaWrapperProps {
 }
 
 const MetaWrapper: React.FC<MetaWrapperProps> = ({ children, meta }) => (
-  <MetaProvider value={{ ...META_DEFAULTS, ...removeEmpty(meta) }}>
+  <MetaProvider value={{ ...metaDefaults, ...removeEmpty(meta) }}>
     <MetaConsumer>{children}</MetaConsumer>
   </MetaProvider>
 );

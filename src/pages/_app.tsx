@@ -16,9 +16,8 @@ import { ThemeProvider } from "styled-components";
 import { NotificationTemplate } from "@components/atoms";
 import { ServiceWorkerProvider } from "@components/containers";
 import { defaultTheme, GlobalStyle } from "@styles";
-import Favicon from "@styles/Favicon";
+import { favicon, metaDefaults } from "@styles/BrandingConstants";
 import { NextQueryParamProvider } from "@temp/components";
-import { META_DEFAULTS } from "@temp/core/config";
 import { getSaleorApi, getShopConfig, ShopConfig } from "@utils/ssr";
 
 import { version } from "../../package.json";
@@ -82,11 +81,11 @@ const App = ({
 }: AppProps) => (
   <>
     <Head>
-      <title>{META_DEFAULTS.title} - Odzież używana - sklep internetowy</title>
+      <title>{metaDefaults.title} | sklep internetowy</title>
       <link rel="preconnect" href={apiUrl} />
 
       <link href="https://rsms.me/inter/inter.css" />
-      <link rel="icon" type="image/png" href={Favicon} />
+      <link rel="icon" type="image/png" href={favicon} />
       <link rel="manifest" href="/manifest.json" />
       {/* <link
         rel="stylesheet"
@@ -129,11 +128,7 @@ const App = ({
         // @ts-ignore
         onLoad="this.media='all'"
       />
-      <meta
-        name="description"
-        content="Sklep internetowy z tanią odzieżą używaną damską, męską i dziecięcą.
-        W naszym lumpeksie online posiadamy ubrania używane oraz z outletu. Setki marek i mnóstwo niepowtarzalnego stylu. "
-      />
+      <meta name="description" content={metaDefaults.description} />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta
         name="google-site-verification"

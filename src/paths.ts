@@ -14,6 +14,7 @@ export const paths = {
   guestOrderDetail: `${baseUrl}order-history/:token`,
   home: baseUrl,
   homeNewsSection: `${baseUrl}#news`,
+  homeSalesSection: `${baseUrl}#sales`,
   login: `${baseUrl}login`,
   orderFinalized: `${baseUrl}order-finalized`,
   page: `${baseUrl}page/:slug`,

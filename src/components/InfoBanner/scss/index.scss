@@ -1,3 +1,5 @@
+@import "../../../globalStyles/scss/variables.scss";
+
 .marketing-bar-global {
   position: absolute;
   font-size: 14px;
@@ -5,11 +7,12 @@
   overflow: hidden;
   transition: background-color 0.2s linear;
   text-align: center;
-  background: black;
-  padding: 20px;
+  background: $primary;
+  padding: 10px;
   color: #fff;
   width: 100%;
   top: 0;
+  font-family: "Poppins", sans-serif;
 
   .marketing-bar-content {
     &-description {

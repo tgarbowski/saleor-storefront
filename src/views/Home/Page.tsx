@@ -1,7 +1,6 @@
 import { ProductList_products } from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
 import Link from "next/link";
 import React from "react";
-import Carousel from "react-img-carousel";
 import { FormattedMessage, useIntl } from "react-intl";
 import { generatePath } from "react-router";
 
@@ -14,7 +13,7 @@ import {
   ManCategoryImg,
   WomanCategoryImg,
 } from "@styles/pictures";
-import { FooterUsp } from "@temp/components/FooterUsp/FooterUsp";
+import { AdvantagesBlock } from "@temp/components/AdvantagesBlock/AdvantagesBlock";
 import { shopName } from "@temp/constants";
 import { FeaturedProducts } from "@utils/ssr";
 
@@ -69,208 +68,71 @@ const Page: React.FC<{
       <script className="structured-data-list" type="application/ld+json">
         {structuredData(shop)}
       </script>
-      {collections.edges.length > 1 ? (
-        <Carousel
-          className="carousel-2"
-          viewportWidth="100%"
-          maxRenderedSlides={3}
-          cellPadding={5}
-          transition="fade"
-          autoplay
-          autoplaySpeed={5000}
-          transitionDuration={1000}
-          initialSlide={3}
-          arrows
-          style={{
-            slide: {
-              width: "100%",
-              height: "auto",
-            },
-            selectedSlide: {
-              width: "100%",
-              height: "auto",
-            },
-            viewport: {
-              objectFit: "cover",
-            },
-          }}
-        >
-          {collections?.edges.map(({ node: collection }) => {
-            return (
-              <div
-                key={collection.id}
-                className="home-page__hero"
-                style={
-                  collection.backgroundImage
-                    ? {
-                        backgroundImage: `url(${collection.backgroundImage?.url})`,
-                      }
-                    : {
-                        backgroundImage: `url(${DefaultHero})`,
-                      }
-                }
-              >
-                <div className="home-page__hero-text">
-                  <div>
-                    <h1 className="home-page__hero__title">
-                      {collection.name}
-                    </h1>
-                  </div>
-                  <div>
-                    <span className="home-page__hero__subtitle">
-                      <h2>
-                        {
-                          JSON.parse(collection.description)?.blocks[0]?.data
-                            .text
-                        }
-                      </h2>
-                    </span>
-                  </div>
-                </div>
-                <div className="home-page__hero-action">
-                  {collection.name === "O nas"
-                    ? pages?.edges?.map(({ node: page }) => {
-                        return (
-                          page.slug === "o-nas" && (
-                            <Link
-                              key={page.id}
-                              href={generatePath(paths.page, {
-                                slug: page.slug,
-                              })}
-                            >
-                              <a>
-                                <Button
-                                  testingContext="homepageHeroActionButton"
-                                  aria-label="homepageHeroActionButton"
-                                >
-                                  <FormattedMessage defaultMessage="Przeczytaj więcej" />
-                                </Button>
-                              </a>
-                            </Link>
-                          )
-                        );
-                      })
-                    : collectionsExist() && (
-                        <Link
-                          key={collection.id}
-                          href={generatePath(paths.collection, {
-                            slug: collection.slug,
-                          })}
-                        >
-                          <a>
-                            <Button
-                              testingContext="homepageHeroActionButton"
-                              aria-label="homepageHeroActionButton"
-                            >
-                              <FormattedMessage defaultMessage="Sprawdź ofertę" />
-                            </Button>
-                          </a>
-                        </Link>
-                      )}
-                </div>
-              </div>
-            );
-          })}
-        </Carousel>
-      ) : (
-        <div
-          className="home-page__hero"
-          style={
-            featuredProducts.backgroundImage
-              ? {
-                  backgroundImage: `url(${featuredProducts.backgroundImage.url})`,
-                }
-              : {
-                  backgroundImage: `url(${DefaultHero})`,
-                }
-          }
-        >
-          <div className="home-page__hero-text">
-            <div>
-              <h1 className="home-page__hero__title">
-                <FormattedMessage
-                  defaultMessage="{shopname}"
-                  values={{ shopname: shopName }}
-                />
-              </h1>
-            </div>
-            <div>
-              <span className="home-page__hero__subtitle">
-                <h2>
-                  <FormattedMessage
-                    values={{ shopname: shopName }}
-                    defaultMessage="{shopname} to sklep z jakościową odzieżą używaną. Różne marki w jednym miejscu. Przekonaj się sam!"
-                  />
-                </h2>
-              </span>
-            </div>
+      <div
+        className="home-page__hero"
+        style={
+          featuredProducts.backgroundImage
+            ? {
+                backgroundImage: `url(${featuredProducts.backgroundImage.url})`,
+              }
+            : {
+                backgroundImage: `url(${DefaultHero})`,
+              }
+        }
+      >
+        <div className="home-page__hero-text">
+          <div>
+            <h1 className="home-page__hero__title">Sklep {shopName}</h1>
           </div>
-          <div className="home-page__hero-action">
-            {categoriesExist() && (
-              <Link
-                href={generatePath(paths.category, {
-                  slug: categories.edges[2].node.slug,
-                })}
-              >
+          <div>
+            <p className="home-page__hero__subtitle">{shop?.description}</p>
+          </div>
+        </div>
+        <div className="home-page__hero-action">
+          {categoriesExist() && (
+            <>
+              <Link href={paths.homeNewsSection}>
+                <a>
+                  <Button
+                    testingContext="homepageHeroActionButton"
+                    aria-label="homepageHeroActionButton"
+                    className="button fourth"
+                  >
+                    <FormattedMessage defaultMessage="Aktualności" />
+                  </Button>
+                </a>
+              </Link>
+              <Link href={paths.homeSalesSection}>
                 <a>
                   <Button
                     testingContext="homepageHeroActionButton"
                     aria-label="homepageHeroActionButton"
                   >
-                    <FormattedMessage defaultMessage="Sprawdź ofertę" />
+                    <FormattedMessage defaultMessage="Promocje" />
                   </Button>
                 </a>
               </Link>
-            )}
-          </div>
-          <div className="scroll-down">
-            <svg className="arrows">
-              <path className="a1" d="M0 0 L30 32 L60 0" />
-              <path className="a2" d="M0 20 L30 52 L60 20" />
-              <path className="a3" d="M0 40 L30 72 L60 40" />
-            </svg>
-          </div>
+            </>
+          )}
         </div>
-      )}
-      {salesExist() && (
-        <div className="home-page__sale-wrapper">
-          <div className="home-page__sale-wrapper-content container">
-            {sales?.edges.map(({ node: sale }) => {
-              if (sale?.products?.totalCount > 0) {
-                return (
-                  <Link
-                    href={generatePath(paths.sale, {
-                      id: sale.id,
-                    })}
-                  >
-                    <a className="home-page__sale-wrapper-content-item">
-                      {sale.name.match(/\d/) ? (
-                        <h2 className="sale-with-percent">
-                          <span>Promocja!</span>
-                          <h3>-{sale.name}%</h3>
-                        </h2>
-                      ) : (
-                        <span className="sale-without-percent">
-                          <span>Promocja!</span>
-                          <h3>{sale.name}</h3>
-                        </span>
-                      )}
-                    </a>
-                  </Link>
-                );
-              }
-            })}
-          </div>
-        </div>
-      )}
+      </div>
+      <AdvantagesBlock />
       {categoriesExist() && (
-        <div className="home-page__categories">
+        <section className="home-page__categories">
+          <div className="container home-page__categories-wrapper">
+            <h2 className="home-page__categories-wrapper-title">
+              Szukasz konkretnych <span>produktów?</span> Nasze kategorie
+              ułatwią Ci zadanie!
+            </h2>
+            <p className="home-page__categories-wrapper-subtitle">
+              Nie wiesz, gdzie szukać swoich ulubionych produktów? Skorzystaj z
+              naszych przejrzystych kategorii i z łatwością znajdź to, czego
+              szukasz.
+            </p>
+          </div>
           <div className="container home-page__categories_container">
             <div className="home-page__categories__list">
               {visibleCategory.map(({ node: category }) => {
-                const contentStringify = JSON.parse(
-                  category.description
-                )?.blocks[0].data.text.replace(/^(.{128}[^\s]*).*/, "$1");
                 return shopName === "CLOTHES4U" &&
                   category.name === "Detal" ? null : (
                   <div key={category.id} className="home-page__category-item">
@@ -307,9 +169,6 @@ const Page: React.FC<{
                             {category.name}
                           </a>
                         </Link>
-                        <p className="home-page__categories__text-subtitle">
-                          {contentStringify}
-                        </p>
                       </div>
                     </div>
                   </div>
@@ -317,17 +176,65 @@ const Page: React.FC<{
               })}
             </div>
           </div>
+        </section>
+      )}
+      <ProductsFeatured
+        products={featuredProducts.products}
+        title={intl.formatMessage({ defaultMessage: "Featured" })}
+      />
+      {salesExist() && (
+        <div id="sales" className="home-page__sale">
+          <div className="container home-page__sale-wrapper">
+            <h2 className="home-page__sale-wrapper-title">
+              Zakupy w dobrej cenie - sprawdź nasze <span>promocje</span> już
+              teraz!
+            </h2>
+            <p className="home-page__sale-wrapper-subtitle">
+              Znudziły Ci się standardowe zakupy? Szukasz czegoś wyjątkowego, co
+              jednocześnie pozwoli Ci oszczędzić pieniądze? Nasza oferta
+              promocyjna jest idealnym rozwiązaniem!
+            </p>
+          </div>
+          <div className="home-page__sale-content container">
+            {sales?.edges.map(({ node: sale }) => {
+              if (sale?.products?.totalCount > 0) {
+                return (
+                  <Link
+                    href={generatePath(paths.sale, {
+                      id: sale.id,
+                    })}
+                  >
+                    <a className="home-page__sale-content-item">
+                      {sale.name.match(/\d/) ? (
+                        <h2 className="sale-with-percent">
+                          <h3>-{sale.name}%</h3>
+                        </h2>
+                      ) : (
+                        <span className="sale-without-percent">
+                          <h3>{sale.name}</h3>
+                        </span>
+                      )}
+                    </a>
+                  </Link>
+                );
+              }
+            })}
+          </div>
         </div>
       )}
       {collectionsExist() && (
         <div className="home-page__collections">
-          <div className="home-page__collections_container">
-            <h2 className="home-page__collections_container-heading">
-              <FormattedMessage defaultMessage="Kolekcje" />
-            </h2>
-            <p className="home-page__collections_container-text">
-              <FormattedMessage defaultMessage="Poznaj nasze popularne kolekcje i wybierz coś dla siebie!" />
-            </p>
+          <div className="home-page__collections_container container">
+            <div className="home-page__collections_container-wrapper">
+              <h2 className="home-page__collections_container-wrapper-title">
+                Nasze najnowsze <span>trendy</span> - zobacz popularne kolekcje
+              </h2>
+              <p className="home-page__collections_container-wrapper-subtitle">
+                Zobacz nasze bestsellery i podążaj za trendami! Nasze najnowsze
+                trendy z pewnością Cię zainspirują i pomogą znaleźć swój
+                wyjątkowy styl.
+              </p>
+            </div>
             <div className="home-page__collections__list">
               {collections?.edges.map(({ node: collection }) => {
                 return collection.name === "O nas" ? (
@@ -369,12 +276,6 @@ const Page: React.FC<{
         </div>
       )}
       <NewsSection news={news} />
-
-      <ProductsFeatured
-        products={featuredProducts.products}
-        title={intl.formatMessage({ defaultMessage: "Featured" })}
-      />
-      <FooterUsp />
     </>
   );
 };
