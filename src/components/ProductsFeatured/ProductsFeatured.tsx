@@ -22,7 +22,7 @@ export const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({
     <div className="products-featured">
       <div className="container products-featured-wrapper">
         <h2 className="products-featured-wrapper-title">
-          Nie wiesz, co wybrać? Oto nasze <span>polecane produkty!</span>
+          Oto nasze <span>polecane produkty!</span>
         </h2>
         <p className="products-featured-wrapper-subtitle">
           Nie masz czasu na przeglądanie setek produktów? Szukasz najlepszych
