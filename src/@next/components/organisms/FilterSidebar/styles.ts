@@ -50,3 +50,18 @@ export const Search = styled.input`
   width: 100%;
   padding: 10px 12px;
 `;
+
+export const CloseFiltersButton = styled.button`
+  color: #fff;
+  background: #000;
+  padding: 0.3rem 1.5rem;
+  border-radius: 4px;
+  transition: 0.3s all ease-in-out;
+  border: 1px solid #000;
+
+  &:hover {
+    background: transparent;
+    color: #000;
+    border: 1px solid #000;
+  }
+`;
