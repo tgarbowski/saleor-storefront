@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { FormattedMessage } from "react-intl";
 
-import { IconButton } from "@components/atoms";
 import { AttributeValuesChecklist } from "@components/molecules";
 import { useHandlerWhenClickedOutside } from "@hooks";
 import { commonMessages } from "@temp/intl";
@@ -55,13 +54,9 @@ export const FilterSidebar: React.FC<IProps> = ({
             <span>
               <FormattedMessage {...commonMessages.filterHeader} />
             </span>
-            <IconButton
-              testingContext="hideFilters"
-              onClick={hide}
-              name="x"
-              size={18}
-              color="000"
-            />
+            <S.CloseFiltersButton onClick={hide} className="close-filters">
+              Szukaj
+            </S.CloseFiltersButton>
           </S.HeaderName>
           <S.SearchWrapper>
             <S.Search
