@@ -1,4 +1,3 @@
-import { database } from "faker/locale/de";
 import React, { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 
