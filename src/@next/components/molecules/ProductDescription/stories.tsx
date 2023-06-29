@@ -1,9 +1,9 @@
+import { ProductDetails } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
 import { ProductDescription } from ".";
 import { attributes, descriptionJSON } from "./fixtures";
-import { ProductDetails } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
 
 const productDetails: ProductDetails = {
   __typename: "Product",
