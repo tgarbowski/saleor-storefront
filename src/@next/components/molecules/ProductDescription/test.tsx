@@ -1,5 +1,6 @@
 import "jest-styled-components";
 
+import { ProductDetails } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
 import { mount, shallow } from "enzyme";
 import React from "react";
 import renderer from "react-test-renderer";
@@ -11,12 +12,35 @@ import { ProductDescription } from ".";
 import { attributes, descriptionJSON } from "./fixtures";
 import * as S from "./styles";
 
+const productDetails: ProductDetails = {
+  __typename: "Product",
+  id: "1",
+  name: "Product 1",
+  slug: "product-1",
+  seoDescription: "Product 1 description",
+  isAvailableForPurchase: true,
+  availableForPurchase: "2023-06-30",
+  seoTitle: "Product 1",
+  thumbnail: null,
+  thumbnail2x: null,
+  pricing: null,
+  description: "Product 1 description",
+  category: null,
+  images: null,
+  attributes: [],
+  variants: null,
+  isAvailable: true,
+  collections: null,
+  sales: null,
+};
+
 describe("<ProductDescription />", () => {
   it("exists", () => {
     const wrapper = shallow(
       <ProductDescription
         attributes={attributes}
         description={descriptionJSON}
+        product={productDetails}
       />
     );
 
@@ -30,6 +54,7 @@ describe("<ProductDescription />", () => {
           <ProductDescription
             attributes={attributes}
             description={descriptionJSON}
+            product={productDetails}
           />
         </ThemeProvider>
       )
@@ -42,6 +67,7 @@ describe("<ProductDescription />", () => {
       <ProductDescription
         attributes={attributes}
         description={descriptionJSON}
+        product={productDetails}
       />
     );
 
