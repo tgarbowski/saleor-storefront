@@ -59,3 +59,15 @@ export const TabTitle = styled.div<{ active?: boolean }>`
 export const AttributeName = styled.span`
   color: ${props => props.theme.colors.listAttributeName};
 `;
+
+export const DimensionImage = styled.img`
+  width: 600px;
+  height: 400px;
+  object-fit: contain;
+
+  @media only screen and (max-width: 996px) {
+    width: 87%;
+    height: 300px;
+    object-fit: contain;
+  }
+`;
