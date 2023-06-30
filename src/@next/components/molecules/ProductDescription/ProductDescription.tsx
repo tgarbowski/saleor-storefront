@@ -123,12 +123,7 @@ export const ProductDescription: React.FC<IProps> = ({
           <RichTextEditorContent jsonData={description} />
           <div>
             {dimensionsTemplate && (
-              <img
-                style={{
-                  width: "600px",
-                  height: "400px",
-                  objectFit: "contain",
-                }}
+              <S.DimensionImage
                 src={
                   dimensionsPhotos[
                     `template${dimensionsTemplate}` as keyof typeof dimensionsPhotos
