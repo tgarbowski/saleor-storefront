@@ -1,3 +1,5 @@
+import { ProductDetails } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
+
 export interface IProps {
   description?: string;
   attributes?: Array<{
@@ -5,6 +7,7 @@ export interface IProps {
     values: Array<{ name: string }>;
   }>;
   variants?: (ProductDetails_product_variants | null)[] | null;
+  product: ProductDetails;
 }
 
 interface ProductDetails_product_variants {

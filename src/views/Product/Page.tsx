@@ -246,6 +246,7 @@ const Page: React.FC<
             description={product.description}
             attributes={product.attributes}
             variants={product.variants}
+            product={product}
           />
         </div>
       </div>
