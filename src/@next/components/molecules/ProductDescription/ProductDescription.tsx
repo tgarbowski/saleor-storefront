@@ -42,6 +42,7 @@ export const ProductDescription: React.FC<IProps> = ({
 }: IProps) => {
   const [activeTab, setActiveTab] = useState<TABS>(TABS.DESCRIPTION);
   const [productType, setProductType] = useState(null);
+  const [dimensions, setDimensions] = useState(null);
 
   const getProductType = async (id: string) => {
     const response = await fetch(apiUrl, {
@@ -88,6 +89,18 @@ export const ProductDescription: React.FC<IProps> = ({
     productType as unknown as ProductType
   )?.metadata?.find(meta => meta.key === "template")?.value;
 
+  useEffect(() => {
+    if (description) {
+      const parsedDescription = JSON.parse(description);
+      const dimensionsBlock = parsedDescription.blocks.find((block: any) =>
+        block.data.text.startsWith("Wymiary: ")
+      );
+      if (dimensionsBlock) {
+        setDimensions(dimensionsBlock.data.text);
+      }
+    }
+  }, [description]);
+
   return (
     <S.Wrapper>
       <S.Tabs>
@@ -122,7 +135,7 @@ export const ProductDescription: React.FC<IProps> = ({
         <>
           <RichTextEditorContent jsonData={description} />
           <div>
-            {dimensionsTemplate && (
+            {dimensions && dimensionsTemplate && (
               <S.DimensionImage
                 src={
                   dimensionsPhotos[
