@@ -92,11 +92,15 @@ export const ProductDescription: React.FC<IProps> = ({
   useEffect(() => {
     if (description) {
       const parsedDescription = JSON.parse(description);
-      const dimensionsBlock = parsedDescription.blocks.find((block: any) =>
-        block.data.text.startsWith("Wymiary: ")
+
+      const dimensionsBlock = parsedDescription.blocks?.find((block: any) =>
+        block?.data?.text?.startsWith("Wymiary: ")
       );
+
       if (dimensionsBlock) {
         setDimensions(dimensionsBlock.data.text);
+      } else {
+        setDimensions(null);
       }
     }
   }, [description]);
