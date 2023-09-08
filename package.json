@@ -180,7 +180,7 @@
     "workbox-webpack-plugin": "^6.3.0"
   },
   "engines": {
-    "node": ">=12 <15"
+    "node": ">=16 <17"
   },
   "husky": {
     "hooks": {
